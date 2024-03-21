@@ -1,8 +1,5 @@
 package com.fai.brofee_fe.dto;
 
-import com.fai.brofee_fe.entity.Category;
-import com.fai.brofee_fe.entity.ServicePolicyAssignment;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,5 +32,7 @@ public class ServiceDetailDTO_hung {
     private LocalDateTime deletedAt;
 
     private List<PolicyServiceAssignmentDTO> policyAssignments;
+
+    private Boolean conflicted;
 
 }

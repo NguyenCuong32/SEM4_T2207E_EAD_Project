@@ -1,5 +1,6 @@
 package com.fai.brofee_fe.controller;
 
+import com.fai.brofee_fe.dto.UserDTO;
 import com.fai.brofee_fe.entity.User;
 import com.fai.brofee_fe.service.UserService;
 import lombok.AllArgsConstructor;
@@ -22,8 +23,8 @@ public class UserController_hung {
 
     @PostMapping(value = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<User> searchUser(@RequestParam("codeOrPhone") String codeOrPhone) {
-        Optional<User> user = userService.getUserByCodeOrPhone(codeOrPhone);
+    public ResponseEntity<UserDTO> searchUser(@RequestParam("codeOrPhone") String codeOrPhone) {
+        Optional<UserDTO> user = userService.getUserByCodeOrPhone(codeOrPhone);
         return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 

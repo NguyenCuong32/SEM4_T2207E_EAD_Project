@@ -1,9 +1,6 @@
 package com.fai.brofee_fe.controller;
 
-import com.fai.brofee_fe.dto.CommissionPolicyCreateDTO;
-import com.fai.brofee_fe.dto.CommissionPolicyDTO;
-import com.fai.brofee_fe.dto.CommissionTierCreateDTO;
-import com.fai.brofee_fe.dto.ServiceDetailDTO_hung;
+import com.fai.brofee_fe.dto.*;
 import com.fai.brofee_fe.service.CommissionPolicyService;
 import com.fai.brofee_fe.service.ServiceService_hung;
 import lombok.AllArgsConstructor;
@@ -11,12 +8,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +46,13 @@ public class PolicyController {
     @GetMapping("/create")
     public String createPolicyPage(Model model) {
         List<ServiceDetailDTO_hung> allServices = serviceService_hung.getAllServices();
+        LocalDateTime defaultStartDate = LocalDateTime.now().withDayOfMonth(1).withHour(0).withMinute(0).withSecond(0);;
+        LocalDateTime defaultEndDate = defaultStartDate.withMonth(defaultStartDate.getMonthValue() + 1).withDayOfMonth(1).withHour(23).withMinute(59).withSecond(59).minusNanos(1);
+
+        for (ServiceDetailDTO_hung service : allServices) {
+            service.setConflicted(hasPolicyConflict(service, defaultStartDate, defaultEndDate));
+        }
+
         model.addAttribute("services", allServices);
 
         CommissionPolicyCreateDTO policy = new CommissionPolicyCreateDTO();
@@ -80,4 +87,28 @@ public class PolicyController {
         return "redirect:/policy";
     }
 
+    @GetMapping("/services")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public List<ServiceDetailDTO_hung> getServices(
+            @RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime startDate,
+            @RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endDate
+    ) {
+        List<ServiceDetailDTO_hung> allServices = serviceService_hung.getAllServices();
+
+        for (ServiceDetailDTO_hung service : allServices) {
+            service.setConflicted(hasPolicyConflict(service, startDate, endDate));
+        }
+        return allServices;
+    }
+
+    private boolean hasPolicyConflict(ServiceDetailDTO_hung service, LocalDateTime startDate, LocalDateTime endDate) {
+        return service.getPolicyAssignments().stream()
+                .map(PolicyServiceAssignmentDTO::getPolicy)
+                .anyMatch(policy -> {
+                    // Adjust logic for conflict detection as needed
+                    return !policy.getEndDate().isBefore(startDate) &&
+                            !policy.getStartDate().isAfter(endDate);
+                });
+    }
 }

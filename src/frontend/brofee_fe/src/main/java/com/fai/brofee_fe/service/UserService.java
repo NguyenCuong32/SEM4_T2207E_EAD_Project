@@ -1,6 +1,7 @@
 package com.fai.brofee_fe.service;
 
 import com.fai.brofee_fe.dto.UserCreateDTO;
+import com.fai.brofee_fe.dto.UserDTO;
 import com.fai.brofee_fe.entity.User;
 import com.fai.brofee_fe.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -22,7 +23,7 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public Optional<User> getUserByCodeOrPhone(String codeOrPhone) {
-        return userRepository.findByCodeOrPhone(codeOrPhone, codeOrPhone);
+    public Optional<UserDTO> getUserByCodeOrPhone(String codeOrPhone) {
+        return userRepository.findByCodeOrPhone(codeOrPhone, codeOrPhone).map(user -> modelMapper.map(user, UserDTO.class));
     }
 }
