@@ -1,0 +1,4 @@
+1. Khai báo css:
+	<link rel="stylesheet" th:href="@{/css/tailwind.output.css}" />
+	=> Config bên Security: 
+		.requestMatchers("/css/**", "js/**","img/**").permitAll()

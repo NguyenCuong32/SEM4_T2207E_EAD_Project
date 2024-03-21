@@ -42,7 +42,7 @@ public class AccountService implements IAccountService{
 //
 //        Account user1 = new Account();
 //        user1.setUsername("admin");
-//        user1.setPassword("$2a$12$zAUWiY6oJQjayUysRdMG5.9tKrvZ0i38sZygGk2QYEX1qf47lM7k2");
+//        user1.setPassword("$2a$10$zXx.7eRQDzBJ7zdjqq42VutrH5AMlXUzSkChGqtuBezFmlIcvDDbS");  //Abcd@1234
 //        user1.setEnabled(true);
 //        user1.setRoles(roles);
 //

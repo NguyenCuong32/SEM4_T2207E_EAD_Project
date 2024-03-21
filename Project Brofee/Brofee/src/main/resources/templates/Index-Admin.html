@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Admin</title>
+    <link th:href="@{https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/tailwind.output.css}" />
 </head>
 <body>
+<h1>Hello Admin</h1>
+<form th:action="@{/logout}" method="post">
+    <button type="submit" class="block max-w-2xl px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+        Logout
+    </button>
+</form>
 
+
+
+<script th:src="@{https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js}" defer></script>
+<script th:src="@{/js/init-alpine.js}"></script>
 </body>
 </html>
