@@ -33,6 +33,7 @@ public class SecurityConfig {
         httpSecurity.authorizeHttpRequests(
                 configurer->configurer
                         .requestMatchers("/register/**").permitAll()
+                        .requestMatchers("/css/**", "js/**","img/**").permitAll()
                         .requestMatchers("/indexAdmin").hasRole("ADMIN")
                         .anyRequest()
                         .authenticated()   //Yeu cau dang nhap moi truy cap duoc
