@@ -22,8 +22,8 @@ public class HomeController {
         return "Index-Admin";
     }
 
-    @GetMapping("/indexUser")
-    public String indexUser(){
-        return "Index-User";
+    @GetMapping("/home")
+    public String home(){
+        return "html/category/Category";
     }
 }
