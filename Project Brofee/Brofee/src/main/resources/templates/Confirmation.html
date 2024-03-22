@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation</title>
+    <link th:href="@{https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/tailwind.output.css}" />
+</head>
+<body>
+<div class="container">
+    <h3 class="mt-8">
+        Registered successfully
+        <span style="color: cornflowerblue" th:text="${session.my_account.getUsername()}"></span>
+    </h3>
+    <p class="mt-1">
+        <a th:href="@{/loginPage}" class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline">
+            Login
+        </a>
+    </p>
+</div>
+
+
+<script th:src="@{https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js}" defer></script>
+<script th:src="@{/js/init-alpine.js}"></script>
+</body>
+</html>
