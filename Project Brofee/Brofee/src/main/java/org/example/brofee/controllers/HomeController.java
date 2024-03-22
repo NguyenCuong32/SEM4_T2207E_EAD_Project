@@ -22,8 +22,8 @@ public class HomeController {
         return "Index-Admin";
     }
 
-    @GetMapping("/indexUser")
+    @GetMapping("/home")
     public String indexUser(){
-        return "Index-User";
+        return "Brofee/html/home";
     }
 }
