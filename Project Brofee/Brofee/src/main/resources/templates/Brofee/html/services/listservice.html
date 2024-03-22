@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="/style/styleguide.css" />
-    <link rel="stylesheet" href="/style/style.css" />
+    <link rel="stylesheet" href="globals.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/styleguide.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   </head>
   <body>
     <div class="list-services">
@@ -226,7 +228,7 @@
                 <div class="group-17"></div>
               </div>
               <div class="group-18">
-                <div class="overlap-2"><div class="text-wrapper-23">Add Service</div></div>
+                <div class="overlap-2"><div class="text-wrapper-23"><a style="font-weight: 500; color: #ffffff; font-size: 18px;" th:href="@{/service/create}">Add Service</a></div></div>
               </div>
             </div>
           </div>
