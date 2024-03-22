@@ -52,7 +52,8 @@
 							<!--begin::Container-->
 							<div id="kt_content_container" class="container-xxl">
 								<!--begin::Form-->
-								<form class="form d-flex flex-column flex-lg-row" th:action="@{/policy/create}" method="post" th:object="${policy}">
+								<form class="form d-flex flex-column flex-lg-row" th:action="@{/policy/edit}" method="post" th:object="${policy}">
+									<input type="hidden" th:field="*{id}">
 									<!--begin::Aside column-->
 									<div class="w-100 flex-lg-row-auto w-lg-450px mb-7 me-7 me-lg-10">
 										<!--begin::Order details-->
@@ -70,15 +71,17 @@
 													<!--begin::Input group-->
 													<div class="fv-row">
 														<!--begin::Label-->
-														<label class="required form-label">Applied Period</label>
+														<label class="required form-label" th:if="${status == 'pending'}">Applied Period</label>
+														<label class="required form-label" th:if="${status == 'active'}">End Date</label>
 														<!--end::Label-->
 														<!--begin::Editor-->
-														<input class="form-control mb-2" placeholder="Pick date rage" id="kt_daterangepicker_policy"/>
-														<input type="datetime-local" name="startDate" th:field="*{startDate}" hidden>
-														<input type="datetime-local" name="endDate" th:field="*{endDate}" step="1" hidden>
+														<input class="form-control mb-2" placeholder="Pick date rage" id="kt_daterangepicker_policy" th:if="${status == 'pending'}"/>
+														<input class="form-control mb-2" type="datetime-local" name="startDate" th:field="*{startDate}" hidden/>
+														<input class="form-control mb-2 " type="datetime-local" name="endDate" th:field="*{endDate}" step="1" th:hidden="${status == 'pending'}"/>
 														<div class="form-text text-danger" th:each="error: ${#fields.errors('startDate')}" th:text="${error}">Validation error</div>
 														<div class="form-text text-danger" th:each="error: ${#fields.errors('endDate')}" th:text="${error}">Validation error</div>
 														<!--end::Editor-->
+														<div class="text-muted fs-7" th:if="${status == 'active'}">Only end date can be changed with <span class="text-success">active</span> policy.</div>
 													</div>
 													<!--end::Input group-->
 													<!--begin::Input group-->
@@ -87,12 +90,13 @@
 														<label class="required form-label">Number of levels</label>
 														<!--end::Label-->
 														<!--begin::Select2-->
-														<select class="form-select mb-2" id="select-levels" th:field="*{maxReferralLevels}">
+														<input type="number" th:field="*{maxReferralLevels}" th:if="${status == 'active'}" hidden/>
+														<select class="form-select mb-2" id="select-levels" th:field="*{maxReferralLevels}" th:disabled="${status == 'active'}">
 															<option value="1">1 upper level</option>
 															<option value="2">2 upper levels</option>
 															<option value="3">3 upper levels</option>
 															<option value="4">4 upper levels</option>
-															<option value="5" selected>5 upper levels</option>
+															<option value="5">5 upper levels</option>
 															<option value="6">6 upper levels</option>
 															<option value="7">7 upper levels</option>
 															<option value="8">8 upper levels</option>
@@ -144,7 +148,7 @@
 															<td class="d-flex justify-content-end">
 																<div class="input-group w-75">
 																	<input type="hidden"  th:field="*{commissionTiers[__${i}__].level}"/>
-																	<input type="number" class="form-control level-rate" value="0" min="0" max="100" th:field="*{commissionTiers[__${i}__].commissionRate}"/>
+																	<input type="number" class="form-control level-rate" value="0" min="0" max="100" th:field="*{commissionTiers[__${i}__].commissionRate}" th:disabled="${status == 'active'}"/>
 																	<span class="input-group-text">%</span>
 																</div>
 															</td>
@@ -219,7 +223,7 @@
 														<tr th:each="service : ${services}">
 															<td>
 																<div class="form-check form-check-sm form-check-custom form-check-solid">
-																	<input class="form-check-input" type="checkbox" onchange="updateSelectedCount()"th:field="*{serviceIds}" th:value="${service.id}" th:disabled="${service.conflicted}"/>
+																	<input class="form-check-input" type="checkbox" onchange="updateSelectedCount()" th:field="*{serviceIds}" th:value="${service.id}" th:disabled="${service.conflicted || status == 'active'}"/>
 																</div>
 															</td>
 															<td>
@@ -323,10 +327,14 @@
 
 		<script>
 			$(function() {
+				// Get initial values from Thymeleaf attributes
+				var initialStartDate = $('input[name="startDate"]').val();
+				var initialEndDate = $('input[name="endDate"]').val();
+
 				$('#kt_daterangepicker_policy').daterangepicker({
 					timePicker: false,
-					startDate: moment().startOf('month'),
-					endDate: moment().endOf('month'),
+					startDate: moment(initialStartDate),
+					endDate: moment(initialEndDate),
 					locale: {
 						format: 'MM/DD/YYYY',
 					},
@@ -341,10 +349,10 @@
 					updateServiceList(startTime, endTime);
 				});
 
-				var initialStartTime = moment().startOf('month').format('YYYY-MM-DD HH:mm:ss');
-				var initialEndTime = moment().endOf('month').format('YYYY-MM-DD HH:mm:ss');
-				$('input[name="startDate"]').val(initialStartTime);
-				$('input[name="endDate"]').val(initialEndTime);
+				// var initialStartTime = moment().startOf('month').format('YYYY-MM-DD HH:mm:ss');
+				// var initialEndTime = moment().endOf('month').format('YYYY-MM-DD HH:mm:ss');
+				// $('input[name="startDate"]').val(initialStartTime);
+				// $('input[name="endDate"]').val(initialEndTime);
 			});
 
 			function updateServiceList(startDate, endDate) {

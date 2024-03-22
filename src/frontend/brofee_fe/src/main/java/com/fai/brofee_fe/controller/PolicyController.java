@@ -1,8 +1,10 @@
 package com.fai.brofee_fe.controller;
 
 import com.fai.brofee_fe.dto.*;
+import com.fai.brofee_fe.entity.ServicePolicyAssignment;
 import com.fai.brofee_fe.service.CommissionPolicyService;
 import com.fai.brofee_fe.service.ServiceService_hung;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -40,6 +42,8 @@ public class PolicyController {
         model.addAttribute("currentPage", page);
         model.addAttribute("size", size);
         model.addAttribute("totalPages", policies.getTotalPages());
+
+        model.addAttribute("services", serviceService_hung.getAllServices());
         return "policy/list";
     }
 
@@ -69,7 +73,7 @@ public class PolicyController {
 
     @PostMapping("/create")
     public String createPolicy(
-            @ModelAttribute("policy") CommissionPolicyCreateDTO policyCreateDTO,
+            @ModelAttribute("policy") @Valid CommissionPolicyCreateDTO policyCreateDTO,
             BindingResult bindingResult,
             Model model
     ) {
@@ -87,24 +91,110 @@ public class PolicyController {
         return "redirect:/policy";
     }
 
+    // Make excludePolicyId optional
     @GetMapping("/services")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public List<ServiceDetailDTO_hung> getServices(
             @RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime startDate,
-            @RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endDate
+            @RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime endDate,
+            @RequestParam(value = "excludePolicyId", required = false) Long excludePolicyId
     ) {
         List<ServiceDetailDTO_hung> allServices = serviceService_hung.getAllServices();
 
         for (ServiceDetailDTO_hung service : allServices) {
-            service.setConflicted(hasPolicyConflict(service, startDate, endDate));
+            if (excludePolicyId != null)
+                service.setConflicted(hasPolicyConflictWhenEdit(service, startDate, endDate, excludePolicyId));
+            else
+                service.setConflicted(hasPolicyConflict(service, startDate, endDate));
         }
         return allServices;
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editPolicyPage(@PathVariable Long id, Model model) {
+        CommissionPolicyDTO policy = commissionPolicyService.getCommissionPolicy(id);
+        CommissionPolicyEditDTO policyEdit = CommissionPolicyEditDTO.builder()
+                .id(policy.getId())
+                .startDate(policy.getStartDate())
+                .endDate(policy.getEndDate())
+                .maxReferralLevels(policy.getMaxReferralLevels())
+                .serviceIds(policy.getPolicyAssignments().stream().map(assignment -> assignment.getService().getId()).toList())
+                .build();
+        List<CommissionTierCreateDTO> tiers = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            if (i <= policy.getCommissionTiers().size()) {
+                tiers.add(new CommissionTierCreateDTO(i, policy.getCommissionTiers().get(i - 1).getCommissionRate()));
+            } else {
+                tiers.add(new CommissionTierCreateDTO(i, BigDecimal.ZERO)); // Set initial rate to 0
+            }
+        }
+        policyEdit.setCommissionTiers(tiers);
+        model.addAttribute("policy", policyEdit);
+
+        // Check policy's status
+        if (policy.getEndDate().isBefore(LocalDateTime.now())) {
+            model.addAttribute("status", "expired");
+        } else if (policy.getStartDate().isAfter(LocalDateTime.now())) {
+            model.addAttribute("status", "pending");
+        } else {
+            model.addAttribute("status", "active");
+        }
+
+        // Pass services to view
+        List<ServiceDetailDTO_hung> allServices = serviceService_hung.getAllServices();
+        for (ServiceDetailDTO_hung service : allServices) {
+            service.setConflicted(hasPolicyConflictWhenEdit(service, policy.getStartDate(), policy.getEndDate(), id));
+        }
+        model.addAttribute("services", allServices);
+
+        return "policy/edit";
+    }
+
+    @PostMapping("/edit")
+    public String editPolicy(
+            @ModelAttribute("policy") @Valid CommissionPolicyEditDTO policyEditDTO,
+            BindingResult bindingResult,
+            Model model
+    ) {
+        if (bindingResult.hasErrors()) {
+            // Pass services to view
+            List<ServiceDetailDTO_hung> allServices = serviceService_hung.getAllServices();
+            for (ServiceDetailDTO_hung service : allServices) {
+                service.setConflicted(hasPolicyConflictWhenEdit(service, policyEditDTO.getStartDate(), policyEditDTO.getEndDate(), policyEditDTO.getId()));
+            }
+            model.addAttribute("services", allServices);
+            return "policy/edit";
+        }
+        try {
+            commissionPolicyService.updateCommissionPolicy(policyEditDTO);
+        } catch (Exception e) {
+            // Pass services to view
+            List<ServiceDetailDTO_hung> allServices = serviceService_hung.getAllServices();
+            for (ServiceDetailDTO_hung service : allServices) {
+                service.setConflicted(hasPolicyConflictWhenEdit(service, policyEditDTO.getStartDate(), policyEditDTO.getEndDate(), policyEditDTO.getId()));
+            }
+            model.addAttribute("services", allServices);
+            model.addAttribute("error", e.getMessage());
+            return "policy/edit";
+        }
+        return "redirect:/policy";
     }
 
     private boolean hasPolicyConflict(ServiceDetailDTO_hung service, LocalDateTime startDate, LocalDateTime endDate) {
         return service.getPolicyAssignments().stream()
                 .map(PolicyServiceAssignmentDTO::getPolicy)
+                .anyMatch(policy -> {
+                    // Adjust logic for conflict detection as needed
+                    return !policy.getEndDate().isBefore(startDate) &&
+                            !policy.getStartDate().isAfter(endDate);
+                });
+    }
+
+    private boolean hasPolicyConflictWhenEdit(ServiceDetailDTO_hung service, LocalDateTime startDate, LocalDateTime endDate, Long excludePolicyId) {
+        return service.getPolicyAssignments().stream()
+                .map(PolicyServiceAssignmentDTO::getPolicy)
+                .filter(policy -> !policy.getId().equals(excludePolicyId))
                 .anyMatch(policy -> {
                     // Adjust logic for conflict detection as needed
                     return !policy.getEndDate().isBefore(startDate) &&

@@ -34,4 +34,5 @@ public class CommissionPolicyDTO {
     private List<ServicePolicyAssignmentDTO> policyAssignments;
 
     private PolicyStatus status;
+
 }

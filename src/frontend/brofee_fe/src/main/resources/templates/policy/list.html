@@ -17,6 +17,7 @@
 		<!--end::Fonts-->
 		<!--begin::Page Vendor Stylesheets(used by this page)-->
 		<link th:href="@{/plugins/custom/datatables/datatables.bundle.css}" rel="stylesheet" type="text/css" />
+		<link th:href="@{/plugins/custom/vis-timeline/vis-timeline.bundle.css}" rel="stylesheet" type="text/css" />
 		<!--end::Page Vendor Stylesheets-->
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
 		<link th:href="@{/plugins/global/plugins.bundle.css}" rel="stylesheet" type="text/css" />
@@ -116,12 +117,12 @@
 												<!--end::Category=-->
 												<!--begin::SKU=-->
 												<td class="text-end pe-0">
-													<span class="fw-bolder" th:text="${#temporals.format(policy.startDate, 'dd/MM/yy')}"></span>
+													<span class="fw-bolder" th:text="${#temporals.format(policy.startDate, 'dd MMM, yyyy')}"></span>
 												</td>
 												<!--end::SKU=-->
 												<!--begin::Qty=-->
 												<td class="text-end pe-0">
-													<span class="fw-bolder ms-3" th:text="${#temporals.format(policy.endDate, 'dd/MM/yy')}"></span>
+													<span class="fw-bolder ms-3" th:text="${#temporals.format(policy.endDate, 'dd MMM, yyyy')}"></span>
 												</td>
 												<!--end::Qty=-->
 												<!--begin::Price=-->
@@ -148,10 +149,160 @@
 												<!--end::Status=-->
 												<!--begin::Action=-->
 												<td class="text-end">
-													<a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2">View</a>
-													<a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4">Edit</a>
+													<a href="#" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4 me-2" th:attr="data-bs-toggle='modal',data-bs-target=${'#kt_modal_view_users_' + policy.id}">View</a>
+													<a th:href="@{/policy/edit/{id}(id=${policy.id})}" class="btn btn-bg-light btn-color-muted btn-active-color-primary btn-sm px-4" th:if="${policy.status eq policy.status.PENDING or policy.status eq policy.status.ACTIVE}">Edit</a>
 												</td>
 												<!--end::Action=-->
+												<div class="modal fade" th:id="${'kt_modal_view_users_' + policy.id}"
+													 tabindex="-1" aria-hidden="true">
+													<!--begin::Modal dialog-->
+													<div class="modal-dialog modal-dialog-centered mw-900px">
+														<!--begin::Modal content-->
+														<div class="modal-content">
+															<!--begin::Modal header-->
+															<div class="modal-header pb-0 border-0 justify-content-end">
+																<!--begin::Close-->
+																<div class="btn btn-sm btn-icon btn-active-color-primary"
+																	 data-bs-dismiss="modal">
+																	<!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+																	<span class="svg-icon svg-icon-1">
+																	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+																		 fill="none">
+																		<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1"
+																			  transform="rotate(-45 6 17.3137)" fill="currentColor"/>
+																		<rect x="7.41422" y="6" width="16" height="2" rx="1"
+																			  transform="rotate(45 7.41422 6)" fill="currentColor"/>
+																	</svg>
+																</span>
+																	<!--end::Svg Icon-->
+																</div>
+																<!--end::Close-->
+															</div>
+															<!--begin::Modal header-->
+															<!--begin::Modal body-->
+															<div class="modal-body scroll-y mx-5 mx-xl-18 pt-0 pb-15">
+																<!--begin::Heading-->
+																<div class="text-start mb-13">
+																	<!--begin::Title-->
+																	<h1 class="mb-3">Commission Policy</h1>
+																	<!--end::Title-->
+																	<!--begin::Description-->
+																	<div class="text-muted fw-bold fs-5">Policy
+																		<a class="link-primary fw-bolder" th:text="${policy.code}"></a>
+																	</div>
+																	<!--end::Description-->
+																</div>
+																<!--end::Heading-->
+																<div class="d-flex justify-content-between gx-1">
+																	<div class="border border-gray-300 border-dashed rounded py-3 px-4 mb-3" style="width: 23%">
+																		<!--begin::Number-->
+																		<div class="d-flex align-items-center">
+																			<div class="fs-4 fw-bolder" th:text="${#temporals.format(policy.startDate, 'dd MMM, yyyy')}"></div>
+																		</div>
+																		<!--end::Number-->
+																		<!--begin::Label-->
+																		<div class="fw-bold fs-6 text-gray-400">Start Date</div>
+																		<!--end::Label-->
+																	</div>
+																	<div class="border border-gray-300 border-dashed rounded py-3 px-4 mb-3" style="width: 23%">
+																		<!--begin::Number-->
+																		<div class="d-flex align-items-center">
+																			<div class="fs-4 fw-bolder" th:text="${#temporals.format(policy.endDate, 'dd MMM, yyyy')}"></div>
+																		</div>
+																		<!--end::Number-->
+																		<!--begin::Label-->
+																		<div class="fw-bold fs-6 text-gray-400">End Date</div>
+																		<!--end::Label-->
+																	</div>
+																	<div class="border border-gray-300 border-dashed rounded py-3 px-4 mb-3" style="width: 23%">
+																		<!--begin::Number-->
+																		<div class="d-flex align-items-center">
+																			<div class="fs-4 fw-bolder" th:text="${policy.policyAssignments.size()} + ' service(s)'"></div>
+																		</div>
+																		<!--end::Number-->
+																		<!--begin::Label-->
+																		<div class="fw-bold fs-6 text-gray-400">Services Applied</div>
+																		<!--end::Label-->
+																	</div>
+																	<div class="border border-gray-300 border-dashed rounded py-3 px-4 mb-3" style="width: 23%">
+																		<!--begin::Number-->
+																		<div class="d-flex align-items-center">
+																			<div class="fs-4 fw-bolder" th:text="${policy.totalRate} + '%'"></div>
+																		</div>
+																		<!--end::Number-->
+																		<!--begin::Label-->
+																		<div class="fw-bold fs-6 text-gray-400">Total Rate</div>
+																		<!--end::Label-->
+																	</div>
+																</div>
+
+
+																<div class="mt-4 mb-3 border border-gray-300 border-dashed rounded py-3 px-4">
+																	<h3 class="fw-bolder mb-2">Commission Rate:</h3>
+																	<div class="d-flex justify-content-between align-items-center" th:each="tier : ${policy.commissionTiers}">
+																		<a href="#" class="d-flex align-items-center p-3 rounded bg-state-light bg-state-opacity-50 mb-1" >
+																			<!--begin::Avatar-->
+																			<div class="symbol symbol-35px symbol-circle me-5">
+																				<span class="symbol-label bg-light-info text-info fw-bold" th:text="${#numbers.formatInteger(tier.level, 2)}">01</span>
+																			</div>
+																			<!--end::Avatar-->
+																			<!--begin::Info-->
+																			<div class="fw-bold">
+																				<span class="fs-6 text-gray-800 me-2" th:text="${'Upper level' + #numbers.formatInteger(tier.level, 2)}">Upper level 01</span>
+																			</div>
+																			<!--end::Info-->
+																		</a>
+																		<span class="text-success fs-7 fw-bolder" th:text="${#numbers.formatDecimal(tier.commissionRate, 2, 2) + '%'}">34%</span>
+																	</div>
+
+																</div>
+
+
+																<!--begin::Users-->
+																<div class="mb-15 pt-5">
+																	<h3 class="fw-bolder mb-3">Services Applied:</h3>
+																	<!--begin::List-->
+																	<div class="mh-500px scroll-y me-n7 pe-7">
+																		<!--begin::User-->
+																		<div class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed" th:each="service : ${policy.policyAssignments}">
+																			<!--begin::Details-->
+																			<div class="d-flex align-items-center">
+																				<!--begin::Details-->
+																				<div class="">
+																					<!--begin::Name-->
+																					<a href="#"
+																					   class="d-flex align-items-center fs-5 fw-bolder text-dark text-hover-primary" th:text="${service.service.name}">
+																						</a>
+																					<!--end::Name-->
+																					<!--begin::Email-->
+																					<div class="fw-bold text-muted" th:text="${service.service.description}"></div>
+																					<!--end::Email-->
+																				</div>
+																				<!--end::Details-->
+																			</div>
+																			<!--end::Details-->
+																			<!--begin::Stats-->
+																			<div class="d-flex">
+																				<!--begin::Sales-->
+																				<div class="text-end">
+																					<div class="fs-5 fw-bolder text-dark" th:text="${#numbers.formatCurrency(service.service.basePrice)}"></div>
+																				</div>
+																				<!--end::Sales-->
+																			</div>
+																			<!--end::Stats-->
+																		</div>
+																		<!--end::User-->
+																	</div>
+																	<!--end::List-->
+																</div>
+																<!--end::Users-->
+															</div>
+															<!--end::Modal body-->
+														</div>
+														<!--end::Modal content-->
+													</div>
+													<!--end::Modal dialog-->
+												</div>
 											</tr>
 											<!--end::Table row-->
 
@@ -196,6 +347,23 @@
 									<!--end::Card body-->
 								</div>
 								<!--end::Products-->
+
+
+								<div class="card card-flush mt-10">
+									<!--begin::Card header-->
+									<div class="card-header align-items-center py-5 gap-2 gap-md-5">
+										<h3 class="card-title align-items-start flex-column">
+											<span class="card-label fw-bolder fs-3 mb-1">Services & Policies Assignment</span>
+										</h3>
+									</div>
+									<!--end::Card header-->
+									<!--begin::Card body-->
+									<div class="card-body pt-0">
+										<div id="kt_docs_vistimeline_group" class="vis-timeline-custom"></div>
+									</div>
+									<!--end::Card body-->
+								</div>
+
 							</div>
 							<!--end::Container-->
 						</div>
@@ -238,6 +406,7 @@
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Page Vendors Javascript(used by this page)-->
 		<script th:src="@{/plugins/custom/datatables/datatables.bundle.js}"></script>
+		<script th:src="@{/plugins/custom/vis-timeline/vis-timeline.bundle.js}"></script>
 		<!--end::Page Vendors Javascript-->
 		<!--begin::Page Custom Javascript(used by this page)-->
 		<script th:src="@{/js/widgets.bundle.js}"></script>
@@ -255,6 +424,147 @@
 					window.location.href = url;
 				});
 			});
+		</script>
+
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+			// Generate HTML content
+			const getContent = (policy) => {
+				const startDate = new Date(policy.policy.startDate);
+				const endDate = new Date(policy.policy.endDate);
+				const star = startDate.toLocaleDateString("en-US");
+				const end = endDate.toLocaleDateString("en-US");
+
+				var item;
+				switch (policy.policy.id % 10) {
+					case 0:
+					case 5:
+						item = `<div class="alert alert-primary border-3" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users_${policy.policy.id}">
+    <div class="d-flex flex-column">
+        <h4 class="mb-1 text-primary">${policy.policy.code}</h4>
+        <div>${star} - ${end}</div>
+        <span>Apply for ${policy.policy.maxReferralLevels} levels</span>
+    </div>
+</div>`;
+						break;
+					case 1:
+					case 6:
+						item = `<div class="alert alert-success border-3" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users_${policy.policy.id}">
+    <div class="d-flex flex-column">
+        <h4 class="mb-1 text-success">${policy.policy.code}</h4>
+        <div>${star} - ${end}</div>
+        <span>Apply for ${policy.policy.maxReferralLevels} levels</span>
+    </div>
+</div>`;
+						break;
+					case 2:
+					case 7:
+						item = `<div class="alert alert-info border-3" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users_${policy.policy.id}">
+    <div class="d-flex flex-column">
+        <h4 class="mb-1 text-info">${policy.policy.code}</h4>
+        <div>${star} - ${end}</div>
+        <span>Apply for ${policy.policy.maxReferralLevels} levels</span>
+    </div>
+</div>`;
+						break;
+					case 3:
+					case 8:
+						item = `<div class="alert alert-warning border-3" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users_${policy.policy.id}">
+    <div class="d-flex flex-column">
+        <h4 class="mb-1 text-warning">${policy.policy.code}</h4>
+        <div>${star} - ${end}</div>
+        <span>Apply for ${policy.policy.maxReferralLevels} levels</span>
+    </div>
+</div>`;
+						break;
+					case 4:
+					case 9:
+						item = `<div class="alert alert-danger border-3" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users_${policy.policy.id}">
+    <div class="d-flex flex-column">
+        <h4 class="mb-1 text-danger">${policy.policy.code}</h4>
+        <div>${star} - ${end}</div>
+        <span>Apply for ${policy.policy.maxReferralLevels} levels</span>
+    </div>
+</div>`;
+						break;
+					default:
+						item = `<div class="alert alert-primary border-3" data-bs-toggle="modal" data-bs-target="#kt_modal_view_users_${policy.policy.id}">
+    <div class="d-flex flex-column">
+        <h4 class="mb-1 text-primary">${policy.policy.code}</h4>
+        <div>${star} - ${end}</div>
+        <span>Apply for ${policy.policy.maxReferralLevels} levels</span>
+    </div>
+</div>`;
+				}
+				return item;
+			}
+
+			const services = /*[[${services}]]*/;
+			console.log(services);
+
+			var now = Date.now();
+
+			var options = {
+				// stack: true,
+				stack: false,
+				maxHeight: 640,
+				horizontalScroll: false,
+				verticalScroll: true,
+				zoomKey: "ctrlKey",
+				start: Date.now() - 1000 * 60 * 60 * 24 * 60, // minus 60 days
+				end: Date.now() + 1000 * 60 * 60 * 24 * 30, // plus 1 months aprox.
+				orientation: {
+					axis: "both",
+					item: "top",
+				},
+				margin: {
+					item: 20
+				},
+
+				xss: {
+					disabled: !1,
+					filterOptions: {
+						whiteList: {
+							div: ["class", "style", "data-bs-toggle", "data-bs-target"],
+							h4: ["class", "style"],
+							span: ["class", "style"],
+							img: ["data-kt-timeline-avatar-src", "alt"],
+							a: ["href", "class"]
+						}
+					}
+				},
+			};
+			var groups = new vis.DataSet();
+			var items = new vis.DataSet();
+
+			var count = 300;
+
+			for (const service of services) {
+				groups.add({
+					id: service.id,
+					content: service.name,
+					order: service.id,
+				});
+
+				for (const policy of service.policyAssignments) {
+					items.add({
+						id: policy.id,
+						group: service.id,
+						start: new Date(policy.policy.startDate),
+						end: new Date(policy.policy.endDate),
+						type: "range",
+						content: getContent(policy),
+					});
+				}
+			}
+
+			// create a Timeline
+			var container = document.getElementById("kt_docs_vistimeline_group");
+			var timeline = new vis.Timeline(container, items, groups, options);
+			//timeline = new vis.Timeline(container, null, options);
+
+
+			/*]]>*/
 		</script>
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
