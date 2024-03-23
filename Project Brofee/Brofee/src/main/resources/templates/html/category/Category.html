@@ -24,40 +24,30 @@
                         <div class="content_child px-5 pt-3 pb-3">
                             <p class="text-header-content">List Category</p>
                             <div class="line"></div>
-                            <span class="text-button"><a href="">Add Category</a></span>
+                            <span class="text-button"><a th:href="@{/category/add}">Add Category</a></span>
                         </div>
                         <div class="content_list_table  px-5 pt-3 pb-3">
                             <table class="table table-striped">
                                 <thead>
                                   <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Description</th>
+                                    <th scope="col">Name Category</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col">Operation</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td class="operation"><span class="operation-edit">Edit</span> <span class="operation-update">Update</span></td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>@fat</td>
-                                  </tr>
-                                  <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>@twitter</td>
+                                  <tr th:each="category, i : ${categories}">
+                                    <th scope="row" th:text="${i.index + 1}"></th>
+                                    <td th:text="${category.nameCategory}">Mark</td>
+                                    <td>
+                                        <span th:if="${category.status == 1}">Display</span>
+                                        <span th:if="${category.status == 0}">None</span>
+                                    </td>
+                                    <td class="operation">
+                                        <span class="operation-edit"><a th:href="@{/category/edit(id=${category.id})}" class="text-decoration-none">Edit</a></span>
+                                        <span class="operation-update"><a th:href="@{/category/remove(id=${category.id})}" class="text-decoration-none">Remove</a></span>
+                                    </td>
                                   </tr>
                                 </tbody>
                               </table>
