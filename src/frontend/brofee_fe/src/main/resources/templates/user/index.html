@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<!--begin::Head-->
+<head>
+    <title>Spa website</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Spa website" />
+    <meta property="og:url" content="https://keenthemes.com/metronic" />
+    <meta property="og:site_name" content="Spa website" />
+    <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+    <link rel="shortcut icon" th:href="@{/media/logos/favicon.ico}" />
+    <!--begin::Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <!--end::Fonts-->
+    <!--begin::Page Vendor Stylesheets(used by this page)-->
+    <link th:href="@{/plugins/custom/fullcalendar/fullcalendar.bundle.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/plugins/custom/datatables/datatables.bundle.css}" rel="stylesheet" type="text/css" />
+    <!--end::Page Vendor Stylesheets-->
+    <!--begin::Global Stylesheets Bundle(used by all pages)-->
+    <link th:href="@{/plugins/global/plugins.bundle.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/style.bundle.css}" rel="stylesheet" type="text/css" />
+    <!--end::Global Stylesheets Bundle-->
+
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+<!--begin::Main-->
+<!--begin::Root-->
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <div th:replace="~{fragments/aside :: aside}"></div>
+        <!--end::Aside-->
+        <!--begin::Wrapper-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <div th:replace="~{fragments/header :: header(title = 'user')}"></div>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+
+                <!--begin::Test list categories-->
+                <div id="kt_content_container" class="container-xxl">
+                    <!--begin::Products-->
+                    <div class="card card-flush">
+                        <!--begin::Card header-->
+                        <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                            <!--begin::Card title-->
+                            <div class="card-title">
+                                <!--begin::Search-->
+                                <div class="d-flex align-items-center position-relative my-1">
+                                    <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
+                                    <span class="svg-icon svg-icon-1 position-absolute ms-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
+                                            <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
+                                        </svg>
+                                    </span>
+                                    <!--end::Svg Icon-->
+                                    <label>
+                                        <input type="text" id="search" name="search" data-kt-ecommerce-product-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search user" onkeyup="handleKeyUp(event)">
+                                    </label>
+                                </div>
+                                <!--end::Search-->
+                            </div>
+                            <!--end::Card title-->
+                            <!--begin::Card toolbar-->
+                            <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                                <button class="btn btn-success er fs-6 px-8 py-4" data-bs-toggle="modal" data-bs-target="#modalNewUser">New user</button>
+                            </div>
+                            <!--end::Card toolbar-->
+                        </div>
+                        <!--end::Card header-->
+                        <!--begin::Card body-->
+                        <div class="card-body pt-0">
+                            <!--begin::Table-->
+                            <div id="kt_ecommerce_products_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                <div class="table-responsive">
+                                   <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer" id="kt_ecommerce_products_table">
+                                        <thead>
+                                            <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+                                                <th class="w-10px pe-2">No.</th>
+                                                <th>Email</th>
+                                                <th>Name</th>
+                                                <th>Phone</th>
+                                                <th>Address</th>
+                                                <th>revenue</th>
+                                                <th>Create at</th>
+                                                <th>action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fw-bold text-gray-600">
+                                            <tr th:each="item,index : ${users}">
+                                                <td th:text="${(index.index + 1 +(20 * (currentPage -1)) )}"></td>
+                                                <td th:text="${item.email}"></td>
+                                                <td> <div style="display:flex;flex-direction:row;align-items: center;">
+                                                    <div th:if="${item.avatar == null}">
+                                                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" style="width:50px;height:50px;border-radius:50px">
+                                                    </div>
+                                                    <div th:if="${item.avatar != null}">
+                                                        <img src="${'/'+item.avatar}" style="width:50px;height:50px;border-radius:50px">
+                                                    </div>
+                                                    <span th:text="${item.name}" style="padding-left: 15px;"></span>
+                                                </div></td>
+                                                <td th:text="${item.phone}"></td>
+                                                <td th:text="${item.address}"></td>
+                                                <td th:text="${item.totalTransaction}"></td>
+                                                <td th:text="${#temporals.format(item.createdAt, 'HH:mm dd/MM/yyyy')}"></td>
+
+                                                <td>
+                                                    <a type="button" th:href="${'\user\detail\'+item.id}" class="btn btn-sm btn-icon btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                                       <span class="svg-icon svg-icon-5 m-0">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+																<rect x="10" y="10" width="4" height="4" rx="2" fill="currentColor" />
+                                                                <rect x="17" y="10" width="4" height="4" rx="2" fill="currentColor" />
+																<rect x="3" y="10" width="4" height="4" rx="2" fill="currentColor" />
+														    </svg>
+														</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
+                                        <div class="dataTables_paginate paging_simple_numbers" id="kt_table_users_paginate">
+                                            <ul class="pagination">
+                                                <li class="paginate_button page-item previous" id="kt_table_users_previous"  th:classappend="${currentPage == 1 ? 'disabled' : ''}">
+                                                    <a th:onclick="'changePage(' + ${currentPage - 1} + ')'" class="page-link"><i class="previous"></i></a>
+                                                </li>
+
+                                                <li th:each="i : ${#numbers.sequence(1, totalPages)}" class="paginate_button page-item" th:classappend="${currentPage == i ? 'active' : ''}">
+                                                    <a th:onclick="'changePage(' + ${i} + ')'"   data-dt-idx="${i}" class="page-link" th:text="${i}"></a>
+                                                </li>
+
+                                                <li class="paginate_button page-item next" th:classappend="${currentPage == totalPages ? 'disabled' : ''}">
+                                                    <a th:onclick="'changePage(' + ${currentPage + 1} + ')'" class="page-link"><i class="next"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end::Table-->
+                        </div>
+                        <!--end::Card body-->
+                    </div>
+                    <!--end::Products-->
+                </div>
+                <!--end::Content-->
+            </div>
+            <!--end::Wrapper-->
+        </div>
+        <!--end::Page-->
+    </div>
+
+
+    <div class="modal fade" id="modalNewUser" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-fullscreen p-10">
+            <div class="modal-content modal-rounded" >
+                <div class="modal-header">
+                    <h2>Create New Service</h2>
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <span class="svg-icon svg-icon-1">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+									<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+									<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+								</svg>
+							</span>
+                    </div>
+                </div>
+                <div class="modal-body py-lg-10 px-lg-10">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--begin::Scrolltop-->
+    <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+        <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
+        <span class="svg-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor" />
+                <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor" />
+            </svg>
+        </span>
+        <!--end::Svg Icon-->
+    </div>
+    <!--end::Scrolltop-->
+    <!--begin::Modals-->
+
+
+
+
+    <script>let hostUrl = "/";</script>
+    <!--begin::Global Javascript Bundle(used by all pages)-->
+    <script th:src="@{/plugins/global/plugins.bundle.js}"></script>
+    <script th:src="@{/js/scripts.bundle.js}"></script>
+    <!--end::Global Javascript Bundle-->
+    <!--begin::Page Vendors Javascript(used by this page)-->
+    <script th:src="@{/plugins/custom/fullcalendar/fullcalendar.bundle.js}"></script>
+    <script th:src="@{/plugins/custom/formrepeater/formrepeater.bundle.js}"></script>
+    <script th:src="@{/plugins/custom/datatables/datatables.bundle.js}"></script>
+    <!--end::Page Vendors Javascript-->
+    <!--begin::Page Custom Javascript(used by this page)-->
+    <script th:src="@{/js/custom/apps/ecommerce/catalog/save-product.js}"></script>
+    <script th:src="@{/js/widgets.bundle.js}"></script>
+    <script th:src="@{/js/custom/widgets.js}"></script>
+    <script th:src="@{/js/custom/apps/chat/chat.js}"></script>
+    <script th:src="@{/js/custom/utilities/modals/upgrade-plan.js}"></script>
+    <script th:src="@{/js/custom/utilities/modals/create-app.js}"></script>
+    <script th:src="@{/js/custom/utilities/modals/users-search.js}"></script>
+    <script th:inline="javascript">
+        var currentUrl = window.location.href;
+        var urlParams = new URLSearchParams(currentUrl);
+        var pageValue = urlParams.get('search');
+
+        $('#search').val(pageValue);
+        function handleKeyUp(event) {
+                if (event.keyCode === 13) {
+                window.location.href = "/user/index?page=1&search="+$('#search').val();
+                }
+            }
+
+        function changePage(page) {
+                window.location.href = "/user/index?page="+page+"&search="+$('#search').val();
+            }
+    </script>
+</div>
+<!--end::Page Custom Javascript-->
+<!--end::Javascript-->
+</body>
+<!--end::Body-->
+</html>
+
