@@ -1,0 +1,108 @@
+
+
+.about-us{
+
+    .about-us-img{
+        position: relative;
+       .about-us-img-btn-img{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    
+        .about-us-img-btn-img-main{
+            img{
+                animation: Rotate 8s linear infinite;
+            }
+    
+            .about-us-img-btn-img-overlay{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                z-index: 111;
+                h2{
+                    font-size: 50px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 32px;
+                    color: #fff;
+                    margin-top: 10px;
+                }
+    
+                span{
+                    font-size: 10.324px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 180%; /* 18.582px */
+                    letter-spacing: 1.032px;
+                    text-transform: uppercase; 
+                    color: #fff;
+                }
+            }
+        }
+       } 
+    
+    
+    }
+
+.about-us-head{
+    h2{
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 140%; /* 67.2px */
+        letter-spacing: -0.48px; 
+        color: var(   --heading-color);
+    }
+    h5{
+        padding-top: 18px;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 150%;
+        color: var(    --grey-scale-600) ;
+    }
+}
+
+.about-us-text{
+    padding-top: 12px;
+    p{
+        font-size: 16px;
+font-style: italic;
+font-weight: 500;
+line-height: 150%;
+color: var(    --grey-scale-600);
+    }
+}
+
+
+.about-mt-48px{
+    margin-top: 48px;
+}
+
+.about-pl-45px{
+    padding-left: 45px;
+}
+
+
+.about-us-item{
+    .text{
+        padding-top: 14px;
+
+        h3{
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 150%; /* 36px */
+            letter-spacing: -0.24px; 
+        }
+        p{
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 175%;
+            color: #7E8BA0;
+        }
+    }
+}
+
+}

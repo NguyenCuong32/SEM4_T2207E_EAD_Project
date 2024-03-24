@@ -1,0 +1,75 @@
+.restaurant{
+background: url(../assets/images/banner/rest-bg.png) no-repeat center / cover;
+
+    padding: 101px 0 120px 0;
+
+
+    .restaurant-taitel{
+        h2{
+            color: #fff;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 140%; /* 67.2px */
+            letter-spacing: -0.48px; 
+        }
+
+        h4{
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 145%; /* 26.1px */
+            letter-spacing: -0.09px; 
+            color: #E5E6EB;
+            padding-top: 24px;
+            padding-right: 106px;
+        }
+    }
+
+
+    .restaurant-taitel-btn{
+        display: flex;
+        align-items: center;
+        gap: 32px;
+        margin-top: 48px;
+        a{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 100px;
+            border: 1px solid  #E5E6EB;
+            background: #FFF;
+            width: 225px;
+            height: 68px;
+            font-weight: 700;
+            justify-content: center;
+            color: var(--heading-color);
+            &:hover{
+                color: #000;
+            }
+        }
+    }
+
+    .restaurant-taitel-btn-two{
+        background: #0B0A0F !important;
+        border: 1px solid  #0B0A0F !important;
+        color: #fff !important;
+        &:hover{
+            color: #fff !important;
+        }
+    }
+
+
+.restaurant-img-main{
+    position: relative;
+    .restaurant-img{
+
+        position: absolute;
+        top: -224px;
+    right: -276px;
+
+    }
+}
+
+
+
+
+}

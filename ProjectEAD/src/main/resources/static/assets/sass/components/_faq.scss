@@ -1,0 +1,163 @@
+.faq {
+    background-image: url(../assets/images/banner/faq-bg.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .faq-head{
+        h2{
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 140%; /* 67.2px */
+            letter-spacing: -0.48px; 
+            color: var( --heading-color) ;
+        }
+    }
+
+
+
+
+    .faq-main {
+        width: 546px;
+        margin-top: 48px;
+        .accordion-button {
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 145%;
+            /* 26.1px */
+            letter-spacing: -0.09px;
+            color: var( --heading-color);
+        }
+
+        .accordion-item {
+            background-color: #fff;
+            border: 1px solid transparent;
+            box-shadow: 0px 1px 40px 0px rgba(0, 0, 0, 0.04);
+            margin-bottom: 18px;
+            border-radius: 8px;
+        }
+
+        .accordion-button:focus {
+            z-index: 3;
+            border-color: #86b7fe;
+            outline: 0;
+            box-shadow: 0 0 0 .25rem transparent;
+        }
+
+
+        .accordion-button:not(.collapsed) {
+            color: var(--heading-color);
+            background-color: #fff;
+            box-shadow: 0px 1px 40px 0px rgba(0, 0, 0, 0.04);
+            border-bottom: 1px solid #FCCBD5;
+            border-radius: 8px;
+        }
+
+        .accordion-body {
+            padding: 14px 14px 17px 14px;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 145%;
+            /* 26.1px */
+            letter-spacing: -0.09px;
+            color: var(  --grey-scale-600);
+        }
+
+        .accordion-button:not(.collapsed)::after {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+            transform: rotate(-180deg);
+        }
+    }
+
+   
+.faq-img{
+
+ position: relative;
+
+
+ .img-animetion{
+
+    img{
+        width: 367px;
+        height: 278px;
+        position: absolute;
+        bottom: -298px;
+        right: -60px;
+
+
+
+
+        
+        
+    }
+
+   
+
+    
+ }
+    
+
+    .faq-img-two {
+        position: relative;
+
+        img{
+            height: 285px;
+        }
+        .faq-img-overlay{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 132%;
+            height: 100%;
+            background-color: rgba(0, 9, 41, 0.84);
+            border-radius: 10px;
+
+            .faq-img-overlay-text{
+                position: absolute;
+                left: 57px;
+                top: 125px;
+                h2{
+                    font-size: 32px;
+                    font-style: normal;
+                    font-weight: 700;
+                    line-height: 125%; /* 40px */
+                    letter-spacing: -0.32px; 
+                    color: #fff;
+                }
+
+                h4{
+                    color: #fff;
+                }
+            }
+        }
+
+        .faq-img-overlay-two{
+            background-color: rgba(240, 21, 67, 0.84);
+            position: absolute;
+            width: 158%;
+
+        }
+    }
+}
+
+
+.img-mt{
+    margin-top: 18px;
+}
+
+  
+            
+    
+    
+
+
+
+
+
+
+
+
+
+}
