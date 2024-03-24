@@ -1,0 +1,126 @@
+.process{
+   background-image: url(../assets/images/banner/Process-bg.png );
+   background-repeat: no-repeat;
+   background-position: center;
+   background-size: cover;
+   height: 920px; 
+.process-img-box{
+    position: relative;
+
+    .process-img{
+        position: absolute;
+        top: 0;
+        left: -200px;
+
+        img{
+            width: 747.478px;
+            height: 765.233px; 
+        }
+    }
+}
+
+
+   .process-head{
+    h2{
+        color: #fff;
+        font-size: 48px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 140%; /* 67.2px */
+        letter-spacing: -0.48px; 
+    }
+   }
+
+
+.process-item-box{
+    margin-top: 40px;
+    .process-item{
+        position: relative;
+        border-radius: 20px;
+        background: #0D1634; 
+        width: 540px;
+        height: 100%;
+        padding: 20px 23px 20px 20px; 
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+        position: relative;
+
+        &::before{
+            position: absolute;
+            content: "";
+            bottom: 0;
+            width: 540px;
+            height: 0%;
+            left: 0;
+            background: linear-gradient(305deg, #F01543 -22.35%, #FE724C 134.49%); 
+            border-radius: 20px;
+            transition: all 0.5s ease 0s;
+            overflow: hidden;
+            
+        }
+
+
+        &:hover{
+            &::before{
+                height: 100%;
+                top: 0;
+                bottom: auto;
+                
+            }
+    }
+
+    
+    &:last-child{
+        margin-bottom: 0;
+    }
+    .process-item-icon{
+        z-index: 1;
+        .icon{
+            z-index: 1111;
+            width: 72px;
+            height: 72px; 
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            text-align: center;
+            line-height: 72px;
+          
+        }
+
+      
+    }
+
+    .text{
+        z-index: 1;
+        h3{
+            color: #fff;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 150%; /* 36px */
+            letter-spacing: -0.24px; 
+        }
+
+        p{
+            opacity: 0.5;
+            padding-top: 8px;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 160%;
+            color: #fff;
+        }
+    }
+
+    .process-item-right-img{
+        z-index: 11;
+        position: absolute;
+        top: 25px;
+        right: 33px;
+    }
+}
+
+
+
+}
+
+}
