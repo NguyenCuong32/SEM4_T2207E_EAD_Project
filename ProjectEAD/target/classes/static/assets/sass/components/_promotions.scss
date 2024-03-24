@@ -1,0 +1,64 @@
+.promotions{
+    background-image: url(../assets/images/banner/promotions-bg.png)  ;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    .promotions-head{
+        h2{
+            color: #fff;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 140%; /* 67.2px */
+            letter-spacing: -0.48px; 
+        }
+    }
+
+    .promotions-img{
+
+        position: relative;
+        overflow: hidden;
+
+        a{
+            width: 100%;
+        }
+
+        img{
+            overflow: hidden;
+        }
+        &:hover {
+            &::after{
+                animation: shine 1200ms;
+
+            }
+        }
+              
+        &::after{
+            position: absolute;
+            content: "";
+            top: 0;
+            left: -75%;
+            z-index: 2;
+            display: block;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+            transform: skewX(-25deg);
+           
+        }
+    }
+}
+
+
+
+
+// .promotions-two 
+
+.promotions-two{
+    background: transparent;
+
+    .promotions-img{
+        img{
+            height: 357px; 
+        }
+    }
+}
