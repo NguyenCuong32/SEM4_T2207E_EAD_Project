@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iofrm</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/fontawesome-all.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/iofrm-style.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/iofrm-theme30.css}" />
+</head>
+
+<body>
+<div class="form-body on-top-mobile">
+    <div class="website-logo">
+        <a href="index.html">
+            <div class="logo">
+
+            </div>
+        </a>
+    </div>
+    <div class="row">
+        <div class="img-holder">
+            <div class="bg"></div>
+            <div class="info-holder simple-info">
+                <div class="mb-5">
+                    <div class="type-animation">
+                        <h2 class="mb-2 animated">Group4 Beauty</h2>
+                    </div>
+                    <h3 class="mb-4">
+                        <i class="font-weight-light">Take care of your beauty!</i>
+                    </h3>
+                </div>
+                <div>
+                    <p>
+                        Completely fill out the form below to register your new account.
+                    </p>
+                </div>
+            </div>
+            <div class="bottom-view">
+                <p>
+                    <small class="font-weight-light">Group4 - 2023</small>
+                </p>
+            </div>
+        </div>
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                    <h3>Register your Account</h3>
+                    <p class="text-black">
+                        Completely fill out the form below to register your new account.
+                    </p>
+                    <form class="container-custom-padding" th:action="@{/register}" method="post" th:object="${user}">
+                        <input type="hidden" th:field="*{id}">
+                        <input type="hidden" th:field="*{status}">
+                        <div class="row">
+                            <div class="col-12 col-sm-12">
+                                <input th:field="*{fullname}" id="fullname" name="fullname" type="text" class="form-control" placeholder="Full Name" required/>
+                            </div>
+                        </div>
+                        <div style="color: red" th:if="${exceptionP != null and !exceptionP.isEmpty()}" th:text="${exceptionP}" class="error"></div>
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <input th:field="*{phone}" id="phone" name="phone" type="text" class="form-control" placeholder="Phone Number" required/>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <input th:field="*{email}" id="email" name="email" type="email" class="form-control" placeholder="E-mail Address" required/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-sm-12">
+                                <select th:field="*{gender}" id="gender" name="gender" class="form-control">
+                                    <option value="0">Male</option>
+                                    <option value="0">Female</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr>
+                        <div style="color: red" th:if="${exception != null and !exception.isEmpty()}" th:text="${exception}" class="error"></div>
+                        <div class="row">
+                            <div class="col-12 col-sm-12">
+                                <input th:field="*{username}" id="username" name="username" type="text" class="form-control" placeholder="Username" required/>
+                            </div>
+                        </div>
+                        <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></div>
+                        <div class="row">
+                            <div class="col-12 col-sm-12">
+                                <input th:field="*{password}" id="password" name="password" type="password" class="form-control" placeholder="Password" required/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-sm-12">
+                                <input th:field="*{connecterId}" id="connecterId" name="connecterId" type="text" class="form-control" placeholder="Connecter Phone"/>
+                            </div>
+                        </div>
+
+                        <div class="row top-padding">
+                            <div class="col-12">
+                                <div class="form-button text-right">
+                                    <button id="submit" type="submit" class="ibtn less-padding">
+                                        Register New Account
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
+
+</html>
