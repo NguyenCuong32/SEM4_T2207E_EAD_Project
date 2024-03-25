@@ -8,6 +8,7 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
 --
 -- Create database
 --
@@ -22,12 +23,13 @@ USE BrokefreeDB
 -- CREATE TABLE
 --
 
+
 --
 -- Table structure for table `branchs`
 --
 
 CREATE TABLE IF NOT EXISTS `branchs` (
-	`id` varchar(255) NOT NULL  UNIQUE,
+	`id` binary(16) NOT NULL  UNIQUE,
 	`name` varchar(255) NOT NULL,
 	`address` varchar(255) NOT NULL,
 	`phone` varchar(255) NOT NULL UNIQUE,
@@ -76,7 +78,7 @@ CREATE TABLE `accounts_roles` (
 
 
 CREATE TABLE IF NOT EXISTS `formulas` (
-	`id` varchar(255) NOT NULL   UNIQUE,
+	`id` binary(16) NOT NULL   UNIQUE,
 	`name_category` varchar(255) NOT NULL,
         `description` text NOT NULL,
         `status` tinyint(1) NOT NULL,
@@ -89,80 +91,30 @@ CREATE TABLE IF NOT EXISTS `formulas` (
 
 
 CREATE TABLE IF NOT EXISTS `category` (
-	`id` varchar(255) NOT NULL   UNIQUE,
+	`id` binary(16) NOT NULL   UNIQUE,
 	`name_category` varchar(255) NOT NULL,
 `status` tinyint(1) NOT NULL,
 
 	PRIMARY KEY (`id`)
 );
 
---
--- Table structure for table `services`   
---
+ 
 
-
-CREATE TABLE IF NOT EXISTS `services` (
-	`id` varchar(255) NOT NULL   UNIQUE,
-	`name` varchar(255) NOT NULL,
-	`description` text NOT NULL,
-	`category` varchar(255) NOT NULL,
-	`price` decimal(12,6) NOT NULL,
-`status` tinyint(1) NOT NULL,
-
-	PRIMARY KEY (`id`)
-);
-
---
--- Table structure for table `feepercent`  
---
-
-CREATE TABLE IF NOT EXISTS `feepercent` (
-	`id` int AUTO_INCREMENT NOT NULL   UNIQUE,
-	`level` int NOT NULL,
-	`ratio` float NOT NULL,
-	`bonus` int NOT NULL,
-	`servicesid` varchar(255) NOT NULL,
-`status` tinyint(1) NOT NULL,
-
-	PRIMARY KEY (`id`)
-);
 --
 -- Table structure for table   `policies`
 --
 
 CREATE TABLE IF NOT EXISTS `policies` (
-	`id` int AUTO_INCREMENT NOT NULL  UNIQUE,
+	`id` binary(16) NOT NULL  UNIQUE,
 	`name` varchar(255) NOT NULL,
 	`time_start` datetime NOT NULL,
 	`time_ending` datetime NOT NULL,
-	`formula_id` varchar(255) NOT NULL,  
-	`servicesid` varchar(255) NOT NULL,
-	`status` tinyint(1) NOT NULL,
-	`branchsid` varchar(255) NOT NULL,
+	`formula_id` binary(16) NOT NULL,   
+	`branchsid` binary(16) NOT NULL,
         `vat_tax` float NOT NULL,
         `tax_ratio` float NOT NULL,
-        `bonus` float NOT NULL,  
-	PRIMARY KEY (`id`)
-);
-
---
--- Table structure for table   `users` 
---
-
-CREATE TABLE IF NOT EXISTS `users` (
-	`id` varchar(255) NOT NULL  UNIQUE,
-	`fullname` varchar(255) NOT NULL,
-	`phone` varchar(20) NOT NULL UNIQUE,
-	`email` varchar(255) NOT NULL,
-	`address` varchar(255) NOT NULL,
-	`feedbackfee` int NOT NULL,
-	`gender` tinyint(1) NOT NULL,
-        `total_amount` decimal(12,6) NOT NULL,
-        `parent_phone` varchar(20)   UNIQUE,
-	`accountsid` binary(16) NOT NULL,
-
-`status` tinyint(1) NOT NULL,
-
+        `bonus` float NOT NULL, 
+        `status` tinyint(1) NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
@@ -171,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 CREATE TABLE IF NOT EXISTS `events` (
-	`id`varchar(255) NOT NULL  UNIQUE,
+	`id` binary(16) NOT NULL  UNIQUE,
 	`name` varchar(255) NOT NULL,
 	`desc` text NOT NULL,
 	`time_start` datetime NOT NULL,
@@ -183,19 +135,60 @@ CREATE TABLE IF NOT EXISTS `events` (
 );
 
 --
+-- Table structure for table `services`   
+--
+
+
+CREATE TABLE IF NOT EXISTS `services` (
+	`id` binary(16) NOT NULL   UNIQUE,
+	`name` varchar(255) NOT NULL,
+	`description` text NOT NULL,
+	`price` decimal NOT NULL,
+       `level1` int DEFAULT 0,
+        `level2` float  DEFAULT 0,
+	`level3` float DEFAULT 0,
+	`level4` float DEFAULT 0,
+	`level5` float DEFAULT 0,
+        `category`   binary(16) NOT NULL,
+        `policiesid`  binary(16) NOT NULL, 
+        `status` tinyint(1) NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+
+--
+-- Table structure for table   `users` 
+--
+
+CREATE TABLE IF NOT EXISTS `users` (
+	`id` binary(16) NOT NULL  UNIQUE,
+	`fullname` varchar(255) NOT NULL,
+	`phone` varchar(20) NOT NULL UNIQUE,
+	`email` varchar(255) NOT NULL,
+	`address` varchar(255) NOT NULL,
+	`feedbackfee` int NOT NULL,
+	`gender` tinyint(1) NOT NULL,
+        `total_amount` decimal NOT NULL,
+        `parent_phone` varchar(20)   UNIQUE,
+	`accountsid` binary(16) NOT NULL,
+
+`status` tinyint(1) NOT NULL,
+
+	PRIMARY KEY (`id`)
+);
+--
 -- Table structure for table  `bill`
 --
 
 CREATE TABLE IF NOT EXISTS `bill` (
-	`id`  varchar(255) NOT NULL   UNIQUE,
-	`serviceid` varchar(255) NOT NULL,
-	`customersid` varchar(255) NOT NULL,
+	`id`  binary(16) NOT NULL   UNIQUE,
+	`serviceid` binary(16) NOT NULL,
+	`customersid` binary(16) NOT NULL,
 	`time_set_start` datetime NOT NULL,
 	`time_set_end` datetime NOT NULL,
-	`event_id` varchar(255) NOT NULL,
-
-`status` tinyint(1) NOT NULL,
-`amount` decimal(12,6) NOT NULL,
+	`eventcode` varchar(255) ,
+        `status` tinyint(1) NOT NULL,
+        `amount` decimal DEFAULT 0,
 	PRIMARY KEY (`id`)
 );
 
@@ -205,9 +198,9 @@ CREATE TABLE IF NOT EXISTS `bill` (
 
 
 CREATE TABLE IF NOT EXISTS `eventservice` (
-	`id` varchar(255) NOT NULL  UNIQUE,
-	`eventid`  varchar(255) NOT NULL,
-	`serviceid`  varchar(255) NOT NULL,
+	`id` binary(16) NOT NULL  UNIQUE,
+	`eventid`  binary(16) NOT NULL,
+	`serviceid`  binary(16) NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
@@ -216,10 +209,10 @@ CREATE TABLE IF NOT EXISTS `eventservice` (
 --
 
 CREATE TABLE IF NOT EXISTS `eventbranchs` (
-	`id` varchar(255) NOT NULL  UNIQUE,
+	`id` binary(16) NOT NULL  UNIQUE,
 	`name` varchar(255) NOT NULL,
-	`eventid` varchar(255) NOT NULL,
-	`branch_id` varchar(255) NOT NULL,
+	`eventid` binary(16) NOT NULL,
+	`branch_id` binary(16) NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
@@ -228,12 +221,12 @@ CREATE TABLE IF NOT EXISTS `eventbranchs` (
 --
 
 CREATE TABLE IF NOT EXISTS `amount_eachlv` (
-	`id` int AUTO_INCREMENT NOT NULL  UNIQUE,
+	`id` binary(16) NOT NULL  UNIQUE,
 	`level` int(10) NOT NULL,
-	`amount` decimal(12,6) NOT NULL,
-	`user_id` varchar(255) NOT NULL,
+	`amount` decimal NOT NULL,
+	`user_id` binary(16) NOT NULL,
         `status` tinyint(1) NOT NULL,
-        `bill_id` varchar(255) NOT NULL,
+        `bill_id` binary(16) NOT NULL,
 	PRIMARY KEY (`id`)
 );
 
@@ -284,21 +277,19 @@ ALTER TABLE `accounts_roles`
 --
 -- Indexes for table `policies`
 --
-ALTER TABLE `policies` ADD CONSTRAINT `policies_fk5` FOREIGN KEY (`servicesid`) REFERENCES `services`(`id`);
+
 ALTER TABLE `policies` ADD CONSTRAINT `policies_fk7` FOREIGN KEY (`branchsid`) REFERENCES `branchs`(`id`);
 
 ALTER TABLE `policies` ADD CONSTRAINT `policies_fk8` FOREIGN KEY (`formula_id`) REFERENCES `formulas`(`id`);
 
+ 
  --
--- Indexes for table `feepercent`
+-- Indexes for table `services`  
 --
-ALTER TABLE `feepercent` ADD CONSTRAINT `feepercent_fk5` FOREIGN KEY (`servicesid`) REFERENCES `services`(`id`);
-
- --
--- Indexes for table `services`
---
-
+ALTER TABLE `services` ADD CONSTRAINT `services_fk6` FOREIGN KEY (`policiesid`) REFERENCES `policies`(`id`);
 ALTER TABLE `services` ADD CONSTRAINT `services_fk3` FOREIGN KEY (`category`) REFERENCES `category`(`id`);
+ 
+
 
  --
 -- Indexes for table `eventservice`
@@ -325,11 +316,43 @@ ALTER TABLE `bill` ADD CONSTRAINT `transitions_fk1` FOREIGN KEY (`serviceid`) RE
 
 ALTER TABLE `bill` ADD CONSTRAINT `transitions_fk2` FOREIGN KEY (`customersid`) REFERENCES `users`(`id`);
 
-ALTER TABLE `bill` ADD CONSTRAINT `transitions_fk5` FOREIGN KEY (`event_id`) REFERENCES `events`(`id`);
+ 
 
-
+ --
+-- Indexes for table `amount_eachlv`
+--
 ALTER TABLE `amount_eachlv` ADD CONSTRAINT `moneyeachlv_fk5` FOREIGN KEY (`bill_id`) REFERENCES `bill`(`id`);
 ALTER TABLE `amount_eachlv` ADD CONSTRAINT `moneyeachlv_fk2` FOREIGN KEY (`user_id`) REFERENCES `users`(`id`);
 
 
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`) VALUES
+(1, 'ROLE_ADMIN');
+
+ 
+
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`id`, `enabled`, `password`, `username`) VALUES
+(0x667e11427140426fbef4357729c2c510, b'1', '$2a$10$zXx.7eRQDzBJ7zdjqq42VutrH5AMlXUzSkChGqtuBezFmlIcvDDbS', 'admin'),
+(0x7df8a4fb1bfd4bc699ea67fb7fe702cf, b'1', '$2a$10$USqgyJhVS8O1L8J1tgEBBe.1d7ky17Rka8gFiZbQJgGO7fizx/Xmm', 'vuxuandu'),
+(0x9f9d05aaa9a041808bc576e9e494f411, b'1', '$2a$10$09v0c5yKeO.XVEks3rsKrutqvyzpipfv35wvsm/TQT24irSzOdVeK', 'user1'),
+(0xb6a76f9c1f4b4affbf58e1cf8256dc7c, b'1', '$2a$10$WEsy.ZfXi3ufiCYSRSDR..AMS8nS/IbE/yPOURsf6RajiuXzsYqSW', 'user'),
+(0xf1fc7c96e16f4950bab22c9e5039254f, b'1', '$2a$10$y5gvApSSHLVjlWKQBDhLCePoK5Bp66DAlb6I.vpzA0TmiRByyrAF6', 'user123');
+
+
+--
+-- Dumping data for table `accounts_roles`
+--
+
+INSERT INTO `accounts_roles` (`account_id`, `role_id`) VALUES
+(0x667e11427140426fbef4357729c2c510, 1);
+
+
+-- --------------------------------------------------------
 

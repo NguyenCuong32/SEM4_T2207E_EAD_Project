@@ -3,8 +3,8 @@
 
 INSERT INTO `branchs` (`id` ,`name` ,`address`,`phone`,`email`,`status`)
  VALUES
-('MNV2092', 'FPT Aptech Ha noi','8 Ton that thuyet, My dinh, Nam tu liem', '0911 659 131', 'aptech.fpt@fe.edu.vn', 1),
-('MNV2034', 'FPT Aptech Ho chi minh','391A Nam Ky Khoi Nghia,  Vo thi sau', '0911 789 450 ', 'aptech.fpt@fe.edu.vn', 1)
+(0x667e11427140426fbef4357729c2c510, 'FPT Aptech Ha noi','8 Ton that thuyet, My dinh, Nam tu liem', '0911 659 131', 'aptech.fpt@fe.edu.vn', 1),
+(0x7df8a4fb1bfd4bc699ea67fb7fe702cf, 'FPT Aptech Ho chi minh','391A Nam Ky Khoi Nghia,  Vo thi sau', '0911 789 450 ', 'aptech.fpt@fe.edu.vn', 1)
 ;
 
 -- Dumping data for table `formulas`
@@ -12,8 +12,8 @@ INSERT INTO `branchs` (`id` ,`name` ,`address`,`phone`,`email`,`status`)
 INSERT INTO 
 `formulas` (`id` ,`name_category` , `description`,`status`)
  VALUES
- ('CT001','formula 1', 'Amount = Price x (VAT tax +  bonus + Tax Ratio) / 100 ', 1),
- ('CT002','formula 2', 'Amount = Price x (VAT tax + 2 x bonus - Tax ratio ) / (100 x 2 ) ', 1)
+ (0x667e11427140426fbef4357729c2c510,'formula 1', 'Amount = Price x (VAT tax +  bonus + Tax Ratio) / 100 ', 1),
+ (0x7df8a4fb1bfd4bc699ea67fb7fe702cf,'formula 2', 'Amount = Price x (VAT tax + 2 x bonus - Tax ratio ) / (100 x 2 ) ', 1)
  ;
 
  -- Dumping data for table `category`
@@ -21,90 +21,54 @@ INSERT INTO
 INSERT INTO 
 `category` (`id` ,`name_category`  ,`status`)
 VALUES
-('LDV01', 'Cleaning', 1),
-('LDV02', 'Washing', 1),
-('LDV03', 'Marketing', 1)
+(0x667e11427140426fbef4357729c2c510, 'Cleaning', 1),
+(0x7df8a4fb1bfd4bc699ea67fb7fe702cf, 'Washing', 1),
+(0x9f9d05aaa9a041808bc576e9e494f411, 'Marketing', 1)
 ;
+ 
+
 
 -- Dumping data for table `policies`
 --
 INSERT INTO 
-`policies` (`id` , `name`, `time_start`, `time_ending` , `formula_id`,  `status`, `branchsid`, `vat_tax`,`tax_ratio`, `bonus` )
+`policies` (`id` , `name`, `time_start`, `time_ending` , `formula_id`, `branchsid`, `vat_tax`,`tax_ratio`, `bonus`,  `status` )
 VALUES
-('PLC01','Policies no 1', '2024-10-28 19:30:35', '2026-10-28 19:30:35', 'CT001',  1,'MNV2092', 10, 20, 50  ),
-('PLC02','Policies no 2', '2024-10-28 19:30:35', '2026-10-28 19:30:35', 'CT002',  1,'MNV2092', 10, 23,60  ),
-('PLC03','Policies no 3', '2024-10-28 19:30:35', '2026-10-28 19:30:35', 'CT001',  1,'MNV2034', 10, 20, 20  )
+(0x667e11427140426fbef4357729c2c510,'Policies no 1', '2024-10-28 19:30:35', '2026-10-28 19:30:35', 0x667e11427140426fbef4357729c2c510,0x667e11427140426fbef4357729c2c510, 10, 20, 50 ,  1 ),
+(0x9f9d05aaa9a041808bc576e9e494f411,'Policies no 2', '2024-10-28 19:30:35', '2026-10-28 19:30:35', 0x667e11427140426fbef4357729c2c510,0x7df8a4fb1bfd4bc699ea67fb7fe702cf, 10, 23,60 ,  1 ),
+(0x7df8a4fb1bfd4bc699ea67fb7fe702cf,'Policies no 3', '2024-10-28 19:30:35', '2026-10-28 19:30:35', 0x7df8a4fb1bfd4bc699ea67fb7fe702cf,0x7df8a4fb1bfd4bc699ea67fb7fe702cf, 10, 20, 20 ,  1 )
 ;
-
-
- -- Dumping data for table `services`
---
-INSERT INTO 
-`services` (`id` , `name`, `description`, `category`, `price`  ,`status` , policiesid  )
-VALUES
-('DV01','Cleaning No 1','cleaning service no 1','LDV01', 12.00 , 1 , 'PLC01'),
-('DV02','Cleaning No 2','cleaning service no 2','LDV01', 24.00 , 1, 'PLC02'),
-('DV03','Cleaning No 3','cleaning service no 3','LDV01', 32.00 , 1,'PLC03' ),
-('DV04','Washing No 1','Washing service no 1','LDV02', 13.00 , 1 ,'PLC01'),
-('DV05','Washing No 2','Washing service no 2','LDV02', 21.00 , 1, 'PLC02'),
-('DV06','Marketing No 1','Marketing service no 1','LDV03', 24.00 , 1 ,'PLC03'),
-('DV07','Marketing No 2','Marketing service no 2','LDV03', 34.00 , 1, 'PLC01')
-;
-
- -- Dumping data for table `feepercent`
---
-INSERT INTO 
-`feepercent` ( `level`, `ratio`, `bonus`,	`servicesid` ,`status`)
-VALUES
-(1, 2.3, 2, 'DV01', 1 ),
-(2, 3.3, 3, 'DV01', 1 ),
-(3, 4.3, 4, 'DV01', 1 ),
-(4, 5.3, 5, 'DV01', 1 ),
-(5, 6.3, 6, 'DV01', 1 ),
-(1, 2.3, 2, 'DV02', 1 ),
-(2, 3.3, 3, 'DV02', 1 ),
-(3, 4.3, 4, 'DV02', 1 ),
-(4, 5.3, 5, 'DV02', 1 ),
-(5, 6.3, 6, 'DV02', 1 ),
-(1, 2.3, 2, 'DV03', 1 ),
-(2, 3.3, 3, 'DV03', 1 ),
-(3, 4.3, 4, 'DV03', 1 ),
-(4, 5.3, 5, 'DV03', 1 ),
-(5, 6.3, 6, 'DV03', 1 ),
-(1, 2.3, 2, 'DV04', 1 ),
-(2, 3.3, 3, 'DV04', 1 ),
-(3, 4.3, 4, 'DV04', 1 ),
-(4, 5.3, 5, 'DV04', 1 ),
-(1, 2.3, 2, 'DV05', 1 ),
-(2, 3.3, 3, 'DV05', 1 ),
-(3, 4.3, 4, 'DV05', 1 ),
-(1, 4.3, 2, 'DV06', 1 ),
-(2, 5.3, 3, 'DV06', 1 ),
-(3, 6.3, 4, 'DV06', 1 ) 
-;
-
 
 -- Dumping data for table  `events`
 --
 INSERT INTO 
  `events` (`id` , `name`,`desc`, `time_start`, `time_end` , `banner`,`status`,`eventcode`)
 VALUES
-('EV01','Event 01 ' , 'Beginner Event', '2024-10-28 19:30:35', '2026-10-28 19:30:35', 'img.png', 1, 'EVENTNEWBEGIN@!@#' ),
-('EV02','Event 02 ' , 'Beginner Event', '2024-10-28 19:30:35', '2026-10-28 19:30:35', 'img.png', 1 , 'EVENTNEWBEGIN@!@#2'),
-('EV03','Event 03 ' , 'Beginner Event', '2024-10-28 19:30:35', '2026-10-28 19:30:35', 'img.png', 1, 'EVENTNEWBEGIN@!@#3' )
+(0x667e11427140426fbef4357729c2c510,'Event Default ' , 'Event Default for every account', '2024-10-28 19:30:35', '2026-10-28 19:30:35', 'img.png', 1, 'EVENTNEWBEGIN@!@#' ),
+(0x7df8a4fb1bfd4bc699ea67fb7fe702cf,'Event 02 ' , 'Beginner Event', '2024-10-28 19:30:35', '2026-10-28 19:30:35', 'img.png', 1 , 'EVENTNEWBEGIN@!@#2'),
+(0x9f9d05aaa9a041808bc576e9e494f411,'Event 03 ' , 'Beginner Event', '2024-10-28 19:30:35', '2026-10-28 19:30:35', 'img.png', 1, 'EVENTNEWBEGIN@!@#3' )
 ;
+
+ -- Dumping data for table `services`
+--
+INSERT INTO 
+`services` (`id` , `name`, `description`, `price`, level1 ,level2,level3 ,level4 ,level5, `category`    , policiesid  ,`status` )
+VALUES
+(0x667e11427140426fbef4357729c2c510,'Cleaning No 1','cleaning service no 1', 12.00,  3.5, 3,2,1, 0.5
+,0x667e11427140426fbef4357729c2c510   ,0x667e11427140426fbef4357729c2c510 , 1 ),
+(0x7df8a4fb1bfd4bc699ea67fb7fe702cf,'Cleaning No 2','cleaning service no 2', 24.00,  3.5, 3,2,1, 0.5, 0x7df8a4fb1bfd4bc699ea67fb7fe702cf ,   0x7df8a4fb1bfd4bc699ea67fb7fe702cf , 1),
+(0x9f9d05aaa9a041808bc576e9e494f411,'Cleaning No 3','cleaning service no 3', 32.00, 3.5, 3,2,1, 0.5, 0x9f9d05aaa9a041808bc576e9e494f411  , 0x9f9d05aaa9a041808bc576e9e494f411, 1 )
+;
+
+
 
 -- Dumping data for table  `eventservice`
 --
 INSERT INTO 
  `eventservice` (`id` ,`eventid` ,	`serviceid`)
 VALUES
-('EVSV01', 'EV01', 'DV01' ),
-('EVSV02', 'EV02', 'DV02' ),
-('EVSV03', 'EV02', 'DV01' ),
-('EVSV04', 'EV01', 'DV02' ),
-('EVSV05', 'EV01', 'DV03' ),
-('EVSV06', 'EV01', 'DV04' )
+(0x9f9d05aaa9a041808bc576e9e494f411, 0x667e11427140426fbef4357729c2c510 , 0x7df8a4fb1bfd4bc699ea67fb7fe702cf ),
+(0x667e11427140426fbef4357729c2c510, 0x7df8a4fb1bfd4bc699ea67fb7fe702cf, 0x9f9d05aaa9a041808bc576e9e494f411 ),
+(0x7df8a4fb1bfd4bc699ea67fb7fe702cf, 0x9f9d05aaa9a041808bc576e9e494f411, 0x667e11427140426fbef4357729c2c510 )
 ;
 
 
@@ -113,6 +77,28 @@ VALUES
 INSERT INTO 
  `eventbranchs` (`id` , `name`, `eventid` ,	`branch_id`  )
 VALUES
-('EVBR01','EVINHN','EV01', 'MNV2092'),
-('EVBR02','EVINHN','EV02', 'MNV2092'),
-('EVBR03','EVINHN','EV03', 'MNV2092');
+(0x9f9d05aaa9a041808bc576e9e494f411,'EVINHN',0x9f9d05aaa9a041808bc576e9e494f411, 0x667e11427140426fbef4357729c2c510),
+(0x667e11427140426fbef4357729c2c510,'EVINHN',0x667e11427140426fbef4357729c2c510, 0x7df8a4fb1bfd4bc699ea67fb7fe702cf),
+(0x7df8a4fb1bfd4bc699ea67fb7fe702cf,'EVINHN', 0x7df8a4fb1bfd4bc699ea67fb7fe702cf , 0x7df8a4fb1bfd4bc699ea67fb7fe702cf);
+
+
+-- Dumping data for table  `users`
+--
+INSERT INTO 
+ `users` (`id` , `fullname`, `phone`, `email`, address, feedbackfee, gender, total_amount, parent_phone, accountsid, `status` )
+VALUES
+ (0x7df8a4fb1bfd4bc699ea67fb7fe702cf, 'vuxuandu', '090932189', 'vuxuandu@gmail.com', '8 ton that thuyet'  , 4 , 1, 50, null , 0x7df8a4fb1bfd4bc699ea67fb7fe702cf , 1  ),
+ (0xb6a76f9c1f4b4affbf58e1cf8256dc7c, 'hieu', '09012189', 'hieu@gmail.com','8 ton that thuyet'  , 10 , 1, 50, '090932189' , 0xb6a76f9c1f4b4affbf58e1cf8256dc7c , 1  )
+;
+
+
+
+
+-- Dumping data for table  `bill`
+--
+INSERT INTO 
+`bill`(`id`,`serviceid`, `customersid`,	`time_set_start`, `time_set_end`, `eventcode`  ,`status`,  `amount`)
+VALUES
+ (0x7df8a4fb1bfd4bc699ea67fb7fe702cf,0x7df8a4fb1bfd4bc699ea67fb7fe702cf,0xb6a76f9c1f4b4affbf58e1cf8256dc7c ,
+'2024-10-28 19:30:35', '2026-10-28 19:30:35', NULL , 1, 0)
+

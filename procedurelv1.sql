@@ -1,5 +1,5 @@
 
- -- câu lệnh cho mysql 
+-- câu lệnh cho mysql 
  
 -- Store kiểm tra số điện thoại 
 
@@ -19,7 +19,28 @@ END $
  
 DELIMITER ; 	
 
-CALL CHECK_PHONE('090480374');
+
+
+-- câu lệnh cho mysql 
+ 
+-- Store kiểm tra event
+
+DROP PROCEDURE IF EXISTS CHECK_EVENT;
+
+DELIMITER $	
+CREATE PROCEDURE CHECK_EVENT
+(IN  giftcode varchar(255) )
+ 
+BEGIN 
+
+ SELECT * 
+ From events  
+ WHERE  eventcode =  giftcode ; 
+ 
+END $
+
+DELIMITER ; 
+ 
 
 
 -- Store Đệ quy tìm level  cha con theo id
