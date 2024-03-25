@@ -212,7 +212,7 @@
 															<div class="card-header border-0">
 																<!--begin::Card title-->
 																<div class="card-title">
-																	<h2 class="fw-bolder">Reward Points</h2>
+																	<h2 class="fw-bolder">Total Transaction</h2>
 																</div>
 																<!--end::Card title-->
 															</div>
@@ -229,7 +229,7 @@
 																		</span>
 																		<!--end::Svg Icon-->
 																		<div class="ms-2">4,571
-																			<span class="text-muted fs-4 fw-bold">Points earned</span></div>
+																			<span class="text-muted fs-4 fw-bold">Spent</span></div>
 																	</div>
 																	<div class="fs-7 fw-normal text-muted">Earn reward points with every purchase.</div>
 																</div>
@@ -273,16 +273,17 @@
 													<!--begin::Card body-->
 													<div class="card-body pt-0 pb-5">
 														<!--begin::Table-->
-														<table class="table align-middle table-row-dashed gy-5" id="kt_table_customers_payment">
+														<table class="table align-middle table-row-dashed gy-5" >
 															<!--begin::Table head-->
 															<thead class="border-bottom border-gray-200 fs-7 fw-bolder">
 															<!--begin::Table row-->
 															<tr class="text-start text-muted text-uppercase gs-0">
-																<th class="min-w-100px">Transaction No.</th>
+																<th class="">No.</th>
 																<th>Status</th>
 																<th>Amount</th>
-																<th class="min-w-100px">Rewards</th>
+																<th class="min-w-100px">Services</th>
 																<th class="min-w-100px">Date</th>
+																<th class="text-end">Detail</th>
 															</tr>
 															<!--end::Table row-->
 															</thead>
@@ -290,10 +291,10 @@
 															<!--begin::Table body-->
 															<tbody class="fs-6 fw-bold text-gray-600">
 															<!--begin::Table row-->
-															<tr>
+															<tr th:each="transaction : ${transactions}">
 																<!--begin::order=-->
 																<td>
-																	<a href="../../demo1/dist/apps/ecommerce/sales/details.html" class="text-gray-600 text-hover-primary mb-1">#14670</a>
+																	<a href="../../demo1/dist/apps/ecommerce/sales/details.html" class="text-gray-600 text-hover-primary mb-1" th:text="${transaction.id}"></a>
 																</td>
 																<!--end::order=-->
 																<!--begin::Status=-->
@@ -302,198 +303,25 @@
 																</td>
 																<!--end::Status=-->
 																<!--begin::Amount=-->
-																<td>$1,200.00</td>
+																<td th:text="${#numbers.formatCurrency(transaction.total)}"></td>
 																<!--end::Amount=-->
 																<!--begin::Amount=-->
-																<td>120</td>
+																<td th:text="${transaction.transactionServices.size() + ' service(s)'}"></td>
 																<!--end::Amount=-->
 																<!--begin::Date=-->
-																<td>14 Dec 2020, 8:43 pm</td>
+																<td th:text="${#temporals.format(transaction.transactionDate, 'DD MMM, YYYY')}"></td>
 																<!--end::Date=-->
-															</tr>
-															<!--end::Table row-->
-															<!--begin::Table row-->
-															<tr>
-																<!--begin::order=-->
-																<td>
-																	<a href="../../demo1/dist/apps/ecommerce/sales/details.html" class="text-gray-600 text-hover-primary mb-1">#14750</a>
+																<td class="text-end">
+																	<button type="button" class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px" data-kt-table-widget-4="expand_row">
+																		<!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen021.svg-->
+																		<span class="svg-icon svg-icon-3 m-0 toggle-off"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+																			<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
+																			<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
+																			</svg>
+																		</span>
+																		<!--end::Svg Icon-->
+																	</button>
 																</td>
-																<!--end::order=-->
-																<!--begin::Status=-->
-																<td>
-																	<span class="badge badge-light-success">Successful</span>
-																</td>
-																<!--end::Status=-->
-																<!--begin::Amount=-->
-																<td>$79.00</td>
-																<!--end::Amount=-->
-																<!--begin::Amount=-->
-																<td>7</td>
-																<!--end::Amount=-->
-																<!--begin::Date=-->
-																<td>01 Dec 2020, 10:12 am</td>
-																<!--end::Date=-->
-															</tr>
-															<!--end::Table row-->
-															<!--begin::Table row-->
-															<tr>
-																<!--begin::order=-->
-																<td>
-																	<a href="../../demo1/dist/apps/ecommerce/sales/details.html" class="text-gray-600 text-hover-primary mb-1">#15932</a>
-																</td>
-																<!--end::order=-->
-																<!--begin::Status=-->
-																<td>
-																	<span class="badge badge-light-success">Successful</span>
-																</td>
-																<!--end::Status=-->
-																<!--begin::Amount=-->
-																<td>$5,500.00</td>
-																<!--end::Amount=-->
-																<!--begin::Amount=-->
-																<td>550</td>
-																<!--end::Amount=-->
-																<!--begin::Date=-->
-																<td>12 Nov 2020, 2:01 pm</td>
-																<!--end::Date=-->
-															</tr>
-															<!--end::Table row-->
-															<!--begin::Table row-->
-															<tr>
-																<!--begin::order=-->
-																<td>
-																	<a href="../../demo1/dist/apps/ecommerce/sales/details.html" class="text-gray-600 text-hover-primary mb-1">#15196</a>
-																</td>
-																<!--end::order=-->
-																<!--begin::Status=-->
-																<td>
-																	<span class="badge badge-light-warning">Pending</span>
-																</td>
-																<!--end::Status=-->
-																<!--begin::Amount=-->
-																<td>$880.00</td>
-																<!--end::Amount=-->
-																<!--begin::Amount=-->
-																<td>88</td>
-																<!--end::Amount=-->
-																<!--begin::Date=-->
-																<td>21 Oct 2020, 5:54 pm</td>
-																<!--end::Date=-->
-															</tr>
-															<!--end::Table row-->
-															<!--begin::Table row-->
-															<tr>
-																<!--begin::order=-->
-																<td>
-																	<a href="../../demo1/dist/apps/ecommerce/sales/details.html" class="text-gray-600 text-hover-primary mb-1">#15010</a>
-																</td>
-																<!--end::order=-->
-																<!--begin::Status=-->
-																<td>
-																	<span class="badge badge-light-success">Successful</span>
-																</td>
-																<!--end::Status=-->
-																<!--begin::Amount=-->
-																<td>$7,650.00</td>
-																<!--end::Amount=-->
-																<!--begin::Amount=-->
-																<td>765</td>
-																<!--end::Amount=-->
-																<!--begin::Date=-->
-																<td>19 Oct 2020, 7:32 am</td>
-																<!--end::Date=-->
-															</tr>
-															<!--end::Table row-->
-															<!--begin::Table row-->
-															<tr>
-																<!--begin::order=-->
-																<td>
-																	<a href="../../demo1/dist/apps/ecommerce/sales/details.html" class="text-gray-600 text-hover-primary mb-1">#15121</a>
-																</td>
-																<!--end::order=-->
-																<!--begin::Status=-->
-																<td>
-																	<span class="badge badge-light-success">Successful</span>
-																</td>
-																<!--end::Status=-->
-																<!--begin::Amount=-->
-																<td>$375.00</td>
-																<!--end::Amount=-->
-																<!--begin::Amount=-->
-																<td>37</td>
-																<!--end::Amount=-->
-																<!--begin::Date=-->
-																<td>23 Sep 2020, 12:38 am</td>
-																<!--end::Date=-->
-															</tr>
-															<!--end::Table row-->
-															<!--begin::Table row-->
-															<tr>
-																<!--begin::order=-->
-																<td>
-																	<a href="../../demo1/dist/apps/ecommerce/sales/details.html" class="text-gray-600 text-hover-primary mb-1">#14326</a>
-																</td>
-																<!--end::order=-->
-																<!--begin::Status=-->
-																<td>
-																	<span class="badge badge-light-success">Successful</span>
-																</td>
-																<!--end::Status=-->
-																<!--begin::Amount=-->
-																<td>$129.00</td>
-																<!--end::Amount=-->
-																<!--begin::Amount=-->
-																<td>12</td>
-																<!--end::Amount=-->
-																<!--begin::Date=-->
-																<td>11 Sep 2020, 3:18 pm</td>
-																<!--end::Date=-->
-															</tr>
-															<!--end::Table row-->
-															<!--begin::Table row-->
-															<tr>
-																<!--begin::order=-->
-																<td>
-																	<a href="../../demo1/dist/apps/ecommerce/sales/details.html" class="text-gray-600 text-hover-primary mb-1">#15638</a>
-																</td>
-																<!--end::order=-->
-																<!--begin::Status=-->
-																<td>
-																	<span class="badge badge-light-danger">Rejected</span>
-																</td>
-																<!--end::Status=-->
-																<!--begin::Amount=-->
-																<td>$450.00</td>
-																<!--end::Amount=-->
-																<!--begin::Amount=-->
-																<td>45</td>
-																<!--end::Amount=-->
-																<!--begin::Date=-->
-																<td>03 Sep 2020, 1:08 am</td>
-																<!--end::Date=-->
-															</tr>
-															<!--end::Table row-->
-															<!--begin::Table row-->
-															<tr>
-																<!--begin::order=-->
-																<td>
-																	<a href="../../demo1/dist/apps/ecommerce/sales/details.html" class="text-gray-600 text-hover-primary mb-1">#14623</a>
-																</td>
-																<!--end::order=-->
-																<!--begin::Status=-->
-																<td>
-																	<span class="badge badge-light-warning">Pending</span>
-																</td>
-																<!--end::Status=-->
-																<!--begin::Amount=-->
-																<td>$8,700.00</td>
-																<!--end::Amount=-->
-																<!--begin::Amount=-->
-																<td>870</td>
-																<!--end::Amount=-->
-																<!--begin::Date=-->
-																<td>01 Sep 2020, 4:58 pm</td>
-																<!--end::Date=-->
 															</tr>
 															<!--end::Table row-->
 															</tbody>
