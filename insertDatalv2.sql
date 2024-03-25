@@ -51,7 +51,7 @@ VALUES
  -- Dumping data for table `services`
 --
 INSERT INTO 
-`services` (`id` , `name`, `description`, `price`, level1 ,level2,level3 ,level4 ,level5, `category`    , policiesid  ,`status` )
+`services` (`id` , `name`, `description`, `price`, level1 ,level2,level3 ,level4 ,level5, `category`, policiesid  ,`status` )
 VALUES
 (0x667e11427140426fbef4357729c2c510,'Cleaning No 1','cleaning service no 1', 12.00,  3.5, 3,2,1, 0.5
 ,0x667e11427140426fbef4357729c2c510   ,0x667e11427140426fbef4357729c2c510 , 1 ),

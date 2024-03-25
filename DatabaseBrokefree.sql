@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `services` (
 	`id` binary(16) NOT NULL   UNIQUE,
 	`name` varchar(255) NOT NULL,
 	`description` text NOT NULL,
-	`price` decimal NOT NULL,
+	`price` decimal(12,6) NOT NULL,
        `level1` int DEFAULT 0,
         `level2` float  DEFAULT 0,
 	`level3` float DEFAULT 0,
@@ -168,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 	`address` varchar(255) NOT NULL,
 	`feedbackfee` int NOT NULL,
 	`gender` tinyint(1) NOT NULL,
-        `total_amount` decimal NOT NULL,
+        `total_amount` decimal(12,6) NOT NULL,
         `parent_phone` varchar(20)   UNIQUE,
 	`accountsid` binary(16) NOT NULL,
 
@@ -188,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `bill` (
 	`time_set_end` datetime NOT NULL,
 	`eventcode` varchar(255) ,
         `status` tinyint(1) NOT NULL,
-        `amount` decimal DEFAULT 0,
+        `amount` decimal(12,6) DEFAULT 0,
 	PRIMARY KEY (`id`)
 );
 
@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `eventbranchs` (
 CREATE TABLE IF NOT EXISTS `amount_eachlv` (
 	`id` binary(16) NOT NULL  UNIQUE,
 	`level` int(10) NOT NULL,
-	`amount` decimal NOT NULL,
+	`amount` decimal(12,6) NOT NULL,
 	`user_id` binary(16) NOT NULL,
         `status` tinyint(1) NOT NULL,
         `bill_id` binary(16) NOT NULL,
