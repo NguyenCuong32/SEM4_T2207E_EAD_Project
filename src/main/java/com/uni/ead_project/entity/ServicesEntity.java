@@ -11,24 +11,24 @@ import java.util.Objects;
 public class ServicesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "ServiceID")
+    @Column(name = "service_id")
     private String serviceId;
     @Basic
-    @Column(name = "ServiceName")
+    @Column(name = "service_name")
     private String serviceName;
     @Basic
-    @Column(name = "Description")
+    @Column(name = "description")
     private String description;
     @Basic
-    @Column(name = "ServiceType")
+    @Column(name = "service_type")
     private String serviceType;
     @Basic
-    @Column(name = "Price")
+    @Column(name = "price")
     private BigDecimal price;
-    @OneToMany(mappedBy = "servicesByServiceId")
-    private Collection<EventsEntity> eventsByServiceId;
-    @OneToOne(mappedBy = "servicesByServiceId")
-    private PoliciesEntity policiesByServiceId;
+//    @OneToMany(mappedBy = "servicesByServiceId")
+//    private Collection<EventsEntity> eventsByServiceId;
+//    @OneToOne(mappedBy = "servicesByServiceId")
+//    private PoliciesEntity policiesByServiceId;
 
     public String getServiceId() {
         return serviceId;
@@ -83,19 +83,19 @@ public class ServicesEntity {
         return Objects.hash(serviceId, serviceName, description, serviceType, price);
     }
 
-    public Collection<EventsEntity> getEventsByServiceId() {
-        return eventsByServiceId;
-    }
-
-    public void setEventsByServiceId(Collection<EventsEntity> eventsByServiceId) {
-        this.eventsByServiceId = eventsByServiceId;
-    }
-
-    public PoliciesEntity getPoliciesByServiceId() {
-        return policiesByServiceId;
-    }
-
-    public void setPoliciesByServiceId(PoliciesEntity policiesByServiceId) {
-        this.policiesByServiceId = policiesByServiceId;
-    }
+//    public Collection<EventsEntity> getEventsByServiceId() {
+//        return eventsByServiceId;
+//    }
+//
+//    public void setEventsByServiceId(Collection<EventsEntity> eventsByServiceId) {
+//        this.eventsByServiceId = eventsByServiceId;
+//    }
+//
+//    public PoliciesEntity getPoliciesByServiceId() {
+//        return policiesByServiceId;
+//    }
+//
+//    public void setPoliciesByServiceId(PoliciesEntity policiesByServiceId) {
+//        this.policiesByServiceId = policiesByServiceId;
+//    }
 }

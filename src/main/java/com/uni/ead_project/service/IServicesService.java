@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IServicesService {
-    List<ServicesEntity> getAllService();
-    Optional<ServicesEntity> getAllServiceById(String serviceId);
+    List<ServicesEntity> getAllServices();
+    Optional<ServicesEntity> getServiceById(String serviceId);
     void saveFormService(ServicesEntity servicesEntity);
     void deleteService(String serviceId);
 }

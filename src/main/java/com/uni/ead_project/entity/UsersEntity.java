@@ -10,40 +10,40 @@ import java.util.Objects;
 public class UsersEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "UserID")
+    @Column(name = "user_id")
     private String userId;
     @Basic
-    @Column(name = "Username")
+    @Column(name = "username")
     private String username;
     @Basic
-    @Column(name = "Password")
+    @Column(name = "password")
     private String password;
     @Basic
-    @Column(name = "Fullname")
+    @Column(name = "fullname")
     private String fullname;
     @Basic
-    @Column(name = "PhoneNumber")
+    @Column(name = "phone_number")
     private String phoneNumber;
     @Basic
-    @Column(name = "Email")
+    @Column(name = "email")
     private String email;
     @Basic
-    @Column(name = "Address")
+    @Column(name = "address")
     private String address;
     @Basic
-    @Column(name = "Gender")
+    @Column(name = "gender")
     private String gender;
     @Basic
-    @Column(name = "Rank")
+    @Column(name = "rank")
     private Integer rank;
-    @OneToOne(mappedBy = "usersByCouponId")
-    private CouponsEntity couponsByUserId;
-    @OneToOne(mappedBy = "usersByUserId")
-    private PartnersEntity partnersByUserId;
-    @OneToMany(mappedBy = "usersByInviterId")
-    private Collection<PartnersEntity> partnersByUserId_0;
-    @OneToMany(mappedBy = "usersByUserId")
-    private Collection<RolesEntity> rolesByUserId;
+//    @OneToOne(mappedBy = "usersByCouponId")
+//    private CouponsEntity couponsByUserId;
+//    @OneToOne(mappedBy = "usersByUserId")
+//    private PartnersEntity partnersByUserId;
+//    @OneToMany(mappedBy = "usersByInviterId")
+//    private Collection<PartnersEntity> partnersByUserId_0;
+//    @OneToMany(mappedBy = "usersByUserId")
+//    private Collection<RolesEntity> rolesByUserId;
 
     public String getUserId() {
         return userId;
@@ -130,35 +130,35 @@ public class UsersEntity {
         return Objects.hash(userId, username, password, fullname, phoneNumber, email, address, gender, rank);
     }
 
-    public CouponsEntity getCouponsByUserId() {
-        return couponsByUserId;
-    }
-
-    public void setCouponsByUserId(CouponsEntity couponsByUserId) {
-        this.couponsByUserId = couponsByUserId;
-    }
-
-    public PartnersEntity getPartnersByUserId() {
-        return partnersByUserId;
-    }
-
-    public void setPartnersByUserId(PartnersEntity partnersByUserId) {
-        this.partnersByUserId = partnersByUserId;
-    }
-
-    public Collection<PartnersEntity> getPartnersByUserId_0() {
-        return partnersByUserId_0;
-    }
-
-    public void setPartnersByUserId_0(Collection<PartnersEntity> partnersByUserId_0) {
-        this.partnersByUserId_0 = partnersByUserId_0;
-    }
-
-    public Collection<RolesEntity> getRolesByUserId() {
-        return rolesByUserId;
-    }
-
-    public void setRolesByUserId(Collection<RolesEntity> rolesByUserId) {
-        this.rolesByUserId = rolesByUserId;
-    }
+//    public CouponsEntity getCouponsByUserId() {
+//        return couponsByUserId;
+//    }
+//
+//    public void setCouponsByUserId(CouponsEntity couponsByUserId) {
+//        this.couponsByUserId = couponsByUserId;
+//    }
+//
+//    public PartnersEntity getPartnersByUserId() {
+//        return partnersByUserId;
+//    }
+//
+//    public void setPartnersByUserId(PartnersEntity partnersByUserId) {
+//        this.partnersByUserId = partnersByUserId;
+//    }
+//
+//    public Collection<PartnersEntity> getPartnersByUserId_0() {
+//        return partnersByUserId_0;
+//    }
+//
+//    public void setPartnersByUserId_0(Collection<PartnersEntity> partnersByUserId_0) {
+//        this.partnersByUserId_0 = partnersByUserId_0;
+//    }
+//
+//    public Collection<RolesEntity> getRolesByUserId() {
+//        return rolesByUserId;
+//    }
+//
+//    public void setRolesByUserId(Collection<RolesEntity> rolesByUserId) {
+//        this.rolesByUserId = rolesByUserId;
+//    }
 }

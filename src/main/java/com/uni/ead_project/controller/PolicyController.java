@@ -14,11 +14,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/policie")
-public class PoliciesController {
+@RequestMapping("/policies")
+public class PolicyController {
      private final PoliciesService policiesService;
 
-    public PoliciesController(PoliciesService policiesService) {
+    public PolicyController(PoliciesService policiesService) {
         this.policiesService = policiesService;
     }
 
@@ -28,36 +28,36 @@ public class PoliciesController {
         dataBinder.registerCustomEditor(String.class,stringTrimmerEditor);
     }
     @GetMapping("/list")
-    public String GetPolicie(Model model){
-        List<PoliciesEntity> policie=policiesService.getAllPolicies();
-        model.addAttribute("policie", policie);
-        return "policie/list";
+    public String GetPolicy(Model model){
+        List<PoliciesEntity> policies = policiesService.getAllPolicies();
+        model.addAttribute("policies", policies);
+        return "policy/list";
     }
     @GetMapping("/formAdd")
     public String ShowFormAdd(Model model) {
-        PoliciesEntity policies = new PoliciesEntity();
-        model.addAttribute("policie",policies);
-        return "policie/form";
+        PoliciesEntity policy = new PoliciesEntity();
+        model.addAttribute("policy",policy);
+        return "policy/form";
     }
     @PostMapping("/save")
-    public String savePolicie(@Valid @ModelAttribute("policie") PoliciesEntity policies, BindingResult bindingResult){
+    public String savePolicy(@Valid @ModelAttribute("policy") PoliciesEntity policy, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
-            return "policie/form";
+            return "policy/form";
         }
         else {
-            policiesService.saveserviceId(policies);
-            return "policie:/user/list";
+            policiesService.savePolicyId(policy);
+            return "redirect:/policies/list";
         }
     }
     @GetMapping("formUpdate")
-    public String ShowFormUpdate(@RequestParam("serviceId") String serviceId, Model model){
-        Optional<PoliciesEntity> policies = policiesService.getAllPoliciesById(serviceId);
-        model.addAttribute("policie", policies);
-        return "policie/form";
+    public String ShowFormUpdate(@RequestParam("policyId") String policyId, Model model){
+        Optional<PoliciesEntity> policy = policiesService.getPolicyById(policyId);
+        model.addAttribute("policy", policy);
+        return "policy/form";
     }
     @GetMapping("delete")
-    public String DeletePolicie(@RequestParam("serviceId") String serviceId, Model model){
-        policiesService.deleteserviceId(serviceId);
-        return "redirect:/policie/list";
+    public String DeletePolicie(@RequestParam("policyId") String policyId, Model model){
+        policiesService.deletePolicyId(policyId);
+        return "redirect:/policies/list";
     }
 }

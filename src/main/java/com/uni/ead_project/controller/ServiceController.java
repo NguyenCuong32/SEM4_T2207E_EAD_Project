@@ -1,6 +1,5 @@
 package com.uni.ead_project.controller;
 
-import com.uni.ead_project.entity.PartnersEntity;
 import com.uni.ead_project.entity.ServicesEntity;
 import com.uni.ead_project.service.ServicesService;
 import jakarta.validation.Valid;
@@ -16,10 +15,10 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/service")
-public class ServicesController {
+public class ServiceController {
     private final ServicesService servicesService;
 
-    public ServicesController(ServicesService servicesService) {
+    public ServiceController(ServicesService servicesService) {
         this.servicesService = servicesService;
     }
     @InitBinder
@@ -29,7 +28,7 @@ public class ServicesController {
     }
     @GetMapping("/list")
     public String GetPartner(Model model){
-        List<ServicesEntity> service=servicesService.getAllService();
+        List<ServicesEntity> service=servicesService.getAllServices();
         model.addAttribute("service", service);
         return "service/list";
     }
@@ -51,7 +50,7 @@ public class ServicesController {
     }
     @GetMapping("formUpdate")
     public String ShowFormUpdate(@RequestParam("serviceId") String serviceId, Model model){
-        Optional<ServicesEntity> service = servicesService.getAllServiceById(serviceId);
+        Optional<ServicesEntity> service = servicesService.getServiceById(serviceId);
         model.addAttribute("service", service);
         return "service/form";
     }

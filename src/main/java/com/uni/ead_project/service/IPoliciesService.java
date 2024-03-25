@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface IPoliciesService {
     List<PoliciesEntity> getAllPolicies();
-    Optional<PoliciesEntity>getAllPoliciesById(String serviceId);
-    void saveserviceId(PoliciesEntity policiesEntity);
-    void deleteserviceId(String serviceId);
+    Optional<PoliciesEntity>getPolicyById(String policyId);
+    void savePolicyId(PoliciesEntity policiesEntity);
+    void deletePolicyId(String policyId);
 }

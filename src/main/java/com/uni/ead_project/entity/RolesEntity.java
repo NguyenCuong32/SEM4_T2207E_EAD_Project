@@ -9,17 +9,17 @@ import java.util.Objects;
 public class RolesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "RoleID")
+    @Column(name = "role_id")
     private int roleId;
     @Basic
-    @Column(name = "RoleName")
+    @Column(name = "role_name")
     private String roleName;
     @Basic
-    @Column(name = "UserID")
+    @Column(name = "user_id")
     private String userId;
-    @ManyToOne
-    @JoinColumn(name = "UserID", referencedColumnName = "UserID")
-    private UsersEntity usersByUserId;
+//    @ManyToOne
+//    @JoinColumn(name = "UserID", referencedColumnName = "UserID")
+//    private UsersEntity usersByUserId;
 
     public int getRoleId() {
         return roleId;
@@ -58,11 +58,11 @@ public class RolesEntity {
         return Objects.hash(roleId, roleName, userId);
     }
 
-    public UsersEntity getUsersByUserId() {
-        return usersByUserId;
-    }
-
-    public void setUsersByUserId(UsersEntity usersByUserId) {
-        this.usersByUserId = usersByUserId;
-    }
+//    public UsersEntity getUsersByUserId() {
+//        return usersByUserId;
+//    }
+//
+//    public void setUsersByUserId(UsersEntity usersByUserId) {
+//        this.usersByUserId = usersByUserId;
+//    }
 }

@@ -2,6 +2,7 @@ package com.uni.ead_project.service;
 
 import com.uni.ead_project.entity.PoliciesEntity;
 import com.uni.ead_project.repository.PoliciesRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,17 +22,18 @@ public class PoliciesService implements IPoliciesService{
     }
 
     @Override
-    public Optional<PoliciesEntity> getAllPoliciesById(String serviceId) {
+    public Optional<PoliciesEntity> getPolicyById(String serviceId) {
         return policiesRepository.findById(serviceId);
     }
 
     @Override
-    public void saveserviceId(PoliciesEntity policiesEntity) {
+    @Transactional
+    public void savePolicyId(PoliciesEntity policiesEntity) {
         policiesRepository.save(policiesEntity);
     }
 
     @Override
-    public void deleteserviceId(String serviceId) {
-        policiesRepository.deleteById(serviceId);
+    public void deletePolicyId(String policyId) {
+        policiesRepository.deleteById(policyId);
     }
 }

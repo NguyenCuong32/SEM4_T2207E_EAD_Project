@@ -1,7 +1,8 @@
 package com.uni.ead_project.service;
 
-import com.uni.ead_project.entity.EventsEntity;
+import com.uni.ead_project.entity.EventEntity;
 import com.uni.ead_project.repository.EventsRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,18 +17,19 @@ public class EventService implements IEventService{
     }
 
     @Override
-    public List<EventsEntity> getAllEvent() {
+    public List<EventEntity> getAllEvents() {
         return eventsRepository.findAll();
     }
 
     @Override
-    public Optional<EventsEntity> getEventById(String eventId) {
+    public Optional<EventEntity> getEventById(String eventId) {
         return eventsRepository.findById(eventId);
     }
 
     @Override
-    public void saveEvent(EventsEntity eventsEntity) {
-        eventsRepository.save(eventsEntity);
+    @Transactional
+    public void saveEvent(EventEntity eventEntity) {
+        eventsRepository.save(eventEntity);
     }
 
     @Override

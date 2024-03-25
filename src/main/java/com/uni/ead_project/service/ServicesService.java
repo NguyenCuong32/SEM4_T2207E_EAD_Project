@@ -16,12 +16,12 @@ public class ServicesService implements IServicesService{
     }
 
     @Override
-    public List<ServicesEntity> getAllService() {
+    public List<ServicesEntity> getAllServices() {
         return servicesRepository.findAll();
     }
 
     @Override
-    public Optional<ServicesEntity> getAllServiceById(String serviceId) {
+    public Optional<ServicesEntity> getServiceById(String serviceId) {
         return servicesRepository.findById(serviceId);
     }
 

@@ -1,7 +1,8 @@
 package com.uni.ead_project.service;
 
-import com.uni.ead_project.entity.CouponsEntity;
+import com.uni.ead_project.entity.CouponEntity;
 import com.uni.ead_project.repository.CouponsRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,18 +17,24 @@ public class CouponsService implements ICouponsService{
     }
 
     @Override
-    public List<CouponsEntity> getAllCoupon() {
+    public List<CouponEntity> getAllCoupons() {
         return couponsRepository.findAll();
     }
 
     @Override
-    public Optional<CouponsEntity> getAllCouponById(String couponId) {
+    public Optional<CouponEntity> getCouponById(String couponId) {
         return couponsRepository.findById(couponId);
     }
 
     @Override
-    public void saveCoupon(CouponsEntity couponsEntity) {
-        couponsRepository.save(couponsEntity);
+    @Transactional
+    public void saveCoupon(CouponEntity couponEntity) {
+        couponsRepository.save(couponEntity);
+    }
+
+    @Override
+    public void upadateCoupon() {
+
     }
 
     @Override

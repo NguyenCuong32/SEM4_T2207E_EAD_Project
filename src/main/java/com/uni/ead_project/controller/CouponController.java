@@ -1,6 +1,6 @@
 package com.uni.ead_project.controller;
 
-import com.uni.ead_project.entity.CouponsEntity;
+import com.uni.ead_project.entity.CouponEntity;
 import com.uni.ead_project.service.CouponsService;
 import jakarta.validation.Valid;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/coupon")
+@RequestMapping("/coupons")
 public class CouponController {
     private final CouponsService couponsService;
 
@@ -28,36 +28,36 @@ public class CouponController {
     }
     @GetMapping("/list")
     public String GetCoupon(Model model){
-        List<CouponsEntity> coupon= couponsService.getAllCoupon();
+        List<CouponEntity> coupon= couponsService.getAllCoupons();
         model.addAttribute("coupon", coupon);
         return "coupon/list";
     }
     @GetMapping("/formAdd")
     public String ShowFormAdd(Model model) {
-        CouponsEntity coupons= new CouponsEntity();
-        model.addAttribute("coupon",coupons);
+        CouponEntity coupon= new CouponEntity();
+        model.addAttribute("coupon",coupon);
         return "coupon/form";
     }
     @PostMapping("/save")
-    public String saveCoupon(@Valid @ModelAttribute("coupon") CouponsEntity coupons, BindingResult bindingResult){
+    public String saveCoupon(@Valid @ModelAttribute("coupon") CouponEntity coupon, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return "coupon/form";
         }
         else {
-            couponsService.saveCoupon(coupons);
-            return "redirect:/coupon/list";
+            couponsService.saveCoupon(coupon);
+            return "redirect:/coupons/list";
         }
     }
     @GetMapping("formUpdate")
     public String ShowFormUpdate(@RequestParam("couponId") String couponId, Model model){
-        Optional<CouponsEntity> coupon = couponsService.getAllCouponById(couponId);
+        Optional<CouponEntity> coupon = couponsService.getCouponById(couponId);
         model.addAttribute("coupon", coupon);
         return "coupon/form";
     }
     @GetMapping("delete")
     public String DeleteCoupon(@RequestParam("couponId") String couponId, Model model){
         couponsService.deleteCoupon(couponId);
-        return "redirect:/coupon/list";
+        return "redirect:/coupons/list";
     }
 
 }

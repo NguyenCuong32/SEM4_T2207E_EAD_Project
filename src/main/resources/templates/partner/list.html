@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CouponList</title>
+    <link rel="stylesheet" href="public/css/fontawesome-free-6.5.1-web/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+<style>
+    /* Target screens mobile */
+    @media screen and (max-width: 767px) {
+        .container {
+            width: 60%;
+        }
+    }
+
+    /* Target screens tablet */
+    @media screen and (min-width: 767px) and (max-width:1023px) {
+        .container {
+            width: 80%;
+        }
+    }
+    /* Target screens desktop */
+    @media screen and (min-width: 1024px) {
+        .container {
+            width: 100%;
+        }
+    }
+    body{
+        left: 0;
+        top: 0;
+        font-family: 'Segoe UI';
+    }
+    .contain{
+        display: flex;
+        margin-right: 100px;
+    }
+    .hide-add{
+        text-align: end;
+        border-bottom: 2px solid #e2e4e5;
+        margin-bottom: 10px;
+        color: #002DFF;
+    }
+    /*--------------------- nav --------------------*/
+    .left-content{
+        display: flex;
+        flex: 25%;
+        border-left: 1px solid black;
+    }
+    .left-content ul li{
+        list-style-type: none;
+        margin-bottom: 10px;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+    .left-content ul li:hover{
+        background-color: #F1F3F4;
+        border-radius: 0 10px 0 10px;
+    }
+    /*---------------- add new ---------------------*/
+    .right-content{
+        display: flex;
+        flex: 75%;
+    }
+    .add-new-partner{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .new-partner,
+    .presenter{
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+    }
+    .input-partner{
+        display: flex;
+        flex-direction: column;
+        margin-right: 25px;
+        width: 245px;
+    }
+    .input-partner input{
+        background-color: #F1F3F4 ;
+        border-radius: 5px;
+        border: none;
+        margin-top: 5px;
+        padding: 10px 5px;
+    }
+    /*-------------------- qr code --------------------*/
+    .partner-qr{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .partner-qr img{
+        border-top: 5px solid #e2e4e5;
+        max-width: 120px;
+        width: 100%;
+        margin-top: 5px;
+    }
+    .add-new-ntn{
+        display: flex;
+        margin: 0 30px 20px 0;
+        justify-content: flex-end;
+    }
+    .add-new-ntn button{
+        width: 90px;
+        height: 40px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+    }
+    /*--------------- search box -----------------*/
+    .search-box {
+        width: 100%;
+        background-color: #F1F3F4;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        position: relative;
+    }
+
+    .search-box input {
+        background-color: transparent;
+        width: 800px;
+        height: 30px;
+        border: none;
+        outline: none;
+        padding: 5px;
+        font-size: 16px;
+    }
+    .content-user{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        align-items: end;
+        column-gap: 50px;
+    }
+    .list-left .thead{
+        background-color: #e2e4e5;
+    }
+    .list-right .thead{
+        background-color: #e2e4e5;
+    }
+</style>
+<body>
+<div class="contain">
+    <div class="nav left-content">
+        <ul>
+            <li>Service</li>
+            <li>Policies</li>
+            <li>Partner</li>
+            <li>User</li>
+            <li>Events</li>
+            <li>Coupon</li>
+            <li>Settings</li>
+        </ul>
+    </div>
+    <div class="right-content">
+        <div class="mainContent">
+            <h2>Partner</h2>
+            <details>
+                <summary class="hide-add">
+                    <label >Add new</label>
+                </summary>
+                <div class="add-new-partner">
+                    <div>
+                        <!-- input new partner -->
+                        <div class="new-partner">
+                            <div class="input-partner">
+                                <label>Id Partner</label>
+                                <input type="text" name="Id-newPartner" placeholder="Id Partner">
+                            </div>
+                            <div class="input-partner">
+                                <label>Phone Partner</label>
+                                <input type="text" name="Id-newPartner" placeholder="Phone Partner">
+                            </div>
+                            <div class="input-partner">
+                                <label>Email Partner</label>
+                                <input type="email" name="Id-newPartner" placeholder="Email Partner">
+                            </div>
+                        </div>
+                        <!-- input presenter -->
+                        <div class="presenter">
+                            <div class="input-partner">
+                                <label>Id Partner</label>
+                                <input type="text" name="Id-newPartner" placeholder="Id Partner">
+                            </div>
+                            <div class="input-partner">
+                                <label>Phone Partner</label>
+                                <input type="text" name="Id-newPartner" placeholder="Phone Partner">
+                            </div>
+                            <div class="input-partner">
+                                <label>Email Partner</label>
+                                <input type="email" name="Id-newPartner" placeholder="Email Partner">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- qr -->
+                    <div class="partner-qr">
+                        <label>QR Partner</label>
+                        <img src="public/images/qr.png" alt="">
+                    </div>
+                </div>
+                <div class="add-new-ntn">
+                    <button class="btn-primary" type="button">Add New</button>
+                </div>
+            </details>
+            <div class="search-box">
+                <label>
+                    Search
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text">
+                </label>
+            </div>
+            <div class="content-user">
+                <div class="list-left">
+                    <h2>Scheduled schedule information</h2>
+                    <p>output</p>
+                    <tr th:each="partner:${partners}">
+                        <td th:text="${partner.userId}"></td>
+                        <td th:text="${partner.phoneNumber}"></td>
+                        <td th:text="${partner.email}"></td>
+                        <td>
+                            <button class="btn btn-primary">edit</button>
+                            <button class="btn btn-danger">delete</button>
+                        </td>
+                    </tr>
+                    <p>output</p>
+                    <table class="table">
+                        <thead class="thead">
+                        <tr>
+                            <th scope="col">ServiceId</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Basis</th>
+                            <th scope="col">Action
+                                <a class="btn btn-warning button-edit" href="#">Edit</a>
+                                /
+                                <a class="btn btn-danger button-delete" href="#">Delete</a></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="list-right">
+                    <h2>List of services</h2>
+                    <table class="table">
+                        <thead class="thead">
+                        <tr>
+                            <th scope="col">ServiceId</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Basis</th>
+                            <th scope="col">Action
+                                <a class="button-edit" href="#">Edit</a>
+                                /
+                                <a class="button-delete" href="#">Delete</a></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

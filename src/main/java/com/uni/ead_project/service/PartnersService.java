@@ -2,6 +2,7 @@ package com.uni.ead_project.service;
 
 import com.uni.ead_project.entity.PartnersEntity;
 import com.uni.ead_project.repository.PartnersRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,16 +17,17 @@ public class PartnersService implements IPartnersService{
     }
 
     @Override
-    public List<PartnersEntity> getAllPartner() {
+    public List<PartnersEntity> getAllPartners() {
         return partnersRepository.findAll();
     }
 
     @Override
-    public Optional<PartnersEntity> getAllPartnerById(String userId) {
+    public Optional<PartnersEntity> getPartnerById(String userId) {
         return partnersRepository.findById(userId);
     }
 
     @Override
+    @Transactional
     public void savePartner(PartnersEntity partnersEntity) {
         partnersRepository.save(partnersEntity);
     }

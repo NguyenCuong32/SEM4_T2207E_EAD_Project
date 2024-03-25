@@ -1,13 +1,13 @@
 package com.uni.ead_project.service;
 
-import com.uni.ead_project.entity.EventsEntity;
+import com.uni.ead_project.entity.EventEntity;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface IEventService {
-    List<EventsEntity> getAllEvent();
-    Optional<EventsEntity> getEventById(String eventId);
-    void saveEvent(EventsEntity eventsEntity);
+    List<EventEntity> getAllEvents();
+    Optional<EventEntity> getEventById(String eventId);
+    void saveEvent(EventEntity eventEntity);
     void deleteEvent(String eventId);
 }

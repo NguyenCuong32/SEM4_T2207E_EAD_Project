@@ -1,6 +1,6 @@
 package com.uni.ead_project.controller;
 
-import com.uni.ead_project.entity.EventsEntity;
+import com.uni.ead_project.entity.EventEntity;
 import com.uni.ead_project.service.EventService;
 import jakarta.validation.Valid;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/event")
+@RequestMapping("/events")
 public class EventController {
    private final EventService eventService;
 
@@ -28,30 +28,30 @@ public class EventController {
    }
    @GetMapping("/list")
    public String GetEvent(Model model){
-      List<EventsEntity> event=eventService.getAllEvent();
-      model.addAttribute("event", event);
+      List<EventEntity> events = eventService.getAllEvents();
+      model.addAttribute("events", events);
       return "event/list";
    }
    @GetMapping("/formAdd")
    public String ShowFormAdd(Model model) {
-      EventsEntity events = new EventsEntity();
-      model.addAttribute("event",events);
+      EventEntity event = new EventEntity();
+      model.addAttribute("event",event);
       return "event/form";
    }
    @PostMapping("/save")
-   public String saveEvent(@Valid @ModelAttribute("event") EventsEntity events, BindingResult bindingResult){
+   public String saveEvent(@Valid @ModelAttribute("event") EventEntity event, BindingResult bindingResult){
       if (bindingResult.hasErrors()) {
          return "event/form";
       }
       else {
-         eventService.saveEvent(events);
+         eventService.saveEvent(event);
          return "redirect:/user/list";
       }
    }
    @GetMapping("formUpdate")
    public String ShowFormUpdate(@RequestParam("eventId") String eventId, Model model){
-      Optional<EventsEntity> events = eventService.getEventById(eventId);
-      model.addAttribute("event", events);
+      Optional<EventEntity> event = eventService.getEventById(eventId);
+      model.addAttribute("event", event);
       return "event/form";
    }
    @GetMapping("delete")

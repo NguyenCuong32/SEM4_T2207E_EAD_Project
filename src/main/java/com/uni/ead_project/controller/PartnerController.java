@@ -1,6 +1,5 @@
 package com.uni.ead_project.controller;
 
-import com.uni.ead_project.entity.EventsEntity;
 import com.uni.ead_project.entity.PartnersEntity;
 import com.uni.ead_project.service.PartnersService;
 import jakarta.validation.Valid;
@@ -16,10 +15,10 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/partners")
-public class PartnersController {
+public class PartnerController {
     private final PartnersService partnersService;
 
-    public PartnersController(PartnersService partnersService) {
+    public PartnerController(PartnersService partnersService) {
         this.partnersService = partnersService;
     }
     @InitBinder
@@ -29,30 +28,30 @@ public class PartnersController {
     }
     @GetMapping("/list")
     public String GetPartner(Model model){
-        List<PartnersEntity> partner=partnersService.getAllPartner();
-        model.addAttribute("partner", partner);
+        List<PartnersEntity> partners = partnersService.getAllPartners();
+        model.addAttribute("partners", partners);
         return "partner/list";
     }
     @GetMapping("/formAdd")
     public String ShowFormAdd(Model model) {
-        PartnersEntity partners = new PartnersEntity();
-        model.addAttribute("oartner",partners);
+        PartnersEntity partner = new PartnersEntity();
+        model.addAttribute("partner",partner);
         return "partner/form";
     }
     @PostMapping("/save")
-    public String savePartner(@Valid @ModelAttribute("partner") PartnersEntity partners, BindingResult bindingResult){
+    public String savePartner(@Valid @ModelAttribute("partner") PartnersEntity partner, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return "partner/form";
         }
         else {
-            partnersService.savePartner(partners);
+            partnersService.savePartner(partner);
             return "redirect:/partner/list";
         }
     }
     @GetMapping("formUpdate")
     public String ShowFormUpdate(@RequestParam("userId") String userId, Model model){
-        Optional<PartnersEntity> partners = partnersService.getAllPartnerById(userId);
-        model.addAttribute("partner", partners);
+        Optional<PartnersEntity> partner = partnersService.getPartnerById(userId);
+        model.addAttribute("partner", partner);
         return "partner/form";
     }
     @GetMapping("delete")

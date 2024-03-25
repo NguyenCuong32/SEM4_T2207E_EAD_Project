@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IPartnersService {
-    List<PartnersEntity> getAllPartner();
-    Optional<PartnersEntity> getAllPartnerById(String userId);
+    List<PartnersEntity> getAllPartners();
+    Optional<PartnersEntity> getPartnerById(String userId);
     void savePartner(PartnersEntity partnersEntity);
     void deletePartner(String userId);
 }
