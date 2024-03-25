@@ -30,6 +30,21 @@ public class Service {
     @Column(name = "price")
     private BigDecimal price;
 
+    @Column(name = "level1")
+    private float level1;
+
+    @Column(name = "level2")
+    private float level2;
+
+    @Column(name = "level3")
+    private float level3;
+
+    @Column(name = "level4")
+    private float level4;
+
+    @Column(name = "level5")
+    private float level5;
+
     @Column(name = "status")
     private int status;
 

@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baumans&family=Jaldi:wght@400;700&family=Kanit:wght@300;400;500&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/pagination.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
@@ -37,7 +38,7 @@
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  <tr th:each="category, i : ${categories}">
+                                  <tr th:each="category, i : ${getCategoryPage}">
                                     <th scope="row" th:text="${i.index + 1}"></th>
                                     <td th:text="${category.nameCategory}">Mark</td>
                                     <td>
@@ -50,7 +51,18 @@
                                     </td>
                                   </tr>
                                 </tbody>
+
                               </table>
+                            <div class="pagination2">
+                                <span>Page <span th:text="${currentPage}"></span> of <span th:text="${totalPages}"></span>:</span>
+                                <a th:each="pageNumber : ${#numbers.sequence(1, totalPages)}"
+                                   th:class="${pageNumber == currentPage} ? 'active' : ''"
+                                   th:href="@{|/category/list?page=${pageNumber}&limit=1|}"
+                                   th:text="${pageNumber}"></a>
+                                <a href="#">...</a>
+                                <a th:href="@{|/category/list?page=${totalPages}&limit=1|}" th:text="${totalPages}"></a>
+                                <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
