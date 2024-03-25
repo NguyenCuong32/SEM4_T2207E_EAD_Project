@@ -28,6 +28,26 @@ public class ServiceDto {
     @Positive(message = "Giá trị phải là số dương")
     private BigDecimal price;
 
+    @DecimalMin(value = "0", inclusive = true, message = "Minimum value is 0")
+    @DecimalMax(value = "100", inclusive = true, message = "Maximum value is 100")
+    private float level1;
+
+    @DecimalMin(value = "0", inclusive = true, message = "Minimum value is 0")
+    @DecimalMax(value = "100", inclusive = true, message = "Maximum value is 100")
+    private float level2;
+
+    @DecimalMin(value = "0", inclusive = true, message = "Minimum value is 0")
+    @DecimalMax(value = "100", inclusive = true, message = "Maximum value is 100")
+    private float level3;
+
+    @DecimalMin(value = "0", inclusive = true, message = "Minimum value is 0")
+    @DecimalMax(value = "100", inclusive = true, message = "Maximum value is 100")
+    private float level4;
+
+    @DecimalMin(value = "0", inclusive = true, message = "Minimum value is 0")
+    @DecimalMax(value = "100", inclusive = true, message = "Maximum value is 100")
+    private float level5;
+
     private int status;
 
     @JsonProperty("category")

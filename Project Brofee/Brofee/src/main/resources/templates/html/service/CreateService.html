@@ -31,7 +31,7 @@
                         <div class="content_child px-5 pt-3 pb-3">
                             <form action="#" th:action="@{/service/save}" th:object="${service}" method="POST">
                                 <div class="row mb-3">
-                                  <div class="col-12 mb-3">
+                                  <div class="col-6 mb-3">
                                       <div th:errors="*{name}" class="text-danger"></div>
                                       <div th:block th:if="${errorMessage}">
                                           <p>Error: <span th:text="${errorMessage}" class="text-danger"></span></p>
@@ -39,34 +39,59 @@
                                     <label>Name</label>
                                     <input type="text" th:field="*{name}" class="form-control" placeholder="Please input name">
                                   </div>
-                                  <div class="col-12">
-                                        <div th:errors="*{description}" class="text-danger"></div>
-                                        <label>Description</label>
-                                        <input type="text" th:field="*{description}" class="form-control" placeholder="Please input description">
-                                  </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-12 mb-3">
+                                    <div class="col-6 mb-3">
                                         <label>Price</label>
                                         <input type="text" th:field="*{price}" class="form-control" placeholder="Please input price">
                                         <div th:if="${#fields.hasErrors('price')}" class="text-danger" th:errors="*{price}"></div>
                                     </div>
+                                </div>
+
+                                <div class="row mb-3 justify-content-between">
+                                    <div class="col-2 mb-3">
+                                        <label>Level 1</label>
+                                        <input type="text" th:field="*{level1}" class="form-control" placeholder="Please input level 1">
+                                    </div>
+                                    <div class="col-2 mb-3">
+                                        <label>Level 2</label>
+                                        <input type="text" th:field="*{level2}" class="form-control" placeholder="Please input level 2">
+                                    </div>
+                                    <div class="col-2 mb-3">
+                                        <label>Level 3</label>
+                                        <input type="text" th:field="*{level3}" class="form-control" placeholder="Please input level 3">
+                                    </div>
+                                    <div class="col-2 mb-3">
+                                        <label>Level 4</label>
+                                        <input type="text" th:field="*{level4}" class="form-control" placeholder="Please input level 4">
+                                    </div>
+                                    <div class="col-2 mb-3">
+                                        <label>Level 5</label>
+                                        <input type="text" th:field="*{level5}" class="form-control" placeholder="Please input level 5">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3 justify-content-between">
                                     <div class="col-12">
-                                        <label>Status</label>
-                                        <select style="border: 1px solid #dee2e6; font-size: 14px" th:field="*{status}" class="form-control w-25 mb-4">
-                                            <option th:value="1">Display</option>
-                                            <option th:value="0">None</option>
-                                        </select>
+                                        <div th:errors="*{description}" class="text-danger"></div>
+                                        <label>Description</label>
+                                        <input type="text" th:field="*{description}" class="form-control" placeholder="Please input description">
                                     </div>
                                 </div>
 
                                 <div class="row mb-3">
-                                    <div class="col-12 mb-3">
+                                    <div class="col-10 mb-3">
                                         <label>Category</label>
-                                        <input type="text" id="categoryName"  placeholder="please input category" class="form-control w-25 mb-4">
+                                        <input type="text" id="categoryName"  placeholder="please input category" class="form-control w-50 mb-4">
                                         <ul class="list-group" id="resultCategory"></ul>
                                         <input type="hidden" id="selectedCategoryId" th:field="*{category}">
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="float-end">
+                                            <label>Status</label>
+                                            <select style="border: 1px solid #dee2e6; font-size: 14px" th:field="*{status}" class="form-control w-100 mb-4">
+                                                <option th:value="1">Display</option>
+                                                <option th:value="0">None</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <span style="float: right;"><button type="submit" class="btn btn-primary">

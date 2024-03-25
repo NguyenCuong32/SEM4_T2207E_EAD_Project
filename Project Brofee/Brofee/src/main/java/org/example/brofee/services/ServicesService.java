@@ -34,6 +34,11 @@ public class ServicesService implements IServicesService{
         org.example.brofee.entities.Service setService = new org.example.brofee.entities.Service();
         setService.setName(service.getName());
         setService.setPrice(service.getPrice());
+        setService.setLevel1(service.getLevel1());
+        setService.setLevel2(service.getLevel2());
+        setService.setLevel3(service.getLevel3());
+        setService.setLevel4(service.getLevel4());
+        setService.setLevel5(service.getLevel5());
         setService.setDescription(service.getDescription());
         setService.setStatus(service.getStatus());
         setService.setCategory(existingCategory.get());
@@ -46,6 +51,11 @@ public class ServicesService implements IServicesService{
         org.example.brofee.entities.Service setService = getServiceById(id);
         setService.setName(service.getName());
         setService.setPrice(service.getPrice());
+        setService.setLevel1(service.getLevel1());
+        setService.setLevel2(service.getLevel2());
+        setService.setLevel3(service.getLevel3());
+        setService.setLevel4(service.getLevel4());
+        setService.setLevel5(service.getLevel5());
         setService.setDescription(service.getDescription());
         setService.setStatus(service.getStatus());
         setService.setCategory(existingCategory.get());
