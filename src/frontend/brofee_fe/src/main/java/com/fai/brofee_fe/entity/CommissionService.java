@@ -20,6 +20,10 @@ public class CommissionService {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "recipient_id", nullable = false)
+    private User recipient;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "commission_id", nullable = false)
     private Commission commission;
 
@@ -30,6 +34,9 @@ public class CommissionService {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "commission_policy_id", nullable = false)
     private CommissionPolicy commissionPolicy;
+
+    @Column(name = "commission_level")
+    private Integer commissionLevel;
 
     @Column(nullable = false, precision = 16, scale = 2)
     private BigDecimal amount;

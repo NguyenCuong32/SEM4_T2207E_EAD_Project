@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS spa_website;
+
 CREATE DATABASE IF NOT EXISTS spa_website;
 
 USE spa_website;
@@ -7,7 +9,7 @@ CREATE TABLE `user` (
     code varchar(50) UNIQUE,
     phone VARCHAR(20) UNIQUE NOT NULL,
     name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE,
     address VARCHAR(255),
     password VARCHAR(255) NOT NULL,
     avatar VARCHAR(255),
@@ -68,6 +70,9 @@ INSERT INTO `user_role` (user_id, role_id) VALUES
 (1, 3), (2, 2), (3, 3), (4, 3), (5, 3), (6, 3), (7, 3), (8, 3), (9, 3), (10, 3),
 (11, 3), (12, 3), (13, 3), (14, 3), (15, 3), (16, 3), (17, 3), (18, 3), (19, 3), (20, 3),
 (21, 1), (22, 2), (23, 2);
+
+INSERT INTO `user_role` (user_id, role_id) VALUES
+(21, 2), (21, 3);
 
 CREATE TABLE `category` (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -180,8 +185,8 @@ INSERT INTO `service_policy_assignment` (policy_id, service_id, active)  VALUES
 (5, 1, FALSE), (5, 2, FALSE), (5, 3, FALSE), (5, 4, FALSE), (5, 5, FALSE), (5, 6, FALSE), (5, 7, FALSE), (5, 8, FALSE), (5, 9, FALSE), (5, 10, FALSE),
 (5, 11, FALSE), (5, 12, FALSE), (5, 13, FALSE), (5, 14, FALSE), (5, 15, FALSE), (5, 16, FALSE), (5, 17, FALSE), (5, 18, FALSE), (5, 19, FALSE), 
 
-(6, 1, FALSE), (6, 2, FALSE), (7, 3, FALSE), (7, 4, FALSE), (6, 5, FALSE), (6, 6, FALSE), (6, 7, FALSE), (6, 8, FALSE), (6, 9, FALSE), (6, 10, FALSE),
-(7, 11, FALSE), (7, 12, FALSE), (7, 13, FALSE), (7, 14, FALSE), (6, 15, FALSE), (7, 16, FALSE), (6, 17, FALSE), (6, 18, FALSE), (6, 19, FALSE)
+(6, 1, TRUE), (6, 2, TRUE), (7, 3, TRUE), (7, 4, TRUE), (6, 5, TRUE), (6, 6, TRUE), (6, 7, TRUE), (6, 8, TRUE), (6, 9, TRUE), (6, 10, TRUE),
+(7, 11, TRUE), (7, 12, TRUE), (7, 13, TRUE), (7, 14, TRUE), (6, 15, TRUE), (7, 16, TRUE), (6, 17, TRUE), (6, 18, TRUE), (6, 19, TRUE)
 ;
 
 CREATE TABLE `transaction` (
@@ -212,10 +217,13 @@ CREATE TABLE `commission` (
 
 CREATE TABLE `commission_service` (
 	id INT PRIMARY KEY AUTO_INCREMENT,
+    recipient_id INT,
     commission_id INT,
     transaction_service_id INT,
     commission_policy_id INT,
+    commission_level INT,
     amount DECIMAL(16, 2),
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (commission_id) REFERENCES commission(id),
     FOREIGN KEY (transaction_service_id) REFERENCES transaction_service(id),
     FOREIGN KEY (commission_policy_id) REFERENCES commission_policy(id)
@@ -242,8 +250,25 @@ CREATE TABLE `event_service` (
     FOREIGN KEY (service_id) REFERENCES service(id)
 );
 
-
-
+DROP PROCEDURE IF EXISTS g;
+DELIMITER //
+CREATE PROCEDURE get_parents (IN user_id INT)
+BEGIN
+	WITH RECURSIVE parents (id, name, phone, email, referrer_id, user_level)
+    AS (
+		SELECT id, name, phone, email, referrer_id, 0
+        FROM user
+        WHERE id = user_id
+        
+        UNION ALL
+        
+        SELECT u.id, u.name, u.phone, u.email, u.referrer_id, p.user_level + 1
+        FROM user u INNER JOIN parents p ON u.id = p.referrer_id
+        WHERE p.user_level < 10
+	)
+    SELECT * FROM parents;
+END //
+DELIMITER ;
 
 DROP PROCEDURE IF EXISTS get_parents;
 DELIMITER //
@@ -265,6 +290,41 @@ BEGIN
 END //
 DELIMITER ;
 
+DROP PROCEDURE IF EXISTS get_parents_to_temp_table;
+DELIMITER //
+CREATE PROCEDURE get_parents_to_temp_table (IN user_id INT)
+BEGIN
+    -- Drop temporary table if exists
+    DROP TEMPORARY TABLE IF EXISTS temp_parents;
+    
+    -- Create temporary table to store parent records
+    CREATE TEMPORARY TABLE temp_parents (
+        id INT,
+        name VARCHAR(255),
+        phone VARCHAR(20),
+        email VARCHAR(255),
+        referrer_id INT,
+        user_level INT
+    );
+
+	INSERT INTO temp_parents (id, name, phone, email, referrer_id, user_level)
+	WITH RECURSIVE parents (id, name, phone, email, referrer_id, user_level)
+    AS (
+		SELECT id, name, phone, email, referrer_id, 0
+        FROM user
+        WHERE id = user_id
+        
+        UNION ALL
+        
+        SELECT u.id, u.name, u.phone, u.email, u.referrer_id, p.user_level + 1
+        FROM user u INNER JOIN parents p ON u.id = p.referrer_id
+        WHERE p.user_level < 10
+	)
+    SELECT * FROM parents;
+END //
+DELIMITER ;
+-- CALL get_parents (19);
+
 DROP PROCEDURE IF EXISTS get_children;
 DELIMITER //
 CREATE PROCEDURE get_children (IN user_id INT)
@@ -284,6 +344,138 @@ BEGIN
     SELECT * FROM children;
 END //
 DELIMITER ;
-
--- CALL get_parents (19);
 -- CALL get_children (6);
+
+DROP PROCEDURE IF EXISTS `get_users_with_pagination`;
+DELIMITER //
+CREATE PROCEDURE `get_users_with_pagination`(
+  IN size INT,
+  IN page INT,
+  IN search_term VARCHAR(255)
+)
+BEGIN
+  DECLARE offset INT DEFAULT (page - 1) * size;
+  DECLARE total_items INT;
+  DECLARE total_pages INT;
+
+  -- Calculate total items for pagination
+  SELECT COUNT(*) INTO total_items
+  FROM user
+  WHERE (name LIKE CONCAT('%', LOWER(search_term), '%'))
+     OR (phone LIKE CONCAT('%', LOWER(search_term), '%'))
+     OR (email LIKE CONCAT('%', LOWER(search_term), '%'));
+
+  -- Calculate total pages
+  SET total_pages = CEIL(total_items / size);
+
+  -- Main query with pagination
+  SELECT
+    u.*,
+    GROUP_CONCAT(r.name SEPARATOR ', ') AS role_names,
+    u2.name AS referrer_name,
+    u2.code AS referrer_code,
+    u2.phone AS referrer_phone,
+    u2.email AS referrer_email,
+    (SELECT COUNT(*) FROM user WHERE referrer_id = u.id) AS total_referred_users,
+    (SELECT SUM(total) FROM transaction WHERE customer_id = u.id) AS total_spent,
+    (SELECT SUM(total) FROM commission WHERE recipient_id = u.id) AS total_commission,
+    (SELECT total_items) AS total_items,
+    (SELECT total_pages) AS total_pages
+  FROM user u
+  LEFT JOIN user_role ur ON u.id = ur.user_id
+  LEFT JOIN role r ON ur.role_id = r.id
+  LEFT JOIN user u2 ON u.referrer_id = u2.id
+  WHERE (u.name LIKE CONCAT('%', LOWER(search_term), '%'))
+     OR (u.phone LIKE CONCAT('%', LOWER(search_term), '%'))
+     OR (u.email LIKE CONCAT('%', LOWER(search_term), '%'))
+  GROUP BY u.id
+  LIMIT offset, size;
+
+END //
+DELIMITER ;
+
+
+
+DROP PROCEDURE IF EXISTS `get_user_by_code`;
+DELIMITER //
+CREATE PROCEDURE `get_user_by_code`(
+  IN code VARCHAR(255)
+)
+BEGIN
+  SELECT
+    u.*,
+    GROUP_CONCAT(r.name SEPARATOR ', ') AS role_names,
+    u2.name AS referrer_name,
+    u2.code AS referrer_code,
+    u2.phone AS referrer_phone,
+    u2.email AS referrer_email,
+    (SELECT COUNT(*) FROM user WHERE referrer_id = u.id) AS total_referred_users,
+    (SELECT SUM(total) FROM transaction WHERE customer_id = u.id) AS total_spent,
+    (SELECT SUM(total) FROM commission WHERE recipient_id = u.id) AS total_commission,
+    (SELECT total_items) AS total_items,
+    (SELECT total_pages) AS total_pages
+  FROM user u
+  LEFT JOIN user_role ur ON u.id = ur.user_id
+  LEFT JOIN role r ON ur.role_id = r.id
+  LEFT JOIN user u2 ON u.referrer_id = u2.id
+  WHERE u.code = code
+  GROUP BY u.id;
+END //
+DELIMITER;
+
+
+
+
+
+DROP TRIGGER IF EXISTS after_insert_transaction_service;
+DELIMITER //
+CREATE TRIGGER after_insert_transaction_service
+AFTER INSERT ON `transaction_service`
+FOR EACH ROW
+BEGIN
+	DECLARE service_id INT;
+	DECLARE policy_id INT;
+	DECLARE max_referral_levels INT;
+	DECLARE parent_id INT;
+	DECLARE level INT;
+	DECLARE commission_rate_1 DECIMAL(5, 2);
+    DECLARE user_id INT;
+    
+    -- Get service ID from inserted transaction_service record
+    SET service_id = NEW.service_id;
+    
+    -- Find active policy for the service
+    SELECT p.id, p.max_referral_levels 
+    INTO policy_id, max_referral_levels
+    FROM `service_policy_assignment` a 
+    INNER JOIN `commission_policy` p ON a.policy_id = p.id
+    WHERE a.service_id = service_id AND a.active = 1;
+    
+    IF policy_id IS NOT NULL THEN -- Active policy found
+        -- Call stored procedure to get parents (up to 10 levels)
+        SET user_id = (SELECT customer_id FROM `transaction` WHERE id = NEW.transaction_id);
+        
+		CALL get_parents_to_temp_table (user_id); 
+        
+        -- Loop through parents and create commission services
+        SET level = 1;
+        WHILE level <= max_referral_levels DO
+			SELECT id INTO parent_id FROM temp_parents ORDER BY user_level LIMIT 1 OFFSET level;
+		
+            IF parent_id IS NOT NULL THEN
+ 				-- Get commission rate for this level
+                SELECT commission_rate INTO commission_rate_1 FROM commission_tier c WHERE c.policy_id = policy_id AND c.level = level;
+	
+                INSERT INTO commission_service (recipient_id, commission_id, transaction_service_id, commission_policy_id, commission_level, amount, created_at)
+				VALUES (parent_id, NULL, NEW.id, policy_id, level, commission_rate_1 * NEW.price / 100, NOW());
+            END IF;
+            
+            SET level = level + 1;
+        END WHILE;
+	END IF;
+END; //
+DELIMITER ;
+
+
+
+

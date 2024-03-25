@@ -1,7 +1,5 @@
 package com.fai.brofee_fe.dto;
 
-import com.fai.brofee_fe.entity.Category;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class ServiceDTO_hung {
+public class ServiceInPolicyDTO {
 
     private Long id;
 

@@ -1,7 +1,6 @@
 package com.fai.brofee_fe.controller;
 
 import com.fai.brofee_fe.dto.UserDTO;
-import com.fai.brofee_fe.entity.User;
 import com.fai.brofee_fe.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
@@ -17,7 +16,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/user_h")
 @AllArgsConstructor
-public class UserController_hung {
+public class UserController {
 
     private UserService userService;
 

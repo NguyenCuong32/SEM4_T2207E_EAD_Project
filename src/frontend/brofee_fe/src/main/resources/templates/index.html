@@ -399,7 +399,7 @@
 															<div class="d-flex align-items-center me-2">
 																<!--begin::Radio-->
 																<div class="form-check form-check-custom form-check-solid form-check-primary me-6">
-																	<input class="form-check-input" type="checkbox" name="services" th:value="${service.id}" th:attr="data-name=${service.name},data-desc=${service.description}, data-price=${service.basePrice}" onchange="updateSummary()" th:field="*{services}"/>
+																	<input class="form-check-input service-1" type="checkbox" name="services" th:value="${service.id}" th:attr="data-name=${service.name},data-desc=${service.description}, data-price=${service.basePrice}" onchange="updateSummary()" th:field="*{services}"/>
 																</div>
 																<!--end::Radio-->
 
@@ -435,19 +435,19 @@
 											<div class="row ">
 												<div class="col-md-6 mb-10">
 													<label class="fs-5 fw-bold mb-2">Customer Name</label>
-													<div class="fs-3 fw-bold" id="customerNameSummary">John Doe</div>
+													<div class="fs-3 fw-bold" id="customerNameSummary"></div>
 												</div>
 												<div class="col-md-6 mb-10">
 													<label class="fs-5 fw-bold mb-2">Customer Phone</label>
-													<div class="fs-3 fw-bold" id="customerPhoneSummary">0561654165</div>
+													<div class="fs-3 fw-bold" id="customerPhoneSummary"></div>
 												</div>
 												<div class="col-md-6 mb-10">
 													<label class="fs-5 fw-bold mb-2">Email</label>
-													<div class="fs-3 fw-bold" id="customerEmailSummary">John Doe</div>
+													<div class="fs-3 fw-bold" id="customerEmailSummary"></div>
 												</div>
 												<div class="col-md-6 mb-10">
 													<label class="fs-5 fw-bold mb-2">Address</label>
-													<div class="fs-3 fw-bold" id="customerAddressSummary">0561654165</div>
+													<div class="fs-3 fw-bold" id="customerAddressSummary"></div>
 												</div>
 											</div>
 											<!--end::Input group-->
@@ -457,37 +457,12 @@
 													<span class="">Services selected</span>
 												</label>
 												<div id="selectedServicesList">
-													<div class="d-flex flex-stack py-5 border border-gray-300 border-dashed rounded mb-3">
-														<div class="d-flex align-items-center">
-															<div class="ms-6">
-																<a href="#" class="d-flex align-items-center fs-5 fw-bolder text-dark text-hover-primary">Classic Haircut</a>
-																<div class="fw-bold text-muted">Description</div>
-															</div>
-														</div>
-														<div class="d-flex me-6">
-															<div class="text-end">
-																<div class="fs-5 fw-bolder text-dark">$23,000</div>
-															</div>
-														</div>
-													</div>
-													<div class="d-flex flex-stack py-5 border border-gray-300 border-dashed rounded mb-3">
-														<div class="d-flex align-items-center">
-															<div class="ms-6">
-																<a href="#" class="d-flex align-items-center fs-5 fw-bolder text-dark text-hover-primary">Classic Haircut</a>
-																<div class="fw-bold text-muted">Description</div>
-															</div>
-														</div>
-														<div class="d-flex me-6">
-															<div class="text-end">
-																<div class="fs-5 fw-bolder text-dark">$23,000</div>
-															</div>
-														</div>
-													</div>
+
 												</div>
 											</div>
 											<div class="d-flex justify-content-between align-items-center mt-7">
 												<div class="fs-3 fw-bold">Total</div>
-												<div class="fs-3 fw-bold text-success" id="totalPrice">2,500,000 vnd</div>
+												<div class="fs-3 fw-bold text-success" id="totalPrice"></div>
 											</div>
 											<!--end::Input group-->
 										</div>
@@ -688,7 +663,7 @@
 															<div class="d-flex align-items-center me-2">
 																<!--begin::Radio-->
 																<div class="form-check form-check-custom form-check-solid form-check-primary me-6">
-																	<input class="form-check-input" type="checkbox" name="services" th:value="${service.id}" th:attr="data-name=${service.name},data-desc=${service.description}, data-price=${service.basePrice}" onchange="updateSummary()" th:field="*{services}"/>
+																	<input class="form-check-input service-2" type="checkbox" name="services" th:value="${service.id}" th:attr="data-name=${service.name},data-desc=${service.description}, data-price=${service.basePrice}" onchange="updateSummary_2()" th:field="*{services}"/>
 																</div>
 																<!--end::Radio-->
 
@@ -724,19 +699,19 @@
 											<div class="row ">
 												<div class="col-md-6 mb-10">
 													<label class="fs-5 fw-bold mb-2">Customer Name</label>
-													<div class="fs-3 fw-bold" id="customerNameSummary_2">John Doe</div>
+													<div class="fs-3 fw-bold" id="customerNameSummary_2"></div>
 												</div>
 												<div class="col-md-6 mb-10">
 													<label class="fs-5 fw-bold mb-2">Customer Phone</label>
-													<div class="fs-3 fw-bold" id="customerPhoneSummary_2">0561654165</div>
+													<div class="fs-3 fw-bold" id="customerPhoneSummary_2"></div>
 												</div>
 												<div class="col-md-6 mb-10">
 													<label class="fs-5 fw-bold mb-2">Email</label>
-													<div class="fs-3 fw-bold" id="customerEmailSummary_2">John Doe</div>
+													<div class="fs-3 fw-bold" id="customerEmailSummary_2"></div>
 												</div>
 												<div class="col-md-6 mb-10">
 													<label class="fs-5 fw-bold mb-2">Address</label>
-													<div class="fs-3 fw-bold" id="customerAddressSummary_2">0561654165</div>
+													<div class="fs-3 fw-bold" id="customerAddressSummary_2"></div>
 												</div>
 											</div>
 											<!--end::Input group-->
@@ -746,32 +721,7 @@
 													<span class="">Services selected</span>
 												</label>
 												<div id="selectedServicesList_2">
-													<div class="d-flex flex-stack py-5 border border-gray-300 border-dashed rounded mb-3">
-														<div class="d-flex align-items-center">
-															<div class="ms-6">
-																<a href="#" class="d-flex align-items-center fs-5 fw-bolder text-dark text-hover-primary">Classic Haircut</a>
-																<div class="fw-bold text-muted">Description</div>
-															</div>
-														</div>
-														<div class="d-flex me-6">
-															<div class="text-end">
-																<div class="fs-5 fw-bolder text-dark">$23,000</div>
-															</div>
-														</div>
-													</div>
-													<div class="d-flex flex-stack py-5 border border-gray-300 border-dashed rounded mb-3">
-														<div class="d-flex align-items-center">
-															<div class="ms-6">
-																<a href="#" class="d-flex align-items-center fs-5 fw-bolder text-dark text-hover-primary">Classic Haircut</a>
-																<div class="fw-bold text-muted">Description</div>
-															</div>
-														</div>
-														<div class="d-flex me-6">
-															<div class="text-end">
-																<div class="fs-5 fw-bolder text-dark">$23,000</div>
-															</div>
-														</div>
-													</div>
+
 												</div>
 											</div>
 											<div class="d-flex justify-content-between align-items-center mt-7">
@@ -1006,7 +956,8 @@
 
 		<script>
 			function updateSummary() {
-				const selectedServices = $("input[type='checkbox'][name='services']:checked");
+				console.log("Updating summary 1 ...");
+				const selectedServices = $("input.service-1[type='checkbox'][name='services']:checked");
 				const customerName = $("input[type='text'][name='name']").val(); // Assuming you have an input with id="customerName"
 				const customerPhone = $("input[type='text'][name='phone']").val(); // Assuming you have an input with id="customerPhone"
 				const customerEmail = $("input[type='text'][name='email']").val(); // Assuming you have an input with id="customerEmail"
@@ -1051,6 +1002,47 @@
 				$("#customerAddressSummary").text(customerAddress ? customerAddress : "(Empty)");
 				$("#selectedServicesList").html(selectedServicesList);
 				$("#totalPrice").text(formatter.format(total));
+			}
+
+			function updateSummary_2() {
+				console.log("Updating summary 2 ...");
+				const selectedServices = $("input.service-2[type='checkbox'][name='services']:checked");
+
+				let total = 0;
+				let selectedServicesList = "";
+
+				const locale = 'vi-VN'; // Change to your desired locale (e.g., 'en-US' for US Dollars)
+				const formatter = new Intl.NumberFormat(locale, {
+					style: 'currency',
+					currency: 'VND' // Change to your desired currency code (e.g., 'USD')
+				});
+
+				// Loop through selected services
+				selectedServices.each(function() {
+					const serviceId = $(this).val();
+					const serviceName = $(this).data("name");
+					const serviceDesc = $(this).data("desc");
+					const servicePrice = parseFloat($(this).data("price"));
+
+					total += servicePrice;
+					selectedServicesList += `<div class="d-flex flex-stack py-5 border border-gray-300 border-dashed rounded mb-3">
+						<div class="d-flex align-items-center">
+							<div class="ms-6">
+								<a href="#" class="d-flex align-items-center fs-5 fw-bolder text-dark text-hover-primary">${serviceName}</a>
+								<div class="fw-bold text-muted">${serviceDesc}</div>
+								</div>
+								</div>
+								<div class="d-flex me-6">
+								<div class="text-end">
+								<div class="fs-5 fw-bolder text-dark">${formatter.format(servicePrice)}</div>
+							</div>
+						</div>
+					</div>`;
+				});
+
+				// Update summary elements
+				$("#selectedServicesList_2").html(selectedServicesList);
+				$("#totalPrice_2").text(formatter.format(total));
 			}
 		</script>
 

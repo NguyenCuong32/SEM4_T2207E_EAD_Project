@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class CategoryService_hung {
+public class CategoryAndServiceService {
 
     private final CategoryRepository categoryRepository;
     private final ModelMapper modelMapper;

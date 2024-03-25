@@ -9,7 +9,7 @@ import java.util.List;
 
 @Getter
 @Setter
-public class ServiceDetailDTO_hung {
+public class ServiceDetailDTO {
 
     private Long id;
 
@@ -23,7 +23,7 @@ public class ServiceDetailDTO_hung {
 
     private BigDecimal discount;
 
-    private CategoryDTO_hung category;
+    private CategoryAndServiceDTO category;
 
     private LocalDateTime createdAt;
 

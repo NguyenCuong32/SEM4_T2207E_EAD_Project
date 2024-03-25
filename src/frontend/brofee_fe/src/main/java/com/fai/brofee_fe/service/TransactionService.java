@@ -55,9 +55,9 @@ public class TransactionService {
                 .code(code)
                 .phone(dto.getPhone())
                 .name(dto.getName())
-                .email(dto.getEmail())
+                .email(dto.getEmail().isEmpty() ? null : dto.getEmail())
                 .password(bCryptPasswordEncoder.encode("password"))
-                .address(dto.getAddress())
+                .address(dto.getAddress().isEmpty() ? null : dto.getAddress())
                 .referrer(referrer.orElse(null))
                 .createdAt(LocalDateTime.now())
                 .build();
@@ -153,5 +153,12 @@ public class TransactionService {
                 .toList();
     }
 
+    public List<TransactionDTO> getAllTransactionByCustomer(String code) {
+        Long id = userRepository.findByCode(code).map(User::getId).orElse(null);
+        List<Transaction> transactions = transactionRepository.findByCustomer_Id(id);
+        return transactions.stream()
+                .map(transaction -> modelMapper.map(transaction, TransactionDTO.class))
+                .toList();
+    }
 
 }

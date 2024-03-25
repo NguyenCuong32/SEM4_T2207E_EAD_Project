@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+	<!--begin::Head-->
+	<head>
+		<title>Metronic - the world's #1 selling Bootstrap Admin Theme Ecosystem for HTML, Vue, React, Angular &amp; Laravel by Keenthemes</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta property="og:locale" content="en_US" />
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular &amp; Laravel Admin Dashboard Theme" />
+		<meta property="og:url" content="https://keenthemes.com/metronic" />
+		<meta property="og:site_name" content="Keenthemes | Metronic" />
+		<link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+		<link rel="shortcut icon" th:href="@{/media/logos/favicon.ico}" />
+		<!--begin::Fonts-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+		<!--end::Fonts-->
+		<!--begin::Page Vendor Stylesheets(used by this page)-->
+		<link th:href="@{/plugins/custom/datatables/datatables.bundle.css}" rel="stylesheet" type="text/css" />
+		<!--end::Page Vendor Stylesheets-->
+		<!--begin::Global Stylesheets Bundle(used by all pages)-->
+		<link th:href="@{/plugins/global/plugins.bundle.css}" rel="stylesheet" type="text/css" />
+		<link th:href="@{/css/style.bundle.css}" rel="stylesheet" type="text/css" />
+		<!--end::Global Stylesheets Bundle-->
+
+		<meta th:name="_csrf" th:content="${_csrf.token}"/>
+		<meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+	</head>
+	<!--end::Head-->
+	<!--begin::Body-->
+	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+		<!--begin::Main-->
+		<!--begin::Root-->
+		<div class="d-flex flex-column flex-root">
+			<!--begin::Page-->
+			<div class="page d-flex flex-row flex-column-fluid">
+				<!--begin::Aside-->
+				<div th:replace="fragments/aside :: aside(menu = 6)"></div>
+				<!--end::Aside-->
+				<!--begin::Wrapper-->
+				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+					<!--begin::Header-->
+					<div th:replace="fragments/header :: header(title = 'Customers')"></div>
+					<!--end::Header-->
+					<!--begin::Content-->
+					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+						<!--begin::Toolbar-->
+
+						<!--end::Toolbar-->
+						<!--begin::Post-->
+						<div class="post d-flex flex-column-fluid" id="kt_post">
+							<!--begin::Container-->
+							<div id="kt_content_container" class="container-xxl">
+								<!--begin::Card-->
+								<div class="card">
+									<!--begin::Card header-->
+									<div class="card-header border-0 pt-6">
+										<!--begin::Card title-->
+										<div class="card-title">
+											<!--begin::Search-->
+											<div class="d-flex align-items-center position-relative my-1">
+												<!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
+												<span class="svg-icon svg-icon-1 position-absolute ms-6">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+														<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
+														<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
+													</svg>
+												</span>
+												<!--end::Svg Icon-->
+												<form action="/customer" method="get">
+													<input type="hidden" name="size" th:value="${size}">
+													<input type="text" class="form-control form-control-solid w-250px ps-15" placeholder="Search Customers" name="searchTerm" th:value="${searchTerm}"/>
+												</form>
+											</div>
+											<!--end::Search-->
+										</div>
+										<!--begin::Card title-->
+										<!--begin::Card toolbar-->
+										<div class="card-toolbar">
+											<!--begin::Toolbar-->
+											<div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
+<!--												&lt;!&ndash;begin::Filter&ndash;&gt;-->
+<!--												<div class="w-150px me-3">-->
+<!--													&lt;!&ndash;begin::Select2&ndash;&gt;-->
+<!--													<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Status" data-kt-ecommerce-order-filter="status">-->
+<!--														<option></option>-->
+<!--														<option value="all">All</option>-->
+<!--														<option value="active">Active</option>-->
+<!--														<option value="locked">Locked</option>-->
+<!--													</select>-->
+<!--													&lt;!&ndash;end::Select2&ndash;&gt;-->
+<!--												</div>-->
+<!--												&lt;!&ndash;end::Filter&ndash;&gt;-->
+												<!--begin::Add customer-->
+												<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_customer">Add Customer</button>
+												<!--end::Add customer-->
+											</div>
+											<!--end::Toolbar-->
+											<!--begin::Group actions-->
+											<div class="d-flex justify-content-end align-items-center d-none" data-kt-customer-table-toolbar="selected">
+												<div class="fw-bolder me-5">
+													<span class="me-2" data-kt-customer-table-select="selected_count"></span>Selected</div>
+												<button type="button" class="btn btn-danger" data-kt-customer-table-select="delete_selected">Delete Selected</button>
+											</div>
+											<!--end::Group actions-->
+										</div>
+										<!--end::Card toolbar-->
+									</div>
+									<!--end::Card header-->
+									<!--begin::Card body-->
+									<div class="card-body pt-0">
+										<!--begin::Table-->
+										<table class="table align-middle table-row-dashed fs-6 gy-5" >
+											<!--begin::Table head-->
+											<thead>
+											<!--begin::Table row-->
+											<tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
+												<th class="w-10px pe-2">
+													<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+														<input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_customers_table .form-check-input" value="1" />
+													</div>
+												</th>
+												<th class="min-w-125px">Customer Name</th>
+												<th class="min-w-125px">Phone</th>
+												<th class="min-w-125px">Referrer</th>
+												<th class="min-w-125px">Created Date</th>
+												<th class="min-w-125px">Total Spent</th>
+												<th class="min-w-125px">Introduce</th>
+												<th class="min-w-125px">Total Commission</th>
+												<th class="text-end min-w-70px">View</th>
+											</tr>
+											<!--end::Table row-->
+											</thead>
+											<!--end::Table head-->
+											<!--begin::Table body-->
+											<tbody class="fw-bold text-gray-600">
+											<tr th:each="customer : ${customers}">
+												<!--begin::Checkbox-->
+												<td>
+													<div class="form-check form-check-sm form-check-custom form-check-solid">
+														<input class="form-check-input" type="checkbox" value="1" />
+													</div>
+												</td>
+												<!--end::Checkbox-->
+												<!--begin::Name=-->
+												<td class="d-flex align-items-center">
+													<!--begin:: Avatar -->
+													<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+														<a href="/" th:switch="${customer.id % 10}">
+															<div th:case="1" class="symbol-label fs-3 bg-light-danger text-danger" th:text="${customer.name.charAt(0)}"></div>
+															<div th:case="2" class="symbol-label fs-3 bg-light-success text-success" th:text="${customer.name.charAt(0)}"></div>
+															<div th:case="3" class="symbol-label fs-3 bg-light-primary text-primary" th:text="${customer.name.charAt(0)}"></div>
+															<div th:case="4" class="symbol-label fs-3 bg-light-info text-info" th:text="${customer.name.charAt(0)}"></div>
+															<div th:case="5" class="symbol-label fs-3 bg-light-warning text-warning" th:text="${customer.name.charAt(0)}"></div>
+															<div th:case="6" class="symbol-label fs-3 bg-light-danger text-danger" th:text="${customer.name.charAt(0)}"></div>
+															<div th:case="7" class="symbol-label fs-3 bg-light-success text-success" th:text="${customer.name.charAt(0)}"></div>
+															<div th:case="8" class="symbol-label fs-3 bg-light-primary text-primary" th:text="${customer.name.charAt(0)}"></div>
+															<div th:case="9" class="symbol-label fs-3 bg-light-info text-info" th:text="${customer.name.charAt(0)}"></div>
+															<div th:case="0" class="symbol-label fs-3 bg-light-warning text-warning" th:text="${customer.name.charAt(0)}"></div>
+														</a>
+													</div>
+													<!--end::Avatar-->
+													<!--begin::User details-->
+													<div class="d-flex flex-column">
+														<a href="/" class="text-gray-800 text-hover-primary mb-1" th:text="${customer.name}"></a>
+														<span th:text="${customer.email != null ? customer.email : '(No email)'}"></span>
+													</div>
+													<!--begin::User details-->
+												</td>
+												<!--end::Name=-->
+
+												<!--begin::Email=-->
+												<td>
+													<a href="#" class="text-gray-600 text-hover-primary mb-1" th:text="${customer.phone}"></a>
+												</td>
+												<!--end::Email=-->
+												<!--begin::Status=-->
+												<td>
+													<div class="d-flex flex-column">
+														<a href="/" class="text-gray-800 text-hover-primary mb-1" th:text="${customer.referrerName != null ? customer.referrerName : '(No)'}">John Doe</a>
+														<span th:text="${customer.referrerPhone}" th:if="${customer.referrerPhone}"></span>
+													</div>
+												</td>
+												<td th:text="${customer.createdAt}"></td>
+												<td th:text="${customer.totalSpent != null ? #numbers.formatCurrency(customer.totalSpent) : #numbers.formatCurrency(0)}"></td>
+												<td th:text="${customer.totalReferredUsers + ' member(s)'}">0 members</td>
+												<td th:text="${customer.totalCommission != null ? #numbers.formatCurrency(customer.totalCommission) : #numbers.formatCurrency(0)}"></td>
+												<!--begin::Action=-->
+												<td class="text-end">
+													<a th:href="@{/customer/{code}(code=${customer.code})}" class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary w-30px h-30px">
+														<!--begin::Svg Icon | path: icons/duotune/arrows/arr001.svg-->
+														<span class="svg-icon svg-icon-5 svg-icon-gray-700">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+																<path d="M14.4 11H3C2.4 11 2 11.4 2 12C2 12.6 2.4 13 3 13H14.4V11Z" fill="currentColor"></path>
+																<path opacity="0.3" d="M14.4 20V4L21.7 11.3C22.1 11.7 22.1 12.3 21.7 12.7L14.4 20Z" fill="currentColor"></path>
+															</svg>
+														</span>
+														<!--end::Svg Icon-->
+													</a>
+												</td>
+												<!--end::Action=-->
+											</tr>
+											</tbody>
+											<!--end::Table body-->
+										</table>
+										<!--end::Table-->
+										<div class="row">
+											<div class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
+												<div class="dataTables_length">
+													<label>
+														<select class="form-select form-select-sm form-select-solid" id="size-select" th:attr="data-url=@{/customer(page=1)}">
+															<option th:selected="${size == 5}" th:value="5">5</option>
+															<option th:selected="${size == 10}" th:value="10">10</option>
+															<option th:selected="${size == 25}" th:value="25">25</option>
+															<option th:selected="${size == 50}" th:value="50">50</option>
+														</select>
+													</label>
+												</div>
+											</div>
+											<div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
+												<div class="dataTables_paginate paging_simple_numbers">
+													<ul class="pagination">
+														<li class="paginate_button page-item previous "  th:classappend="${currentPage} > 1 ? '' : 'disabled'">
+															<a th:href="@{/customer(page=${currentPage - 1}, size=${size})}" class="page-link">
+																<i class="previous"></i>
+															</a>
+														</li>
+														<li class="paginate_button page-item" th:classappend="${currentPage == i} ? 'active' : ''" th:each="i : ${#numbers.sequence(1, totalPages)}">
+															<a class="page-link" th:href="@{/customer(page=${i}, size=${size})}"
+															   th:text="${i}">1</a>
+														</li>
+														<li class="paginate_button page-item next" th:classappend="(${currentPage} < ${totalPages}) ? '' : 'disabled'">
+															<a class="page-link" th:href="@{/customer(page=${currentPage + 1}, size=${size})}"><i class="next"></i></a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--end::Card body-->
+								</div>
+								<!--end::Card-->
+								<!--begin::Modals-->
+								<!--begin::Modal - Customers - Add-->
+								<div class="modal fade" id="kt_modal_add_customer" tabindex="-1" aria-hidden="true">
+									<!--begin::Modal dialog-->
+									<div class="modal-dialog modal-dialog-centered mw-650px">
+										<!--begin::Modal content-->
+										<div class="modal-content">
+											<!--begin::Form-->
+											<form class="form" action="#" id="kt_modal_add_customer_form" data-kt-redirect="../../demo1/dist/apps/customers/list.html">
+												<!--begin::Modal header-->
+												<div class="modal-header" id="kt_modal_add_customer_header">
+													<!--begin::Modal title-->
+													<h2 class="fw-bolder">Add a Customer</h2>
+													<!--end::Modal title-->
+													<!--begin::Close-->
+													<div id="kt_modal_add_customer_close" class="btn btn-icon btn-sm btn-active-icon-primary">
+														<!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+														<span class="svg-icon svg-icon-1">
+															<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+																<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+																<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+															</svg>
+														</span>
+														<!--end::Svg Icon-->
+													</div>
+													<!--end::Close-->
+												</div>
+												<!--end::Modal header-->
+												<!--begin::Modal body-->
+												<div class="modal-body py-10 px-lg-17">
+													<!--begin::Scroll-->
+													<div class="scroll-y me-n7 pe-7" id="kt_modal_add_customer_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_customer_header" data-kt-scroll-wrappers="#kt_modal_add_customer_scroll" data-kt-scroll-offset="300px">
+														<!--begin::Input group-->
+														<div class="fv-row mb-7">
+															<!--begin::Label-->
+															<label class="required fs-6 fw-bold mb-2">Name</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" class="form-control form-control-solid" placeholder="" name="name" />
+															<!--end::Input-->
+														</div>
+														<!--end::Input group-->
+														<!--begin::Input group-->
+														<div class="fv-row mb-7">
+															<!--begin::Label-->
+															<label class="fs-6 fw-bold mb-2">
+																<span class="required">Phone Number</span>
+															</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="email" class="form-control form-control-solid" placeholder="" name="email" />
+															<!--end::Input-->
+														</div>
+														<!--end::Input group-->
+														<!--begin::Input group-->
+														<div class="fv-row mb-15">
+															<!--begin::Label-->
+															<label class="fs-6 fw-bold mb-2">Email</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" class="form-control form-control-solid" placeholder="" name="description" />
+															<!--end::Input-->
+														</div>
+														<!--end::Input group-->
+														<!--begin::Input group-->
+														<div class="fv-row mb-15">
+															<!--begin::Label-->
+															<label class="fs-6 fw-bold mb-2">Address</label>
+															<!--end::Label-->
+															<!--begin::Input-->
+															<input type="text" class="form-control form-control-solid" placeholder="" name="description" />
+															<!--end::Input-->
+														</div>
+														<!--end::Input group-->
+													</div>
+													<!--end::Scroll-->
+												</div>
+												<!--end::Modal body-->
+												<!--begin::Modal footer-->
+												<div class="modal-footer flex-center">
+													<!--begin::Button-->
+													<button type="reset" id="kt_modal_add_customer_cancel" class="btn btn-light me-3">Discard</button>
+													<!--end::Button-->
+													<!--begin::Button-->
+													<button type="submit" id="kt_modal_add_customer_submit" class="btn btn-primary">
+														<span class="indicator-label">Submit</span>
+														<span class="indicator-progress">Please wait...
+														<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+													</button>
+													<!--end::Button-->
+												</div>
+												<!--end::Modal footer-->
+											</form>
+											<!--end::Form-->
+										</div>
+									</div>
+								</div>
+								<!--end::Modal - Customers - Add-->
+								<!--begin::Modal - Adjust Balance-->
+								<div class="modal fade" id="kt_customers_export_modal" tabindex="-1" aria-hidden="true">
+									<!--begin::Modal dialog-->
+									<div class="modal-dialog modal-dialog-centered mw-650px">
+										<!--begin::Modal content-->
+										<div class="modal-content">
+											<!--begin::Modal header-->
+											<div class="modal-header">
+												<!--begin::Modal title-->
+												<h2 class="fw-bolder">Export Customers</h2>
+												<!--end::Modal title-->
+												<!--begin::Close-->
+												<div id="kt_customers_export_close" class="btn btn-icon btn-sm btn-active-icon-primary">
+													<!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+													<span class="svg-icon svg-icon-1">
+														<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+															<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+															<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+														</svg>
+													</span>
+													<!--end::Svg Icon-->
+												</div>
+												<!--end::Close-->
+											</div>
+											<!--end::Modal header-->
+											<!--begin::Modal body-->
+											<div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+												<!--begin::Form-->
+												<form id="kt_customers_export_form" class="form" action="#">
+													<!--begin::Input group-->
+													<div class="fv-row mb-10">
+														<!--begin::Label-->
+														<label class="fs-5 fw-bold form-label mb-5">Select Export Format:</label>
+														<!--end::Label-->
+														<!--begin::Input-->
+														<select data-control="select2" data-placeholder="Select a format" data-hide-search="true" name="format" class="form-select form-select-solid">
+															<option value="excell">Excel</option>
+															<option value="pdf">PDF</option>
+															<option value="cvs">CVS</option>
+															<option value="zip">ZIP</option>
+														</select>
+														<!--end::Input-->
+													</div>
+													<!--end::Input group-->
+													<!--begin::Input group-->
+													<div class="fv-row mb-10">
+														<!--begin::Label-->
+														<label class="fs-5 fw-bold form-label mb-5">Select Date Range:</label>
+														<!--end::Label-->
+														<!--begin::Input-->
+														<input class="form-control form-control-solid" placeholder="Pick a date" name="date" />
+														<!--end::Input-->
+													</div>
+													<!--end::Input group-->
+													<!--begin::Row-->
+													<div class="row fv-row mb-15">
+														<!--begin::Label-->
+														<label class="fs-5 fw-bold form-label mb-5">Payment Type:</label>
+														<!--end::Label-->
+														<!--begin::Radio group-->
+														<div class="d-flex flex-column">
+															<!--begin::Radio button-->
+															<label class="form-check form-check-custom form-check-sm form-check-solid mb-3">
+																<input class="form-check-input" type="checkbox" value="1" checked="checked" name="payment_type" />
+																<span class="form-check-label text-gray-600 fw-bold">All</span>
+															</label>
+															<!--end::Radio button-->
+															<!--begin::Radio button-->
+															<label class="form-check form-check-custom form-check-sm form-check-solid mb-3">
+																<input class="form-check-input" type="checkbox" value="2" checked="checked" name="payment_type" />
+																<span class="form-check-label text-gray-600 fw-bold">Visa</span>
+															</label>
+															<!--end::Radio button-->
+															<!--begin::Radio button-->
+															<label class="form-check form-check-custom form-check-sm form-check-solid mb-3">
+																<input class="form-check-input" type="checkbox" value="3" name="payment_type" />
+																<span class="form-check-label text-gray-600 fw-bold">Mastercard</span>
+															</label>
+															<!--end::Radio button-->
+															<!--begin::Radio button-->
+															<label class="form-check form-check-custom form-check-sm form-check-solid">
+																<input class="form-check-input" type="checkbox" value="4" name="payment_type" />
+																<span class="form-check-label text-gray-600 fw-bold">American Express</span>
+															</label>
+															<!--end::Radio button-->
+														</div>
+														<!--end::Input group-->
+													</div>
+													<!--end::Row-->
+													<!--begin::Actions-->
+													<div class="text-center">
+														<button type="reset" id="kt_customers_export_cancel" class="btn btn-light me-3">Discard</button>
+														<button type="submit" id="kt_customers_export_submit" class="btn btn-primary">
+															<span class="indicator-label">Submit</span>
+															<span class="indicator-progress">Please wait...
+															<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+														</button>
+													</div>
+													<!--end::Actions-->
+												</form>
+												<!--end::Form-->
+											</div>
+											<!--end::Modal body-->
+										</div>
+										<!--end::Modal content-->
+									</div>
+									<!--end::Modal dialog-->
+								</div>
+								<!--end::Modal - New Card-->
+								<!--end::Modals-->
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Post-->
+					</div>
+					<!--end::Content-->
+				</div>
+				<!--end::Wrapper-->
+			</div>
+			<!--end::Page-->
+		</div>
+		<!--end::Root-->
+
+		<!--end::Main-->
+
+		<!--begin::Scrolltop-->
+		<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+			<!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
+			<span class="svg-icon">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+					<rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor" />
+					<path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor" />
+				</svg>
+			</span>
+			<!--end::Svg Icon-->
+		</div>
+		<!--end::Scrolltop-->
+		<!--begin::Modals-->
+
+
+
+
+
+		<!--end::Modals-->
+		<!--begin::Javascript-->
+		<script>var hostUrl = "/";</script>
+		<!--begin::Global Javascript Bundle(used by all pages)-->
+		<script th:src="@{/plugins/global/plugins.bundle.js}"></script>
+		<script th:src="@{/js/scripts.bundle.js}"></script>
+		<!--end::Global Javascript Bundle-->
+		<!--begin::Page Vendors Javascript(used by this page)-->
+		<script th:src="@{/plugins/custom/datatables/datatables.bundle.js}"></script>
+		<!--end::Page Vendors Javascript-->
+		<!--begin::Page Custom Javascript(used by this page)-->
+		<script th:src="@{/js/custom/apps/ecommerce/customers/listing/listing.js}"></script>
+		<script th:src="@{/js/custom/apps/ecommerce/customers/listing/add.js}"></script>
+		<script th:src="@{/js/custom/apps/ecommerce/customers/listing/export.js}"></script>
+		<script th:src="@{/js/widgets.bundle.js}"></script>
+		<script th:src="@{/js/custom/widgets.js}"></script>
+		<script th:src="@{/js/custom/apps/chat/chat.js}"></script>
+
+		<script>
+			$(document).ready(function() {
+				$('#size-select').on('change', function() {
+					const newSize = $(this).val();
+					const url = $(this).data('url') + `&size=${newSize}`;
+					window.location.href = url;
+				});
+			});
+		</script>
+
+		<script>
+			const searchInput = document.querySelector('input[name="searchTerm"]');
+			searchInput.addEventListener('keyup', (event) => {
+				if (event.key === 'Enter') {
+					event.preventDefault(); // Prevent default form submission
+					searchInput.form.submit(); // Manually submit the form
+				}
+			});
+		</script>
+
+		<!--end::Page Custom Javascript-->
+		<!--end::Javascript-->
+	</body>
+	<!--end::Body-->
+</html>

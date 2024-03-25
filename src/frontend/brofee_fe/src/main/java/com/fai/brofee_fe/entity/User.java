@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -31,7 +32,7 @@ public class User implements Serializable {
     @Column(nullable = false)
     private String name;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String email;
 
     @Column(nullable = false)
@@ -70,7 +71,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "recipient")
     private List<Commission> commissions;
 
-//    @OneToMany(mappedBy = "bidder")
-//    private List<Bid> bids;
+    @OneToMany(mappedBy = "recipient")
+    private List<CommissionService> commissionServices;
 
 }

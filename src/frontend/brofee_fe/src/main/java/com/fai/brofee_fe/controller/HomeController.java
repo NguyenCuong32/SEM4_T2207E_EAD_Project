@@ -2,7 +2,7 @@ package com.fai.brofee_fe.controller;
 
 import com.fai.brofee_fe.dto.TransactionCreateNewCustomerDTO;
 import com.fai.brofee_fe.dto.TransactionCreateOldCustomerDTO;
-import com.fai.brofee_fe.service.CategoryService_hung;
+import com.fai.brofee_fe.service.CategoryAndServiceService;
 import com.fai.brofee_fe.service.TransactionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,12 +16,12 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class HomeController {
 
-    private final CategoryService_hung categoryService_hung;
+    private final CategoryAndServiceService categoryAndServiceService_;
     private final TransactionService transactionService;
 
     @GetMapping("/")
     public String homePage(Model model) {
-        model.addAttribute("categories", categoryService_hung.getAllCategoriesWithDetail());
+        model.addAttribute("categories", categoryAndServiceService_.getAllCategoriesWithDetail());
         model.addAttribute("transactionForNewCustomer", new TransactionCreateNewCustomerDTO());
         model.addAttribute("transactionForOldCustomer", new TransactionCreateOldCustomerDTO());
 

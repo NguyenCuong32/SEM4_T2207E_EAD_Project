@@ -4,11 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Setter
-public class CategoryDTO_hung {
+public class CategoryAndServiceDTO {
 
     private Long id;
 

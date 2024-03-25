@@ -1,9 +1,5 @@
 package com.fai.brofee_fe.dto;
 
-import com.fai.brofee_fe.entity.Service;
-import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -24,6 +20,6 @@ public class CategoryDetailDTO {
 
     private LocalDateTime updatedAt;
 
-    private List<ServiceDTO_hung> services;
+    private List<ServiceInPolicyDTO> services;
 
 }
