@@ -1,5 +1,6 @@
 package org.example.brofee.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.brofee.dto.CategoryDto;
@@ -10,7 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,6 +28,18 @@ public class CategoryController {
     @GetMapping("/list")
     public String listCategory(Model model){
         List<Category> categories = categoryService.getAllCategories();
+        String path = "src/main/resources/static/json/"; // Đường dẫn đến thư mục chứa file JSON
+        File directory = new File(path);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            objectMapper.writeValue(new File(path + "Category.json"), categories);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         model.addAttribute("categories",categories);
         return "html/category/Category";
     }
@@ -56,11 +72,12 @@ public class CategoryController {
     public String editCategory(@RequestParam("id") UUID id, Model model){
         Category category = categoryService.getCategoryById(id);
         model.addAttribute("category",category);
+        model.addAttribute("errorMessage", model.asMap().get("errorMessage"));
         return "html/category/EditCategory";
     }
 
     @PostMapping("/update")
-    public String updateCategory(@RequestParam("id") UUID id, @ModelAttribute("category") @Valid CategoryDto category, BindingResult bindingResult, Model model) {
+    public String updateCategory(@RequestParam("id") UUID id, @ModelAttribute("category") @Valid CategoryDto category, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
         Category findCategory = categoryService.getCategoryById(id);
 
         if (bindingResult.hasErrors()) {
@@ -75,8 +92,8 @@ public class CategoryController {
 
         Category findNameCategory = categoryRepository.findCategoryByNameCategory(category.getNameCategory());
         if (findNameCategory != null && !findNameCategory.getId().equals(id)) {
-            model.addAttribute("errorMessage", "Category name already exists");
-            return "html/category/EditCategory";
+            redirectAttributes.addFlashAttribute("errorMessage", "Category name already exists");
+            return "redirect:/category/edit?id=" + id;
         }
 
         categoryService.updateCategory(id, category);

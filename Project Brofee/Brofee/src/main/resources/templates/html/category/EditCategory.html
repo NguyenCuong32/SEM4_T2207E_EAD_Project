@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,83 +13,17 @@
 
 </head>
 <body>
-<div class="header d-flex align-items-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-3">
-                <div class="logo" style="font-size: 28px;">
-                    <span><i class="fa-solid fa-money-check-dollar" style="color: #1814F3;"></i> <span style="font-weight: 600;">BandDash</span></span>
-                </div>
-            </div>
-            <div class="col-9">
-                <div>
-                    <div class="user-section d-flex justify-content-end">
-                        <div class="search-box margin-right">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <input type="text" name="">
-                        </div>
-                        <div class="Noti margin-right">
-                            <span><i class="fa-solid fa-bell"></i></span>
-                        </div>
-                        <div class="user">
-                            <img src="https://www.shareicon.net/data/512x512/2015/09/18/103160_man_512x512.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<div th:insert="fragments/header::header"></div>
 <div class="body">
     <div class="container h-100">
         <div class="row h-100">
             <div class="col-2 h-100">
-                <div class="navbar h-50 ">
-                        <span class="w-100">
-                            <i class="fa-solid fa-house margin-right-10"></i>
-                            <span><a href="" class="text-decoration-none">Home</a></span>
-                        </span>
-
-                    <span class="w-100">
-                            <i class="fa-solid fa-copyright margin-right-10"></i>
-                            <span><a href="" class="text-decoration-none">Brands</a></span>
-                        </span>
-
-                    <span class="w-100">
-                            <i class="fa-solid fa-layer-group margin-right-10"></i>
-                            <span><a href="" class="text-decoration-none">Categories</a></span>
-                        </span>
-
-                    <span class="w-100">
-                            <i class="fa-solid fa-screwdriver-wrench margin-right-10"></i>
-                            <span><a href="" class="text-decoration-none">Services</a></span>
-                        </span>
-
-                    <span class="w-100">
-                            <i class="fa-solid fa-triangle-exclamation margin-right-10"></i>
-                            <span><a href="" class="text-decoration-none">Polices</a></span>
-                        </span>
-
-                    <span class="w-100">
-                            <i class="fa-solid fa-calendar-day margin-right-10"></i>
-                            <span><a href="" class="text-decoration-none">Events</a></span>
-                        </span>
-
-                    <span class="w-100">
-                            <i class="fa-solid fa-users margin-right-10"></i>
-                            <span><a href="" class="text-decoration-none">Customers</a></span>
-                        </span>
-
-                    <span class="w-100">
-                            <i class="fa-solid fa-user margin-right-10"></i>
-                            <span><a href="" class="text-decoration-none">Account</a></span>
-                        </span>
-                </div>
+                <div th:insert="fragments/navbar::navbar" class="h-100"></div>
             </div>
             <div class="col-10">
                 <div class="content">
                     <div class="content_child px-5 pt-3 pb-3">
-                        <p class="text-header-content">Add Category</p>
+                        <p class="text-header-content">Edit Category</p>
                         <div class="line"></div>
                     </div>
 
@@ -112,10 +46,12 @@
                                     </select>
                                 </div>
                             </div>
-                            <span style="float: right;"><button type="submit" class="btn btn-primary">
-                                            <span class="mdi mdi-content-save"></span>
-                                            <span>Save and Back List</span>
-                                        </button></span>
+                            <span style="float: right;">
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="mdi mdi-content-save"></span>
+                                    <span>Save and Back List</span>
+                                </button>
+                            </span>
                         </form>
                     </div>
 
