@@ -367,7 +367,7 @@ CREATE TABLE `user_roles` (
   KEY `role_id` (`role_id`),
   CONSTRAINT `user_roles_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `user_roles_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -376,7 +376,7 @@ CREATE TABLE `user_roles` (
 
 LOCK TABLES `user_roles` WRITE;
 /*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
-INSERT INTO `user_roles` VALUES (1,1,1),(2,2,1),(3,2,2);
+INSERT INTO `user_roles` VALUES (1,1,1),(2,2,1),(3,2,2),(4,13,1);
 /*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -397,8 +397,10 @@ CREATE TABLE `users` (
   `gender` int DEFAULT NULL,
   `connecter_id` int DEFAULT NULL,
   `status` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`,`phone`,`email`),
+  UNIQUE KEY `username_2` (`username`,`phone`,`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -407,7 +409,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'user1','User One','{bcrypt}$2a$12$19h6n4yeLXGWjGRurMismuDVUZuLLK8Hn/jKpo.9gM.zSGV.VrwoG','1234567890','user1@example.com',1,NULL,1),(2,'admin1','Admin One','{bcrypt}$2a$12$19h6n4yeLXGWjGRurMismuDVUZuLLK8Hn/jKpo.9gM.zSGV.VrwoG','0987654321','admin1@example.com',0,NULL,1);
+INSERT INTO `users` VALUES (1,'user1','User One','$2a$12$19h6n4yeLXGWjGRurMismuDVUZuLLK8Hn/jKpo.9gM.zSGV.VrwoG','1234567890','user1@example.com',1,NULL,1),(2,'admin1','Admin One','$2a$12$19h6n4yeLXGWjGRurMismuDVUZuLLK8Hn/jKpo.9gM.zSGV.VrwoG','0987654321','admin1@example.com',0,NULL,1),(10,'user','Ngo Khoi','$2a$10$k6VAyKqvR/fnFOdfdkWZDOnHaoWEny/4LsHKEUdATio8MXpKkhhp2','02312421','ngominhkhoi262003@gmail.com',0,NULL,1),(11,'user2','Ngo Khoi','$2a$10$jNIcjFJQUwoUn0XhlBPO2.d.uyHAeJGhHrho0B/y8KMTQOI2Fuhie','02312421','ngominhkhoi262003@gmail.com',0,NULL,1),(12,'user3','Ngo Khoi','$2a$10$natGkAPmGzced3XySnJcq.AnUy0fq1ksqguitdfNVEUQ5AfbpgTG6','02312421','ngominhkhoi262003@gmail.com',0,NULL,1),(13,'user5','Ngo Khoi','$2a$10$yUJLxadQ1EhxMVZl3BTL5ubWGOY5lY2Z.jMxr9MCRNHf2tekGz8QO','02312421','ngominhkhoi262003@gmail.com',0,NULL,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -420,4 +422,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-24 21:29:19
+-- Dump completed on 2024-03-25 20:10:52
