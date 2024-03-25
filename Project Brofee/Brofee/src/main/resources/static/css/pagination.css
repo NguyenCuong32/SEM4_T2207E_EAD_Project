@@ -1,0 +1,33 @@
+.pagination2 {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination2 span {
+    margin-right: 10px;
+}
+
+.pagination2 a {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    margin-right: 5px;
+    text-decoration: none;
+    color: #333;
+}
+
+.pagination2 a.active {
+    background-color: #333;
+    color: #fff;
+}
+
+.pagination2 a:hover {
+    background-color: #eee;
+}
+
+.pagination2 a.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}

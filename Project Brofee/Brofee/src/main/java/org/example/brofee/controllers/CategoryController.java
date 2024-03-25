@@ -26,7 +26,7 @@ public class CategoryController {
     private final ICategoryRepository categoryRepository;
 
     @GetMapping("/list")
-    public String listCategory(Model model){
+    public String listCategory(Model model,  @RequestParam("page") int page, @RequestParam("limit") int limit){
         List<Category> categories = categoryService.getAllCategories();
         String path = "src/main/resources/static/json/"; // Đường dẫn đến thư mục chứa file JSON
         File directory = new File(path);
@@ -40,7 +40,25 @@ public class CategoryController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+//        pagination
+
+        int totalItems = categories.size();
+        int totalPages = (int) Math.ceil((double) totalItems / limit);
+        if (page < 1) {
+            page = 1;
+        } else if (page > totalPages) {
+            page = totalPages;
+        }
+        // Tính toán chỉ số phần tử bắt đầu và kết thúc cho trang hiện tại
+        int startIndex = (page - 1) * limit;
+        int endIndex = Math.min(startIndex + limit, totalItems);
+        List<Category> paginatedList = categories.subList(startIndex, endIndex);
+
         model.addAttribute("categories",categories);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("getCategoryPage",paginatedList);
         return "html/category/Category";
     }
 
@@ -64,7 +82,7 @@ public class CategoryController {
             return "html/category/CreateCategory";
         } else {
             categoryService.saveCategory(category);
-            return "redirect:/category/list";
+            return "redirect:/category/list?page=1&limit=1";
         }
     }
 
@@ -97,7 +115,7 @@ public class CategoryController {
         }
 
         categoryService.updateCategory(id, category);
-        return "redirect:/category/list";
+        return "redirect:/category/list?page=1&limit=1";
     }
 
     @GetMapping("/remove")
@@ -109,7 +127,7 @@ public class CategoryController {
         }
         else{
             categoryService.deleteCategory(id);
-            return "redirect:/category/list";
+            return "redirect:/category/list?page=1&limit=1";
         }
     }
 }

@@ -35,6 +35,7 @@
                                     <th scope="col">Description</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Category</th>
+                                    <th scope="col">Feepercent</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Operation</th>
                                   </tr>
@@ -46,6 +47,13 @@
                                     <td th:text="${service.description}"></td>
                                     <td th:text="${service.price}"></td>
                                     <td th:text="${service.category.nameCategory}"></td>
+                                    <td>
+                                        <span th:text="'level 1: ' + ${service.level1} " class="text-danger"></span>
+                                        <span th:text="'level 2: ' + ${service.level2} " class="text-primary"></span>
+                                        <br>
+                                        <span th:text="'level 3: ' + ${service.level3} " class="text-success"></span>
+                                        <span th:text="'level 4: ' + ${service.level4} " class="text-info"></span>
+                                    </td>
                                     <td>
                                         <span th:if="${service.status == 1}">Display</span>
                                         <span th:if="${service.status == 0}">None</span>
