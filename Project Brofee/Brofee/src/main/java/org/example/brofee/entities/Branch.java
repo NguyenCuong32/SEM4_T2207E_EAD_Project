@@ -6,16 +6,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
-@Table(name = "services")
+@Table(name = "branch")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Service {
+public class Branch {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -24,17 +23,15 @@ public class Service {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "address")
+    private String address;
 
-    @Column(name = "price")
-    private BigDecimal price;
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "email")
+    private String email;
 
     @Column(name = "status")
     private int status;
-
-    @ManyToOne
-    @JoinColumn(name = "category")
-        private Category category;
-
 }
