@@ -6,16 +6,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "services")
+@Table(name = "events")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class Service {
+public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -27,29 +28,19 @@ public class Service {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "price")
-    private BigDecimal price;
+    @Column(name = "time_start")
+    private LocalDateTime timeStart;
 
-    @Column(name = "level1")
-    private float level1;
+    @Column(name = "time_end")
+    private LocalDateTime timeEnd;
 
-    @Column(name = "level2")
-    private float level2;
-
-    @Column(name = "level3")
-    private float level3;
-
-    @Column(name = "level4")
-    private float level4;
-
-    @Column(name = "level5")
-    private float level5;
+    @Column(name = "banner")
+    private String banner;
 
     @Column(name = "status")
     private int status;
 
-    @ManyToOne
-    @JoinColumn(name = "category")
-        private Category category;
+    @Column(name = "eventcode")
+    private String eventCode;
 
 }
