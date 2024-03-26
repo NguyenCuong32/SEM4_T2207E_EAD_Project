@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Size;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "category_id")
     private Integer id;
     @NotNull(message = "Category Name cannot be null")
     private String name;

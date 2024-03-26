@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+      data-sidebar-image="none" data-preloader="disable">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{assets/images/favicon.ico}" />
+
+    <!-- Layout config Js -->
+    <script src="/assets/js/layout.js"></script>
+    <!-- Bootstrap Css -->
+    <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link th:href="@{/assets/css/icons.min.css}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link th:href="@{/assets/css/app.min.css}" rel="stylesheet" type="text/css" />
+    <!-- custom Css-->
+    <link th:href="@{/assets/css/custom.min.css}" rel="stylesheet" type="text/css" />
+    <!-- Data Table-->
+    <link href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- start page title -->
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <a th:href="@{addForm}" class="btn btn-primary mb-2">Add</a>
+
+                        <table id="table1" class="table table-striped" style="width:100%">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th> NAME</th>
+                                <th>CATEGORY</th>
+                                <th>DESCRIPTION</th>
+                                <th>PRICE</th>
+                                <th>STATUS</th>
+                                <th>BUTTON</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="value: ${productList}">
+                                <td class="align-middle" th:text="${value.id}"></td>
+                                <td class="align-middle" th:text="${value.name}"></td>
+                                <td class="align-middle" th:if="${value.category != null}" th:text="${value.category.name}"></td>
+                                <td class="align-middle" th:text="${value.description}"></td>
+                                <td class="align-middle" th:text="${value.price}"></td>
+                                <td class="align-middle" th:text="${value.status == 0 ? 'LOCK' : 'OPEN'}"></td>
+                                <td>
+                                    <a th:href="@{editForm/{id}(id=${value.id})}" class="btn btn-primary">Edit</a>
+                                    <a th:href="@{delete/{id}(id=${value.id})}" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th> NAME</th>
+                                <th>CATEGORY</th>
+                                <th>DESCRIPTION</th>
+                                <th>PRICE</th>
+                                <th>STATUS</th>
+                                <th>BUTTON</th>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- end row -->
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+
+<!-- JAVASCRIPT -->
+<script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/libs/simplebar/simplebar.min.js"></script>
+<script src="/assets/libs/node-waves/waves.min.js"></script>
+<script src="/assets/libs/feather-icons/feather.min.js"></script>
+<script src="/assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
+<script src="/assets/js/plugins.js"></script>
+
+<!-- apexcharts -->
+<script src="/assets/libs/apexcharts/apexcharts.min.js"></script>
+
+<!-- Dashboard init -->
+<script src="/assets/js/pages/dashboard-crm.init.js"></script>
+
+<!-- App js -->
+<script src="/assets/js/app.js"></script>
+<!-- Data Table -->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+    new DataTable('#table1');
+</script>
+</body>
+
+</html>
