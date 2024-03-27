@@ -17,6 +17,9 @@
 		<!--end::Fonts-->
 		<!--begin::Page Vendor Stylesheets(used by this page)-->
 		<link th:href="@{/plugins/custom/datatables/datatables.bundle.css}" rel="stylesheet" type="text/css" />
+		<link th:href="@{/plugins/custom/treant-js/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet" />
+		<link th:href="@{/plugins/custom/treant-js/Treant.css}" rel="stylesheet" />
+		<link th:href="@{/plugins/custom/treant-js/custom-color-plus-scrollbar.css}" rel="stylesheet" />
 		<!--end::Page Vendor Stylesheets-->
 		<!--begin::Global Stylesheets Bundle(used by all pages)-->
 		<link th:href="@{/plugins/global/plugins.bundle.css}" rel="stylesheet" type="text/css" />
@@ -182,23 +185,23 @@
 									<!--begin::Content-->
 									<div class="flex-lg-row-fluid ms-lg-15">
 										<!--begin:::Tabs-->
-										<ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-bold mb-8">
-											<!--begin:::Tab item-->
-											<li class="nav-item">
-												<a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#kt_ecommerce_customer_overview">Overview</a>
-											</li>
-											<!--end:::Tab item-->
-											<!--begin:::Tab item-->
-											<li class="nav-item">
-												<a class="nav-link text-active-primary pb-4" data-bs-toggle="tab" href="#kt_ecommerce_customer_general">General Settings</a>
-											</li>
-											<!--end:::Tab item-->
-											<!--begin:::Tab item-->
-											<li class="nav-item">
-												<a class="nav-link text-active-primary pb-4" data-bs-toggle="tab" href="#kt_ecommerce_customer_advanced">Advanced Settings</a>
-											</li>
-											<!--end:::Tab item-->
-										</ul>
+<!--										<ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-bold mb-8">-->
+<!--											&lt;!&ndash;begin:::Tab item&ndash;&gt;-->
+<!--											<li class="nav-item">-->
+<!--												<a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#kt_ecommerce_customer_overview">Overview</a>-->
+<!--											</li>-->
+<!--											&lt;!&ndash;end:::Tab item&ndash;&gt;-->
+<!--											&lt;!&ndash;begin:::Tab item&ndash;&gt;-->
+<!--											<li class="nav-item">-->
+<!--												<a class="nav-link text-active-primary pb-4" data-bs-toggle="tab" href="#kt_ecommerce_customer_general">General Settings</a>-->
+<!--											</li>-->
+<!--											&lt;!&ndash;end:::Tab item&ndash;&gt;-->
+<!--											&lt;!&ndash;begin:::Tab item&ndash;&gt;-->
+<!--											<li class="nav-item">-->
+<!--												<a class="nav-link text-active-primary pb-4" data-bs-toggle="tab" href="#kt_ecommerce_customer_advanced">Advanced Settings</a>-->
+<!--											</li>-->
+<!--											&lt;!&ndash;end:::Tab item&ndash;&gt;-->
+<!--										</ul>-->
 										<!--end:::Tabs-->
 										<!--begin:::Tab content-->
 										<div class="tab-content" id="myTabContent">
@@ -221,15 +224,19 @@
 															<div class="card-body pt-0">
 																<div class="fw-bolder fs-2">
 																	<div class="d-flex">
-																		<!--begin::Svg Icon | path: icons/duotune/general/gen030.svg-->
-																		<span class="svg-icon svg-icon-info svg-icon-2x">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M18.3721 4.65439C17.6415 4.23815 16.8052 4 15.9142 4C14.3444 4 12.9339 4.73924 12.003 5.89633C11.0657 4.73913 9.66 4 8.08626 4C7.19611 4 6.35789 4.23746 5.62804 4.65439C4.06148 5.54462 3 7.26056 3 9.24232C3 9.81001 3.08941 10.3491 3.25153 10.8593C4.12155 14.9013 9.69287 20 12.0034 20C14.2502 20 19.875 14.9013 20.7488 10.8593C20.9109 10.3491 21 9.81001 21 9.24232C21.0007 7.26056 19.9383 5.54462 18.3721 4.65439Z" fill="currentColor" />
+																		<!--begin::Svg Icon | path: assets/media/icons/duotune/ecommerce/ecm001.svg-->
+																		<span class="svg-icon svg-icon-info svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+																			<path opacity="0.3" d="M18.041 22.041C18.5932 22.041 19.041 21.5932 19.041 21.041C19.041 20.4887 18.5932 20.041 18.041 20.041C17.4887 20.041 17.041 20.4887 17.041 21.041C17.041 21.5932 17.4887 22.041 18.041 22.041Z" fill="currentColor"/>
+																			<path opacity="0.3" d="M6.04095 22.041C6.59324 22.041 7.04095 21.5932 7.04095 21.041C7.04095 20.4887 6.59324 20.041 6.04095 20.041C5.48867 20.041 5.04095 20.4887 5.04095 21.041C5.04095 21.5932 5.48867 22.041 6.04095 22.041Z" fill="currentColor"/>
+																			<path opacity="0.3" d="M7.04095 16.041L19.1409 15.1409C19.7409 15.1409 20.141 14.7409 20.341 14.1409L21.7409 8.34094C21.9409 7.64094 21.4409 7.04095 20.7409 7.04095H5.44095L7.04095 16.041Z" fill="currentColor"/>
+																			<path d="M19.041 20.041H5.04096C4.74096 20.041 4.34095 19.841 4.14095 19.541C3.94095 19.241 3.94095 18.841 4.14095 18.541L6.04096 14.841L4.14095 4.64095L2.54096 3.84096C2.04096 3.64096 1.84095 3.04097 2.14095 2.54097C2.34095 2.04097 2.94096 1.84095 3.44096 2.14095L5.44096 3.14095C5.74096 3.24095 5.94096 3.54096 5.94096 3.84096L7.94096 14.841C7.94096 15.041 7.94095 15.241 7.84095 15.441L6.54096 18.041H19.041C19.641 18.041 20.041 18.441 20.041 19.041C20.041 19.641 19.641 20.041 19.041 20.041Z" fill="currentColor"/>
 																			</svg>
 																		</span>
 																		<!--end::Svg Icon-->
-																		<div class="ms-2">4,571
-																			<span class="text-muted fs-4 fw-bold">Spent</span></div>
+																		<div class="ms-2">
+																			4,571
+																			<span class="text-muted fs-4 fw-bold">Spent</span>
+																		</div>
 																	</div>
 																	<div class="fs-7 fw-normal text-muted">Earn reward points with every purchase.</div>
 																</div>
@@ -239,24 +246,39 @@
 														<!--end::Card-->
 													</div>
 													<div class="col">
-														<!--begin::Reward Tier-->
-														<a href="#" class="card bg-info hoverable h-md-100">
-															<!--begin::Body-->
-															<div class="card-body">
-																<!--begin::Svg Icon | path: icons/duotune/general/gen020.svg-->
-																<span class="svg-icon svg-icon-white svg-icon-3x ms-n1">
-																	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																		<path d="M14 18V16H10V18L9 20H15L14 18Z" fill="currentColor" />
-																		<path opacity="0.3" d="M20 4H17V3C17 2.4 16.6 2 16 2H8C7.4 2 7 2.4 7 3V4H4C3.4 4 3 4.4 3 5V9C3 11.2 4.8 13 7 13C8.2 14.2 8.8 14.8 10 16H14C15.2 14.8 15.8 14.2 17 13C19.2 13 21 11.2 21 9V5C21 4.4 20.6 4 20 4ZM5 9V6H7V11C5.9 11 5 10.1 5 9ZM19 9C19 10.1 18.1 11 17 11V6H19V9ZM17 21V22H7V21C7 20.4 7.4 20 8 20H16C16.6 20 17 20.4 17 21ZM10 9C9.4 9 9 8.6 9 8V5C9 4.4 9.4 4 10 4C10.6 4 11 4.4 11 5V8C11 8.6 10.6 9 10 9ZM10 13C9.4 13 9 12.6 9 12V11C9 10.4 9.4 10 10 10C10.6 10 11 10.4 11 11V12C11 12.6 10.6 13 10 13Z" fill="currentColor" />
-																	</svg>
-																</span>
-																<!--end::Svg Icon-->
-																<div class="text-white fw-bolder fs-2 mt-5">Premium Member</div>
-																<div class="fw-bold text-white">Tier Milestone Reached</div>
+														<!--begin::Card-->
+														<div class="card pt-4 h-md-100 mb-6 mb-md-0">
+															<!--begin::Card header-->
+															<div class="card-header border-0">
+																<!--begin::Card title-->
+																<div class="card-title">
+																	<h2 class="fw-bolder">Total Commission</h2>
+																</div>
+																<!--end::Card title-->
 															</div>
-															<!--end::Body-->
-														</a>
-														<!--end::Reward Tier-->
+															<!--end::Card header-->
+															<!--begin::Card body-->
+															<div class="card-body pt-0">
+																<div class="fw-bolder fs-2">
+																	<div class="d-flex">
+																		<!--begin::Svg Icon | path: assets/media/icons/duotune/ecommerce/ecm011.svg-->
+																		<span class="svg-icon svg-icon-danger svg-icon-2x"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+																			<path opacity="0.3" d="M21.6 11.2L19.3 8.89998V5.59993C19.3 4.99993 18.9 4.59993 18.3 4.59993H14.9L12.6 2.3C12.2 1.9 11.6 1.9 11.2 2.3L8.9 4.59993H5.6C5 4.59993 4.6 4.99993 4.6 5.59993V8.89998L2.3 11.2C1.9 11.6 1.9 12.1999 2.3 12.5999L4.6 14.9V18.2C4.6 18.8 5 19.2 5.6 19.2H8.9L11.2 21.5C11.6 21.9 12.2 21.9 12.6 21.5L14.9 19.2H18.2C18.8 19.2 19.2 18.8 19.2 18.2V14.9L21.5 12.5999C22 12.1999 22 11.6 21.6 11.2Z" fill="currentColor"/>
+																			<path d="M11.3 9.40002C11.3 10.2 11.1 10.9 10.7 11.3C10.3 11.7 9.8 11.9 9.2 11.9C8.8 11.9 8.40001 11.8 8.10001 11.6C7.80001 11.4 7.50001 11.2 7.40001 10.8C7.20001 10.4 7.10001 10 7.10001 9.40002C7.10001 8.80002 7.20001 8.4 7.30001 8C7.40001 7.6 7.7 7.29998 8 7.09998C8.3 6.89998 8.7 6.80005 9.2 6.80005C9.5 6.80005 9.80001 6.9 10.1 7C10.4 7.1 10.6 7.3 10.8 7.5C11 7.7 11.1 8.00005 11.2 8.30005C11.3 8.60005 11.3 9.00002 11.3 9.40002ZM10.1 9.40002C10.1 8.80002 10 8.39998 9.90001 8.09998C9.80001 7.79998 9.6 7.70007 9.2 7.70007C9 7.70007 8.8 7.80002 8.7 7.90002C8.6 8.00002 8.50001 8.2 8.40001 8.5C8.40001 8.7 8.30001 9.10002 8.30001 9.40002C8.30001 9.80002 8.30001 10.1 8.40001 10.4C8.40001 10.6 8.5 10.8 8.7 11C8.8 11.1 9 11.2001 9.2 11.2001C9.5 11.2001 9.70001 11.1 9.90001 10.8C10 10.4 10.1 10 10.1 9.40002ZM14.9 7.80005L9.40001 16.7001C9.30001 16.9001 9.10001 17.1 8.90001 17.1C8.80001 17.1 8.70001 17.1 8.60001 17C8.50001 16.9 8.40001 16.8001 8.40001 16.7001C8.40001 16.6001 8.4 16.5 8.5 16.4L14 7.5C14.1 7.3 14.2 7.19998 14.3 7.09998C14.4 6.99998 14.5 7 14.6 7C14.7 7 14.8 6.99998 14.9 7.09998C15 7.19998 15 7.30002 15 7.40002C15.2 7.30002 15.1 7.50005 14.9 7.80005ZM16.6 14.2001C16.6 15.0001 16.4 15.7 16 16.1C15.6 16.5 15.1 16.7001 14.5 16.7001C14.1 16.7001 13.7 16.6 13.4 16.4C13.1 16.2 12.8 16 12.7 15.6C12.5 15.2 12.4 14.8001 12.4 14.2001C12.4 13.3001 12.6 12.7 12.9 12.3C13.2 11.9 13.7 11.7001 14.5 11.7001C14.8 11.7001 15.1 11.8 15.4 11.9C15.7 12 15.9 12.2 16.1 12.4C16.3 12.6 16.4 12.9001 16.5 13.2001C16.6 13.4001 16.6 13.8001 16.6 14.2001ZM15.4 14.1C15.4 13.5 15.3 13.1 15.2 12.9C15.1 12.6 14.9 12.5 14.5 12.5C14.3 12.5 14.1 12.6001 14 12.7001C13.9 12.8001 13.8 13.0001 13.7 13.2001C13.6 13.4001 13.6 13.8 13.6 14.1C13.6 14.7 13.7 15.1 13.8 15.4C13.9 15.7 14.1 15.8 14.5 15.8C14.8 15.8 15 15.7 15.2 15.4C15.3 15.2 15.4 14.7 15.4 14.1Z" fill="currentColor"/>
+																			</svg>
+																		</span>
+																		<!--end::Svg Icon-->
+																		<div class="ms-2">
+																			4,571
+																			<span class="text-muted fs-4 fw-bold">Spent</span>
+																		</div>
+																	</div>
+																	<div class="fs-7 fw-normal text-muted">Earn reward points with every purchase.</div>
+																</div>
+															</div>
+															<!--end::Card body-->
+														</div>
+														<!--end::Card-->
 													</div>
 												</div>
 												<!--begin::Card-->
@@ -332,1134 +354,1406 @@
 													<!--end::Card body-->
 												</div>
 												<!--end::Card-->
-											</div>
-											<!--end:::Tab pane-->
-											<!--begin:::Tab pane-->
-											<div class="tab-pane fade" id="kt_ecommerce_customer_general" role="tabpanel">
+
+
 												<!--begin::Card-->
 												<div class="card pt-4 mb-6 mb-xl-9">
 													<!--begin::Card header-->
 													<div class="card-header border-0">
 														<!--begin::Card title-->
 														<div class="card-title">
-															<h2>Profile</h2>
+															<h2>Users Hierarchy</h2>
 														</div>
 														<!--end::Card title-->
 													</div>
 													<!--end::Card header-->
 													<!--begin::Card body-->
 													<div class="card-body pt-0 pb-5">
-														<!--begin::Form-->
-														<form class="form" action="#" id="kt_ecommerce_customer_profile">
-															<!--begin::Input group-->
-															<div class="mb-7">
-																<!--begin::Label-->
-																<label class="fs-6 fw-bold mb-2">
-																	<span>Update Avatar</span>
-																	<i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Allowed file types: png, jpg, jpeg."></i>
-																</label>
-																<!--end::Label-->
-																<!--begin::Image input wrapper-->
-																<div class="mt-1">
-																	<!--begin::Image input-->
-																	<div class="image-input image-input-outline" data-kt-image-input="true"  th:style="'background-image: url(\'' + @{/media/svg/avatars/blank.svg} + '\')'">
-																		<!--begin::Preview existing avatar-->
-																		<div class="image-input-wrapper w-125px h-125px" th:style="'background-image: url(\'' + @{/media/avatars/300-1.jpg} + '\')'"></div>
-																		<!--end::Preview existing avatar-->
-																		<!--begin::Edit-->
-																		<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
-																			<i class="bi bi-pencil-fill fs-7"></i>
-																			<!--begin::Inputs-->
-																			<input type="file" name="avatar" accept=".png, .jpg, .jpeg" />
-																			<input type="hidden" name="avatar_remove" />
-																			<!--end::Inputs-->
-																		</label>
-																		<!--end::Edit-->
-																		<!--begin::Cancel-->
-																		<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
-																			<i class="bi bi-x fs-2"></i>
-																		</span>
-																		<!--end::Cancel-->
-																		<!--begin::Remove-->
-																		<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
-																			<i class="bi bi-x fs-2"></i>
-																		</span>
-																		<!--end::Remove-->
-																	</div>
-																	<!--end::Image input-->
-																</div>
-																<!--end::Image input wrapper-->
-															</div>
-															<!--end::Input group-->
-															<!--begin::Input group-->
-															<div class="fv-row mb-7">
-																<!--begin::Label-->
-																<label class="fs-6 fw-bold mb-2 required">Name</label>
-																<!--end::Label-->
-																<!--begin::Input-->
-																<input type="text" class="form-control form-control-solid" placeholder="" name="name" value="Max Smith" />
-																<!--end::Input-->
-															</div>
-															<!--end::Input group-->
-															<!--begin::Row-->
-															<div class="row row-cols-1 row-cols-md-2">
-																<!--begin::Col-->
-																<div class="col">
-																	<!--begin::Input group-->
-																	<div class="fv-row mb-7">
-																		<!--begin::Label-->
-																		<label class="fs-6 fw-bold mb-2">
-																			<span class="required">General Email</span>
-																			<i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Email address must be active"></i>
-																		</label>
-																		<!--end::Label-->
-																		<!--begin::Input-->
-																		<input type="email" class="form-control form-control-solid" placeholder="" name="gen_email" value="max@kt.com" />
-																		<!--end::Input-->
-																	</div>
-																	<!--end::Input group-->
-																</div>
-																<!--end::Col-->
-																<!--begin::Col-->
-																<div class="col">
-																	<!--begin::Input group-->
-																	<div class="fv-row mb-7">
-																		<!--begin::Label-->
-																		<label class="fs-6 fw-bold mb-2">
-																			<span>Billing Email</span>
-																			<i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Email address must be active"></i>
-																		</label>
-																		<!--end::Label-->
-																		<!--begin::Input-->
-																		<input type="email" class="form-control form-control-solid" placeholder="" name="bill_email" value="info@keenthemes.com" />
-																		<!--end::Input-->
-																	</div>
-																	<!--end::Input group-->
-																</div>
-																<!--end::Col-->
-															</div>
-															<!--end::Row-->
-															<div class="d-flex justify-content-end">
-																<!--begin::Button-->
-																<button type="submit" id="kt_ecommerce_customer_profile_submit" class="btn btn-light-primary">
-																	<span class="indicator-label">Save</span>
-																	<span class="indicator-progress">Please wait...
-																	<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-																</button>
-																<!--end::Button-->
-															</div>
-														</form>
-														<!--end::Form-->
+														<div class="chart" id="custom-colored"> --@-- </div>
 													</div>
 													<!--end::Card body-->
 												</div>
 												<!--end::Card-->
+
 												<!--begin::Card-->
 												<div class="card pt-4 mb-6 mb-xl-9">
 													<!--begin::Card header-->
 													<div class="card-header border-0">
 														<!--begin::Card title-->
 														<div class="card-title">
-															<h2>Address Book</h2>
+															<h2>Current Period Commission</h2>
 														</div>
 														<!--end::Card title-->
-														<!--begin::Card toolbar-->
 														<div class="card-toolbar">
-															<a href="#" class="btn btn-sm btn-flex btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_address">
-																<!--begin::Svg Icon | path: icons/duotune/general/gen035.svg-->
-																<span class="svg-icon svg-icon-3">
-																<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																	<rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor" />
-																	<rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="currentColor" />
-																	<rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="currentColor" />
-																</svg>
-															</span>
-																<!--end::Svg Icon-->Add new address</a>
+															<a class="btn btn-sm btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_confirm">
+																<!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+																<span class="svg-icon svg-icon-2">
+																	<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+																		<rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor"></rect>
+																		<rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="currentColor"></rect>
+																	</svg>
+																</span>
+																<!--end::Svg Icon-->Create Payment</a>
 														</div>
-														<!--end::Card toolbar-->
+														<div class="modal fade" tabindex="-1" id="kt_modal_confirm">
+															<div class="modal-dialog">
+																<div class="modal-content">
+																	<form th:action="@{/customer/create-commission-payment}" method="post">
+																		<div class="modal-header">
+																			<h5 class="modal-title">Confirmation</h5>
+
+																			<!--begin::Close-->
+																			<div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+																				<span class="svg-icon svg-icon-2x"></span>
+																			</div>
+																			<!--end::Close-->
+																		</div>
+
+																		<div class="modal-body">
+																			<p>Are you sure you want to create commisson payment for this user</p>
+																			<input type="hidden" name="userCode" th:value="${customer.code}">
+																		</div>
+
+																		<div class="modal-footer">
+																			<button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+																			<button type="submit" class="btn btn-primary">Save changes</button>
+																		</div>
+																	</form>
+																</div>
+															</div>
+														</div>
 													</div>
 													<!--end::Card header-->
 													<!--begin::Card body-->
-													<div id="kt_ecommerce_customer_addresses" class="card-body pt-0 pb-5">
-														<!--begin::Addresses-->
-														<!--begin::Address-->
-														<div class="py-0">
-															<!--begin::Header-->
-															<div class="py-3 d-flex flex-stack flex-wrap">
-																<!--begin::Toggle-->
-																<div class="d-flex align-items-center collapsible collapsed rotate" data-bs-toggle="collapse" href="#kt_ecommerce_customer_addresses_1" role="button" aria-expanded="false" aria-controls="kt_customer_view_payment_method_1">
-																	<!--begin::Arrow-->
-																	<div class="me-3 rotate-90">
-																		<!--begin::Svg Icon | path: icons/duotune/arrows/arr071.svg-->
-																		<span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="currentColor" />
-																			</svg>
-																		</span>
-																		<!--end::Svg Icon-->
-																	</div>
-																	<!--end::Arrow-->
-																	<!--begin::Summary-->
-																	<div class="me-3">
-																		<div class="d-flex align-items-center">
-																			<div class="fs-4 fw-bolder">Home</div>
-																			<div class="badge badge-light-primary ms-5">Default Address</div>
-																		</div>
-																		<div class="text-muted">101 Collin Street</div>
-																	</div>
-																	<!--end::Summary-->
-																</div>
-																<!--end::Toggle-->
-																<!--begin::Toolbar-->
-																<div class="d-flex my-3 ms-9">
-																	<!--begin::Edit-->
-																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_address">
-																		<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit">
-																			<!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
-																			<span class="svg-icon svg-icon-3">
-																				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																					<path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />
-																					<path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />
-																				</svg>
-																			</span>
-																			<!--end::Svg Icon-->
-																		</span>
-																	</a>
-																	<!--end::Edit-->
-																	<!--begin::Delete-->
-																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="tooltip" title="Delete" data-kt-customer-payment-method="delete">
-																		<!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
-																		<span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />
-																				<path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />
-																				<path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />
-																			</svg>
-																		</span>
-																		<!--end::Svg Icon-->
-																	</a>
-																	<!--end::Delete-->
-																	<!--begin::More-->
-																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-bs-toggle="tooltip" title="More Options" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-																		<!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
-																		<span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z" fill="currentColor" />
-																				<path opacity="0.3" d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z" fill="currentColor" />
-																			</svg>
-																		</span>
-																		<!--end::Svg Icon-->
-																	</a>
-																	<!--begin::Menu-->
-																	<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">
-																		<!--begin::Menu item-->
-																		<div class="menu-item px-3">
-																			<a href="#" class="menu-link px-3" data-kt-payment-mehtod-action="set_as_default">Set as default address</a>
-																		</div>
-																		<!--end::Menu item-->
-																	</div>
-																	<!--end::Menu-->
-																	<!--end::More-->
-																</div>
-																<!--end::Toolbar-->
-															</div>
-															<!--end::Header-->
-															<!--begin::Body-->
-															<div id="kt_ecommerce_customer_addresses_1" class="collapse fs-6 ps-9" data-bs-parent="#kt_ecommerce_customer_addresses">
-																<!--begin::Details-->
-																<div class="d-flex flex-column pb-5">
-																	<div class="fw-bolder text-gray-600">Max Smith</div>
-																	<div class="text-muted">101 Collin Street,
-																		<br />Melbourne, VIC 3000,
-																		<br />Australia</div>
-																</div>
-																<!--end::Details-->
-															</div>
-															<!--end::Body-->
-														</div>
-														<!--end::Address-->
-														<!--begin::Address-->
-														<div class="py-0">
-															<!--begin::Header-->
-															<div class="py-3 d-flex flex-stack flex-wrap">
-																<!--begin::Toggle-->
-																<div class="d-flex align-items-center collapsible collapsed rotate" data-bs-toggle="collapse" href="#kt_ecommerce_customer_addresses_2" role="button" aria-expanded="false" aria-controls="kt_customer_view_payment_method_2">
-																	<!--begin::Arrow-->
-																	<div class="me-3 rotate-90">
-																		<!--begin::Svg Icon | path: icons/duotune/arrows/arr071.svg-->
-																		<span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="currentColor" />
-																			</svg>
-																		</span>
-																		<!--end::Svg Icon-->
-																	</div>
-																	<!--end::Arrow-->
-																	<!--begin::Summary-->
-																	<div class="me-3">
-																		<div class="d-flex align-items-center">
-																			<div class="fs-4 fw-bolder">Work</div>
-																		</div>
-																		<div class="text-muted">54 Spring Street</div>
-																	</div>
-																	<!--end::Summary-->
-																</div>
-																<!--end::Toggle-->
-																<!--begin::Toolbar-->
-																<div class="d-flex my-3 ms-9">
-																	<!--begin::Edit-->
-																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_address">
-																		<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit">
-																			<!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
-																			<span class="svg-icon svg-icon-3">
-																				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																					<path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />
-																					<path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />
-																				</svg>
-																			</span>
-																			<!--end::Svg Icon-->
-																		</span>
-																	</a>
-																	<!--end::Edit-->
-																	<!--begin::Delete-->
-																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="tooltip" title="Delete" data-kt-customer-payment-method="delete">
-																		<!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
-																		<span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />
-																				<path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />
-																				<path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />
-																			</svg>
-																		</span>
-																		<!--end::Svg Icon-->
-																	</a>
-																	<!--end::Delete-->
-																	<!--begin::More-->
-																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-bs-toggle="tooltip" title="More Options" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-																		<!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
-																		<span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z" fill="currentColor" />
-																				<path opacity="0.3" d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z" fill="currentColor" />
-																			</svg>
-																		</span>
-																		<!--end::Svg Icon-->
-																	</a>
-																	<!--begin::Menu-->
-																	<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">
-																		<!--begin::Menu item-->
-																		<div class="menu-item px-3">
-																			<a href="#" class="menu-link px-3" data-kt-payment-mehtod-action="set_as_default">Set as default address</a>
-																		</div>
-																		<!--end::Menu item-->
-																	</div>
-																	<!--end::Menu-->
-																	<!--end::More-->
-																</div>
-																<!--end::Toolbar-->
-															</div>
-															<!--end::Header-->
-															<!--begin::Body-->
-															<div id="kt_ecommerce_customer_addresses_2" class="collapse fs-6 ps-9" data-bs-parent="#kt_ecommerce_customer_addresses">
-																<!--begin::Details-->
-																<div class="d-flex flex-column pb-5">
-																	<div class="fw-bolder text-gray-600">Max Smith</div>
-																	<div class="text-muted">54 Spring Street,
-																		<br />Melbourne, VIC 3000,
-																		<br />Australia</div>
-																</div>
-																<!--end::Details-->
-															</div>
-															<!--end::Body-->
-														</div>
-														<!--end::Address-->
-														<!--begin::Address-->
-														<div class="py-0">
-															<!--begin::Header-->
-															<div class="py-3 d-flex flex-stack flex-wrap">
-																<!--begin::Toggle-->
-																<div class="d-flex align-items-center collapsible collapsed rotate" data-bs-toggle="collapse" href="#kt_ecommerce_customer_addresses_3" role="button" aria-expanded="false" aria-controls="kt_customer_view_payment_method_3">
-																	<!--begin::Arrow-->
-																	<div class="me-3 rotate-90">
-																		<!--begin::Svg Icon | path: icons/duotune/arrows/arr071.svg-->
-																		<span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="currentColor" />
-																			</svg>
-																		</span>
-																		<!--end::Svg Icon-->
-																	</div>
-																	<!--end::Arrow-->
-																	<!--begin::Summary-->
-																	<div class="me-3">
-																		<div class="d-flex align-items-center">
-																			<div class="fs-4 fw-bolder">Family</div>
-																		</div>
-																		<div class="text-muted">1521 Broadway</div>
-																	</div>
-																	<!--end::Summary-->
-																</div>
-																<!--end::Toggle-->
-																<!--begin::Toolbar-->
-																<div class="d-flex my-3 ms-9">
-																	<!--begin::Edit-->
-																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_address">
-																		<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit">
-																			<!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
-																			<span class="svg-icon svg-icon-3">
-																				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																					<path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />
-																					<path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />
-																				</svg>
-																			</span>
-																			<!--end::Svg Icon-->
-																		</span>
-																	</a>
-																	<!--end::Edit-->
-																	<!--begin::Delete-->
-																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="tooltip" title="Delete" data-kt-customer-payment-method="delete">
-																		<!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
-																		<span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />
-																				<path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />
-																				<path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />
-																			</svg>
-																		</span>
-																		<!--end::Svg Icon-->
-																	</a>
-																	<!--end::Delete-->
-																	<!--begin::More-->
-																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-bs-toggle="tooltip" title="More Options" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-																		<!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
-																		<span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z" fill="currentColor" />
-																				<path opacity="0.3" d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z" fill="currentColor" />
-																			</svg>
-																		</span>
-																		<!--end::Svg Icon-->
-																	</a>
-																	<!--begin::Menu-->
-																	<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">
-																		<!--begin::Menu item-->
-																		<div class="menu-item px-3">
-																			<a href="#" class="menu-link px-3" data-kt-payment-mehtod-action="set_as_default">Set as default address</a>
-																		</div>
-																		<!--end::Menu item-->
-																	</div>
-																	<!--end::Menu-->
-																	<!--end::More-->
-																</div>
-																<!--end::Toolbar-->
-															</div>
-															<!--end::Header-->
-															<!--begin::Body-->
-															<div id="kt_ecommerce_customer_addresses_3" class="collapse fs-6 ps-9" data-bs-parent="#kt_ecommerce_customer_addresses">
-																<!--begin::Details-->
-																<div class="d-flex flex-column pb-5">
-																	<div class="fw-bolder text-gray-600">Francis Mitcham</div>
-																	<div class="text-muted">1521 Broadway,
-																		<br />New York,
-																		<br />Melbourne, NY 10036,
-																		<br />United States</div>
-																</div>
-																<!--end::Details-->
-															</div>
-															<!--end::Body-->
-														</div>
-														<!--end::Address-->
-														<!--end::Addresses-->
+													<div class="card-body pt-0 pb-5">
+														<!--begin::Table-->
+														<table class="table align-middle table-row-dashed gy-5" >
+															<!--begin::Table head-->
+															<thead class="border-bottom border-gray-200 fs-7 fw-bolder">
+															<!--begin::Table row-->
+															<tr class="text-start text-muted text-uppercase gs-0">
+																<th class="">No.</th>
+																<th>Amount</th>
+																<th >From User</th>
+																<th >Service Used</th>
+																<th >Policy Applied</th>
+															</tr>
+															<!--end::Table row-->
+															</thead>
+															<!--end::Table head-->
+															<!--begin::Table body-->
+															<tbody class="fs-6 fw-bold text-gray-600">
+															<!--begin::Table row-->
+															<tr th:each="unpaidCommission : ${unpaidCommissions}">
+																<!--begin::order=-->
+																<td>
+																	<a href="../../demo1/dist/apps/ecommerce/sales/details.html" class="text-gray-600 text-hover-primary mb-1" th:text="${unpaidCommission.id}"></a>
+																</td>
+																<!--end::order=-->
+																<!--begin::Amount=-->
+																<td class="text-danger fw-bolder" th:text="${#numbers.formatCurrency(unpaidCommission.amount)}"></td>
+																<!--end::Amount=-->
+																<td>
+																	<a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6" th:text="${unpaidCommission.customerName}"></a>
+																	<span class="text-muted fw-bold text-muted d-block fs-7" th:text="${unpaidCommission.customerPhone}"></span>
+																</td>
+																<!--begin::Date=-->
+																<td>
+																	<a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6" th:text="${unpaidCommission.name}"></a>
+																	<span class="text-muted fw-bold text-muted d-block fs-7" >
+																		<span class="text-primary" th:text="${#numbers.formatCurrency(unpaidCommission.price)}"></span>
+																		<span th:text="${' at ' + #temporals.format(unpaidCommission.transactionDate, 'DD MMM, YYYY')}"></span>
+																	</span>
+																</td>
+																<!--end::Date=-->
+																<td>
+																	<a href="#" class="text-dark fw-bolder text-hover-primary d-block mb-1 fs-6" th:text="${unpaidCommission.policyCode}"></a>
+																	<span class="text-muted fw-bold text-muted d-block fs-7" >
+																		<span class="text-info" th:text="${unpaidCommission.commissionRate + '%'}"></span>
+																		<span th:text="${' (for level ' + unpaidCommission.commissionLevel} + ')'"></span>
+																	</span>
+																</td>
+															</tr>
+															<!--end::Table row-->
+															</tbody>
+															<!--end::Table body-->
+														</table>
+														<!--end::Table-->
 													</div>
 													<!--end::Card body-->
 												</div>
 												<!--end::Card-->
-											</div>
-											<!--end:::Tab pane-->
-											<!--begin:::Tab pane-->
-											<div class="tab-pane fade" id="kt_ecommerce_customer_advanced" role="tabpanel">
+
 												<!--begin::Card-->
 												<div class="card pt-4 mb-6 mb-xl-9">
 													<!--begin::Card header-->
 													<div class="card-header border-0">
 														<!--begin::Card title-->
 														<div class="card-title">
-															<h2>Security Details</h2>
+															<h2>Commission History</h2>
 														</div>
 														<!--end::Card title-->
 													</div>
 													<!--end::Card header-->
 													<!--begin::Card body-->
 													<div class="card-body pt-0 pb-5">
-														<!--begin::Table wrapper-->
-														<div class="table-responsive">
-															<!--begin::Table-->
-															<table class="table align-middle table-row-dashed gy-5" id="kt_table_users_login_session">
-																<!--begin::Table body-->
-																<tbody class="fs-6 fw-bold text-gray-600">
-																<tr>
-																	<td>Phone</td>
-																	<td>+6141 234 567</td>
-																	<td class="text-end">
-																		<button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_update_phone">
-																			<!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
-																			<span class="svg-icon svg-icon-3">
-																					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																						<path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />
-																						<path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />
-																					</svg>
-																				</span>
-																			<!--end::Svg Icon-->
-																		</button>
-																	</td>
-																</tr>
-																<tr>
-																	<td>Password</td>
-																	<td>******</td>
-																	<td class="text-end">
-																		<button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_update_password">
-																			<!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
-																			<span class="svg-icon svg-icon-3">
-																					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																						<path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />
-																						<path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />
-																					</svg>
-																				</span>
-																			<!--end::Svg Icon-->
-																		</button>
-																	</td>
-																</tr>
-																</tbody>
-																<!--end::Table body-->
-															</table>
-															<!--end::Table-->
-														</div>
-														<!--end::Table wrapper-->
-													</div>
-													<!--end::Card body-->
-												</div>
-												<!--end::Card-->
-												<!--begin::Card-->
-												<div class="card pt-4 mb-6 mb-xl-9">
-													<!--begin::Card header-->
-													<div class="card-header border-0">
-														<!--begin::Card title-->
-														<div class="card-title flex-column">
-															<h2 class="mb-1">Two Step Authentication</h2>
-															<div class="fs-6 fw-bold text-muted">Keep your account extra secure with a second authentication step.</div>
-														</div>
-														<!--end::Card title-->
-														<!--begin::Card toolbar-->
-														<div class="card-toolbar">
-															<!--begin::Add-->
-															<button type="button" class="btn btn-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-																<!--begin::Svg Icon | path: icons/duotune/technology/teh004.svg-->
-																<span class="svg-icon svg-icon-3">
-																<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																	<path opacity="0.3" d="M21 10.7192H3C2.4 10.7192 2 11.1192 2 11.7192C2 12.3192 2.4 12.7192 3 12.7192H6V14.7192C6 18.0192 8.7 20.7192 12 20.7192C15.3 20.7192 18 18.0192 18 14.7192V12.7192H21C21.6 12.7192 22 12.3192 22 11.7192C22 11.1192 21.6 10.7192 21 10.7192Z" fill="currentColor" />
-																	<path d="M11.6 21.9192C11.4 21.9192 11.2 21.8192 11 21.7192C10.6 21.4192 10.5 20.7191 10.8 20.3191C11.7 19.1191 12.3 17.8191 12.7 16.3191C12.8 15.8191 13.4 15.4192 13.9 15.6192C14.4 15.7192 14.8 16.3191 14.6 16.8191C14.2 18.5191 13.4 20.1192 12.4 21.5192C12.2 21.7192 11.9 21.9192 11.6 21.9192ZM8.7 19.7192C10.2 18.1192 11 15.9192 11 13.7192V8.71917C11 8.11917 11.4 7.71917 12 7.71917C12.6 7.71917 13 8.11917 13 8.71917V13.0192C13 13.6192 13.4 14.0192 14 14.0192C14.6 14.0192 15 13.6192 15 13.0192V8.71917C15 7.01917 13.7 5.71917 12 5.71917C10.3 5.71917 9 7.01917 9 8.71917V13.7192C9 15.4192 8.4 17.1191 7.2 18.3191C6.8 18.7191 6.9 19.3192 7.3 19.7192C7.5 19.9192 7.7 20.0192 8 20.0192C8.3 20.0192 8.5 19.9192 8.7 19.7192ZM6 16.7192C6.5 16.7192 7 16.2192 7 15.7192V8.71917C7 8.11917 7.1 7.51918 7.3 6.91918C7.5 6.41918 7.2 5.8192 6.7 5.6192C6.2 5.4192 5.59999 5.71917 5.39999 6.21917C5.09999 7.01917 5 7.81917 5 8.71917V15.7192V15.8191C5 16.3191 5.5 16.7192 6 16.7192ZM9 4.71917C9.5 4.31917 10.1 4.11918 10.7 3.91918C11.2 3.81918 11.5 3.21917 11.4 2.71917C11.3 2.21917 10.7 1.91916 10.2 2.01916C9.4 2.21916 8.59999 2.6192 7.89999 3.1192C7.49999 3.4192 7.4 4.11916 7.7 4.51916C7.9 4.81916 8.2 4.91918 8.5 4.91918C8.6 4.91918 8.8 4.81917 9 4.71917ZM18.2 18.9192C18.7 17.2192 19 15.5192 19 13.7192V8.71917C19 5.71917 17.1 3.1192 14.3 2.1192C13.8 1.9192 13.2 2.21917 13 2.71917C12.8 3.21917 13.1 3.81916 13.6 4.01916C15.6 4.71916 17 6.61917 17 8.71917V13.7192C17 15.3192 16.8 16.8191 16.3 18.3191C16.1 18.8191 16.4 19.4192 16.9 19.6192C17 19.6192 17.1 19.6192 17.2 19.6192C17.7 19.6192 18 19.3192 18.2 18.9192Z" fill="currentColor" />
-																</svg>
-															</span>
-																<!--end::Svg Icon-->Add Authentication Step</button>
-															<!--begin::Menu-->
-															<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-6 w-200px py-4" data-kt-menu="true">
-																<!--begin::Menu item-->
-																<div class="menu-item px-3">
-																	<a href="#" class="menu-link px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_add_auth_app">Use authenticator app</a>
-																</div>
-																<!--end::Menu item-->
-																<!--begin::Menu item-->
-																<div class="menu-item px-3">
-																	<a href="#" class="menu-link px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_add_one_time_password">Enable one-time password</a>
-																</div>
-																<!--end::Menu item-->
-															</div>
-															<!--end::Menu-->
-															<!--end::Add-->
-														</div>
-														<!--end::Card toolbar-->
-													</div>
-													<!--end::Card header-->
-													<!--begin::Card body-->
-													<div class="card-body pb-5">
-														<!--begin::Item-->
-														<div class="d-flex flex-stack">
-															<!--begin::Content-->
-															<div class="d-flex flex-column">
-																<span>SMS</span>
-																<span class="text-muted fs-6">+6141 234 567</span>
-															</div>
-															<!--end::Content-->
-															<!--begin::Action-->
-															<div class="d-flex justify-content-end align-items-center">
-																<!--begin::Button-->
-																<button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto me-5" data-bs-toggle="modal" data-bs-target="#kt_modal_add_one_time_password">
-																	<!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
-																	<span class="svg-icon svg-icon-3">
-																		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																			<path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />
-																			<path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />
-																		</svg>
-																	</span>
-																	<!--end::Svg Icon-->
-																</button>
-																<!--end::Button-->
-																<!--begin::Button-->
-																<button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto" id="kt_users_delete_two_step">
-																	<!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
-																	<span class="svg-icon svg-icon-3">
-																		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																			<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />
-																			<path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />
-																			<path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />
-																		</svg>
-																	</span>
-																	<!--end::Svg Icon-->
-																</button>
-																<!--end::Button-->
-															</div>
-															<!--end::Action-->
-														</div>
-														<!--end::Item-->
-														<!--begin:Separator-->
-														<div class="separator separator-dashed my-5"></div>
-														<!--end:Separator-->
-														<!--begin::Disclaimer-->
-														<div class="text-gray-600">If you lose your mobile device or security key, you can
-															<a href='#' class="me-1">generate a backup code</a>to sign in to your account.</div>
-														<!--end::Disclaimer-->
-													</div>
-													<!--end::Card body-->
-												</div>
-												<!--end::Card-->
-												<!--begin::Card-->
-												<div class="card pt-4 mb-6 mb-xl-9">
-													<!--begin::Card header-->
-													<div class="card-header border-0">
-														<!--begin::Card title-->
-														<div class="card-title">
-															<h2 class="fw-bolder mb-0">Payment Methods</h2>
-														</div>
-														<!--end::Card title-->
-														<!--begin::Card toolbar-->
-														<div class="card-toolbar">
-															<a href="#" class="btn btn-sm btn-flex btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_new_card">
-																<!--begin::Svg Icon | path: icons/duotune/general/gen035.svg-->
-																<span class="svg-icon svg-icon-3">
-																<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																	<rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor" />
-																	<rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="currentColor" />
-																	<rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="currentColor" />
-																</svg>
-															</span>
-																<!--end::Svg Icon-->Add new method</a>
-														</div>
-														<!--end::Card toolbar-->
-													</div>
-													<!--end::Card header-->
-													<!--begin::Card body-->
-													<div id="kt_customer_view_payment_method" class="card-body pt-0">
-														<!--begin::Option-->
-														<div class="py-0" data-kt-customer-payment-method="row">
-															<!--begin::Header-->
-															<div class="py-3 d-flex flex-stack flex-wrap">
-																<!--begin::Toggle-->
-																<div class="d-flex align-items-center collapsible rotate" data-bs-toggle="collapse" href="#kt_customer_view_payment_method_1" role="button" aria-expanded="false" aria-controls="kt_customer_view_payment_method_1">
-																	<!--begin::Arrow-->
-																	<div class="me-3 rotate-90">
-																		<!--begin::Svg Icon | path: icons/duotune/arrows/arr071.svg-->
-																		<span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="currentColor" />
+														<!--begin::Table-->
+														<table class="table align-middle table-row-dashed gy-5" >
+															<!--begin::Table head-->
+															<thead class="border-bottom border-gray-200 fs-7 fw-bolder">
+															<!--begin::Table row-->
+															<tr class="text-start text-muted text-uppercase gs-0">
+																<th class="">No.</th>
+																<th>Status</th>
+																<th>Amount</th>
+																<th class="min-w-100px">Include</th>
+																<th class="min-w-100px">Date</th>
+																<th class="text-end">Detail</th>
+															</tr>
+															<!--end::Table row-->
+															</thead>
+															<!--end::Table head-->
+															<!--begin::Table body-->
+															<tbody class="fs-6 fw-bold text-gray-600">
+															<!--begin::Table row-->
+															<tr th:each="commission : ${commissions}">
+																<!--begin::order=-->
+																<td>
+																	<a href="../../demo1/dist/apps/ecommerce/sales/details.html" class="text-gray-600 text-hover-primary mb-1" th:text="${commission.id}"></a>
+																</td>
+																<!--end::order=-->
+																<!--begin::Status=-->
+																<td>
+																	<span class="badge badge-light-success">Successful</span>
+																</td>
+																<!--end::Status=-->
+																<!--begin::Amount=-->
+																<td th:text="${#numbers.formatCurrency(commission.total)}"></td>
+																<!--end::Amount=-->
+																<!--begin::Amount=-->
+																<td th:text="${commission.commissionServices.size() + ' small commission(s)'}"></td>
+																<!--end::Amount=-->
+																<!--begin::Date=-->
+																<td th:text="${#temporals.format(commission.createdAt, 'DD MMM, YYYY')}"></td>
+																<!--end::Date=-->
+																<td class="text-end">
+																	<button type="button" class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px" data-kt-table-widget-4="expand_row" th:attr="data-bs-toggle='modal',data-bs-target=${'#kt_modal_' + commission.id}">
+																		<!--begin::Svg Icon | path: assets/media/icons/duotune/general/gen021.svg-->
+																		<span class="svg-icon svg-icon-3 m-0 toggle-off"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+																			<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
+																			<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
 																			</svg>
 																		</span>
 																		<!--end::Svg Icon-->
-																	</div>
-																	<!--end::Arrow-->
-																	<!--begin::Logo-->
-																	<img th:src="@{/media/svg/card-logos/mastercard.svg}" class="w-40px me-3" alt="" />
-																	<!--end::Logo-->
-																	<!--begin::Summary-->
-																	<div class="me-3">
-																		<div class="d-flex align-items-center">
-																			<div class="text-gray-800 fw-bolder">Mastercard</div>
-																			<div class="badge badge-light-primary ms-5">Primary</div>
+																	</button>
+																</td>
+																<div class="modal fade" tabindex="-1" th:id="${'kt_modal_' + commission.id}">
+																	<div class="modal-dialog modal-dialog-centered mw-750px">
+																		<div class="modal-content">
+																			<div class="modal-header">
+																				<h5 class="modal-title">Commission #<span th:text="${commission.id}"></span> detail</h5>
+
+																				<!--begin::Close-->
+																				<div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+																					<span class="svg-icon svg-icon-2x">
+																						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+																							<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+																							<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+																						</svg>
+																					</span>
+																				</div>
+																				<!--end::Close-->
+																			</div>
+
+																			<div class="modal-body">
+																				<div class="timeline-label">
+																					<!--begin::Item-->
+																					<div class="timeline-item" th:each="commissionService : ${commission.commissionServices}">
+																						<!--begin::Label-->
+																						<div class="timeline-label fw-bolder text-gray-800 fs-6" th:text="${#temporals.format(commissionService.createdAt, 'dd/MM')}"></div>
+																						<!--end::Label-->
+																						<!--begin::Badge-->
+																						<div class="timeline-badge" th:switch="${commissionService.id % 10}">
+																							<i th:case="0" class="fa fa-genderless text-warning fs-1"></i>
+																							<i th:case="1" class="fa fa-genderless text-success fs-1"></i>
+																							<i th:case="2" class="fa fa-genderless text-danger fs-1"></i>
+																							<i th:case="3" class="fa fa-genderless text-primary fs-1"></i>
+																							<i th:case="4" class="fa fa-genderless text-info fs-1"></i>
+																							<i th:case="5" class="fa fa-genderless text-warning fs-1"></i>
+																							<i th:case="6" class="fa fa-genderless text-success fs-1"></i>
+																							<i th:case="7" class="fa fa-genderless text-danger fs-1"></i>
+																							<i th:case="8" class="fa fa-genderless text-primary fs-1"></i>
+																							<i th:case="9" class="fa fa-genderless text-info fs-1"></i>
+																						</div>
+																						<!--end::Badge-->
+																						<!--begin::Text-->
+																						<div class="fw-mormal timeline-content text-muted ps-3">
+																							User
+																							<span class="fw-bolder text-gray-800" th:text="${commissionService.customerName + ' (' + commissionService.customerPhone + ')'}"></span>
+																							paid
+																							<span class="fw-bolder text-primary" th:text="${#numbers.formatCurrency(commissionService.price)}"></span>
+																							for
+																							<span class="fw-bolder text-info" th:text="${commissionService.name}">Hair cut</span>
+																							<br/>
+																							You received
+																							<span class="fw-bolder text-success" th:text="${commissionService.commissionRate} + '%'"></span>
+																							commission
+																							<span class="fw-bolder text-primary" th:text="${'(' + #numbers.formatCurrency(commissionService.amount) + ')'}"></span>
+																							base on policy
+																							<span class="fw-bolder text-danger" th:text="${commissionService.policyCode}"></span>
+																							for
+																							<span class="fw-bolder text-info" th:text="${'level ' + commissionService.commissionLevel}"></span>
+																						</div>
+																						<!--end::Text-->
+																					</div>
+																					<!--end::Item-->
+																				</div>
+																			</div>
+
+																			<div class="modal-footer">
+																				<button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+																			</div>
 																		</div>
-																		<div class="text-muted">Expires Dec 2024</div>
 																	</div>
-																	<!--end::Summary-->
 																</div>
-																<!--end::Toggle-->
-																<!--begin::Toolbar-->
-																<div class="d-flex my-3 ms-9">
-																	<!--begin::Edit-->
-																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_new_card">
-																		<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit">
-																			<!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
-																			<span class="svg-icon svg-icon-3">
-																				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																					<path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />
-																					<path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />
-																				</svg>
-																			</span>
-																			<!--end::Svg Icon-->
-																		</span>
-																	</a>
-																	<!--end::Edit-->
-																	<!--begin::Delete-->
-																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="tooltip" title="Delete" data-kt-customer-payment-method="delete">
-																		<!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
-																		<span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />
-																				<path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />
-																				<path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />
-																			</svg>
-																		</span>
-																		<!--end::Svg Icon-->
-																	</a>
-																	<!--end::Delete-->
-																	<!--begin::More-->
-																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-bs-toggle="tooltip" title="More Options" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-																		<!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
-																		<span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z" fill="currentColor" />
-																				<path opacity="0.3" d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z" fill="currentColor" />
-																			</svg>
-																		</span>
-																		<!--end::Svg Icon-->
-																	</a>
-																	<!--begin::Menu-->
-																	<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold w-150px py-3" data-kt-menu="true">
-																		<!--begin::Menu item-->
-																		<div class="menu-item px-3">
-																			<a href="#" class="menu-link px-3" data-kt-payment-mehtod-action="set_as_primary">Set as Primary</a>
-																		</div>
-																		<!--end::Menu item-->
-																	</div>
-																	<!--end::Menu-->
-																	<!--end::More-->
-																</div>
-																<!--end::Toolbar-->
-															</div>
-															<!--end::Header-->
-															<!--begin::Body-->
-															<div id="kt_customer_view_payment_method_1" class="collapse show fs-6 ps-10" data-bs-parent="#kt_customer_view_payment_method">
-																<!--begin::Details-->
-																<div class="d-flex flex-wrap py-5">
-																	<!--begin::Col-->
-																	<div class="flex-equal me-5">
-																		<table class="table table-flush fw-bold gy-1">
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Name</td>
-																				<td class="text-gray-800">Emma Smith</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Number</td>
-																				<td class="text-gray-800">**** 3769</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Expires</td>
-																				<td class="text-gray-800">12/2024</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Type</td>
-																				<td class="text-gray-800">Mastercard credit card</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Issuer</td>
-																				<td class="text-gray-800">VICBANK</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">ID</td>
-																				<td class="text-gray-800">id_4325df90sdf8</td>
-																			</tr>
-																		</table>
-																	</div>
-																	<!--end::Col-->
-																	<!--begin::Col-->
-																	<div class="flex-equal">
-																		<table class="table table-flush fw-bold gy-1">
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Billing address</td>
-																				<td class="text-gray-800">AU</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Phone</td>
-																				<td class="text-gray-800">No phone provided</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Email</td>
-																				<td class="text-gray-800">
-																					<a href="#" class="text-gray-900 text-hover-primary">smith@kpmg.com</a>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Origin</td>
-																				<td class="text-gray-800">Australia
-																					<div class="symbol symbol-20px symbol-circle ms-2">
-																						<img th:src="@{/media/flags/australia.svg}" />
-																					</div></td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">CVC check</td>
-																				<td class="text-gray-800">Passed
-																					<!--begin::Svg Icon | path: icons/duotune/general/gen043.svg-->
-																					<span class="svg-icon svg-icon-2 svg-icon-success">
-																					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																						<rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor" />
-																						<path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="currentColor" />
-																					</svg>
-																				</span>
-																					<!--end::Svg Icon--></td>
-																			</tr>
-																		</table>
-																	</div>
-																	<!--end::Col-->
-																</div>
-																<!--end::Details-->
-															</div>
-															<!--end::Body-->
-														</div>
-														<!--end::Option-->
-														<div class="separator separator-dashed"></div>
-														<!--begin::Option-->
-														<div class="py-0" data-kt-customer-payment-method="row">
-															<!--begin::Header-->
-															<div class="py-3 d-flex flex-stack flex-wrap">
-																<!--begin::Toggle-->
-																<div class="d-flex align-items-center collapsible collapsed rotate" data-bs-toggle="collapse" href="#kt_customer_view_payment_method_2" role="button" aria-expanded="false" aria-controls="kt_customer_view_payment_method_2">
-																	<!--begin::Arrow-->
-																	<div class="me-3 rotate-90">
-																		<!--begin::Svg Icon | path: icons/duotune/arrows/arr071.svg-->
-																		<span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="currentColor" />
-																			</svg>
-																		</span>
-																		<!--end::Svg Icon-->
-																	</div>
-																	<!--end::Arrow-->
-																	<!--begin::Logo-->
-																	<img th:src="@{/media/svg/card-logos/visa.svg}" class="w-40px me-3" alt="" />
-																	<!--end::Logo-->
-																	<!--begin::Summary-->
-																	<div class="me-3">
-																		<div class="d-flex align-items-center">
-																			<div class="text-gray-800 fw-bolder">Visa</div>
-																		</div>
-																		<div class="text-muted">Expires Feb 2022</div>
-																	</div>
-																	<!--end::Summary-->
-																</div>
-																<!--end::Toggle-->
-																<!--begin::Toolbar-->
-																<div class="d-flex my-3 ms-9">
-																	<!--begin::Edit-->
-																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_new_card">
-																		<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit">
-																			<!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
-																			<span class="svg-icon svg-icon-3">
-																				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																					<path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />
-																					<path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />
-																				</svg>
-																			</span>
-																			<!--end::Svg Icon-->
-																		</span>
-																	</a>
-																	<!--end::Edit-->
-																	<!--begin::Delete-->
-																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="tooltip" title="Delete" data-kt-customer-payment-method="delete">
-																		<!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
-																		<span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />
-																				<path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />
-																				<path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />
-																			</svg>
-																		</span>
-																		<!--end::Svg Icon-->
-																	</a>
-																	<!--end::Delete-->
-																	<!--begin::More-->
-																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-bs-toggle="tooltip" title="More Options" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-																		<!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
-																		<span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z" fill="currentColor" />
-																				<path opacity="0.3" d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z" fill="currentColor" />
-																			</svg>
-																		</span>
-																		<!--end::Svg Icon-->
-																	</a>
-																	<!--begin::Menu-->
-																	<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold w-150px py-3" data-kt-menu="true">
-																		<!--begin::Menu item-->
-																		<div class="menu-item px-3">
-																			<a href="#" class="menu-link px-3" data-kt-payment-mehtod-action="set_as_primary">Set as Primary</a>
-																		</div>
-																		<!--end::Menu item-->
-																	</div>
-																	<!--end::Menu-->
-																	<!--end::More-->
-																</div>
-																<!--end::Toolbar-->
-															</div>
-															<!--end::Header-->
-															<!--begin::Body-->
-															<div id="kt_customer_view_payment_method_2" class="collapse fs-6 ps-10" data-bs-parent="#kt_customer_view_payment_method">
-																<!--begin::Details-->
-																<div class="d-flex flex-wrap py-5">
-																	<!--begin::Col-->
-																	<div class="flex-equal me-5">
-																		<table class="table table-flush fw-bold gy-1">
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Name</td>
-																				<td class="text-gray-800">Melody Macy</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Number</td>
-																				<td class="text-gray-800">**** 5235</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Expires</td>
-																				<td class="text-gray-800">02/2022</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Type</td>
-																				<td class="text-gray-800">Visa credit card</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Issuer</td>
-																				<td class="text-gray-800">ENBANK</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">ID</td>
-																				<td class="text-gray-800">id_w2r84jdy723</td>
-																			</tr>
-																		</table>
-																	</div>
-																	<!--end::Col-->
-																	<!--begin::Col-->
-																	<div class="flex-equal">
-																		<table class="table table-flush fw-bold gy-1">
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Billing address</td>
-																				<td class="text-gray-800">UK</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Phone</td>
-																				<td class="text-gray-800">No phone provided</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Email</td>
-																				<td class="text-gray-800">
-																					<a href="#" class="text-gray-900 text-hover-primary">melody@altbox.com</a>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Origin</td>
-																				<td class="text-gray-800">United Kingdom
-																					<div class="symbol symbol-20px symbol-circle ms-2">
-																						<img th:src="@{/media/flags/united-kingdom.svg}" />
-																					</div></td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">CVC check</td>
-																				<td class="text-gray-800">Passed
-																					<!--begin::Svg Icon | path: icons/duotune/arrows/arr012.svg-->
-																					<span class="svg-icon svg-icon-2 svg-icon-success">
-																					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																						<path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor" />
-																						<path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor" />
-																					</svg>
-																				</span>
-																					<!--end::Svg Icon--></td>
-																			</tr>
-																		</table>
-																	</div>
-																	<!--end::Col-->
-																</div>
-																<!--end::Details-->
-															</div>
-															<!--end::Body-->
-														</div>
-														<!--end::Option-->
-														<div class="separator separator-dashed"></div>
-														<!--begin::Option-->
-														<div class="py-0" data-kt-customer-payment-method="row">
-															<!--begin::Header-->
-															<div class="py-3 d-flex flex-stack flex-wrap">
-																<!--begin::Toggle-->
-																<div class="d-flex align-items-center collapsible collapsed rotate" data-bs-toggle="collapse" href="#kt_customer_view_payment_method_3" role="button" aria-expanded="false" aria-controls="kt_customer_view_payment_method_3">
-																	<!--begin::Arrow-->
-																	<div class="me-3 rotate-90">
-																		<!--begin::Svg Icon | path: icons/duotune/arrows/arr071.svg-->
-																		<span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="currentColor" />
-																			</svg>
-																		</span>
-																		<!--end::Svg Icon-->
-																	</div>
-																	<!--end::Arrow-->
-																	<!--begin::Logo-->
-																	<img th:src="@{/media/svg/card-logos/american-express.svg}" class="w-40px me-3" alt="" />
-																	<!--end::Logo-->
-																	<!--begin::Summary-->
-																	<div class="me-3">
-																		<div class="d-flex align-items-center">
-																			<div class="text-gray-800 fw-bolder">American Express</div>
-																			<div class="badge badge-light-danger ms-5">Expired</div>
-																		</div>
-																		<div class="text-muted">Expires Aug 2021</div>
-																	</div>
-																	<!--end::Summary-->
-																</div>
-																<!--end::Toggle-->
-																<!--begin::Toolbar-->
-																<div class="d-flex my-3 ms-9">
-																	<!--begin::Edit-->
-																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_new_card">
-																		<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit">
-																			<!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
-																			<span class="svg-icon svg-icon-3">
-																				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																					<path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />
-																					<path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />
-																				</svg>
-																			</span>
-																			<!--end::Svg Icon-->
-																		</span>
-																	</a>
-																	<!--end::Edit-->
-																	<!--begin::Delete-->
-																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="tooltip" title="Delete" data-kt-customer-payment-method="delete">
-																		<!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
-																		<span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />
-																				<path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />
-																				<path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />
-																			</svg>
-																		</span>
-																		<!--end::Svg Icon-->
-																	</a>
-																	<!--end::Delete-->
-																	<!--begin::More-->
-																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-bs-toggle="tooltip" title="More Options" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-																		<!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
-																		<span class="svg-icon svg-icon-3">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																				<path d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z" fill="currentColor" />
-																				<path opacity="0.3" d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z" fill="currentColor" />
-																			</svg>
-																		</span>
-																		<!--end::Svg Icon-->
-																	</a>
-																	<!--begin::Menu-->
-																	<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold w-150px py-3" data-kt-menu="true">
-																		<!--begin::Menu item-->
-																		<div class="menu-item px-3">
-																			<a href="#" class="menu-link px-3" data-kt-payment-mehtod-action="set_as_primary">Set as Primary</a>
-																		</div>
-																		<!--end::Menu item-->
-																	</div>
-																	<!--end::Menu-->
-																	<!--end::More-->
-																</div>
-																<!--end::Toolbar-->
-															</div>
-															<!--end::Header-->
-															<!--begin::Body-->
-															<div id="kt_customer_view_payment_method_3" class="collapse fs-6 ps-10" data-bs-parent="#kt_customer_view_payment_method">
-																<!--begin::Details-->
-																<div class="d-flex flex-wrap py-5">
-																	<!--begin::Col-->
-																	<div class="flex-equal me-5">
-																		<table class="table table-flush fw-bold gy-1">
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Name</td>
-																				<td class="text-gray-800">Max Smith</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Number</td>
-																				<td class="text-gray-800">**** 5197</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Expires</td>
-																				<td class="text-gray-800">08/2021</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Type</td>
-																				<td class="text-gray-800">American express credit card</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Issuer</td>
-																				<td class="text-gray-800">USABANK</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">ID</td>
-																				<td class="text-gray-800">id_89457jcje63</td>
-																			</tr>
-																		</table>
-																	</div>
-																	<!--end::Col-->
-																	<!--begin::Col-->
-																	<div class="flex-equal">
-																		<table class="table table-flush fw-bold gy-1">
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Billing address</td>
-																				<td class="text-gray-800">US</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Phone</td>
-																				<td class="text-gray-800">No phone provided</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Email</td>
-																				<td class="text-gray-800">
-																					<a href="#" class="text-gray-900 text-hover-primary">max@kt.com</a>
-																				</td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">Origin</td>
-																				<td class="text-gray-800">United States of America
-																					<div class="symbol symbol-20px symbol-circle ms-2">
-																						<img th:src="@{/media/flags/united-states.svg}" />
-																					</div></td>
-																			</tr>
-																			<tr>
-																				<td class="text-muted min-w-125px w-125px">CVC check</td>
-																				<td class="text-gray-800">Failed
-																					<!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-																					<span class="svg-icon svg-icon-2 svg-icon-danger">
-																					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-																						<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
-																						<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
-																					</svg>
-																				</span>
-																					<!--end::Svg Icon--></td>
-																			</tr>
-																		</table>
-																	</div>
-																	<!--end::Col-->
-																</div>
-																<!--end::Details-->
-															</div>
-															<!--end::Body-->
-														</div>
-														<!--end::Option-->
+															</tr>
+															<!--end::Table row-->
+															</tbody>
+															<!--end::Table body-->
+														</table>
+														<!--end::Table-->
 													</div>
 													<!--end::Card body-->
 												</div>
 												<!--end::Card-->
 											</div>
 											<!--end:::Tab pane-->
-										</div>
-										<!--end:::Tab content-->
+<!--											&lt;!&ndash;begin:::Tab pane&ndash;&gt;-->
+<!--											<div class="tab-pane fade" id="kt_ecommerce_customer_general" role="tabpanel">-->
+<!--												&lt;!&ndash;begin::Card&ndash;&gt;-->
+<!--												<div class="card pt-4 mb-6 mb-xl-9">-->
+<!--													&lt;!&ndash;begin::Card header&ndash;&gt;-->
+<!--													<div class="card-header border-0">-->
+<!--														&lt;!&ndash;begin::Card title&ndash;&gt;-->
+<!--														<div class="card-title">-->
+<!--															<h2>Profile</h2>-->
+<!--														</div>-->
+<!--														&lt;!&ndash;end::Card title&ndash;&gt;-->
+<!--													</div>-->
+<!--													&lt;!&ndash;end::Card header&ndash;&gt;-->
+<!--													&lt;!&ndash;begin::Card body&ndash;&gt;-->
+<!--													<div class="card-body pt-0 pb-5">-->
+<!--														&lt;!&ndash;begin::Form&ndash;&gt;-->
+<!--														<form class="form" action="#" id="kt_ecommerce_customer_profile">-->
+<!--															&lt;!&ndash;begin::Input group&ndash;&gt;-->
+<!--															<div class="mb-7">-->
+<!--																&lt;!&ndash;begin::Label&ndash;&gt;-->
+<!--																<label class="fs-6 fw-bold mb-2">-->
+<!--																	<span>Update Avatar</span>-->
+<!--																	<i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Allowed file types: png, jpg, jpeg."></i>-->
+<!--																</label>-->
+<!--																&lt;!&ndash;end::Label&ndash;&gt;-->
+<!--																&lt;!&ndash;begin::Image input wrapper&ndash;&gt;-->
+<!--																<div class="mt-1">-->
+<!--																	&lt;!&ndash;begin::Image input&ndash;&gt;-->
+<!--																	<div class="image-input image-input-outline" data-kt-image-input="true"  th:style="'background-image: url(\'' + @{/media/svg/avatars/blank.svg} + '\')'">-->
+<!--																		&lt;!&ndash;begin::Preview existing avatar&ndash;&gt;-->
+<!--																		<div class="image-input-wrapper w-125px h-125px" th:style="'background-image: url(\'' + @{/media/avatars/300-1.jpg} + '\')'"></div>-->
+<!--																		&lt;!&ndash;end::Preview existing avatar&ndash;&gt;-->
+<!--																		&lt;!&ndash;begin::Edit&ndash;&gt;-->
+<!--																		<label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">-->
+<!--																			<i class="bi bi-pencil-fill fs-7"></i>-->
+<!--																			&lt;!&ndash;begin::Inputs&ndash;&gt;-->
+<!--																			<input type="file" name="avatar" accept=".png, .jpg, .jpeg" />-->
+<!--																			<input type="hidden" name="avatar_remove" />-->
+<!--																			&lt;!&ndash;end::Inputs&ndash;&gt;-->
+<!--																		</label>-->
+<!--																		&lt;!&ndash;end::Edit&ndash;&gt;-->
+<!--																		&lt;!&ndash;begin::Cancel&ndash;&gt;-->
+<!--																		<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">-->
+<!--																			<i class="bi bi-x fs-2"></i>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Cancel&ndash;&gt;-->
+<!--																		&lt;!&ndash;begin::Remove&ndash;&gt;-->
+<!--																		<span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">-->
+<!--																			<i class="bi bi-x fs-2"></i>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Remove&ndash;&gt;-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Image input&ndash;&gt;-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Image input wrapper&ndash;&gt;-->
+<!--															</div>-->
+<!--															&lt;!&ndash;end::Input group&ndash;&gt;-->
+<!--															&lt;!&ndash;begin::Input group&ndash;&gt;-->
+<!--															<div class="fv-row mb-7">-->
+<!--																&lt;!&ndash;begin::Label&ndash;&gt;-->
+<!--																<label class="fs-6 fw-bold mb-2 required">Name</label>-->
+<!--																&lt;!&ndash;end::Label&ndash;&gt;-->
+<!--																&lt;!&ndash;begin::Input&ndash;&gt;-->
+<!--																<input type="text" class="form-control form-control-solid" placeholder="" name="name" value="Max Smith" />-->
+<!--																&lt;!&ndash;end::Input&ndash;&gt;-->
+<!--															</div>-->
+<!--															&lt;!&ndash;end::Input group&ndash;&gt;-->
+<!--															&lt;!&ndash;begin::Row&ndash;&gt;-->
+<!--															<div class="row row-cols-1 row-cols-md-2">-->
+<!--																&lt;!&ndash;begin::Col&ndash;&gt;-->
+<!--																<div class="col">-->
+<!--																	&lt;!&ndash;begin::Input group&ndash;&gt;-->
+<!--																	<div class="fv-row mb-7">-->
+<!--																		&lt;!&ndash;begin::Label&ndash;&gt;-->
+<!--																		<label class="fs-6 fw-bold mb-2">-->
+<!--																			<span class="required">General Email</span>-->
+<!--																			<i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Email address must be active"></i>-->
+<!--																		</label>-->
+<!--																		&lt;!&ndash;end::Label&ndash;&gt;-->
+<!--																		&lt;!&ndash;begin::Input&ndash;&gt;-->
+<!--																		<input type="email" class="form-control form-control-solid" placeholder="" name="gen_email" value="max@kt.com" />-->
+<!--																		&lt;!&ndash;end::Input&ndash;&gt;-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Input group&ndash;&gt;-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Col&ndash;&gt;-->
+<!--																&lt;!&ndash;begin::Col&ndash;&gt;-->
+<!--																<div class="col">-->
+<!--																	&lt;!&ndash;begin::Input group&ndash;&gt;-->
+<!--																	<div class="fv-row mb-7">-->
+<!--																		&lt;!&ndash;begin::Label&ndash;&gt;-->
+<!--																		<label class="fs-6 fw-bold mb-2">-->
+<!--																			<span>Billing Email</span>-->
+<!--																			<i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Email address must be active"></i>-->
+<!--																		</label>-->
+<!--																		&lt;!&ndash;end::Label&ndash;&gt;-->
+<!--																		&lt;!&ndash;begin::Input&ndash;&gt;-->
+<!--																		<input type="email" class="form-control form-control-solid" placeholder="" name="bill_email" value="info@keenthemes.com" />-->
+<!--																		&lt;!&ndash;end::Input&ndash;&gt;-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Input group&ndash;&gt;-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Col&ndash;&gt;-->
+<!--															</div>-->
+<!--															&lt;!&ndash;end::Row&ndash;&gt;-->
+<!--															<div class="d-flex justify-content-end">-->
+<!--																&lt;!&ndash;begin::Button&ndash;&gt;-->
+<!--																<button type="submit" id="kt_ecommerce_customer_profile_submit" class="btn btn-light-primary">-->
+<!--																	<span class="indicator-label">Save</span>-->
+<!--																	<span class="indicator-progress">Please wait...-->
+<!--																	<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>-->
+<!--																</button>-->
+<!--																&lt;!&ndash;end::Button&ndash;&gt;-->
+<!--															</div>-->
+<!--														</form>-->
+<!--														&lt;!&ndash;end::Form&ndash;&gt;-->
+<!--													</div>-->
+<!--													&lt;!&ndash;end::Card body&ndash;&gt;-->
+<!--												</div>-->
+<!--												&lt;!&ndash;end::Card&ndash;&gt;-->
+<!--												&lt;!&ndash;begin::Card&ndash;&gt;-->
+<!--												<div class="card pt-4 mb-6 mb-xl-9">-->
+<!--													&lt;!&ndash;begin::Card header&ndash;&gt;-->
+<!--													<div class="card-header border-0">-->
+<!--														&lt;!&ndash;begin::Card title&ndash;&gt;-->
+<!--														<div class="card-title">-->
+<!--															<h2>Address Book</h2>-->
+<!--														</div>-->
+<!--														&lt;!&ndash;end::Card title&ndash;&gt;-->
+<!--														&lt;!&ndash;begin::Card toolbar&ndash;&gt;-->
+<!--														<div class="card-toolbar">-->
+<!--															<a href="#" class="btn btn-sm btn-flex btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_address">-->
+<!--																&lt;!&ndash;begin::Svg Icon | path: icons/duotune/general/gen035.svg&ndash;&gt;-->
+<!--																<span class="svg-icon svg-icon-3">-->
+<!--																<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																	<rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor" />-->
+<!--																	<rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="currentColor" />-->
+<!--																	<rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="currentColor" />-->
+<!--																</svg>-->
+<!--															</span>-->
+<!--																&lt;!&ndash;end::Svg Icon&ndash;&gt;Add new address</a>-->
+<!--														</div>-->
+<!--														&lt;!&ndash;end::Card toolbar&ndash;&gt;-->
+<!--													</div>-->
+<!--													&lt;!&ndash;end::Card header&ndash;&gt;-->
+<!--													&lt;!&ndash;begin::Card body&ndash;&gt;-->
+<!--													<div id="kt_ecommerce_customer_addresses" class="card-body pt-0 pb-5">-->
+<!--														&lt;!&ndash;begin::Addresses&ndash;&gt;-->
+<!--														&lt;!&ndash;begin::Address&ndash;&gt;-->
+<!--														<div class="py-0">-->
+<!--															&lt;!&ndash;begin::Header&ndash;&gt;-->
+<!--															<div class="py-3 d-flex flex-stack flex-wrap">-->
+<!--																&lt;!&ndash;begin::Toggle&ndash;&gt;-->
+<!--																<div class="d-flex align-items-center collapsible collapsed rotate" data-bs-toggle="collapse" href="#kt_ecommerce_customer_addresses_1" role="button" aria-expanded="false" aria-controls="kt_customer_view_payment_method_1">-->
+<!--																	&lt;!&ndash;begin::Arrow&ndash;&gt;-->
+<!--																	<div class="me-3 rotate-90">-->
+<!--																		&lt;!&ndash;begin::Svg Icon | path: icons/duotune/arrows/arr071.svg&ndash;&gt;-->
+<!--																		<span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																				<path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="currentColor" />-->
+<!--																			</svg>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Arrow&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::Summary&ndash;&gt;-->
+<!--																	<div class="me-3">-->
+<!--																		<div class="d-flex align-items-center">-->
+<!--																			<div class="fs-4 fw-bolder">Home</div>-->
+<!--																			<div class="badge badge-light-primary ms-5">Default Address</div>-->
+<!--																		</div>-->
+<!--																		<div class="text-muted">101 Collin Street</div>-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Summary&ndash;&gt;-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Toggle&ndash;&gt;-->
+<!--																&lt;!&ndash;begin::Toolbar&ndash;&gt;-->
+<!--																<div class="d-flex my-3 ms-9">-->
+<!--																	&lt;!&ndash;begin::Edit&ndash;&gt;-->
+<!--																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_address">-->
+<!--																		<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit">-->
+<!--																			&lt;!&ndash;begin::Svg Icon | path: icons/duotune/art/art005.svg&ndash;&gt;-->
+<!--																			<span class="svg-icon svg-icon-3">-->
+<!--																				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																					<path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />-->
+<!--																					<path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />-->
+<!--																				</svg>-->
+<!--																			</span>-->
+<!--																			&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																		</span>-->
+<!--																	</a>-->
+<!--																	&lt;!&ndash;end::Edit&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::Delete&ndash;&gt;-->
+<!--																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="tooltip" title="Delete" data-kt-customer-payment-method="delete">-->
+<!--																		&lt;!&ndash;begin::Svg Icon | path: icons/duotune/general/gen027.svg&ndash;&gt;-->
+<!--																		<span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																				<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />-->
+<!--																				<path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />-->
+<!--																				<path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />-->
+<!--																			</svg>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																	</a>-->
+<!--																	&lt;!&ndash;end::Delete&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::More&ndash;&gt;-->
+<!--																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-bs-toggle="tooltip" title="More Options" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">-->
+<!--																		&lt;!&ndash;begin::Svg Icon | path: icons/duotune/general/gen019.svg&ndash;&gt;-->
+<!--																		<span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																				<path d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z" fill="currentColor" />-->
+<!--																				<path opacity="0.3" d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z" fill="currentColor" />-->
+<!--																			</svg>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																	</a>-->
+<!--																	&lt;!&ndash;begin::Menu&ndash;&gt;-->
+<!--																	<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">-->
+<!--																		&lt;!&ndash;begin::Menu item&ndash;&gt;-->
+<!--																		<div class="menu-item px-3">-->
+<!--																			<a href="#" class="menu-link px-3" data-kt-payment-mehtod-action="set_as_default">Set as default address</a>-->
+<!--																		</div>-->
+<!--																		&lt;!&ndash;end::Menu item&ndash;&gt;-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Menu&ndash;&gt;-->
+<!--																	&lt;!&ndash;end::More&ndash;&gt;-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Toolbar&ndash;&gt;-->
+<!--															</div>-->
+<!--															&lt;!&ndash;end::Header&ndash;&gt;-->
+<!--															&lt;!&ndash;begin::Body&ndash;&gt;-->
+<!--															<div id="kt_ecommerce_customer_addresses_1" class="collapse fs-6 ps-9" data-bs-parent="#kt_ecommerce_customer_addresses">-->
+<!--																&lt;!&ndash;begin::Details&ndash;&gt;-->
+<!--																<div class="d-flex flex-column pb-5">-->
+<!--																	<div class="fw-bolder text-gray-600">Max Smith</div>-->
+<!--																	<div class="text-muted">101 Collin Street,-->
+<!--																		<br />Melbourne, VIC 3000,-->
+<!--																		<br />Australia</div>-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Details&ndash;&gt;-->
+<!--															</div>-->
+<!--															&lt;!&ndash;end::Body&ndash;&gt;-->
+<!--														</div>-->
+<!--														&lt;!&ndash;end::Address&ndash;&gt;-->
+<!--														&lt;!&ndash;begin::Address&ndash;&gt;-->
+<!--														<div class="py-0">-->
+<!--															&lt;!&ndash;begin::Header&ndash;&gt;-->
+<!--															<div class="py-3 d-flex flex-stack flex-wrap">-->
+<!--																&lt;!&ndash;begin::Toggle&ndash;&gt;-->
+<!--																<div class="d-flex align-items-center collapsible collapsed rotate" data-bs-toggle="collapse" href="#kt_ecommerce_customer_addresses_2" role="button" aria-expanded="false" aria-controls="kt_customer_view_payment_method_2">-->
+<!--																	&lt;!&ndash;begin::Arrow&ndash;&gt;-->
+<!--																	<div class="me-3 rotate-90">-->
+<!--																		&lt;!&ndash;begin::Svg Icon | path: icons/duotune/arrows/arr071.svg&ndash;&gt;-->
+<!--																		<span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																				<path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="currentColor" />-->
+<!--																			</svg>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Arrow&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::Summary&ndash;&gt;-->
+<!--																	<div class="me-3">-->
+<!--																		<div class="d-flex align-items-center">-->
+<!--																			<div class="fs-4 fw-bolder">Work</div>-->
+<!--																		</div>-->
+<!--																		<div class="text-muted">54 Spring Street</div>-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Summary&ndash;&gt;-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Toggle&ndash;&gt;-->
+<!--																&lt;!&ndash;begin::Toolbar&ndash;&gt;-->
+<!--																<div class="d-flex my-3 ms-9">-->
+<!--																	&lt;!&ndash;begin::Edit&ndash;&gt;-->
+<!--																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_address">-->
+<!--																		<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit">-->
+<!--																			&lt;!&ndash;begin::Svg Icon | path: icons/duotune/art/art005.svg&ndash;&gt;-->
+<!--																			<span class="svg-icon svg-icon-3">-->
+<!--																				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																					<path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />-->
+<!--																					<path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />-->
+<!--																				</svg>-->
+<!--																			</span>-->
+<!--																			&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																		</span>-->
+<!--																	</a>-->
+<!--																	&lt;!&ndash;end::Edit&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::Delete&ndash;&gt;-->
+<!--																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="tooltip" title="Delete" data-kt-customer-payment-method="delete">-->
+<!--																		&lt;!&ndash;begin::Svg Icon | path: icons/duotune/general/gen027.svg&ndash;&gt;-->
+<!--																		<span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																				<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />-->
+<!--																				<path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />-->
+<!--																				<path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />-->
+<!--																			</svg>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																	</a>-->
+<!--																	&lt;!&ndash;end::Delete&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::More&ndash;&gt;-->
+<!--																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-bs-toggle="tooltip" title="More Options" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">-->
+<!--																		&lt;!&ndash;begin::Svg Icon | path: icons/duotune/general/gen019.svg&ndash;&gt;-->
+<!--																		<span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																				<path d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z" fill="currentColor" />-->
+<!--																				<path opacity="0.3" d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z" fill="currentColor" />-->
+<!--																			</svg>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																	</a>-->
+<!--																	&lt;!&ndash;begin::Menu&ndash;&gt;-->
+<!--																	<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">-->
+<!--																		&lt;!&ndash;begin::Menu item&ndash;&gt;-->
+<!--																		<div class="menu-item px-3">-->
+<!--																			<a href="#" class="menu-link px-3" data-kt-payment-mehtod-action="set_as_default">Set as default address</a>-->
+<!--																		</div>-->
+<!--																		&lt;!&ndash;end::Menu item&ndash;&gt;-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Menu&ndash;&gt;-->
+<!--																	&lt;!&ndash;end::More&ndash;&gt;-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Toolbar&ndash;&gt;-->
+<!--															</div>-->
+<!--															&lt;!&ndash;end::Header&ndash;&gt;-->
+<!--															&lt;!&ndash;begin::Body&ndash;&gt;-->
+<!--															<div id="kt_ecommerce_customer_addresses_2" class="collapse fs-6 ps-9" data-bs-parent="#kt_ecommerce_customer_addresses">-->
+<!--																&lt;!&ndash;begin::Details&ndash;&gt;-->
+<!--																<div class="d-flex flex-column pb-5">-->
+<!--																	<div class="fw-bolder text-gray-600">Max Smith</div>-->
+<!--																	<div class="text-muted">54 Spring Street,-->
+<!--																		<br />Melbourne, VIC 3000,-->
+<!--																		<br />Australia</div>-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Details&ndash;&gt;-->
+<!--															</div>-->
+<!--															&lt;!&ndash;end::Body&ndash;&gt;-->
+<!--														</div>-->
+<!--														&lt;!&ndash;end::Address&ndash;&gt;-->
+<!--														&lt;!&ndash;begin::Address&ndash;&gt;-->
+<!--														<div class="py-0">-->
+<!--															&lt;!&ndash;begin::Header&ndash;&gt;-->
+<!--															<div class="py-3 d-flex flex-stack flex-wrap">-->
+<!--																&lt;!&ndash;begin::Toggle&ndash;&gt;-->
+<!--																<div class="d-flex align-items-center collapsible collapsed rotate" data-bs-toggle="collapse" href="#kt_ecommerce_customer_addresses_3" role="button" aria-expanded="false" aria-controls="kt_customer_view_payment_method_3">-->
+<!--																	&lt;!&ndash;begin::Arrow&ndash;&gt;-->
+<!--																	<div class="me-3 rotate-90">-->
+<!--																		&lt;!&ndash;begin::Svg Icon | path: icons/duotune/arrows/arr071.svg&ndash;&gt;-->
+<!--																		<span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																				<path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="currentColor" />-->
+<!--																			</svg>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Arrow&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::Summary&ndash;&gt;-->
+<!--																	<div class="me-3">-->
+<!--																		<div class="d-flex align-items-center">-->
+<!--																			<div class="fs-4 fw-bolder">Family</div>-->
+<!--																		</div>-->
+<!--																		<div class="text-muted">1521 Broadway</div>-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Summary&ndash;&gt;-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Toggle&ndash;&gt;-->
+<!--																&lt;!&ndash;begin::Toolbar&ndash;&gt;-->
+<!--																<div class="d-flex my-3 ms-9">-->
+<!--																	&lt;!&ndash;begin::Edit&ndash;&gt;-->
+<!--																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_update_address">-->
+<!--																		<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit">-->
+<!--																			&lt;!&ndash;begin::Svg Icon | path: icons/duotune/art/art005.svg&ndash;&gt;-->
+<!--																			<span class="svg-icon svg-icon-3">-->
+<!--																				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																					<path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />-->
+<!--																					<path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />-->
+<!--																				</svg>-->
+<!--																			</span>-->
+<!--																			&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																		</span>-->
+<!--																	</a>-->
+<!--																	&lt;!&ndash;end::Edit&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::Delete&ndash;&gt;-->
+<!--																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="tooltip" title="Delete" data-kt-customer-payment-method="delete">-->
+<!--																		&lt;!&ndash;begin::Svg Icon | path: icons/duotune/general/gen027.svg&ndash;&gt;-->
+<!--																		<span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																				<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />-->
+<!--																				<path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />-->
+<!--																				<path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />-->
+<!--																			</svg>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																	</a>-->
+<!--																	&lt;!&ndash;end::Delete&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::More&ndash;&gt;-->
+<!--																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-bs-toggle="tooltip" title="More Options" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">-->
+<!--																		&lt;!&ndash;begin::Svg Icon | path: icons/duotune/general/gen019.svg&ndash;&gt;-->
+<!--																		<span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																				<path d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z" fill="currentColor" />-->
+<!--																				<path opacity="0.3" d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z" fill="currentColor" />-->
+<!--																			</svg>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																	</a>-->
+<!--																	&lt;!&ndash;begin::Menu&ndash;&gt;-->
+<!--																	<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold w-200px py-3" data-kt-menu="true">-->
+<!--																		&lt;!&ndash;begin::Menu item&ndash;&gt;-->
+<!--																		<div class="menu-item px-3">-->
+<!--																			<a href="#" class="menu-link px-3" data-kt-payment-mehtod-action="set_as_default">Set as default address</a>-->
+<!--																		</div>-->
+<!--																		&lt;!&ndash;end::Menu item&ndash;&gt;-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Menu&ndash;&gt;-->
+<!--																	&lt;!&ndash;end::More&ndash;&gt;-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Toolbar&ndash;&gt;-->
+<!--															</div>-->
+<!--															&lt;!&ndash;end::Header&ndash;&gt;-->
+<!--															&lt;!&ndash;begin::Body&ndash;&gt;-->
+<!--															<div id="kt_ecommerce_customer_addresses_3" class="collapse fs-6 ps-9" data-bs-parent="#kt_ecommerce_customer_addresses">-->
+<!--																&lt;!&ndash;begin::Details&ndash;&gt;-->
+<!--																<div class="d-flex flex-column pb-5">-->
+<!--																	<div class="fw-bolder text-gray-600">Francis Mitcham</div>-->
+<!--																	<div class="text-muted">1521 Broadway,-->
+<!--																		<br />New York,-->
+<!--																		<br />Melbourne, NY 10036,-->
+<!--																		<br />United States</div>-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Details&ndash;&gt;-->
+<!--															</div>-->
+<!--															&lt;!&ndash;end::Body&ndash;&gt;-->
+<!--														</div>-->
+<!--														&lt;!&ndash;end::Address&ndash;&gt;-->
+<!--														&lt;!&ndash;end::Addresses&ndash;&gt;-->
+<!--													</div>-->
+<!--													&lt;!&ndash;end::Card body&ndash;&gt;-->
+<!--												</div>-->
+<!--												&lt;!&ndash;end::Card&ndash;&gt;-->
+<!--											</div>-->
+<!--											&lt;!&ndash;end:::Tab pane&ndash;&gt;-->
+<!--											&lt;!&ndash;begin:::Tab pane&ndash;&gt;-->
+<!--											<div class="tab-pane fade" id="kt_ecommerce_customer_advanced" role="tabpanel">-->
+<!--												&lt;!&ndash;begin::Card&ndash;&gt;-->
+<!--												<div class="card pt-4 mb-6 mb-xl-9">-->
+<!--													&lt;!&ndash;begin::Card header&ndash;&gt;-->
+<!--													<div class="card-header border-0">-->
+<!--														&lt;!&ndash;begin::Card title&ndash;&gt;-->
+<!--														<div class="card-title">-->
+<!--															<h2>Security Details</h2>-->
+<!--														</div>-->
+<!--														&lt;!&ndash;end::Card title&ndash;&gt;-->
+<!--													</div>-->
+<!--													&lt;!&ndash;end::Card header&ndash;&gt;-->
+<!--													&lt;!&ndash;begin::Card body&ndash;&gt;-->
+<!--													<div class="card-body pt-0 pb-5">-->
+<!--														&lt;!&ndash;begin::Table wrapper&ndash;&gt;-->
+<!--														<div class="table-responsive">-->
+<!--															&lt;!&ndash;begin::Table&ndash;&gt;-->
+<!--															<table class="table align-middle table-row-dashed gy-5" id="kt_table_users_login_session">-->
+<!--																&lt;!&ndash;begin::Table body&ndash;&gt;-->
+<!--																<tbody class="fs-6 fw-bold text-gray-600">-->
+<!--																<tr>-->
+<!--																	<td>Phone</td>-->
+<!--																	<td>+6141 234 567</td>-->
+<!--																	<td class="text-end">-->
+<!--																		<button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_update_phone">-->
+<!--																			&lt;!&ndash;begin::Svg Icon | path: icons/duotune/art/art005.svg&ndash;&gt;-->
+<!--																			<span class="svg-icon svg-icon-3">-->
+<!--																					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																						<path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />-->
+<!--																						<path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />-->
+<!--																					</svg>-->
+<!--																				</span>-->
+<!--																			&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																		</button>-->
+<!--																	</td>-->
+<!--																</tr>-->
+<!--																<tr>-->
+<!--																	<td>Password</td>-->
+<!--																	<td>******</td>-->
+<!--																	<td class="text-end">-->
+<!--																		<button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto" data-bs-toggle="modal" data-bs-target="#kt_modal_update_password">-->
+<!--																			&lt;!&ndash;begin::Svg Icon | path: icons/duotune/art/art005.svg&ndash;&gt;-->
+<!--																			<span class="svg-icon svg-icon-3">-->
+<!--																					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																						<path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />-->
+<!--																						<path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />-->
+<!--																					</svg>-->
+<!--																				</span>-->
+<!--																			&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																		</button>-->
+<!--																	</td>-->
+<!--																</tr>-->
+<!--																</tbody>-->
+<!--																&lt;!&ndash;end::Table body&ndash;&gt;-->
+<!--															</table>-->
+<!--															&lt;!&ndash;end::Table&ndash;&gt;-->
+<!--														</div>-->
+<!--														&lt;!&ndash;end::Table wrapper&ndash;&gt;-->
+<!--													</div>-->
+<!--													&lt;!&ndash;end::Card body&ndash;&gt;-->
+<!--												</div>-->
+<!--												&lt;!&ndash;end::Card&ndash;&gt;-->
+<!--												&lt;!&ndash;begin::Card&ndash;&gt;-->
+<!--												<div class="card pt-4 mb-6 mb-xl-9">-->
+<!--													&lt;!&ndash;begin::Card header&ndash;&gt;-->
+<!--													<div class="card-header border-0">-->
+<!--														&lt;!&ndash;begin::Card title&ndash;&gt;-->
+<!--														<div class="card-title flex-column">-->
+<!--															<h2 class="mb-1">Two Step Authentication</h2>-->
+<!--															<div class="fs-6 fw-bold text-muted">Keep your account extra secure with a second authentication step.</div>-->
+<!--														</div>-->
+<!--														&lt;!&ndash;end::Card title&ndash;&gt;-->
+<!--														&lt;!&ndash;begin::Card toolbar&ndash;&gt;-->
+<!--														<div class="card-toolbar">-->
+<!--															&lt;!&ndash;begin::Add&ndash;&gt;-->
+<!--															<button type="button" class="btn btn-light-primary btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">-->
+<!--																&lt;!&ndash;begin::Svg Icon | path: icons/duotune/technology/teh004.svg&ndash;&gt;-->
+<!--																<span class="svg-icon svg-icon-3">-->
+<!--																<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																	<path opacity="0.3" d="M21 10.7192H3C2.4 10.7192 2 11.1192 2 11.7192C2 12.3192 2.4 12.7192 3 12.7192H6V14.7192C6 18.0192 8.7 20.7192 12 20.7192C15.3 20.7192 18 18.0192 18 14.7192V12.7192H21C21.6 12.7192 22 12.3192 22 11.7192C22 11.1192 21.6 10.7192 21 10.7192Z" fill="currentColor" />-->
+<!--																	<path d="M11.6 21.9192C11.4 21.9192 11.2 21.8192 11 21.7192C10.6 21.4192 10.5 20.7191 10.8 20.3191C11.7 19.1191 12.3 17.8191 12.7 16.3191C12.8 15.8191 13.4 15.4192 13.9 15.6192C14.4 15.7192 14.8 16.3191 14.6 16.8191C14.2 18.5191 13.4 20.1192 12.4 21.5192C12.2 21.7192 11.9 21.9192 11.6 21.9192ZM8.7 19.7192C10.2 18.1192 11 15.9192 11 13.7192V8.71917C11 8.11917 11.4 7.71917 12 7.71917C12.6 7.71917 13 8.11917 13 8.71917V13.0192C13 13.6192 13.4 14.0192 14 14.0192C14.6 14.0192 15 13.6192 15 13.0192V8.71917C15 7.01917 13.7 5.71917 12 5.71917C10.3 5.71917 9 7.01917 9 8.71917V13.7192C9 15.4192 8.4 17.1191 7.2 18.3191C6.8 18.7191 6.9 19.3192 7.3 19.7192C7.5 19.9192 7.7 20.0192 8 20.0192C8.3 20.0192 8.5 19.9192 8.7 19.7192ZM6 16.7192C6.5 16.7192 7 16.2192 7 15.7192V8.71917C7 8.11917 7.1 7.51918 7.3 6.91918C7.5 6.41918 7.2 5.8192 6.7 5.6192C6.2 5.4192 5.59999 5.71917 5.39999 6.21917C5.09999 7.01917 5 7.81917 5 8.71917V15.7192V15.8191C5 16.3191 5.5 16.7192 6 16.7192ZM9 4.71917C9.5 4.31917 10.1 4.11918 10.7 3.91918C11.2 3.81918 11.5 3.21917 11.4 2.71917C11.3 2.21917 10.7 1.91916 10.2 2.01916C9.4 2.21916 8.59999 2.6192 7.89999 3.1192C7.49999 3.4192 7.4 4.11916 7.7 4.51916C7.9 4.81916 8.2 4.91918 8.5 4.91918C8.6 4.91918 8.8 4.81917 9 4.71917ZM18.2 18.9192C18.7 17.2192 19 15.5192 19 13.7192V8.71917C19 5.71917 17.1 3.1192 14.3 2.1192C13.8 1.9192 13.2 2.21917 13 2.71917C12.8 3.21917 13.1 3.81916 13.6 4.01916C15.6 4.71916 17 6.61917 17 8.71917V13.7192C17 15.3192 16.8 16.8191 16.3 18.3191C16.1 18.8191 16.4 19.4192 16.9 19.6192C17 19.6192 17.1 19.6192 17.2 19.6192C17.7 19.6192 18 19.3192 18.2 18.9192Z" fill="currentColor" />-->
+<!--																</svg>-->
+<!--															</span>-->
+<!--																&lt;!&ndash;end::Svg Icon&ndash;&gt;Add Authentication Step</button>-->
+<!--															&lt;!&ndash;begin::Menu&ndash;&gt;-->
+<!--															<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-6 w-200px py-4" data-kt-menu="true">-->
+<!--																&lt;!&ndash;begin::Menu item&ndash;&gt;-->
+<!--																<div class="menu-item px-3">-->
+<!--																	<a href="#" class="menu-link px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_add_auth_app">Use authenticator app</a>-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Menu item&ndash;&gt;-->
+<!--																&lt;!&ndash;begin::Menu item&ndash;&gt;-->
+<!--																<div class="menu-item px-3">-->
+<!--																	<a href="#" class="menu-link px-3" data-bs-toggle="modal" data-bs-target="#kt_modal_add_one_time_password">Enable one-time password</a>-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Menu item&ndash;&gt;-->
+<!--															</div>-->
+<!--															&lt;!&ndash;end::Menu&ndash;&gt;-->
+<!--															&lt;!&ndash;end::Add&ndash;&gt;-->
+<!--														</div>-->
+<!--														&lt;!&ndash;end::Card toolbar&ndash;&gt;-->
+<!--													</div>-->
+<!--													&lt;!&ndash;end::Card header&ndash;&gt;-->
+<!--													&lt;!&ndash;begin::Card body&ndash;&gt;-->
+<!--													<div class="card-body pb-5">-->
+<!--														&lt;!&ndash;begin::Item&ndash;&gt;-->
+<!--														<div class="d-flex flex-stack">-->
+<!--															&lt;!&ndash;begin::Content&ndash;&gt;-->
+<!--															<div class="d-flex flex-column">-->
+<!--																<span>SMS</span>-->
+<!--																<span class="text-muted fs-6">+6141 234 567</span>-->
+<!--															</div>-->
+<!--															&lt;!&ndash;end::Content&ndash;&gt;-->
+<!--															&lt;!&ndash;begin::Action&ndash;&gt;-->
+<!--															<div class="d-flex justify-content-end align-items-center">-->
+<!--																&lt;!&ndash;begin::Button&ndash;&gt;-->
+<!--																<button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto me-5" data-bs-toggle="modal" data-bs-target="#kt_modal_add_one_time_password">-->
+<!--																	&lt;!&ndash;begin::Svg Icon | path: icons/duotune/art/art005.svg&ndash;&gt;-->
+<!--																	<span class="svg-icon svg-icon-3">-->
+<!--																		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																			<path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />-->
+<!--																			<path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />-->
+<!--																		</svg>-->
+<!--																	</span>-->
+<!--																	&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																</button>-->
+<!--																&lt;!&ndash;end::Button&ndash;&gt;-->
+<!--																&lt;!&ndash;begin::Button&ndash;&gt;-->
+<!--																<button type="button" class="btn btn-icon btn-active-light-primary w-30px h-30px ms-auto" id="kt_users_delete_two_step">-->
+<!--																	&lt;!&ndash;begin::Svg Icon | path: icons/duotune/general/gen027.svg&ndash;&gt;-->
+<!--																	<span class="svg-icon svg-icon-3">-->
+<!--																		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																			<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />-->
+<!--																			<path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />-->
+<!--																			<path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />-->
+<!--																		</svg>-->
+<!--																	</span>-->
+<!--																	&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																</button>-->
+<!--																&lt;!&ndash;end::Button&ndash;&gt;-->
+<!--															</div>-->
+<!--															&lt;!&ndash;end::Action&ndash;&gt;-->
+<!--														</div>-->
+<!--														&lt;!&ndash;end::Item&ndash;&gt;-->
+<!--														&lt;!&ndash;begin:Separator&ndash;&gt;-->
+<!--														<div class="separator separator-dashed my-5"></div>-->
+<!--														&lt;!&ndash;end:Separator&ndash;&gt;-->
+<!--														&lt;!&ndash;begin::Disclaimer&ndash;&gt;-->
+<!--														<div class="text-gray-600">If you lose your mobile device or security key, you can-->
+<!--															<a href='#' class="me-1">generate a backup code</a>to sign in to your account.</div>-->
+<!--														&lt;!&ndash;end::Disclaimer&ndash;&gt;-->
+<!--													</div>-->
+<!--													&lt;!&ndash;end::Card body&ndash;&gt;-->
+<!--												</div>-->
+<!--												&lt;!&ndash;end::Card&ndash;&gt;-->
+<!--												&lt;!&ndash;begin::Card&ndash;&gt;-->
+<!--												<div class="card pt-4 mb-6 mb-xl-9">-->
+<!--													&lt;!&ndash;begin::Card header&ndash;&gt;-->
+<!--													<div class="card-header border-0">-->
+<!--														&lt;!&ndash;begin::Card title&ndash;&gt;-->
+<!--														<div class="card-title">-->
+<!--															<h2 class="fw-bolder mb-0">Payment Methods</h2>-->
+<!--														</div>-->
+<!--														&lt;!&ndash;end::Card title&ndash;&gt;-->
+<!--														&lt;!&ndash;begin::Card toolbar&ndash;&gt;-->
+<!--														<div class="card-toolbar">-->
+<!--															<a href="#" class="btn btn-sm btn-flex btn-light-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_new_card">-->
+<!--																&lt;!&ndash;begin::Svg Icon | path: icons/duotune/general/gen035.svg&ndash;&gt;-->
+<!--																<span class="svg-icon svg-icon-3">-->
+<!--																<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																	<rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="currentColor" />-->
+<!--																	<rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="currentColor" />-->
+<!--																	<rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="currentColor" />-->
+<!--																</svg>-->
+<!--															</span>-->
+<!--																&lt;!&ndash;end::Svg Icon&ndash;&gt;Add new method</a>-->
+<!--														</div>-->
+<!--														&lt;!&ndash;end::Card toolbar&ndash;&gt;-->
+<!--													</div>-->
+<!--													&lt;!&ndash;end::Card header&ndash;&gt;-->
+<!--													&lt;!&ndash;begin::Card body&ndash;&gt;-->
+<!--													<div id="kt_customer_view_payment_method" class="card-body pt-0">-->
+<!--														&lt;!&ndash;begin::Option&ndash;&gt;-->
+<!--														<div class="py-0" data-kt-customer-payment-method="row">-->
+<!--															&lt;!&ndash;begin::Header&ndash;&gt;-->
+<!--															<div class="py-3 d-flex flex-stack flex-wrap">-->
+<!--																&lt;!&ndash;begin::Toggle&ndash;&gt;-->
+<!--																<div class="d-flex align-items-center collapsible rotate" data-bs-toggle="collapse" href="#kt_customer_view_payment_method_1" role="button" aria-expanded="false" aria-controls="kt_customer_view_payment_method_1">-->
+<!--																	&lt;!&ndash;begin::Arrow&ndash;&gt;-->
+<!--																	<div class="me-3 rotate-90">-->
+<!--																		&lt;!&ndash;begin::Svg Icon | path: icons/duotune/arrows/arr071.svg&ndash;&gt;-->
+<!--																		<span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																				<path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="currentColor" />-->
+<!--																			</svg>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Arrow&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::Logo&ndash;&gt;-->
+<!--																	<img th:src="@{/media/svg/card-logos/mastercard.svg}" class="w-40px me-3" alt="" />-->
+<!--																	&lt;!&ndash;end::Logo&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::Summary&ndash;&gt;-->
+<!--																	<div class="me-3">-->
+<!--																		<div class="d-flex align-items-center">-->
+<!--																			<div class="text-gray-800 fw-bolder">Mastercard</div>-->
+<!--																			<div class="badge badge-light-primary ms-5">Primary</div>-->
+<!--																		</div>-->
+<!--																		<div class="text-muted">Expires Dec 2024</div>-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Summary&ndash;&gt;-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Toggle&ndash;&gt;-->
+<!--																&lt;!&ndash;begin::Toolbar&ndash;&gt;-->
+<!--																<div class="d-flex my-3 ms-9">-->
+<!--																	&lt;!&ndash;begin::Edit&ndash;&gt;-->
+<!--																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_new_card">-->
+<!--																		<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit">-->
+<!--																			&lt;!&ndash;begin::Svg Icon | path: icons/duotune/art/art005.svg&ndash;&gt;-->
+<!--																			<span class="svg-icon svg-icon-3">-->
+<!--																				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																					<path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />-->
+<!--																					<path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />-->
+<!--																				</svg>-->
+<!--																			</span>-->
+<!--																			&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																		</span>-->
+<!--																	</a>-->
+<!--																	&lt;!&ndash;end::Edit&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::Delete&ndash;&gt;-->
+<!--																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="tooltip" title="Delete" data-kt-customer-payment-method="delete">-->
+<!--																		&lt;!&ndash;begin::Svg Icon | path: icons/duotune/general/gen027.svg&ndash;&gt;-->
+<!--																		<span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																				<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />-->
+<!--																				<path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />-->
+<!--																				<path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />-->
+<!--																			</svg>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																	</a>-->
+<!--																	&lt;!&ndash;end::Delete&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::More&ndash;&gt;-->
+<!--																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-bs-toggle="tooltip" title="More Options" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">-->
+<!--																		&lt;!&ndash;begin::Svg Icon | path: icons/duotune/general/gen019.svg&ndash;&gt;-->
+<!--																		<span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																				<path d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z" fill="currentColor" />-->
+<!--																				<path opacity="0.3" d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z" fill="currentColor" />-->
+<!--																			</svg>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																	</a>-->
+<!--																	&lt;!&ndash;begin::Menu&ndash;&gt;-->
+<!--																	<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold w-150px py-3" data-kt-menu="true">-->
+<!--																		&lt;!&ndash;begin::Menu item&ndash;&gt;-->
+<!--																		<div class="menu-item px-3">-->
+<!--																			<a href="#" class="menu-link px-3" data-kt-payment-mehtod-action="set_as_primary">Set as Primary</a>-->
+<!--																		</div>-->
+<!--																		&lt;!&ndash;end::Menu item&ndash;&gt;-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Menu&ndash;&gt;-->
+<!--																	&lt;!&ndash;end::More&ndash;&gt;-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Toolbar&ndash;&gt;-->
+<!--															</div>-->
+<!--															&lt;!&ndash;end::Header&ndash;&gt;-->
+<!--															&lt;!&ndash;begin::Body&ndash;&gt;-->
+<!--															<div id="kt_customer_view_payment_method_1" class="collapse show fs-6 ps-10" data-bs-parent="#kt_customer_view_payment_method">-->
+<!--																&lt;!&ndash;begin::Details&ndash;&gt;-->
+<!--																<div class="d-flex flex-wrap py-5">-->
+<!--																	&lt;!&ndash;begin::Col&ndash;&gt;-->
+<!--																	<div class="flex-equal me-5">-->
+<!--																		<table class="table table-flush fw-bold gy-1">-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Name</td>-->
+<!--																				<td class="text-gray-800">Emma Smith</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Number</td>-->
+<!--																				<td class="text-gray-800">**** 3769</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Expires</td>-->
+<!--																				<td class="text-gray-800">12/2024</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Type</td>-->
+<!--																				<td class="text-gray-800">Mastercard credit card</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Issuer</td>-->
+<!--																				<td class="text-gray-800">VICBANK</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">ID</td>-->
+<!--																				<td class="text-gray-800">id_4325df90sdf8</td>-->
+<!--																			</tr>-->
+<!--																		</table>-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Col&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::Col&ndash;&gt;-->
+<!--																	<div class="flex-equal">-->
+<!--																		<table class="table table-flush fw-bold gy-1">-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Billing address</td>-->
+<!--																				<td class="text-gray-800">AU</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Phone</td>-->
+<!--																				<td class="text-gray-800">No phone provided</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Email</td>-->
+<!--																				<td class="text-gray-800">-->
+<!--																					<a href="#" class="text-gray-900 text-hover-primary">smith@kpmg.com</a>-->
+<!--																				</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Origin</td>-->
+<!--																				<td class="text-gray-800">Australia-->
+<!--																					<div class="symbol symbol-20px symbol-circle ms-2">-->
+<!--																						<img th:src="@{/media/flags/australia.svg}" />-->
+<!--																					</div></td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">CVC check</td>-->
+<!--																				<td class="text-gray-800">Passed-->
+<!--																					&lt;!&ndash;begin::Svg Icon | path: icons/duotune/general/gen043.svg&ndash;&gt;-->
+<!--																					<span class="svg-icon svg-icon-2 svg-icon-success">-->
+<!--																					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																						<rect opacity="0.3" x="2" y="2" width="20" height="20" rx="10" fill="currentColor" />-->
+<!--																						<path d="M10.4343 12.4343L8.75 10.75C8.33579 10.3358 7.66421 10.3358 7.25 10.75C6.83579 11.1642 6.83579 11.8358 7.25 12.25L10.2929 15.2929C10.6834 15.6834 11.3166 15.6834 11.7071 15.2929L17.25 9.75C17.6642 9.33579 17.6642 8.66421 17.25 8.25C16.8358 7.83579 16.1642 7.83579 15.75 8.25L11.5657 12.4343C11.2533 12.7467 10.7467 12.7467 10.4343 12.4343Z" fill="currentColor" />-->
+<!--																					</svg>-->
+<!--																				</span>-->
+<!--																					&lt;!&ndash;end::Svg Icon&ndash;&gt;</td>-->
+<!--																			</tr>-->
+<!--																		</table>-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Col&ndash;&gt;-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Details&ndash;&gt;-->
+<!--															</div>-->
+<!--															&lt;!&ndash;end::Body&ndash;&gt;-->
+<!--														</div>-->
+<!--														&lt;!&ndash;end::Option&ndash;&gt;-->
+<!--														<div class="separator separator-dashed"></div>-->
+<!--														&lt;!&ndash;begin::Option&ndash;&gt;-->
+<!--														<div class="py-0" data-kt-customer-payment-method="row">-->
+<!--															&lt;!&ndash;begin::Header&ndash;&gt;-->
+<!--															<div class="py-3 d-flex flex-stack flex-wrap">-->
+<!--																&lt;!&ndash;begin::Toggle&ndash;&gt;-->
+<!--																<div class="d-flex align-items-center collapsible collapsed rotate" data-bs-toggle="collapse" href="#kt_customer_view_payment_method_2" role="button" aria-expanded="false" aria-controls="kt_customer_view_payment_method_2">-->
+<!--																	&lt;!&ndash;begin::Arrow&ndash;&gt;-->
+<!--																	<div class="me-3 rotate-90">-->
+<!--																		&lt;!&ndash;begin::Svg Icon | path: icons/duotune/arrows/arr071.svg&ndash;&gt;-->
+<!--																		<span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																				<path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="currentColor" />-->
+<!--																			</svg>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Arrow&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::Logo&ndash;&gt;-->
+<!--																	<img th:src="@{/media/svg/card-logos/visa.svg}" class="w-40px me-3" alt="" />-->
+<!--																	&lt;!&ndash;end::Logo&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::Summary&ndash;&gt;-->
+<!--																	<div class="me-3">-->
+<!--																		<div class="d-flex align-items-center">-->
+<!--																			<div class="text-gray-800 fw-bolder">Visa</div>-->
+<!--																		</div>-->
+<!--																		<div class="text-muted">Expires Feb 2022</div>-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Summary&ndash;&gt;-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Toggle&ndash;&gt;-->
+<!--																&lt;!&ndash;begin::Toolbar&ndash;&gt;-->
+<!--																<div class="d-flex my-3 ms-9">-->
+<!--																	&lt;!&ndash;begin::Edit&ndash;&gt;-->
+<!--																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_new_card">-->
+<!--																		<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit">-->
+<!--																			&lt;!&ndash;begin::Svg Icon | path: icons/duotune/art/art005.svg&ndash;&gt;-->
+<!--																			<span class="svg-icon svg-icon-3">-->
+<!--																				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																					<path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />-->
+<!--																					<path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />-->
+<!--																				</svg>-->
+<!--																			</span>-->
+<!--																			&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																		</span>-->
+<!--																	</a>-->
+<!--																	&lt;!&ndash;end::Edit&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::Delete&ndash;&gt;-->
+<!--																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="tooltip" title="Delete" data-kt-customer-payment-method="delete">-->
+<!--																		&lt;!&ndash;begin::Svg Icon | path: icons/duotune/general/gen027.svg&ndash;&gt;-->
+<!--																		<span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																				<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />-->
+<!--																				<path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />-->
+<!--																				<path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />-->
+<!--																			</svg>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																	</a>-->
+<!--																	&lt;!&ndash;end::Delete&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::More&ndash;&gt;-->
+<!--																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-bs-toggle="tooltip" title="More Options" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">-->
+<!--																		&lt;!&ndash;begin::Svg Icon | path: icons/duotune/general/gen019.svg&ndash;&gt;-->
+<!--																		<span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																				<path d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z" fill="currentColor" />-->
+<!--																				<path opacity="0.3" d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z" fill="currentColor" />-->
+<!--																			</svg>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																	</a>-->
+<!--																	&lt;!&ndash;begin::Menu&ndash;&gt;-->
+<!--																	<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold w-150px py-3" data-kt-menu="true">-->
+<!--																		&lt;!&ndash;begin::Menu item&ndash;&gt;-->
+<!--																		<div class="menu-item px-3">-->
+<!--																			<a href="#" class="menu-link px-3" data-kt-payment-mehtod-action="set_as_primary">Set as Primary</a>-->
+<!--																		</div>-->
+<!--																		&lt;!&ndash;end::Menu item&ndash;&gt;-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Menu&ndash;&gt;-->
+<!--																	&lt;!&ndash;end::More&ndash;&gt;-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Toolbar&ndash;&gt;-->
+<!--															</div>-->
+<!--															&lt;!&ndash;end::Header&ndash;&gt;-->
+<!--															&lt;!&ndash;begin::Body&ndash;&gt;-->
+<!--															<div id="kt_customer_view_payment_method_2" class="collapse fs-6 ps-10" data-bs-parent="#kt_customer_view_payment_method">-->
+<!--																&lt;!&ndash;begin::Details&ndash;&gt;-->
+<!--																<div class="d-flex flex-wrap py-5">-->
+<!--																	&lt;!&ndash;begin::Col&ndash;&gt;-->
+<!--																	<div class="flex-equal me-5">-->
+<!--																		<table class="table table-flush fw-bold gy-1">-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Name</td>-->
+<!--																				<td class="text-gray-800">Melody Macy</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Number</td>-->
+<!--																				<td class="text-gray-800">**** 5235</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Expires</td>-->
+<!--																				<td class="text-gray-800">02/2022</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Type</td>-->
+<!--																				<td class="text-gray-800">Visa credit card</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Issuer</td>-->
+<!--																				<td class="text-gray-800">ENBANK</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">ID</td>-->
+<!--																				<td class="text-gray-800">id_w2r84jdy723</td>-->
+<!--																			</tr>-->
+<!--																		</table>-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Col&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::Col&ndash;&gt;-->
+<!--																	<div class="flex-equal">-->
+<!--																		<table class="table table-flush fw-bold gy-1">-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Billing address</td>-->
+<!--																				<td class="text-gray-800">UK</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Phone</td>-->
+<!--																				<td class="text-gray-800">No phone provided</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Email</td>-->
+<!--																				<td class="text-gray-800">-->
+<!--																					<a href="#" class="text-gray-900 text-hover-primary">melody@altbox.com</a>-->
+<!--																				</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Origin</td>-->
+<!--																				<td class="text-gray-800">United Kingdom-->
+<!--																					<div class="symbol symbol-20px symbol-circle ms-2">-->
+<!--																						<img th:src="@{/media/flags/united-kingdom.svg}" />-->
+<!--																					</div></td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">CVC check</td>-->
+<!--																				<td class="text-gray-800">Passed-->
+<!--																					&lt;!&ndash;begin::Svg Icon | path: icons/duotune/arrows/arr012.svg&ndash;&gt;-->
+<!--																					<span class="svg-icon svg-icon-2 svg-icon-success">-->
+<!--																					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																						<path opacity="0.3" d="M10 18C9.7 18 9.5 17.9 9.3 17.7L2.3 10.7C1.9 10.3 1.9 9.7 2.3 9.3C2.7 8.9 3.29999 8.9 3.69999 9.3L10.7 16.3C11.1 16.7 11.1 17.3 10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor" />-->
+<!--																						<path d="M10 18C9.7 18 9.5 17.9 9.3 17.7C8.9 17.3 8.9 16.7 9.3 16.3L20.3 5.3C20.7 4.9 21.3 4.9 21.7 5.3C22.1 5.7 22.1 6.30002 21.7 6.70002L10.7 17.7C10.5 17.9 10.3 18 10 18Z" fill="currentColor" />-->
+<!--																					</svg>-->
+<!--																				</span>-->
+<!--																					&lt;!&ndash;end::Svg Icon&ndash;&gt;</td>-->
+<!--																			</tr>-->
+<!--																		</table>-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Col&ndash;&gt;-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Details&ndash;&gt;-->
+<!--															</div>-->
+<!--															&lt;!&ndash;end::Body&ndash;&gt;-->
+<!--														</div>-->
+<!--														&lt;!&ndash;end::Option&ndash;&gt;-->
+<!--														<div class="separator separator-dashed"></div>-->
+<!--														&lt;!&ndash;begin::Option&ndash;&gt;-->
+<!--														<div class="py-0" data-kt-customer-payment-method="row">-->
+<!--															&lt;!&ndash;begin::Header&ndash;&gt;-->
+<!--															<div class="py-3 d-flex flex-stack flex-wrap">-->
+<!--																&lt;!&ndash;begin::Toggle&ndash;&gt;-->
+<!--																<div class="d-flex align-items-center collapsible collapsed rotate" data-bs-toggle="collapse" href="#kt_customer_view_payment_method_3" role="button" aria-expanded="false" aria-controls="kt_customer_view_payment_method_3">-->
+<!--																	&lt;!&ndash;begin::Arrow&ndash;&gt;-->
+<!--																	<div class="me-3 rotate-90">-->
+<!--																		&lt;!&ndash;begin::Svg Icon | path: icons/duotune/arrows/arr071.svg&ndash;&gt;-->
+<!--																		<span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																				<path d="M12.6343 12.5657L8.45001 16.75C8.0358 17.1642 8.0358 17.8358 8.45001 18.25C8.86423 18.6642 9.5358 18.6642 9.95001 18.25L15.4929 12.7071C15.8834 12.3166 15.8834 11.6834 15.4929 11.2929L9.95001 5.75C9.5358 5.33579 8.86423 5.33579 8.45001 5.75C8.0358 6.16421 8.0358 6.83579 8.45001 7.25L12.6343 11.4343C12.9467 11.7467 12.9467 12.2533 12.6343 12.5657Z" fill="currentColor" />-->
+<!--																			</svg>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Arrow&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::Logo&ndash;&gt;-->
+<!--																	<img th:src="@{/media/svg/card-logos/american-express.svg}" class="w-40px me-3" alt="" />-->
+<!--																	&lt;!&ndash;end::Logo&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::Summary&ndash;&gt;-->
+<!--																	<div class="me-3">-->
+<!--																		<div class="d-flex align-items-center">-->
+<!--																			<div class="text-gray-800 fw-bolder">American Express</div>-->
+<!--																			<div class="badge badge-light-danger ms-5">Expired</div>-->
+<!--																		</div>-->
+<!--																		<div class="text-muted">Expires Aug 2021</div>-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Summary&ndash;&gt;-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Toggle&ndash;&gt;-->
+<!--																&lt;!&ndash;begin::Toolbar&ndash;&gt;-->
+<!--																<div class="d-flex my-3 ms-9">-->
+<!--																	&lt;!&ndash;begin::Edit&ndash;&gt;-->
+<!--																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_new_card">-->
+<!--																		<span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit">-->
+<!--																			&lt;!&ndash;begin::Svg Icon | path: icons/duotune/art/art005.svg&ndash;&gt;-->
+<!--																			<span class="svg-icon svg-icon-3">-->
+<!--																				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																					<path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />-->
+<!--																					<path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />-->
+<!--																				</svg>-->
+<!--																			</span>-->
+<!--																			&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																		</span>-->
+<!--																	</a>-->
+<!--																	&lt;!&ndash;end::Edit&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::Delete&ndash;&gt;-->
+<!--																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px me-3" data-bs-toggle="tooltip" title="Delete" data-kt-customer-payment-method="delete">-->
+<!--																		&lt;!&ndash;begin::Svg Icon | path: icons/duotune/general/gen027.svg&ndash;&gt;-->
+<!--																		<span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																				<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />-->
+<!--																				<path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />-->
+<!--																				<path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />-->
+<!--																			</svg>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																	</a>-->
+<!--																	&lt;!&ndash;end::Delete&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::More&ndash;&gt;-->
+<!--																	<a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px" data-bs-toggle="tooltip" title="More Options" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">-->
+<!--																		&lt;!&ndash;begin::Svg Icon | path: icons/duotune/general/gen019.svg&ndash;&gt;-->
+<!--																		<span class="svg-icon svg-icon-3">-->
+<!--																			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																				<path d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z" fill="currentColor" />-->
+<!--																				<path opacity="0.3" d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z" fill="currentColor" />-->
+<!--																			</svg>-->
+<!--																		</span>-->
+<!--																		&lt;!&ndash;end::Svg Icon&ndash;&gt;-->
+<!--																	</a>-->
+<!--																	&lt;!&ndash;begin::Menu&ndash;&gt;-->
+<!--																	<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold w-150px py-3" data-kt-menu="true">-->
+<!--																		&lt;!&ndash;begin::Menu item&ndash;&gt;-->
+<!--																		<div class="menu-item px-3">-->
+<!--																			<a href="#" class="menu-link px-3" data-kt-payment-mehtod-action="set_as_primary">Set as Primary</a>-->
+<!--																		</div>-->
+<!--																		&lt;!&ndash;end::Menu item&ndash;&gt;-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Menu&ndash;&gt;-->
+<!--																	&lt;!&ndash;end::More&ndash;&gt;-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Toolbar&ndash;&gt;-->
+<!--															</div>-->
+<!--															&lt;!&ndash;end::Header&ndash;&gt;-->
+<!--															&lt;!&ndash;begin::Body&ndash;&gt;-->
+<!--															<div id="kt_customer_view_payment_method_3" class="collapse fs-6 ps-10" data-bs-parent="#kt_customer_view_payment_method">-->
+<!--																&lt;!&ndash;begin::Details&ndash;&gt;-->
+<!--																<div class="d-flex flex-wrap py-5">-->
+<!--																	&lt;!&ndash;begin::Col&ndash;&gt;-->
+<!--																	<div class="flex-equal me-5">-->
+<!--																		<table class="table table-flush fw-bold gy-1">-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Name</td>-->
+<!--																				<td class="text-gray-800">Max Smith</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Number</td>-->
+<!--																				<td class="text-gray-800">**** 5197</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Expires</td>-->
+<!--																				<td class="text-gray-800">08/2021</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Type</td>-->
+<!--																				<td class="text-gray-800">American express credit card</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Issuer</td>-->
+<!--																				<td class="text-gray-800">USABANK</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">ID</td>-->
+<!--																				<td class="text-gray-800">id_89457jcje63</td>-->
+<!--																			</tr>-->
+<!--																		</table>-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Col&ndash;&gt;-->
+<!--																	&lt;!&ndash;begin::Col&ndash;&gt;-->
+<!--																	<div class="flex-equal">-->
+<!--																		<table class="table table-flush fw-bold gy-1">-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Billing address</td>-->
+<!--																				<td class="text-gray-800">US</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Phone</td>-->
+<!--																				<td class="text-gray-800">No phone provided</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Email</td>-->
+<!--																				<td class="text-gray-800">-->
+<!--																					<a href="#" class="text-gray-900 text-hover-primary">max@kt.com</a>-->
+<!--																				</td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">Origin</td>-->
+<!--																				<td class="text-gray-800">United States of America-->
+<!--																					<div class="symbol symbol-20px symbol-circle ms-2">-->
+<!--																						<img th:src="@{/media/flags/united-states.svg}" />-->
+<!--																					</div></td>-->
+<!--																			</tr>-->
+<!--																			<tr>-->
+<!--																				<td class="text-muted min-w-125px w-125px">CVC check</td>-->
+<!--																				<td class="text-gray-800">Failed-->
+<!--																					&lt;!&ndash;begin::Svg Icon | path: icons/duotune/arrows/arr061.svg&ndash;&gt;-->
+<!--																					<span class="svg-icon svg-icon-2 svg-icon-danger">-->
+<!--																					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">-->
+<!--																						<rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />-->
+<!--																						<rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />-->
+<!--																					</svg>-->
+<!--																				</span>-->
+<!--																					&lt;!&ndash;end::Svg Icon&ndash;&gt;</td>-->
+<!--																			</tr>-->
+<!--																		</table>-->
+<!--																	</div>-->
+<!--																	&lt;!&ndash;end::Col&ndash;&gt;-->
+<!--																</div>-->
+<!--																&lt;!&ndash;end::Details&ndash;&gt;-->
+<!--															</div>-->
+<!--															&lt;!&ndash;end::Body&ndash;&gt;-->
+<!--														</div>-->
+<!--														&lt;!&ndash;end::Option&ndash;&gt;-->
+<!--													</div>-->
+<!--													&lt;!&ndash;end::Card body&ndash;&gt;-->
+<!--												</div>-->
+<!--												&lt;!&ndash;end::Card&ndash;&gt;-->
+<!--											</div>-->
+<!--											&lt;!&ndash;end:::Tab pane&ndash;&gt;-->
+<!--										</div>-->
+<!--										&lt;!&ndash;end:::Tab content&ndash;&gt;-->
 									</div>
 									<!--end::Content-->
 								</div>
@@ -2603,6 +2897,7 @@
 			</div>
 			<!--end::Page-->
 		</div>
+		</div>
 		<!--end::Root-->
 
 		<!--end::Main-->
@@ -2668,6 +2963,286 @@
 			});
 		</script>
 
+		<script th:src="@{/plugins/custom/treant-js/raphael.js}"></script>
+		<script th:src="@{/plugins/custom/treant-js/Treant.js}"></script>
+
+		<script th:src="@{/plugins/custom/treant-js/jquery.mousewheel.js}"></script>
+		<script th:src="@{/plugins/custom/treant-js/perfect-scrollbar/perfect-scrollbar.js}"></script>
+
+		<script>
+
+		</script>
+		<script th:inline="javascript">
+			/*<![CDATA[*/
+
+			const parentsAndChildren = /*[[${parentsAndChildren}]]*/;
+			console.log(parentsAndChildren);
+
+			// var config = {
+			// 			container: "#custom-colored",
+			// 			nodeAlign: "BOTTOM",
+			// 			connectors: {
+			// 				type: 'step'
+			// 			},
+			// 			node: {
+			// 				HTMLclass: 'nodeExample1'
+			// 			}
+			// 		},
+			// 		ceo = {
+			// 			text: {
+			// 				name: "Mark Hill",
+			// 				title: "Chief executive officer",
+			// 				contact: "Tel: 01 213 123 134",
+			// 			},
+			// 		},
+			//
+			// 		cto = {
+			// 			parent: ceo,
+			// 			HTMLclass: 'light-gray',
+			// 			text: {
+			// 				name: "Joe Linux",
+			// 				title: "Chief Technology Officer",
+			// 			},
+			//
+			// 		},
+			// 		cbo = {
+			// 			parent: ceo,
+			// 			childrenDropLevel: 2,
+			// 			HTMLclass: 'blue',
+			// 			text: {
+			// 				name: "Linda May",
+			// 				title: "Chief Business Officer",
+			// 			},
+			// 		},
+			// 		cdo = {
+			// 			parent: ceo,
+			// 			HTMLclass: 'gray',
+			// 			text: {
+			// 				name: "John Green",
+			// 				title: "Chief accounting officer",
+			// 				contact: "Tel: 01 213 123 134",
+			// 			},
+			// 		},
+			// 		cio = {
+			// 			parent: cto,
+			// 			HTMLclass: 'light-gray',
+			// 			text: {
+			// 				name: "Ron Blomquist",
+			// 				title: "Chief Information Security Officer"
+			// 			},
+			// 		},
+			// 		ciso = {
+			// 			parent: cto,
+			// 			HTMLclass: 'light-gray',
+			// 			text: {
+			// 				name: "Michael Rubin",
+			// 				title: "Chief Innovation Officer",
+			// 				contact: "we@aregreat.com"
+			// 			},
+			// 		},
+			// 		cio2 = {
+			// 			parent: cdo,
+			// 			HTMLclass: 'gray',
+			// 			text: {
+			// 				name: "Erica Reel",
+			// 				title: "Chief Customer Officer"
+			// 			},
+			// 		},
+			// 		ciso2 = {
+			// 			parent: cbo,
+			// 			HTMLclass: 'blue',
+			// 			text: {
+			// 				name: "Alice Lopez",
+			// 				title: "Chief Communications Officer"
+			// 			},
+			// 		},
+			// 		ciso3 = {
+			// 			parent: cbo,
+			// 			HTMLclass: 'blue',
+			// 			text: {
+			// 				name: "Mary Johnson",
+			// 				title: "Chief Brand Officer"
+			// 			},
+			// 		},
+			// 		ciso4 = {
+			// 			parent: cbo,
+			// 			HTMLclass: 'blue',
+			// 			text: {
+			// 				name: "Kirk Douglas",
+			// 				title: "Chief Business Development Officer"
+			// 			},
+			// 		},
+			//
+			// 		chart_config = [
+			// 			config,
+			// 			ceo, cto, cbo,
+			// 			cdo, cio, ciso,
+			// 			cio2, ciso2, ciso3, ciso4
+			// 		];
+
+			var config = {
+				container: "#custom-colored",
+				nodeAlign: "BOTTOM",
+				connectors: {
+					type: 'step'
+				},
+				node: {
+					HTMLclass: 'nodeExample1'
+				}
+			};
+
+			var chart_config = [config];
+
+			// First, create all user nodes without assigning parents
+			parentsAndChildren.forEach(user => {
+				console.log("User: " + user.name + ", Referrer ID: " + user.referrerId);
+
+				var userNode = {
+					id: "user_" + user.id, // Add an ID for each user node
+					HTMLclass: '#eff2f5',
+					text: {
+						name: user.name,
+						title: "Tel: " + user.phone
+					}
+				};
+
+				chart_config.push(userNode);
+			});
+
+			// Then, update parent nodes based on referrerId
+			parentsAndChildren.forEach(user => {
+				if (user.referrerId !== null) {
+					var userNode = chart_config.find(node => node.id === "user_" + user.id);
+					var parent = chart_config.find(node => node.id === "user_" + user.referrerId);
+					if (userNode && parent) {
+						userNode.parent = parent;
+					} else {
+						console.error("Parent or user not found for user: " + user.name);
+					}
+				}
+			});
+
+
+			// Another approach, same result
+			// JSON approach
+
+			/*
+                var chart_config = {
+                    chart: {
+                        container: "#custom-colored",
+
+                        nodeAlign: "BOTTOM",
+
+                        connectors: {
+                            type: 'step'
+                        },
+                        node: {
+                            HTMLclass: 'nodeExample1'
+                        }
+                    },
+                    nodeStructure: {
+                        text: {
+                            name: "Mark Hill",
+                            title: "Chief executive officer",
+                            contact: "Tel: 01 213 123 134",
+                        },
+                        image: "../headshots/2.jpg",
+                        children: [
+                            {
+                                text:{
+                                    name: "Joe Linux",
+                                    title: "Chief Technology Officer",
+                                },
+                                image: "../headshots/1.jpg",
+                                HTMLclass: 'light-gray',
+                                children: [
+                                    {
+                                        text:{
+                                            name: "Ron Blomquist",
+                                            title: "Chief Information Security Officer"
+                                        },
+                                        HTMLclass: 'light-gray',
+                                        image: "../headshots/8.jpg"
+                                    },
+                                    {
+                                        text:{
+                                            name: "Michael Rubin",
+                                            title: "Chief Innovation Officer",
+                                            contact: "we@aregreat.com"
+                                        },
+                                        HTMLclass: 'light-gray',
+                                        image: "../headshots/9.jpg"
+                                    }
+                                ]
+                            },
+                            {
+                                childrenDropLevel: 2,
+                                text:{
+                                    name: "Linda May",
+                                    title: "Chief Business Officer",
+                                },
+                                HTMLclass: 'blue',
+                                image: "../headshots/5.jpg",
+                                children: [
+                                    {
+                                        text:{
+                                            name: "Alice Lopez",
+                                            title: "Chief Communications Officer"
+                                        },
+                                        HTMLclass: 'blue',
+                                        image: "../headshots/7.jpg"
+                                    },
+                                    {
+                                        text:{
+                                            name: "Mary Johnson",
+                                            title: "Chief Brand Officer"
+                                        },
+                                        HTMLclass: 'blue',
+                                        image: "../headshots/4.jpg"
+                                    },
+                                    {
+                                        text:{
+                                            name: "Kirk Douglas",
+                                            title: "Chief Business Development Officer"
+                                        },
+                                        HTMLclass: 'blue',
+                                        image: "../headshots/11.jpg"
+                                    }
+                                ]
+                            },
+                            {
+                                text:{
+                                    name: "John Green",
+                                    title: "Chief accounting officer",
+                                    contact: "Tel: 01 213 123 134",
+                                },
+                                HTMLclass: 'gray',
+                                image: "../headshots/6.jpg",
+                                children: [
+                                    {
+                                        text:{
+                                            name: "Erica Reel",
+                                            title: "Chief Customer Officer"
+                                        },
+                                        link: {
+                                            href: "http://www.google.com"
+                                        },
+                                        HTMLclass: 'gray',
+                                        image: "../headshots/10.jpg"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                };
+
+            */
+
+			/*]]>*/
+		</script>
+		<script>
+			new Treant( chart_config );
+		</script>
 		<!--end::Page Custom Javascript-->
 		<!--end::Javascript-->
 	</body>

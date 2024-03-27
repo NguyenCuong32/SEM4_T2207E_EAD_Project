@@ -7,7 +7,9 @@ import com.fai.brofee_fe.entity.Role;
 import com.fai.brofee_fe.entity.Service;
 import com.fai.brofee_fe.entity.Transaction;
 import com.fai.brofee_fe.entity.User;
+import com.fai.brofee_fe.entity.stored_procedure_entity.CommissionService_SP;
 import com.fai.brofee_fe.repository.*;
+import com.fai.brofee_fe.repository.stored_procedure.CommissionServiceRepository_SP;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -27,6 +29,7 @@ public class TransactionService {
     private final ServiceRepository serviceRepository;
     private final RoleRepository roleRepository;
     private final TransactionServiceRepository transactionServiceRepository;
+    private final CommissionServiceRepository_SP commissionServiceRepositorySP;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ModelMapper modelMapper;
 
@@ -154,11 +157,20 @@ public class TransactionService {
     }
 
     public List<TransactionDTO> getAllTransactionByCustomer(String code) {
-        Long id = userRepository.findByCode(code).map(User::getId).orElse(null);
+        Long id = userRepository.findByCode(code).map(User::getId).orElseThrow(() -> new RuntimeException("User not found"));
         List<Transaction> transactions = transactionRepository.findByCustomer_Id(id);
         return transactions.stream()
                 .map(transaction -> modelMapper.map(transaction, TransactionDTO.class))
                 .toList();
+    }
+
+    @Transactional
+    public List<CommissionService_SP> getUnpaidCommissionServiceCurrentMonth(String code) {
+        Long id = userRepository.findByCode(code).map(User::getId).orElseThrow(() -> new RuntimeException("User not found"));
+        // Get the start and end datetime of this month
+        LocalDateTime start = LocalDateTime.now().withDayOfMonth(1).withHour(0).withMinute(0).withSecond(0).withNano(0);
+        LocalDateTime end = LocalDateTime.now().withDayOfMonth(1).plusMonths(1).withHour(0).withMinute(0).withSecond(0).withNano(0);
+        return commissionServiceRepositorySP.getUnpaidCommissionsByUserAndTime(id, start, end);
     }
 
 }

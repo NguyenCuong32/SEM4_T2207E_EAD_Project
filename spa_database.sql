@@ -250,25 +250,6 @@ CREATE TABLE `event_service` (
     FOREIGN KEY (service_id) REFERENCES service(id)
 );
 
-DROP PROCEDURE IF EXISTS g;
-DELIMITER //
-CREATE PROCEDURE get_parents (IN user_id INT)
-BEGIN
-	WITH RECURSIVE parents (id, name, phone, email, referrer_id, user_level)
-    AS (
-		SELECT id, name, phone, email, referrer_id, 0
-        FROM user
-        WHERE id = user_id
-        
-        UNION ALL
-        
-        SELECT u.id, u.name, u.phone, u.email, u.referrer_id, p.user_level + 1
-        FROM user u INNER JOIN parents p ON u.id = p.referrer_id
-        WHERE p.user_level < 10
-	)
-    SELECT * FROM parents;
-END //
-DELIMITER ;
 
 DROP PROCEDURE IF EXISTS get_parents;
 DELIMITER //
@@ -289,6 +270,29 @@ BEGIN
     SELECT * FROM parents;
 END //
 DELIMITER ;
+-- CALL get_parents(19);
+
+
+DROP PROCEDURE IF EXISTS get_parents;
+DELIMITER //
+CREATE PROCEDURE get_parents (IN user_id INT)
+BEGIN
+	WITH RECURSIVE parents (id, name, phone, email, referrer_id, user_level)
+    AS (
+		SELECT id, name, phone, email, referrer_id, 0
+        FROM user
+        WHERE id = user_id
+        
+        UNION ALL
+        
+        SELECT u.id, u.name, u.phone, u.email, u.referrer_id, p.user_level + 1
+        FROM user u INNER JOIN parents p ON u.id = p.referrer_id
+        WHERE p.user_level < 10
+	)
+    SELECT * FROM parents;
+END //
+DELIMITER ;
+
 
 DROP PROCEDURE IF EXISTS get_parents_to_temp_table;
 DELIMITER //
@@ -323,7 +327,10 @@ BEGIN
     SELECT * FROM parents;
 END //
 DELIMITER ;
--- CALL get_parents (19);
+-- CALL get_parents_to_temp_table (6);
+-- SELECT * FROM temp_parents;
+-- SELECT id FROM temp_parents ORDER BY user_level LIMIT 1 OFFSET 3;
+
 
 DROP PROCEDURE IF EXISTS get_children;
 DELIMITER //
@@ -346,54 +353,64 @@ END //
 DELIMITER ;
 -- CALL get_children (6);
 
+
 DROP PROCEDURE IF EXISTS `get_users_with_pagination`;
 DELIMITER //
 CREATE PROCEDURE `get_users_with_pagination`(
-  IN size INT,
-  IN page INT,
-  IN search_term VARCHAR(255)
+	IN size INT,
+	IN page INT,
+	IN search_term VARCHAR(255)
 )
 BEGIN
-  DECLARE offset INT DEFAULT (page - 1) * size;
-  DECLARE total_items INT;
-  DECLARE total_pages INT;
+	DECLARE offset INT DEFAULT (page - 1) * size;
+	DECLARE total_items INT;
+	DECLARE total_pages INT;
 
-  -- Calculate total items for pagination
-  SELECT COUNT(*) INTO total_items
-  FROM user
-  WHERE (name LIKE CONCAT('%', LOWER(search_term), '%'))
-     OR (phone LIKE CONCAT('%', LOWER(search_term), '%'))
-     OR (email LIKE CONCAT('%', LOWER(search_term), '%'));
+	-- Calculate total items for pagination
+	SELECT COUNT(*) INTO total_items
+	FROM user
+	WHERE (name LIKE CONCAT('%', LOWER(search_term), '%'))
+		OR (phone LIKE CONCAT('%', LOWER(search_term), '%'))
+		OR (email LIKE CONCAT('%', LOWER(search_term), '%'));
 
-  -- Calculate total pages
-  SET total_pages = CEIL(total_items / size);
+	-- Calculate total pages
+	SET total_pages = CEIL(total_items / size);
 
-  -- Main query with pagination
-  SELECT
-    u.*,
-    GROUP_CONCAT(r.name SEPARATOR ', ') AS role_names,
-    u2.name AS referrer_name,
-    u2.code AS referrer_code,
-    u2.phone AS referrer_phone,
-    u2.email AS referrer_email,
-    (SELECT COUNT(*) FROM user WHERE referrer_id = u.id) AS total_referred_users,
-    (SELECT SUM(total) FROM transaction WHERE customer_id = u.id) AS total_spent,
-    (SELECT SUM(total) FROM commission WHERE recipient_id = u.id) AS total_commission,
-    (SELECT total_items) AS total_items,
-    (SELECT total_pages) AS total_pages
-  FROM user u
-  LEFT JOIN user_role ur ON u.id = ur.user_id
-  LEFT JOIN role r ON ur.role_id = r.id
-  LEFT JOIN user u2 ON u.referrer_id = u2.id
-  WHERE (u.name LIKE CONCAT('%', LOWER(search_term), '%'))
-     OR (u.phone LIKE CONCAT('%', LOWER(search_term), '%'))
-     OR (u.email LIKE CONCAT('%', LOWER(search_term), '%'))
-  GROUP BY u.id
-  LIMIT offset, size;
+	-- Main query with pagination
+	SELECT 
+		table_2.*,
+		SUM(c.total) AS total_commission
+	FROM ( SELECT 
+		table_1.*,
+		SUM(t.total) AS total_spent
+	FROM (SELECT
+		u.*,
+		GROUP_CONCAT(r.name SEPARATOR ', ') AS role_names,
+		u2.name AS referrer_name,
+		u2.code AS referrer_code,
+		u2.phone AS referrer_phone,
+		u2.email AS referrer_email,
+		COUNT(referred.id) AS total_referred_users,
+		(SELECT total_items) AS total_items,
+		(SELECT total_pages) AS total_pages
+	FROM user u
+	LEFT JOIN user_role ur ON u.id = ur.user_id
+	LEFT JOIN role r ON ur.role_id = r.id
+	LEFT JOIN user u2 ON u.referrer_id = u2.id
+	LEFT JOIN user referred ON u.id = referred.referrer_id 
+	WHERE (u.name LIKE CONCAT('%', LOWER(search_term), '%'))
+		OR (u.phone LIKE CONCAT('%', LOWER(search_term), '%'))
+		OR (u.email LIKE CONCAT('%', LOWER(search_term), '%'))
+	GROUP BY u.id) table_1
+	LEFT JOIN transaction t ON table_1.id = t.customer_id
+	GROUP BY table_1.id) table_2
+	LEFT JOIN commission c ON table_2.id = c.recipient_id
+	GROUP BY table_2.id
+	LIMIT offset, size;
 
 END //
 DELIMITER ;
-
+-- CALL get_users_with_pagination (10, 1, '');
 
 
 DROP PROCEDURE IF EXISTS `get_user_by_code`;
@@ -421,10 +438,123 @@ BEGIN
   WHERE u.code = code
   GROUP BY u.id;
 END //
-DELIMITER;
+DELIMITER ;
 
 
+DROP PROCEDURE IF EXISTS `get_unpaid_commissions_by_user_and_time`;
+DELIMITER //
+CREATE PROCEDURE `get_unpaid_commissions_by_user_and_time` (
+	IN user_id INT,
+	IN start_date DATETIME,
+	IN end_date DATETIME
+)
+BEGIN
+    SELECT 
+		c.*,
+        p.code AS policy_code,
+        t.commission_rate,
+        ts.service_id,
+        ts.price,
+		s.name,
+        tr.transaction_date,
+        u.name AS customer_name,
+        u.phone AS customer_phone,
+        u.email AS customer_email
+    FROM `commission_service` c
+    LEFT JOIN `commission_policy` p ON c.commission_policy_id = p.id
+    LEFT JOIN `commission_tier` t ON c.commission_policy_id = t.policy_id AND c.commission_level = t.level
+    LEFT JOIN `transaction_service` ts ON c.transaction_service_id = ts.id
+    LEFT JOIN `service` s ON ts.service_id = s.id
+    LEFT JOIN `transaction` tr ON ts.transaction_id = tr.id
+    LEFT JOIN `user` u ON tr.customer_id = u.id
+    WHERE c.recipient_id = user_id AND c.commission_id IS NULL
+    AND c.created_at BETWEEN start_date AND end_date;
+END //
+DELIMITER ;
+-- CALL `get_unpaid_commissions_by_user_and_time` (9, '2024-03-01 00:00:00', '2024-03-31 23:59:59');
 
+
+DROP PROCEDURE IF EXISTS `get_commission_services_by_commission_id`;
+DELIMITER //
+CREATE PROCEDURE `get_commission_services_by_commission_id` (
+	IN commission_id INT
+)
+BEGIN
+    SELECT 
+		c.*,
+        p.code AS policy_code,
+        t.commission_rate,
+        ts.service_id,
+        ts.price,
+		s.name,
+        tr.transaction_date,
+        u.name AS customer_name,
+        u.phone AS customer_phone,
+        u.email AS customer_email
+    FROM `commission_service` c
+    LEFT JOIN `commission_policy` p ON c.commission_policy_id = p.id
+    LEFT JOIN `commission_tier` t ON c.commission_policy_id = t.policy_id AND c.commission_level = t.level
+    LEFT JOIN `transaction_service` ts ON c.transaction_service_id = ts.id
+    LEFT JOIN `service` s ON ts.service_id = s.id
+    LEFT JOIN `transaction` tr ON ts.transaction_id = tr.id
+    LEFT JOIN `user` u ON tr.customer_id = u.id
+    WHERE c.commission_id = commission_id
+    ORDER BY c.created_at DESC;
+END //
+DELIMITER ;
+-- CALL get_commission_services_by_commission_id (1);
+
+
+DROP PROCEDURE IF EXISTS `create_commission_payment_for_user`;
+DELIMITER //
+CREATE PROCEDURE `create_commission_payment_for_user` (
+	IN user_id INT,
+	IN start_date DATETIME,
+	IN end_date DATETIME
+)
+BEGIN
+	DECLARE has_unpaid_services INT DEFAULT 0;
+	DECLARE new_commission_id INT;
+    DECLARE total_amount DECIMAL(16, 2);
+    
+    -- Check for unpaid commission services within the period
+	SELECT COUNT(id) INTO has_unpaid_services  
+    FROM `commission_service`
+    WHERE recipient_id = user_id 
+		AND commission_id IS NULL
+		AND created_at BETWEEN start_date AND end_date;
+        
+	-- If there are unpaid services, create a new commission record
+    IF has_unpaid_services > 0 THEN
+		-- Calculate the total commission amount
+		SELECT SUM(amount) INTO total_amount
+		FROM commission_service
+		WHERE recipient_id = user_id
+			AND commission_id IS NULL
+			AND created_at BETWEEN start_date AND end_date;
+			
+		-- Create a new commission record
+		INSERT INTO commission (recipient_id, total, status)
+		VALUES (user_id, total_amount, 1);
+		
+		SET new_commission_id = LAST_INSERT_ID();
+		
+		-- Update the unpaid commission_service records with the new commission ID
+		UPDATE commission_service
+		SET commission_id = new_commission_id
+		WHERE recipient_id = user_id
+			AND commission_id IS NULL
+			AND created_at BETWEEN start_date AND end_date;
+		
+        -- Return true to indicate success
+        SELECT true;
+	ELSE 
+		-- Return false if there are no unpaid commission_service records
+        SELECT false;
+    END IF;
+END //
+DELIMITER ;
+-- CALL create_commission_payment_for_user (6, '2024-03-01 00:00:00', '2024-03-31 23:59:59');
 
 
 DROP TRIGGER IF EXISTS after_insert_transaction_service;
@@ -457,24 +587,50 @@ BEGIN
         
 		CALL get_parents_to_temp_table (user_id); 
         
-        -- Loop through parents and create commission services
-        SET level = 1;
-        WHILE level <= max_referral_levels DO
-			SELECT id INTO parent_id FROM temp_parents ORDER BY user_level LIMIT 1 OFFSET level;
-		
-            IF parent_id IS NOT NULL THEN
- 				-- Get commission rate for this level
-                SELECT commission_rate INTO commission_rate_1 FROM commission_tier c WHERE c.policy_id = policy_id AND c.level = level;
+        -- Method 1: Loop through parents and create commission services
+        -- SET level = 1;
+--         WHILE level <= max_referral_levels DO
+-- 			SELECT id INTO parent_id FROM temp_parents ORDER BY user_level LIMIT 1 OFFSET level;
+-- 		
+--             IF parent_id IS NOT NULL THEN
+--  				-- Get commission rate for this level
+--                 SELECT commission_rate INTO commission_rate_1 FROM commission_tier c WHERE c.policy_id = policy_id AND c.level = level;
+-- 	
+--                 INSERT INTO commission_service (recipient_id, commission_id, transaction_service_id, commission_policy_id, commission_level, amount, created_at)
+-- 				VALUES (parent_id, NULL, NEW.id, policy_id, level, commission_rate_1 * NEW.price / 100, NOW());
+--             END IF;
+--             
+--             SET parent_id = NULL;
+--             SET level = level + 1;
+--         END WHILE;
+        
+        -- Method 2: Join temp_parent and commission_tier
+        INSERT INTO commission_service (
+			recipient_id, 
+			commission_id, 
+			transaction_service_id, 
+			commission_policy_id, 
+			commission_level, 
+			amount
+		)
+        SELECT 
+			p.id,
+            NULL,
+            NEW.id,
+            policy_id,
+            t.level,
+			t.commission_rate * NEW.price / 100
+        FROM temp_parents p 
+        INNER JOIN commission_tier t ON p.user_level = t.level
+        WHERE t.policy_id = policy_id;
 	
-                INSERT INTO commission_service (recipient_id, commission_id, transaction_service_id, commission_policy_id, commission_level, amount, created_at)
-				VALUES (parent_id, NULL, NEW.id, policy_id, level, commission_rate_1 * NEW.price / 100, NOW());
-            END IF;
-            
-            SET level = level + 1;
-        END WHILE;
 	END IF;
 END; //
 DELIMITER ;
+
+-- SELECT * FROM temp_parents
+-- INNER JOIN commission_tier t ON p.user_level = level
+-- WHERE t.policy_id = policy_id;
 
 
 
