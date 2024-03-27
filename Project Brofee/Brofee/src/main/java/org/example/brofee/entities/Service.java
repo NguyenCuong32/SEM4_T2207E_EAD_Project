@@ -50,6 +50,6 @@ public class Service {
 
     @ManyToOne
     @JoinColumn(name = "category")
-    private Category category;
+        private Category category;
 
 }
