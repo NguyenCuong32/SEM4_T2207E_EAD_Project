@@ -4,8 +4,7 @@
 -- Store kiểm tra số điện thoại 
 
 DROP PROCEDURE IF EXISTS CHECK_PHONE;
-
-DELIMITER $	
+	
 CREATE PROCEDURE CHECK_PHONE
 (IN  parent_phone varchar(20) )
  
@@ -15,9 +14,7 @@ BEGIN
  From users  
  WHERE  phone =  parent_phone ; 
  
-END $
- 
-DELIMITER ; 	
+END;
 
 
 
@@ -26,8 +23,7 @@ DELIMITER ;
 -- Store kiểm tra event
 
 DROP PROCEDURE IF EXISTS CHECK_EVENT;
-
-DELIMITER $	
+ 	
 CREATE PROCEDURE CHECK_EVENT
 (IN  giftcode varchar(255) )
  
@@ -37,20 +33,18 @@ BEGIN
  From events  
  WHERE  eventcode =  giftcode ; 
  
-END $
-
-DELIMITER ; 
+END;  
  
 
 
 -- Store Đệ quy tìm level  cha con theo id
 
 
-DROP PROCEDURE IF EXISTS  GET_LEVEL
- DELIMITER //
+DROP PROCEDURE IF EXISTS  GET_LEVEL;
+ 
  
 CREATE PROCEDURE GET_LEVEL (
-IN  id varchar(255) )
+IN  id binary(16) )
  
 BEGIN 
 
@@ -62,10 +56,9 @@ WITH RECURSIVE  temp   AS(
                 Select b.id, b.fullname, b.phone , b.parent_phone, number +  1
                 From   users   b 
                 JOIN temp c ON  b.phone = c.parent_phone
-                Where number < 4
+                Where number < 5
      )
 
 SELECT * From temp;
 
-END //
-DELIMITER ; 
+END  ; 
