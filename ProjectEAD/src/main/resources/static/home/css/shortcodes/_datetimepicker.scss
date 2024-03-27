@@ -1,0 +1,41 @@
+/*****************************
+  Date time Picker
+*****************************/
+.bootstrap-datetimepicker-widget.dropdown-menu {
+	z-index: 9;
+}
+
+.bootstrap-datetimepicker-widget {
+	table {
+		td.active {
+			background-color: $primary;
+
+			&:hover {
+				background-color: $primary;
+			}
+
+		}
+
+		td.day {
+			height: 20px;
+			line-height: 20px;
+			width: 40px;
+			font-size: 14px;
+			border-radius: inherit;
+		}
+
+		th {
+			font-size: 14px;
+			border-radius: inherit;
+		}
+
+		td {
+			span.active {
+				background: $primary;
+			}
+
+		}
+
+	}
+
+}

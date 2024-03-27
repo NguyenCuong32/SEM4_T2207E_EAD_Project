@@ -44,22 +44,25 @@
                         <form th:action="@{/admin/product/edit}" method="post" th:object="${product}">
                             <div class="mb-3">
                                 <input type="hidden" th:field="*{id}">
-                                <label for="namee" class="form-label"> Name</label>
-                                <input th:field="*{name}" type="text" class="form-control" id="namee" name="name" placeholder="name">
+                                <label for="name" class="form-label"> Name</label>
+                                <input th:field="*{name}" type="text" class="form-control" id="name" name="name" placeholder="name">
                             </div>
                             <div class="mb-3">
-                                <label for="category" class="form-label">Category</label>
-                                <select class="form-control " id="category" name="category.categoryId" th:field="${product.category.id}" required>
-                                    <option th:each="category : ${categories}"
-                                            th:value="${category.id}"
-                                            th:text="${category.name}"
-                                    ></option>
+                                <label for="discount" class="form-label">Category</label>
+                                <select th:field="*{category}" class="form-control " id="discount" name="discountId" required>
+                                    <option  value="" disabled selected>Select discount</option>
+                                    <option  th:each="categoryItem : ${categories}"
+                                             th:value="${categoryItem.id}"
+                                             th:text="${categoryItem.name}"></option>
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <input type="hidden" th:field="*{price}">
-                                <label for="price" class="form-label"> Name</label>
-                                <input th:field="*{price}" type="text" class="form-control" id="price" name="name" placeholder="name">
+                                <label for="description" class="form-label"> Description</label>
+                                <input th:field="*{description}" type="text" class="form-control" id="description" name="description" placeholder="description">
+                            </div>
+                            <div class="mb-3">
+                                <label for="price" class="form-label"> Price</label>
+                                <input th:field="*{price}" type="text" class="form-control" id="price" name="price" placeholder="price">
                             </div>
 
                             <div class="mb-3">

@@ -1,0 +1,413 @@
+/*****************************
+  banner
+*****************************/
+
+/* Banner Home */
+.banner-01 {
+  position: relative;
+  .container-fluid {
+    padding: 0 200px;
+    position: absolute;
+    top: 40%;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .swiper-button-prev {
+    left: 30px;
+  }
+
+  .swiper-button-next {
+    right: 30px;
+  }
+
+  .swiper-button-prev {
+    background-color: rgba($primary, 0.4);
+    color: $white;
+    height: 60px;
+    width: 60px;
+    background-repeat: no-repeat;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    top: 55%;
+    i {
+      font-size: 18px;
+    }
+  }
+  .swiper-button-next {
+    background-color: rgba($primary, 0.4);
+    color: $white;
+    height: 60px;
+    width: 60px;
+    background-repeat: no-repeat;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    top: 55%;
+    i {
+      font-size: 18px;
+    }
+  }
+
+  .swiper-button-prev {
+    &:hover {
+      background: $primary;
+    }
+  }
+  .swiper-button-next {
+    &:hover {
+      background: $primary;
+    }
+  }
+
+
+  .swiper-slide {
+    padding: 390px 0px 300px;
+
+    .slider-1 {
+
+      .sub-title-text {
+        display: flex;
+        text-transform: uppercase;
+        justify-content: center;
+      }
+
+      h1 {
+        span {
+          padding-left: 100px;
+        }
+
+      }
+
+      .plant-leaf-01 {
+        position: absolute;
+        left: 480px;
+        bottom: 100px;
+        width: 130px;
+      }
+
+      .plant-leaf {
+        position: absolute;
+        right: 300px;
+        bottom: 300px;
+        width: 100px;
+      }
+
+    }
+
+    .slider-2 {
+
+      .plant-leaf {
+        position: absolute;
+        right: 200px;
+        bottom: 90px;
+        width: 200px;
+      }
+
+    }
+
+  }
+}
+
+/* Banner Home 02 */
+.banner-02 {
+  position: relative;
+
+  .swiper-wrapper {
+    height: 100vh;
+  }
+  .swiper-slide {
+    position: relative;
+    padding: 360px 0px 270px;
+
+
+    .plant-leaf-01 {
+      position: absolute;
+      left: 100px;
+      top: 440px;
+    }
+
+    .plant-leaf {
+      position: absolute;
+      right: 105px;
+      bottom: 65px;
+    }
+
+  }
+
+  .swiper-button-prev {
+    background-color: rgba($primary, 0.4);
+    color: $white;
+    height: 60px;
+    width: 60px;
+    background-repeat: no-repeat;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    top: 55%;
+    left: 30px;
+    i {
+      font-size: 18px;
+    }
+  }
+  .swiper-button-next {
+    background-color: rgba($primary, 0.4);
+    color: $white;
+    height: 60px;
+    width: 60px;
+    background-repeat: no-repeat;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    top: 55%;
+    right: 30px;
+    i {
+      font-size: 18px;
+    }
+  }
+}
+
+/* Shop Banner */
+.shop-banner {
+  position: relative;
+  .shop-slider {
+    .slider-img {
+      width: 800px;
+    }
+  }
+  video#myVideo {
+      position: relative;
+      max-width: 100%;
+  }
+}
+
+
+
+/* Responsive */
+@media (max-width:1600px) {
+  .banner-01 .container-fluid {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width:1400px) {
+
+   /*Banner*/
+  .banner-01 {
+    h1 {
+      font-size: 60px;
+    }
+    .swiper-slide {
+      padding: 250px 0px 150px;
+      .slider-1 {
+        .plant-leaf {
+          right: 100px;
+          bottom: 170px;
+          width: 5%;
+        }
+        .plant-leaf-01 {
+          left: 300px;
+          bottom: 60px;
+          width: 7%;
+        }
+      }
+       /*Slider 2*/
+      .slider-2 {
+        .plant-leaf {
+          width: 100px;
+          right: 100px;
+        }
+      }
+    }
+  }
+
+   /*Banner 02*/
+  .banner-02 {
+    .swiper-slide {
+      padding: 250px 0px 70px;
+    }
+  }
+
+  /*shop-banner*/
+  .shop-banner{
+    .shop-slider{
+      .slider-img {
+        width: 550px;
+      }
+    }
+  }  
+
+}
+
+@media (max-width:1199px) {
+   /*Banner*/
+  .banner-01 {
+    h1 {
+      margin-bottom: 20px;
+      font-size: 46px;
+    }
+    
+  }
+
+   /*Banner 02*/
+  .banner-02 {
+    h1 {
+      font-size: 54px;
+    }
+    .swiper-slide {
+      padding: 230px 0px 90px;      
+    }
+  }
+
+}
+
+@media (max-width:991px) {
+
+  /*Banner*/
+  .banner-01 {
+    .swiper-slide {
+      padding: 200px 0px 100px;
+    }
+    .swiper-slide.slider-2 {
+      padding: 40px 0px 40px;
+    }
+    .swiper-button-prev {
+      display: none;
+    }
+    .swiper-button-next {
+      display: none;
+    }
+  }
+
+  /*banner-02*/
+  .banner-02 {
+    h1 {
+      font-size: 46px;
+    }
+    .swiper-wrapper{
+       height: auto;
+    }
+    .swiper-slide {
+      padding: 150px 0px 80px;
+     
+    }
+    .swiper-button-prev {
+      display: none;
+    }
+    .swiper-button-next {
+      display: none;
+    }
+  }
+
+  /*shop-banner*/
+  .shop-banner {
+    padding: 0px;
+  }
+
+  .shop-banner.banner-01 .container-fluid{
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+}
+
+@media (max-width:767px) {
+   /*Banner*/
+  .banner-01 {
+    h1 {
+      font-size: 36px;
+    }
+    .swiper-slide {
+      padding: 150px 0px 80px;
+    }
+
+    p {
+      display: none;
+    }
+    
+  }
+
+  /*banner-02*/
+  .banner-02 {
+    h1 {
+      font-size: 36px;
+    }
+
+    p {
+      display: none;
+    }
+
+    .slider-1 {
+      padding-left: 20px;
+    }
+  }
+
+  /*shop-banner*/
+  .shop-banner {
+    .shop-slider {
+      .slider-img {
+        margin-top: 50px;
+      }
+    }
+
+  }
+
+}
+
+@media (max-width:575px) {
+
+  .banner-01 {
+    .swiper-slide {
+      padding: 150px 0px 60px;
+    }
+  }
+
+
+}
+
+@media (max-width:479px) {
+  .shop-banner.banner-01 {
+    h1{
+       font-size:26px;
+    }
+    p {
+      font-size: 16px;
+      line-height: 26px;
+    }
+  }
+}
+
+@media (max-width:400px) {
+  .shop-banner.banner-01 p {
+    display: none;
+  }
+
+   .shop-banner.banner-01 .btn {
+      padding: 7px 20px;
+      font-size: 14px;
+    }
+}

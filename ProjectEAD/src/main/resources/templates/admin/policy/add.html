@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+      data-sidebar-image="none" data-preloader="disable">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{assets/images/favicon.ico}" />
+
+    <!-- Layout config Js -->
+    <script src="/assets/js/layout.js"></script>
+    <!-- Bootstrap Css -->
+    <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link th:href="@{/assets/css/icons.min.css}" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link th:href="@{/assets/css/app.min.css}" rel="stylesheet" type="text/css" />
+    <!-- custom Css-->
+    <link th:href="@{/assets/css/custom.min.css}" rel="stylesheet" type="text/css" />
+    <!-- Data Table-->
+    <link href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <div th:insert="~{admin/fragments/header}"></div>
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- start page title -->
+                <!-- end page title -->
+
+                <div class="row">
+                    <div class="col-xxl-12">
+                        <form th:action="@{/admin/policy/add}" method="post" th:object="${policy}">
+                            <div class="mb-3">
+                                <input type="hidden" th:field="*{id}">
+                                <label for="name" class="form-label">Policy Name</label>
+                                <input th:field="*{name}" type="text" class="form-control" id="name" name="name" placeholder="name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="startAt" class="form-label">Start at</label>
+                                <input th:field="*{startAt}" type="datetime-local" class="form-control" id="startAt" name="startAt" placeholder="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="endAt" class="form-label">End at</label>
+                                <input th:field="*{endAt}" type="datetime-local" class="form-control" id="endAt" name="endAt" placeholder="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="ratio" class="form-label">Ratio</label>
+                                <input th:field="*{ratio}" type="text" class="form-control" id="ratio" name="ratio" placeholder="ratio">
+                            </div>
+                            <div class="mb-3">
+                                <label for="bonus" class="form-label">Bonus</label>
+                                <input th:field="*{bonus}" type="text"  class="form-control" id="bonus" name="bonus" placeholder="bonus">
+                            </div>
+
+                            <ul>
+                                <li style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></li>
+                                <li style="color: red" th:if="${#fields.hasErrors('endAt')}" th:errors="*{endAt}" class="error"></li>
+                                <li style="color: red" th:if="${#fields.hasErrors('ratio')}" th:errors="*{ratio}" class="error"></li>
+<!--                                <li style="color: red" th:if="${#fields.hasErrors('status')}" th:errors="*{status}" class="error"></li>-->
+                            </ul>
+
+                            <button type="submit" class="btn btn-danger">Add</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- end row -->
+            </div>
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        © Velzon.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            Design & Develop by Themesbrand
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
+
+<!--start back-to-top-->
+<div th:insert="~{admin/fragments/footer}"></div>
+
+<!-- JAVASCRIPT -->
+<script src="/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/libs/simplebar/simplebar.min.js"></script>
+<script src="/assets/libs/node-waves/waves.min.js"></script>
+<script src="/assets/libs/feather-icons/feather.min.js"></script>
+<script src="/assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
+<script src="/assets/js/plugins.js"></script>
+
+<!-- apexcharts -->
+<script src="/assets/libs/apexcharts/apexcharts.min.js"></script>
+
+<!-- Dashboard init -->
+<script src="/assets/js/pages/dashboard-crm.init.js"></script>
+
+<!-- App js -->
+<script src="/assets/js/app.js"></script>
+<!-- Data Table -->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+    new DataTable('#table1');
+</script>
+</body>
+
+</html>

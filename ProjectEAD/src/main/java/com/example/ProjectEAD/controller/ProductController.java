@@ -24,7 +24,7 @@ public class ProductController {
         this.productService = productService;
         this.categoryService = categoryService;
     }
-    @GetMapping("listProduct")
+    @GetMapping("list")
     public String List(Model model){
         List<Product> productList = productService.getAllProduct();
         model.addAttribute("productList", productList);
@@ -44,7 +44,7 @@ public class ProductController {
             return "admin/product/add";
         }
         productService.add(product);
-        return "redirect:/admin/product/listProduct";
+        return "redirect:/admin/product/list";
     }
 
     @GetMapping("editForm/{id}")
@@ -57,19 +57,21 @@ public class ProductController {
             model.addAttribute("product", product);
             return "admin/product/edit";
         }
-        return "redirect:/admin/product/listProduct";
+        return "redirect:/admin/product/list";
     }
     @PostMapping("edit")
-    public String edit(@Valid @ModelAttribute Product product, BindingResult bindingResult){
+    public String edit(@Valid @ModelAttribute Product product, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
+            List<Category> categories = categoryService.getAllCategory();
+            model.addAttribute("categories",categories);
             return "admin/product/edit";
         }
         productService.add(product);
-        return "redirect:/admin/product/listProduct";
+        return "redirect:/admin/product/list";
     }
     @GetMapping("delete/{id}")
     public String delete(@PathVariable int id){
         productService.deleteById(id);
-        return "redirect:/admin/product/listProduct";
+        return "redirect:/admin/product/list";
     }
 }

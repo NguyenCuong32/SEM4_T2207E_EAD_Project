@@ -1,6 +1,7 @@
 package com.example.ProjectEAD.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 
@@ -11,6 +12,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Size(min = 6)
     private String name;
 
     @ManyToOne

@@ -48,7 +48,7 @@
                                 <input th:field="*{name}" type="text" class="form-control" id="name" name="name" placeholder="name">
                             </div>
                             <div class="mb-3">
-                                <label for="discount" class="form-label">Discount</label>
+                                <label for="discount" class="form-label">Category</label>
                                 <select th:field="*{category}" class="form-control " id="discount" name="discountId" required>
                                     <option  value="" disabled selected>Select discount</option>
                                     <option  th:each="categoryItem : ${categories}"
@@ -57,13 +57,11 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <input type="hidden" th:field="*{description}">
                                 <label for="description" class="form-label"> Description</label>
                                 <input th:field="*{description}" type="text" class="form-control" id="description" name="description" placeholder="description">
                             </div>
                             <div class="mb-3">
-<!--                                <input type="hidden" th:field="*{price}">-->
-                                <label for="price" class="form-label"> Description</label>
+                                <label for="price" class="form-label"> Price</label>
                                 <input th:field="*{price}" type="text" class="form-control" id="price" name="price" placeholder="price">
                             </div>
 

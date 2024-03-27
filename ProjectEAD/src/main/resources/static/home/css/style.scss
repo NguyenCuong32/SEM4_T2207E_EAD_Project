@@ -1,0 +1,110 @@
+/*
+
+Template: LuxurySpa - Spa & Beauty HTML Template
+Version: 1.0.0
+Author: potenzaglobalsolutions
+Design and Developed by: potenzaglobalsolutions.com
+
+NOTE: This is main stylesheet of template, This file contains the styling for the actual Template.
+
+*/
+
+/*==============================================
+[  Table of contents  ]
+================================================
+
+ :: Typography
+ :: Helper Classes
+ :: Shortcodes
+    - Accordion
+    - Button
+    - Category
+    - Countdown
+		- Counter
+		- Date Time Picker
+		- Feature Box
+    - Gallery
+    - List
+		- Menu List
+		- Newsletter
+    - Owl Carousel
+		- Pricing Table
+		- Progress Bar
+		- Range Slider
+		- Select
+		- Tabs
+		- Team
+    - Testimonial
+		- Video Button
+ :: Header
+   - Header default
+   - Header transparent
+   - Header Style 02
+ :: Banner
+   - Banner Home
+   - Banner Home 02
+   - Shop Banner
+ :: Layout
+   - Section Title
+   - Page title
+   - About box
+ :: Sidebar
+ :: Blog
+   - Blog post
+   - Blog Style 01
+   - Blog sidebar
+   - Blog Detail
+ :: Shop
+   - Product
+   - Product Detail
+    - Shop Sidebar
+    - Checkout
+    - Cart
+ :: Not Found
+ :: Footer
+
+======================================
+[ End table content ]
+======================================*/
+
+// Core files
+@import "variables";
+@import "typography";
+@import "helpers";
+
+// Shortcodes
+@import "shortcodes/accordion";
+@import "shortcodes/button";
+@import "shortcodes/category";
+@import "shortcodes/countdown";
+@import "shortcodes/counter";
+@import "shortcodes/datetimepicker";
+@import "shortcodes/feature-info";
+@import "shortcodes/gallery";
+@import "shortcodes/list";
+@import "shortcodes/menu-list";
+@import "shortcodes/newsletter";
+@import "shortcodes/owl-carousel";
+@import "shortcodes/pricing-table";
+@import "shortcodes/progress-bar";
+@import "shortcodes/range-slider";
+@import "shortcodes/select";
+@import "shortcodes/tabs";
+@import "shortcodes/team";
+@import "shortcodes/testimonial";
+@import "shortcodes/video-button";
+
+
+
+// Structure
+@import "header";
+@import "banner";
+@import "layout";
+
+// Pages
+@import "blog";
+@import "shop";
+@import "footer";
+
+// Responsive
+@import "responsive";

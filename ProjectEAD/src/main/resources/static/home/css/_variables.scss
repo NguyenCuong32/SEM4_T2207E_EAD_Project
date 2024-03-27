@@ -1,0 +1,41 @@
+/* Font family*/
+$font-base: 	'Montserrat', sans-serif;
+$font-hedding:	'Cormorant Garamond', serif;
+
+/* Colors*/
+$body-color:		    #666666;
+$primary:				#F2A68D;
+$secondary:			    #131310;
+$white:					#ffffff;
+$gray-1: 				#F3DCD4; 	// bg light
+$gray-2: 				#fbfbfb;
+$gray-3: 				#666666; 	// body-text
+$gray-4: 				#707173;
+$gray-5: 				#3a4957;
+$gray-6: 				#293745;
+$gray-7: 				#1d2936;
+$gray-8: 				#131310; 	// Hedding color
+$gray-9: 				#fff6f7; 	// bg color
+$black:  				#000000;
+$success:				#0abb0a;
+$danger:				#f52626;
+$yellow:  				#ee9914;
+
+$bg-light: rgba($primary, 0.1);
+
+$border-color: 	#ebebeb;
+
+/*SVG Color*/
+$filter-1: invert(75%) sepia(41%) saturate(636%) hue-rotate(315deg) brightness(99%) contrast(91%);
+
+/*For button and input border radius*/
+$border-radius:5px;
+$border-radius-lg: 50%;
+$border-radius-md: 10px;
+$border-radius-sm: 3px;
+
+
+/*Box-shadow*/
+$box-shadow-sm:	0px 2px 5px 0px rgba($gray-8, .10);
+$box-shadow:	  0px 7px 16px 0px rgba($gray-8, .07);
+$boxshadow-lg:  0 1rem 3rem rgba($gray-8, .175);

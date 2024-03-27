@@ -1,0 +1,381 @@
+/*****************************
+  Button
+*****************************/
+.btn-link {
+	text-decoration: none !important;
+}
+
+button {
+	outline: medium none !important;
+	color: $primary;
+}
+
+/* btn */
+.btn {
+	border: none;
+	z-index: 1;
+	position: relative;
+	font-weight: 500;
+	font-size: 16px;
+	padding: 15px 35px;
+	border-radius: 0px;
+	&:focus{
+		box-shadow:none;
+	}
+}
+
+/*btn-primary*/
+.btn.btn-primary {
+	background: $primary;
+	color: $white;
+	&:hover {
+		color: $white;
+	}
+	&:focus {
+		box-shadow: none;
+		outline: none;
+		color: $white;
+		background: $primary;
+	}
+
+	&:active {
+		box-shadow: none;
+		outline: none;
+		color: $white;
+		background: $primary;
+	}
+
+	&:after {
+		position: absolute;
+		content: "";
+		width: 0;
+		height: 100%;
+		top: 0;
+		right: 0;
+		z-index: -1;
+		background-color: $secondary;
+		transition: all 0.4s ease;
+	}
+		&:hover {
+		color: $white;
+		box-shadow: none;
+		outline: none;
+		&:after {
+			left: 0;
+			width: 100%;
+		}
+	}
+}
+
+.btn.btn-primary.btn-primary-white {
+	background: $primary;
+	color: $white;
+	&:hover {
+		color: $white;
+	}
+	&:focus {
+		box-shadow: none;
+		outline: none;
+		color: $white;
+		background: $primary;
+	}
+
+	&:active {
+		box-shadow: none;
+		outline: none;
+		color: $white;
+		background: $primary;
+	}
+
+	&:after {
+		position: absolute;
+		content: "";
+		width: 0;
+		height: 100%;
+		top: 0;
+		right: 0;
+		z-index: -1;
+		background-color: $white;
+		transition: all 0.4s ease;
+	}
+		&:hover {
+		color: $secondary;
+		box-shadow: none;
+		outline: none;
+		&:after {
+			left: 0;
+			width: 100%;
+		}
+	}
+}
+
+
+
+.btn.btn-secondary {
+	background: $secondary;
+	color: $white;
+	&:hover {
+		color: $white;
+	}
+	&:focus {
+		box-shadow: none;
+		outline: none;
+		color: $white;
+		background: $secondary;
+	}
+
+	&:active {
+		box-shadow: none;
+		outline: none;
+		color: $white;
+		background: $secondary;
+	}
+
+	&:after {
+		position: absolute;
+		content: "";
+		width: 0;
+		height: 100%;
+		top: 0;
+		right: 0;
+		z-index: -1;
+		background-color: $primary;
+		transition: all 0.4s ease;
+	}
+		&:hover {
+		color: $white;
+		box-shadow: none;
+		outline: none;
+		&:after {
+			left: 0;
+			width: 100%;
+		}
+	}
+}
+
+.btn.btn-secondary.btn-secondary-white {
+	background: $secondary;
+	color: $white;
+	&:hover {
+		color: $white;
+	}
+	&:focus {
+		box-shadow: none;
+		outline: none;
+		color: $white;
+		background: $secondary;
+	}
+
+	&:active {
+		box-shadow: none;
+		outline: none;
+		color: $white;
+		background: $secondary;
+	}
+
+	&:after {
+		position: absolute;
+		content: "";
+		width: 0;
+		height: 100%;
+		top: 0;
+		right: 0;
+		z-index: -1;
+		background-color: $white;
+		transition: all 0.4s ease;
+	}
+		&:hover {
+		color: $secondary;
+		box-shadow: none;
+		outline: none;
+		&:after {
+			left: 0;
+			width: 100%;
+		}
+	}
+}
+
+
+.btn.btn-white {
+	background: $white;
+	color: $secondary;
+	&:hover {
+		color: $white;
+	}
+	&:focus {
+		box-shadow: none;
+		outline: none;
+		color: $secondary;
+		background: $white;
+	}
+
+	&:active {
+		box-shadow: none;
+		outline: none;
+		color: $secondary;
+		background: $white;
+	}
+
+	&:after {
+		position: absolute;
+		content: "";
+		width: 0;
+		height: 100%;
+		top: 0;
+		right: 0;
+		z-index: -1;
+		background-color: $secondary;
+		transition: all 0.4s ease;
+		
+	}
+		&:hover {
+		color: $white;
+		box-shadow: none;
+		outline: none;
+		&:after {
+			left: 0;
+			width: 100%;
+		}
+	}
+}
+
+.btn.btn-white.btn-white-primary{
+	background: $white;
+	color: $primary;
+	&:hover {
+		color: $white;
+	}
+	&:focus {
+		box-shadow: none;
+		outline: none;
+		color: $primary;
+		background: $white;
+	}
+
+	&:active {
+		box-shadow: none;
+		outline: none;
+		color: $primary;
+		background: $white;
+	}
+
+	&:after {
+		position: absolute;
+		content: "";
+		width: 0;
+		height: 100%;
+		top: 0;
+		right: 0;
+		z-index: -1;
+		background-color: $primary;
+		transition: all 0.4s ease;
+		
+	}
+		&:hover {
+		color: $white;
+		box-shadow: none;
+		outline: none;
+		&:after {
+			left: 0;
+			width: 100%;
+		}
+	}
+}
+
+
+.show {
+	>.btn.dropdown-toggle {
+		&:focus {
+			box-shadow: none;
+			outline: none;
+			color: $white;
+		}
+
+	}
+
+	>.btn-primary.dropdown-toggle {
+		background: $primary;
+		border-color: $primary;
+	}
+
+}
+
+
+
+/* Btn size*/
+.btn.btn-sm {
+	padding: 8px 15px;
+	font-size: 14px;
+}
+
+.btn.btn-md {
+	padding: 10px 20px;
+	font-size: 14px;
+}
+
+.btn.btn-lg {
+	padding: 20px 30px;
+}
+
+.btn.btn-xl {
+	padding: 25px 40px;
+}
+
+.btn-app {
+	display: flex;
+
+	i {
+		font-size: 40px;
+	}
+
+}
+
+.btn-outline-secondary {
+	border: 2px solid $border-color;
+	color: $gray-8;
+
+	&:hover {
+		background: $gray-8;
+		color: $white;
+		border-color: $gray-9;
+	}
+
+	&:focus {
+		background: $gray-9;
+		color: $white;
+		border-color: $gray-9;
+	}
+
+}
+
+.btn-outline-secondary:not(:disabled):not(.disabled):active {
+	background: $gray-9;
+	color: $white;
+	border-color: $gray-9;
+}
+
+
+.play-video-lg {
+	width: 100px;
+	height: 100px;
+	line-height: 100px;
+	font-size: 16px;
+	background: $white;
+	color: $secondary;
+	display: block;
+	border-radius: 50%;
+	text-align: center;
+}
+
+
+.play-video-md {
+	width: 70px;
+	height: 70px;
+	line-height: 70px;
+	font-size: 16px;
+	background: $white;
+	color: $secondary;
+	display: block;
+	border-radius: 50%;
+	text-align: center;
+}

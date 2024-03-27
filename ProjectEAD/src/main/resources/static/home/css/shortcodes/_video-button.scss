@@ -1,0 +1,70 @@
+/*****************************
+  video-button
+*****************************/
+.btn-animation {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 90px;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    top: 50%;
+    display: flex;
+    width: 90px;
+    height: 90px;
+    background: $primary;
+    border-radius: 50%;
+    animation: pulse-border 1500ms ease-out infinite;
+  }
+
+  i {
+    z-index: 0;
+  }
+
+  }
+
+  .bg-white.btn-animation {
+    &:before {
+      background: $white;
+    }
+  }
+
+  .bg-dark.btn-animation {
+    &:before {
+      background: $gray-9;
+    }
+  }
+
+  .bg-primary.btn-animation {
+    &:before {
+      background: $primary;
+    }
+  }
+
+@keyframes pulse-border {
+  0% {
+    transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.5);
+    opacity: 0;
+  }
+
+}
+
+.popup-video {
+  position: relative;
+  .play-video {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+  }
+}

@@ -47,7 +47,7 @@
                             <thead>
                             <tr>
                                 <th>ID</th>
-                                <th> NAME</th>
+                                <th>NAME</th>
                                 <th>CATEGORY</th>
                                 <th>DESCRIPTION</th>
                                 <th>PRICE</th>
@@ -59,7 +59,7 @@
                             <tr th:each="value: ${productList}">
                                 <td class="align-middle" th:text="${value.id}"></td>
                                 <td class="align-middle" th:text="${value.name}"></td>
-                                <td class="align-middle" th:if="${value.category != null}" th:text="${value.category.name}"></td>
+                                <td class="align-middle" th:text="${value.category.name}"></td>
                                 <td class="align-middle" th:text="${value.description}"></td>
                                 <td class="align-middle" th:text="${value.price}"></td>
                                 <td class="align-middle" th:text="${value.status == 0 ? 'LOCK' : 'OPEN'}"></td>
