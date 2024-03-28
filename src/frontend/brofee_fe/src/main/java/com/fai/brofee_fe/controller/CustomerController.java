@@ -1,5 +1,7 @@
 package com.fai.brofee_fe.controller;
 
+import com.fai.brofee_fe.dto.CommissionDTO;
+import com.fai.brofee_fe.dto.TransactionDTO;
 import com.fai.brofee_fe.dto.UserDetailDTO;
 import com.fai.brofee_fe.entity.stored_procedure_entity.CommissionService_SP;
 import com.fai.brofee_fe.entity.stored_procedure_entity.UserHierarchyItem_SP;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -55,13 +58,23 @@ public class CustomerController {
         model.addAttribute("customer", user);
 
         // Get transaction list
-        model.addAttribute("transactions", transactionService.getAllTransactionByCustomer(code));
+        List<TransactionDTO> transactions = transactionService.getAllTransactionByCustomer(code);
+        BigDecimal totalAmount = transactions.stream()
+                .map(TransactionDTO::getTotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        model.addAttribute("transactions", transactions);
+        model.addAttribute("totalTransaction", totalAmount);
 
         // Get commission services unpaid this mount
         model.addAttribute("unpaidCommissions", transactionService.getUnpaidCommissionServiceCurrentMonth(code));
 
         // Get commission list
-        model.addAttribute("commissions", commissionService.getCommissionByUser(code));
+        List<CommissionDTO> commissions = commissionService.getCommissionByUser(code);
+        BigDecimal totalCommission = commissions.stream()
+                .map(CommissionDTO::getTotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        model.addAttribute("commissions", commissions);
+        model.addAttribute("totalCommission", totalCommission);
 
         // Get parent and children users
         List<UserHierarchyItem_SP> parentUsers = userService.getParentUsers(code);

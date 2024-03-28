@@ -234,7 +234,7 @@
 																		</span>
 																		<!--end::Svg Icon-->
 																		<div class="ms-2">
-																			4,571
+																			<span th:text="${#numbers.formatCurrency(totalTransaction)}">0</span>
 																			<span class="text-muted fs-4 fw-bold">Spent</span>
 																		</div>
 																	</div>
@@ -269,7 +269,7 @@
 																		</span>
 																		<!--end::Svg Icon-->
 																		<div class="ms-2">
-																			4,571
+																			<span th:text="${#numbers.formatCurrency(totalCommission)}">0</span>
 																			<span class="text-muted fs-4 fw-bold">Spent</span>
 																		</div>
 																	</div>
@@ -2975,6 +2975,7 @@
 		<script th:inline="javascript">
 			/*<![CDATA[*/
 
+			const customerPhone = /*[[${customer.phone}]]*/;
 			const parentsAndChildren = /*[[${parentsAndChildren}]]*/;
 			console.log(parentsAndChildren);
 
@@ -3099,7 +3100,7 @@
 
 				var userNode = {
 					id: "user_" + user.id, // Add an ID for each user node
-					HTMLclass: '#eff2f5',
+					HTMLclass: user.phone == customerPhone ? 'blue' : 'white',
 					text: {
 						name: user.name,
 						title: "Tel: " + user.phone

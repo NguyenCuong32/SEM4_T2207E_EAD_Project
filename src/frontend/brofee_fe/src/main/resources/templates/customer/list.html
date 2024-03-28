@@ -181,7 +181,7 @@
 														<span th:text="${customer.referrerPhone}" th:if="${customer.referrerPhone}"></span>
 													</div>
 												</td>
-												<td th:text="${customer.createdAt}"></td>
+												<td th:text="${#temporals.format(customer.createdAt, 'dd MMM,YYY')}"></td>
 												<td th:text="${customer.totalSpent != null ? #numbers.formatCurrency(customer.totalSpent) : #numbers.formatCurrency(0)}"></td>
 												<td th:text="${customer.totalReferredUsers + ' member(s)'}">0 members</td>
 												<td th:text="${customer.totalCommission != null ? #numbers.formatCurrency(customer.totalCommission) : #numbers.formatCurrency(0)}"></td>
