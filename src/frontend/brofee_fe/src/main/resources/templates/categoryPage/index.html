@@ -75,16 +75,18 @@
                             <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                 <div class="w-100 mw-150px">
                                     <!--begin::Select1-->
-                                    <label>
-                                        <select id="displayItemsSelect" name="kt_ecommerce_products_table_length" aria-controls="kt_ecommerce_products_table" class="form-select form-select-sm form-select-solid">
-                                            <option data-select2-id="select2-data-12-kw8w">Display items</option>
-                                            <option value="all">All items</option>
-                                            <option value="not_deleted">Not Deleted</option>
-                                            <option value="not_updated">Not Updated</option>
-                                            <option value="updated">Updated</option>
-                                            <option value="deleted">Deleted</option>
-                                        </select>
-                                    </label>
+                                    <div class="dataTables_length" id="kt_ecommerce_products_table_length">
+                                        <label>
+                                            <select id="pageSizeSelect" name="kt_ecommerce_products_table_length" aria-controls="kt_ecommerce_products_table" class="form-select form-select-sm form-select-solid">
+                                                <option>Select items</option>
+                                                <option value="6">6 items</option>
+                                                <option value="8">8 items</option>
+                                                <option value="10">10 items</option>
+                                                <option value="12">12 items</option>
+                                            </select>
+                                        </label>
+
+                                    </div>
                                     <!--end::Select1-->
                                 </div>
                                 <!--begin::Add product-->
@@ -104,13 +106,6 @@
                                         <thead>
                                         <!--begin::Table row-->
                                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                            <th class="w-10px pe-2 sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 29.25px;">
-                                                <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                                    <label>
-                                                        <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1">
-                                                    </label>
-                                                </div>
-                                            </th>
                                             <th class="min-w-200px sorting" tabindex="0" aria-controls="kt_ecommerce_products_table" rowspan="1" colspan="1" aria-label="Product: activate to sort column ascending" style="width: 259.725px;">
                                                 Category Name
                                             </th>
@@ -123,12 +118,6 @@
                                             <th class="text-end min-w-100px sorting" tabindex="0" aria-controls="kt_ecommerce_products_table" rowspan="1" colspan="1" aria-label="Price: activate to sort column ascending" style="width: 131.25px;">
                                                 Total Revenue
                                             </th>
-                                            <th class="text-end min-w-100px sorting" tabindex="0" aria-controls="kt_ecommerce_products_table" rowspan="1" colspan="1" aria-label="Rating: activate to sort column ascending" style="width: 131.25px;">
-                                                Rating
-                                            </th>
-                                            <th class="text-end min-w-100px sorting" tabindex="0" aria-controls="kt_ecommerce_products_table" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 131.25px;">
-                                                Status
-                                            </th>
                                             <th class="text-end min-w-70px sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 128.363px;">
                                                 Actions
                                             </th>
@@ -140,106 +129,32 @@
                                         <tbody class="fw-bold text-gray-600">
 
                                         <tr class="odd" th:each="category : ${categories}">
-                                            <!--begin::Checkbox-->
-                                            <td>
-                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <label>
-                                                        <input class="form-check-input" type="checkbox" value="1">
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <!--end::Checkbox-->
                                             <!--begin::Category=-->
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="ms-5">
                                                         <!--begin::Title-->
-                                                        <div class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="category_name" th:text="${category.getName()}"></div>
+                                                        <div class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="category_name" th:text="${category.getCategory_name()}"></div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="text-end pe-0">
                                                 <!--begin::Thumbnail-->
-                                                <img style="width: 49px; height: 49px; object-fit: cover;" th:src="${category.getIcon()}" alt="Icon" />
+                                                <img style="width: 49px; height: 49px; object-fit: cover;" th:src="${category.getCategory_icon()}" alt="Icon" />
                                                 <!--end::Thumbnail-->
                                             </td>
                                             <!--end::SKU=-->
                                             <!--begin::Qty=-->
                                             <td class="text-end pe-0" data-order="25">
-                                                <span class="fw-bolder ms-3" th:text="${category.getServices().size()}"></span>
+                                                <span class="fw-bolder ms-3" th:text="${category.getTotal_service()}"></span>
                                             </td>
                                             <!--end::Qty=-->
                                             <!--begin::Price=-->
                                             <td class="text-end pe-0">
-                                                <span class="fw-bolder text-dark">$236.00</span>
+                                                <span class="fw-bolder text-dark" th:text="${category.getTotal_revenue() != null ? #numbers.formatCurrency(category.getTotal_revenue()) : #numbers.formatCurrency('0.00')}"></span>
                                             </td>
                                             <!--end::Price=-->
-                                            <!--begin::Rating-->
-                                            <td class="text-end pe-0" data-order="rating-5">
-                                                <div class="rating justify-content-end">
-                                                    <div class="rating-label checked">
-                                                        <!--begin::Svg Icon | path: icons/duotune/general/gen029.svg-->
-                                                        <span class="svg-icon svg-icon-2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                                <path d="M11.1359 4.48359C11.5216 3.82132 12.4784 3.82132 12.8641 4.48359L15.011 8.16962C15.1523 8.41222 15.3891 8.58425 15.6635 8.64367L19.8326 9.54646C20.5816 9.70867 20.8773 10.6186 20.3666 11.1901L17.5244 14.371C17.3374 14.5803 17.2469 14.8587 17.2752 15.138L17.7049 19.382C17.7821 20.1445 17.0081 20.7069 16.3067 20.3978L12.4032 18.6777C12.1463 18.5645 11.8537 18.5645 11.5968 18.6777L7.69326 20.3978C6.99192 20.7069 6.21789 20.1445 6.2951 19.382L6.7248 15.138C6.75308 14.8587 6.66264 14.5803 6.47558 14.371L3.63339 11.1901C3.12273 10.6186 3.41838 9.70867 4.16744 9.54646L8.3365 8.64367C8.61089 8.58425 8.84767 8.41222 8.98897 8.16962L11.1359 4.48359Z" fill="currentColor"></path>
-                                                            </svg>
-                                                        </span>
-                                                        <!--end::Svg Icon-->
-                                                    </div>
-                                                    <div class="rating-label checked">
-                                                        <!--begin::Svg Icon | path: icons/duotune/general/gen029.svg-->
-                                                        <span class="svg-icon svg-icon-2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path d="M11.1359 4.48359C11.5216 3.82132 12.4784 3.82132 12.8641 4.48359L15.011 8.16962C15.1523 8.41222 15.3891 8.58425 15.6635 8.64367L19.8326 9.54646C20.5816 9.70867 20.8773 10.6186 20.3666 11.1901L17.5244 14.371C17.3374 14.5803 17.2469 14.8587 17.2752 15.138L17.7049 19.382C17.7821 20.1445 17.0081 20.7069 16.3067 20.3978L12.4032 18.6777C12.1463 18.5645 11.8537 18.5645 11.5968 18.6777L7.69326 20.3978C6.99192 20.7069 6.21789 20.1445 6.2951 19.382L6.7248 15.138C6.75308 14.8587 6.66264 14.5803 6.47558 14.371L3.63339 11.1901C3.12273 10.6186 3.41838 9.70867 4.16744 9.54646L8.3365 8.64367C8.61089 8.58425 8.84767 8.41222 8.98897 8.16962L11.1359 4.48359Z" fill="currentColor"></path>
-                                                        </svg>
-                                                        </span>
-                                                        <!--end::Svg Icon-->
-                                                    </div>
-                                                    <div class="rating-label checked">
-                                                        <!--begin::Svg Icon | path: icons/duotune/general/gen029.svg-->
-                                                        <span class="svg-icon svg-icon-2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                                <path d="M11.1359 4.48359C11.5216 3.82132 12.4784 3.82132 12.8641 4.48359L15.011 8.16962C15.1523 8.41222 15.3891 8.58425 15.6635 8.64367L19.8326 9.54646C20.5816 9.70867 20.8773 10.6186 20.3666 11.1901L17.5244 14.371C17.3374 14.5803 17.2469 14.8587 17.2752 15.138L17.7049 19.382C17.7821 20.1445 17.0081 20.7069 16.3067 20.3978L12.4032 18.6777C12.1463 18.5645 11.8537 18.5645 11.5968 18.6777L7.69326 20.3978C6.99192 20.7069 6.21789 20.1445 6.2951 19.382L6.7248 15.138C6.75308 14.8587 6.66264 14.5803 6.47558 14.371L3.63339 11.1901C3.12273 10.6186 3.41838 9.70867 4.16744 9.54646L8.3365 8.64367C8.61089 8.58425 8.84767 8.41222 8.98897 8.16962L11.1359 4.48359Z" fill="currentColor"></path>
-                                                            </svg>
-                                                        </span>
-                                                        <!--end::Svg Icon-->
-                                                    </div>
-                                                    <div class="rating-label checked">
-                                                        <!--begin::Svg Icon | path: icons/duotune/general/gen029.svg-->
-                                                        <span class="svg-icon svg-icon-2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                                <path d="M11.1359 4.48359C11.5216 3.82132 12.4784 3.82132 12.8641 4.48359L15.011 8.16962C15.1523 8.41222 15.3891 8.58425 15.6635 8.64367L19.8326 9.54646C20.5816 9.70867 20.8773 10.6186 20.3666 11.1901L17.5244 14.371C17.3374 14.5803 17.2469 14.8587 17.2752 15.138L17.7049 19.382C17.7821 20.1445 17.0081 20.7069 16.3067 20.3978L12.4032 18.6777C12.1463 18.5645 11.8537 18.5645 11.5968 18.6777L7.69326 20.3978C6.99192 20.7069 6.21789 20.1445 6.2951 19.382L6.7248 15.138C6.75308 14.8587 6.66264 14.5803 6.47558 14.371L3.63339 11.1901C3.12273 10.6186 3.41838 9.70867 4.16744 9.54646L8.3365 8.64367C8.61089 8.58425 8.84767 8.41222 8.98897 8.16962L11.1359 4.48359Z" fill="currentColor"></path>
-                                                            </svg>
-                                                        </span>
-                                                        <!--end::Svg Icon-->
-                                                    </div>
-                                                    <div class="rating-label checked">
-                                                        <!--begin::Svg Icon | path: icons/duotune/general/gen029.svg-->
-                                                        <span class="svg-icon svg-icon-2">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                                <path d="M11.1359 4.48359C11.5216 3.82132 12.4784 3.82132 12.8641 4.48359L15.011 8.16962C15.1523 8.41222 15.3891 8.58425 15.6635 8.64367L19.8326 9.54646C20.5816 9.70867 20.8773 10.6186 20.3666 11.1901L17.5244 14.371C17.3374 14.5803 17.2469 14.8587 17.2752 15.138L17.7049 19.382C17.7821 20.1445 17.0081 20.7069 16.3067 20.3978L12.4032 18.6777C12.1463 18.5645 11.8537 18.5645 11.5968 18.6777L7.69326 20.3978C6.99192 20.7069 6.21789 20.1445 6.2951 19.382L6.7248 15.138C6.75308 14.8587 6.66264 14.5803 6.47558 14.371L3.63339 11.1901C3.12273 10.6186 3.41838 9.70867 4.16744 9.54646L8.3365 8.64367C8.61089 8.58425 8.84767 8.41222 8.98897 8.16962L11.1359 4.48359Z" fill="currentColor"></path>
-                                                            </svg>
-                                                        </span>
-                                                        <!--end::Svg Icon-->
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <!--end::Rating-->
-                                            <!--begin::Status=-->
-                                            <td class="text-end pe-0" data-order="Published">
-                                                <!--begin::Status-->
-                                                <div>
-                                                    <!-- If DeletedAt is not null -->
-                                                    <span class="badge badge-light-danger" th:if="${category.getDeletedAt() != null}">Deleted</span>
-                                                    <!-- If UpdatedAt exists -->
-                                                    <span class="badge badge-light-primary" th:if="${category.getDeletedAt() == null and category.getUpdatedAt() != null}">Updated</span>
-                                                    <!-- If none of the above conditions are met -->
-                                                    <span class="badge badge-light-success" th:if="${category.getDeletedAt() == null and category.getUpdatedAt() == null}">Not Updated</span>
-                                                </div>
-                                                <!--end::Status-->
-                                            </td>
 
-                                            <!--end::Status=-->
                                             <!--begin::Action=-->
                                             <td class="text-end">
                                                 <a href="#" class="btn btn-sm btn-light btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
@@ -260,14 +175,14 @@
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <a th:href="@{/categories/edit(categoryId=${category.getId()})}" type="button" class="menu-link px-3"
+                                                        <a th:href="@{/categories/edit(categoryId=${category.getCategory_id()})}" type="button" class="menu-link px-3"
                                                            onclick="if (!(confirm('Are you sure you want to edit this category?'))) return false">Edit</a>
                                                     </div>
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <a th:if="${not #lists.isEmpty(category.getServices())}" href="#" onclick="alert('Cannot delete category with enrolled services')" class="menu-link px-3">Delete</a>
-                                                        <a class="menu-link px-3" th:unless="${not #lists.isEmpty(category.getServices())}" th:href="@{/categories/delete(categoryId=${category.getId()})}" onclick="return confirm('Are you sure you want to delete this category?')">Delete</a>
+                                                        <a th:if="${not #lists.isEmpty(category.getTotal_service())}" href="#" onclick="alert('Cannot delete category with enrolled services')" class="menu-link px-3">Delete</a>
+                                                        <a class="menu-link px-3" th:unless="${not #lists.isEmpty(category.getTotal_service())}" th:href="@{/categories/delete(categoryId=${category.getCategory_id()})}" onclick="return confirm('Are you sure you want to delete this category?')">Delete</a>
                                                     </div>
                                                     <!--end::Menu item-->
                                                 </div>
@@ -280,57 +195,21 @@
                                     </table>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
-                                        <div class="dataTables_length" id="kt_ecommerce_products_table_length">
-                                            <label>
-                                                <select id="pageSizeSelect" name="kt_ecommerce_products_table_length" aria-controls="kt_ecommerce_products_table" class="form-select form-select-sm form-select-solid">
-                                                    <option>Select the number of items</option>
-                                                    <option value="6">6 items</option>
-                                                    <option value="8">8 items</option>
-                                                    <option value="10">10 items</option>
-                                                    <option value="12">12 items</option>
-                                                </select>
-                                            </label>
 
-                                        </div>
-                                    </div>
                                     <div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
-                                        <div class="dataTables_paginate paging_simple_numbers" id="kt_ecommerce_products_table_paginate">
+                                        <div class="dataTables_paginate paging_simple_numbers">
                                             <ul class="pagination">
-                                                <li class="paginate_button page-item previous disabled" id="kt_ecommerce_products_table_previous">
-                                                    <a href="#" aria-controls="kt_ecommerce_products_table" data-dt-idx="0" tabindex="0" class="page-link">
+                                                <li class="paginate_button page-item previous "  th:classappend="${currentPage} > 1 ? '' : 'disabled'">
+                                                    <a th:href="@{/categories(page=${currentPage - 2}, size=${size})}" class="page-link">
                                                         <i class="previous"></i>
                                                     </a>
                                                 </li>
-                                                <li class="paginate_button page-item active">
-                                                    <a href="#" aria-controls="kt_ecommerce_products_table" data-dt-idx="1" tabindex="0" class="page-link">
-                                                        1
-                                                    </a>
+                                                <li class="paginate_button page-item" th:classappend="${currentPage == i} ? 'active' : ''" th:each="i : ${#numbers.sequence(1, totalPages)}">
+                                                    <a class="page-link" th:href="@{/categories(page=${i - 1}, size=${size})}"
+                                                       th:text="${i}">1</a>
                                                 </li>
-                                                <li class="paginate_button page-item ">
-                                                    <a href="#" aria-controls="kt_ecommerce_products_table" data-dt-idx="2" tabindex="0" class="page-link">
-                                                        2
-                                                    </a>
-                                                </li>
-                                                <li class="paginate_button page-item ">
-                                                    <a href="#" aria-controls="kt_ecommerce_products_table" data-dt-idx="3" tabindex="0" class="page-link">
-                                                        3
-                                                    </a>
-                                                </li>
-                                                <li class="paginate_button page-item ">
-                                                    <a href="#" aria-controls="kt_ecommerce_products_table" data-dt-idx="4" tabindex="0" class="page-link">
-                                                        4
-                                                    </a>
-                                                </li>
-                                                <li class="paginate_button page-item ">
-                                                    <a href="#" aria-controls="kt_ecommerce_products_table" data-dt-idx="5" tabindex="0" class="page-link">
-                                                        5
-                                                    </a>
-                                                </li>
-                                                <li class="paginate_button page-item next" id="kt_ecommerce_products_table_next">
-                                                    <a href="#" aria-controls="kt_ecommerce_products_table" data-dt-idx="6" tabindex="0" class="page-link">
-                                                        <i class="next"></i>
-                                                    </a>
+                                                <li class="paginate_button page-item next" th:classappend="(${currentPage} < ${totalPages}) ? '' : 'disabled'">
+                                                    <a class="page-link" th:href="@{/categories(page=${currentPage}, size=${size})}"><i class="next"></i></a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -498,105 +377,24 @@
     <script th:src="@{/js/custom/utilities/modals/create-app.js}"></script>
     <script th:src="@{/js/custom/utilities/modals/users-search.js}"></script>
 
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-
-        function searchUser() {
-            const csrfToken = $("meta[name='_csrf']").attr("content");
-            const csrfHeader = $("meta[name='_csrf_header']").attr("content") || "X-CSRF-TOKEN";
-            const codeOrPhone = $("#user-code-or-phone").val();
-
-            $.ajax({
-                url: /*[[@{/user_h/search}]]*/, // Use Thymeleaf to generate the URL
-                type: "POST",
-                data: {
-                    codeOrPhone: codeOrPhone
-                },
-                beforeSend: function(xhr) {
-                    xhr.setRequestHeader(csrfHeader, csrfToken);
-                },
-                success: function(response) {
-                    console.log(response);
-                    if (response) {
-                        const user = response;
-                        const name = user.name;
-                        const phone = user.phone;
-                        const roles = user.roles;
-
-                        let rolesHtml = ""; // Initialize empty string for roles
-
-                        // Loop through roles and build HTML string
-                        for (const role of roles) {
-                            rolesHtml += `<span class="border border-2 rounded ms-3 p-1 px-2">${role.name}</span>`;
-                        }
-                        const userHtml = `
-                                    <div class="border border-hover-primary p-4 rounded mt-7">
-                                       <div class="d-flex flex-stack">
-                                          <div class="d-flex">
-                                             <div class="symbol symbol-circle symbol-45px">
-                                                <img src="/media/avatars/300-20.jpg" alt="">
-                                             </div>
-                                             <div class="ms-5">
-                                                <div class="d-flex align-items-center">
-                                                   <a href="/" class="text-dark fw-bolder text-hover-primary fs-5 me-4">${name}</a>
-                                                </div>
-                                                <span class="text-muted fw-bold mb-3">${phone}</span>
-                                                </div>
-                                             </div>
-                                          <div class="d-flex">
-                                             <div class="d-flex text-gray-700 fw-bold fs-7">
-                                                ${rolesHtml}  </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                `;
-
-                        $("#search-result").html(userHtml);
-                    } else {
-                        $("#search-result").html(`<div class="text-danger">No user found</div>`);
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    if(jqXHR.status == 404) {
-                        $("#search-result").html(`<div class="text-dangerPhone ">No user found</div>`);
-                    } else {
-                        console.error("AJAX error:", textStatus, errorThrown);
-                        $("#search-result").html("An error occurred while searching.");
-                    }
-                }
-            });
-        }
-        /*]]>*/
-    </script>
-
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Lắng nghe sự kiện cho dropdown Page size
             document.getElementById("pageSizeSelect").addEventListener("change", function() {
                 let selectedPageSize = this.value;
-                let selectedDisplayItem = new URLSearchParams(window.location.search).get('item') ?? 'all';
-                updatePage(selectedDisplayItem, selectedPageSize);
-            });
-
-            // Lắng nghe sự kiện cho dropdown Display items
-            document.getElementById("displayItemsSelect").addEventListener("change", function() {
-                let selectedDisplayItem = this.value;
-                let selectedPageSize = new URLSearchParams(window.location.search).get('size') ?? 6;
-                updatePage(selectedDisplayItem, selectedPageSize);
+                updatePage(selectedPageSize);
             });
 
         });
 
-        function updatePage(displayItemValue, pageSizeValue) {
+        function updatePage(pageSizeValue) {
 
             let currentPage = new URLSearchParams(window.location.search).get('page');
             if (!currentPage) {
                 currentPage = 0;
             }
-            document.getElementById("displayItemsSelect").value = displayItemValue;
             document.getElementById("pageSizeSelect").value = pageSizeValue;
-            window.location.href = '/categories?page=' + currentPage + '&size=' + pageSizeValue + '&item=' + displayItemValue;
+            window.location.href = '/categories?page=' + currentPage + '&size=' + pageSizeValue;
         }
 
     </script>

@@ -50,4 +50,7 @@ public class Service {
     @OneToMany(mappedBy = "service", fetch = FetchType.LAZY)
     private List<ServicePolicyAssignment> policyAssignments;
 
+    @OneToMany(mappedBy = "service", fetch = FetchType.LAZY)
+    private List<TransactionService> transactionServices;
+
 }

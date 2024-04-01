@@ -2,6 +2,7 @@ package com.fai.brofee_fe.dto;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -14,4 +15,5 @@ public class CategoryDTO {
     private LocalDateTime updatedAt;
     private LocalDateTime deletedAt;
     private List<ServiceDTO> services;
+    private BigDecimal categoryRevenue;
 }

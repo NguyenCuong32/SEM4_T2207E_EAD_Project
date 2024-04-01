@@ -1,8 +1,7 @@
 package com.fai.brofee_fe.controller;
 
-import com.fai.brofee_fe.dto.CategoryDTO;
-import com.fai.brofee_fe.dto.ServiceCreateDTO;
-import com.fai.brofee_fe.dto.ServiceDTO;
+import com.fai.brofee_fe.dto.*;
+import com.fai.brofee_fe.entity.Category;
 import com.fai.brofee_fe.service.CategoryService;
 import com.fai.brofee_fe.service.ServiceService;
 import jakarta.validation.Valid;
@@ -13,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -56,10 +57,46 @@ public class ServiceController {
     @PostMapping("/add")
     public String saveService(@Valid @ModelAttribute("newServiceCreateDTO") ServiceCreateDTO newService, BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
+
             return "servicePage/index";
         } else {
             serviceService.createNewService(newService);
             return "redirect:/services";
         }
+    }
+
+    @GetMapping("/edit")
+    public String getServiceTOEdit(@RequestParam("serviceId") Long id, Model model) {
+        Optional<ServiceEditDTO> serviceEditDTO = serviceService.getServiceEditById(id);
+        if (serviceEditDTO.isPresent()) {
+            ServiceEditDTO editServiceDTO = serviceEditDTO.get(); // Get the actual ServiceEditDTO object
+            model.addAttribute("editServiceDTO", editServiceDTO);
+            //Get all categories
+            Iterable<CategoryDTO> getAllCategories = categoryService.getAllCategories();
+            model.addAttribute("categories", getAllCategories);
+
+            return "servicePage/edit";
+        } else {
+            return "redirect:/services";
+        }
+    }
+
+    @PostMapping("/update")
+    public String updateService(
+            @Valid @ModelAttribute("editServiceDTO") ServiceEditDTO serviceEditDTO,
+            BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "servicePage/edit";
+        } else {
+            serviceService.updateService(serviceEditDTO.getId(), serviceEditDTO);
+            return "redirect:/services";
+        }
+    }
+
+    // DELETE
+    @GetMapping("/delete")
+    public String deleteService(@RequestParam("serviceId") Long id){
+        serviceService.deleteService(id);
+        return "redirect:/services";
     }
 }

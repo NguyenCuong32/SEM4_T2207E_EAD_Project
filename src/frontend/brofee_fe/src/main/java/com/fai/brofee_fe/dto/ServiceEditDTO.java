@@ -25,5 +25,5 @@ public class ServiceEditDTO {
     private BigDecimal discount;
 
     @NotNull(message = "Category ID must not be null")
-    private Long categoryId;
+    private Long category_id;
 }
