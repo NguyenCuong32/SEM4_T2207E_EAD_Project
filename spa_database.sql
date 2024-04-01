@@ -693,3 +693,51 @@ DELIMITER ;
 
 
 
+DELIMITER $$
+
+CREATE PROCEDURE GetCategoryRevenue(
+    IN pageNum INT,
+    IN pageSize INT,
+    IN searchKeyword VARCHAR(255)
+)
+BEGIN
+    DECLARE startIdx INT DEFAULT 0;
+    DECLARE totalRecords INT DEFAULT 0;
+    DECLARE totalPages INT DEFAULT 0;
+
+    -- Tính chỉ số bắt đầu của dữ liệu cần lấy dựa trên số trang và kích thước trang
+    SET startIdx = pageNum * pageSize;
+
+    -- Tính tổng số bản ghi trong bảng category thỏa mãn điều kiện search
+    SELECT COUNT(*)
+    INTO totalRecords
+    FROM category c
+    WHERE c.deleted_at IS NULL
+    AND c.name LIKE CONCAT('%', searchKeyword, '%');
+
+    -- Tính tổng số trang
+    SET totalPages = CEIL(totalRecords / CAST(pageSize AS DECIMAL));
+
+    -- Truy vấn dữ liệu phân trang và tìm kiếm
+    SELECT c.id AS category_id,
+           c.name AS category_name,
+           c.icon AS category_icon,
+           (SELECT COUNT(*) FROM service WHERE category_id = c.id) AS total_service,
+           SUM(ts.price) AS total_revenue,
+           totalPages AS total_pages
+           
+    FROM category c
+    LEFT JOIN service s ON c.id = s.category_id
+    LEFT JOIN transaction_service ts ON s.id = ts.service_id
+    WHERE c.deleted_at IS NULL
+    AND c.name LIKE CONCAT('%', searchKeyword, '%')
+    GROUP BY c.id, c.name, c.icon
+    LIMIT startIdx, pageSize;
+    
+    -- Trả về tổng số trang
+    SELECT totalPages AS TotalPages;
+END$$
+
+DELIMITER ;
+
+
