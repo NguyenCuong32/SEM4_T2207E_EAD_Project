@@ -41,8 +41,8 @@ public class EventController {
     }
 
     @PostMapping("/addE")
-    public String saveEEvent(@ModelAttribute("event") EventDto event, @RequestParam("bannerUpload") MultipartFile bannerUpload, @RequestParam("name") String name, @RequestParam("description") String description, @RequestParam("timeStart") LocalDateTime timeStart, @RequestParam("timeEnd") LocalDateTime timeEnd, @RequestParam("status") int status) throws IOException {
-        eventService.saveEventToDB(bannerUpload,name,description,timeStart,timeEnd,status);
+    public String saveEEvent(@ModelAttribute("event") EventDto event, @RequestParam("bannerUpload") MultipartFile bannerUpload) throws IOException {
+        eventService.saveEventToDB(event,bannerUpload);
         return "redirect:/event/list";
     }
 

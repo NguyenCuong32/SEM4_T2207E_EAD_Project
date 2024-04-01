@@ -34,7 +34,7 @@ public class EventService implements IEventService{
         return getEventId.get();
     }
 
-    public void  saveEventToDB(MultipartFile file,String name,String description,LocalDateTime TimeStart,LocalDateTime timeEnd ,int status)
+    public void  saveEventToDB(EventDto event ,MultipartFile file)
     {
         Event p = new Event();
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
@@ -43,18 +43,16 @@ public class EventService implements IEventService{
             System.out.println("not a a valid file");
         }
         try {
-            byte[] bytes = file.getBytes();
-            String base64String = Base64.getEncoder().encodeToString(bytes);
-            p.setBanner(base64String);
+            p.setBanner(Base64.getEncoder().encodeToString(file.getBytes()));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        p.setName(name);
-        p.setDescription(description);
-        p.setTimeStart(TimeStart);
-        p.setTimeEnd(timeEnd);
+        p.setName(event.getName());
+        p.setDescription(event.getDescription());
+        p.setTimeStart(event.getTimeStart());
+        p.setTimeEnd(event.getTimeEnd());
         p.setEventCode(RandomStringUtils.randomAlphanumeric(8));
-        p.setStatus(status);
+        p.setStatus(event.getStatus());
 
         eventRepository.save(p);
     }
