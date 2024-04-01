@@ -70,6 +70,14 @@ public class BranchController {
         if(bindingResult.hasErrors()){
             return "html/branch/Edit";
         }
+
+        //Check ExistingBranch
+        Branch existingBranch = iBranchRepository.findBranchByName(branchDto.getName());
+        if(existingBranch !=null){
+            model.addAttribute("errorMessage", "Branch's Name already exists.");
+            return "html/branch/Add";
+        }
+
         //Sau nay can viet them doan kiem tra id cua edit co ton tai khong -> dua ra trang xu ly loi rieng
         Optional<Branch> branchOptional = iBranchService.getBranchById(id);
         if(branchOptional.isPresent()){
