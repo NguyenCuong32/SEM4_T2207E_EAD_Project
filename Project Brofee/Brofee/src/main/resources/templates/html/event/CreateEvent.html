@@ -29,7 +29,7 @@
                         </div>
 
                         <div class="content_child px-5 pt-3 pb-3">
-                            <form action="#" th:action="@{/event/save}" th:object="${event}" method="POST" enctype="multipart/form-data">
+                            <form action="#" th:action="@{/event/addE}" th:object="${event}" method="POST" enctype="multipart/form-data">
                                 <div class="row mb-3">
                                   <div class="col-6 mb-3">
                                       <div th:errors="*{name}" class="text-danger"></div>
@@ -56,8 +56,9 @@
                                     </div>
                                     <div class="col-4 mb-3">
                                         <label>Banner</label>
-                                        <input type="file" id="bannerUpload" name="bannerUpload" accept="image/*" required>
+                                        <input type="file" id="bannerUpload" name="bannerUpload"  required>
                                     </div>
+
                                 </div>
                                 <div class="row mb-3 justify-content-between">
                                     <div class="col-12">

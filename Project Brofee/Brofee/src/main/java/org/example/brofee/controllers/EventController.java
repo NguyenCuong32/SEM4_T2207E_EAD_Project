@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,6 +37,12 @@ public class EventController {
     @PostMapping("/save")
     public String saveEvent(@ModelAttribute("event") EventDto event,@RequestParam("bannerUpload") MultipartFile bannerUpload) throws IOException {
         eventService.createEvent(event,bannerUpload);
+        return "redirect:/event/list";
+    }
+
+    @PostMapping("/addE")
+    public String saveEEvent(@ModelAttribute("event") EventDto event, @RequestParam("bannerUpload") MultipartFile bannerUpload, @RequestParam("name") String name, @RequestParam("description") String description, @RequestParam("timeStart") LocalDateTime timeStart, @RequestParam("timeEnd") LocalDateTime timeEnd, @RequestParam("status") int status) throws IOException {
+        eventService.saveEventToDB(bannerUpload,name,description,timeStart,timeEnd,status);
         return "redirect:/event/list";
     }
 

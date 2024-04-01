@@ -14,10 +14,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -34,6 +32,31 @@ public class EventService implements IEventService{
     public Event getEventById(UUID id) {
         Optional<Event> getEventId = eventRepository.findById(id);
         return getEventId.get();
+    }
+
+    public void  saveEventToDB(MultipartFile file,String name,String description,LocalDateTime TimeStart,LocalDateTime timeEnd ,int status)
+    {
+        Event p = new Event();
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        if(fileName.contains(".."))
+        {
+            System.out.println("not a a valid file");
+        }
+        try {
+            byte[] bytes = file.getBytes();
+            String base64String = Base64.getEncoder().encodeToString(bytes);
+            p.setBanner(base64String);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        p.setName(name);
+        p.setDescription(description);
+        p.setTimeStart(TimeStart);
+        p.setTimeEnd(timeEnd);
+        p.setEventCode(RandomStringUtils.randomAlphanumeric(8));
+        p.setStatus(status);
+
+        eventRepository.save(p);
     }
 
     @Override
