@@ -29,3 +29,4 @@ BEGIN
     DEALLOCATE PREPARE stmt;
 END;
 
+-- Example Call: CALL GetPaginatedData(1,5,'users')
