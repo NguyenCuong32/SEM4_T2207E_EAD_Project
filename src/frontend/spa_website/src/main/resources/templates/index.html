@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Home Page || mellis || mellis HTML 5 Template </title>
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/images/favicons/apple-touch-icon.png}" />
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicons/favicon-32x32.png}" />
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicons/favicon-16x16.png}" />
+    <link rel="manifest" th:href="@{/images/favicons/site.webmanifest}" />
+    <meta name="description" content="mellis HTML 5 Template " />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/vendors/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/animate/animate.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/animate/custom-animate.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/fontawesome/css/all.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/jarallax/jarallax.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/jquery-magnific-popup/jquery.magnific-popup.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/nouislider/nouislider.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/nouislider/nouislider.pips.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/odometer/odometer.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/swiper/swiper.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/mellis-icons/style.css}">
+    <link rel="stylesheet" th:href="@{/vendors/tiny-slider/tiny-slider.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/reey-font/stylesheet.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.carousel.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.theme.default.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/bxslider/jquery.bxslider.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/bootstrap-select/css/bootstrap-select.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/vegas/vegas.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/jquery-ui/jquery-ui.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/timepicker/timePicker.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/twenty-twenty/twentytwenty.css}" />
+
+    <!-- template styles -->
+    <link rel="stylesheet" th:href="@{/css/mellis.css}" />
+    <link rel="stylesheet" th:href="@{/css/mellis-responsive.css}" />
+
+    <!-- our project just needs Font Awesome Solid + Brands -->
+    <link th:href="@{/fontawesome/css/fontawesome.css}" rel="stylesheet" />
+    <link th:href="@{/fontawesome/css/brands.css}" rel="stylesheet" />
+    <link th:href="@{/fontawesome/css/solid.css}" rel="stylesheet" />
+
+    <!-- Flaticon -->
+    <link th:href="@{/flaticon/css/uicons-thin-straight.css}" rel="stylesheet">
+</head>
+
+<body>
+
+
+
+    <div class="preloader">
+        <div class="preloader__image"></div>
+    </div>
+    <!-- /.preloader -->
+
+
+
+
+    <div class="page-wrapper">
+        <header class="main-header-three">
+            <nav class="main-menu main-menu-three">
+                <div class="main-menu-three__wrapper">
+                    <div class="container">
+                        <div class="main-menu-three__wrapper-inner">
+                            <div class="main-menu-three__logo">
+                                <a th:href="@{/}"><img th:src="@{/images/resources/logo-3.png}" alt=""></a>
+                            </div>
+                            <div class="main-menu-three__wrapper-inner-content">
+                                <div class="main-menu-three__search-box">
+                                    <a href="#"
+                                        class="main-menu-three__search search-toggler icon-magnifying-glass"></a>
+                                </div>
+                                <div class="main-menu-three__main-menu-box">
+                                    <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
+                                    <ul class="main-menu__list">
+                                        <li>
+                                            <a th:href="@{/}">Home</a>
+                                        </li>
+                                        <li>
+                                            <a th:href="@{/services}">Our Services</a>
+                                        </li>
+                                        <li>
+                                            <a th:href="@{/}">Book Appointment</a>
+                                        </li>
+                                        <li>
+                                            <a th:href="@{/}">Events</a>
+                                        </li>
+<!--                                        <li class="dropdown">-->
+<!--                                            <a href="#">Shop</a>-->
+<!--                                            <ul>-->
+<!--                                                <li><a href="products.html">Products</a></li>-->
+<!--                                                <li><a href="product-details.html">Product Details</a></li>-->
+<!--                                            </ul>-->
+<!--                                        </li>-->
+                                        <li>
+                                            <a href="contact.html">Contact</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="main-menu-three__cart-box" sec:authorize="isAnonymous()">
+                                    <a th:href="@{/login}" class="main-menu-three__cart" style="font-size: 28px; padding-top: 5px">
+                                        <i class="fi fi-ts-circle-user"></i>
+                                    </a>
+                                </div>
+                                <div class="main-menu-three__cart-box" sec:authorize="isAuthenticated()">
+                                    <a  id="user-avatar-btn" class="main-menu-three__cart" style="font-size: 28px; padding-top: 5px">
+                                        <i class="fi fi-ts-circle-user"></i>
+                                    </a>
+                                    <div class="user-menu" id="user-menu">
+                                        <h3>
+                                            <div th:text="${#authentication.principal.user.name}">Someone Famous</div>
+                                            <span sec:authentication="principal.user.email">Website Designer</span>
+                                        </h3>
+                                        <ul>
+                                            <li>
+                                                <img th:src="@{/images/user.png}" /><a th:href="@{/account}">My profile</a>
+                                            </li>
+                                            <li>
+                                                <img th:src="@{/images/transaction.png}" /><a th:href="@{/account/listed-auctions}">Transaction</a>
+                                            </li>
+                                            <li>
+                                                <img th:src="@{/images/commission.png}" /><a href="#">Commission</a>
+                                            </li>
+                                            <li>
+                                                <img th:src="@{/images/logout.png}" />
+                                                <form th:action="@{/logout}" method="post">
+                                                    <button type="submit" class="button-unstyle">Logout</button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <div class="stricky-header stricked-menu main-menu main-menu-three">
+            <div class="sticky-header__content">
+                <div class="main-menu-three__wrapper">
+                    <div class="container">
+                        <div class="main-menu-three__wrapper-inner">
+                            <div class="main-menu-three__logo">
+                                <a th:href="@{/}"><img th:src="@{/images/resources/logo-3.png}" alt=""></a>
+                            </div>
+                            <div class="main-menu-three__wrapper-inner-content">
+                                <div class="main-menu-three__search-box">
+                                    <a href="#"
+                                       class="main-menu-three__search search-toggler icon-magnifying-glass"></a>
+                                </div>
+                                <div class="main-menu-three__main-menu-box">
+                                    <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
+                                    <ul class="main-menu__list">
+                                        <li>
+                                            <a th:href="@{/}">Home</a>
+                                        </li>
+                                        <li>
+                                            <a th:href="@{/services}">Our Services</a>
+                                        </li>
+                                        <li>
+                                            <a th:href="@{/}">Book Appointment</a>
+                                        </li>
+                                        <li>
+                                            <a th:href="@{/}">Events</a>
+                                        </li>
+                                        <!--                                        <li class="dropdown">-->
+                                        <!--                                            <a href="#">Shop</a>-->
+                                        <!--                                            <ul>-->
+                                        <!--                                                <li><a href="products.html">Products</a></li>-->
+                                        <!--                                                <li><a href="product-details.html">Product Details</a></li>-->
+                                        <!--                                            </ul>-->
+                                        <!--                                        </li>-->
+                                        <li>
+                                            <a href="contact.html">Contact</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="main-menu-three__cart-box" sec:authorize="isAnonymous()">
+                                    <a th:href="@{/login}" class="main-menu-three__cart" style="font-size: 28px; padding-top: 5px">
+                                        <i class="fi fi-ts-circle-user"></i>
+                                    </a>
+                                </div>
+                                <div class="main-menu-three__cart-box" sec:authorize="isAuthenticated()">
+                                    <a  id="user-avatar-btn-2" class="main-menu-three__cart" style="font-size: 28px; padding-top: 5px">
+                                        <i class="fi fi-ts-circle-user"></i>
+                                    </a>
+                                    <div class="user-menu" id="user-menu-2">
+                                        <h3>
+                                            <div th:text="${#authentication.principal.user.name}">Someone Famous</div>
+                                            <span sec:authentication="principal.user.email">Website Designer</span>
+                                        </h3>
+                                        <ul>
+                                            <li>
+                                                <img th:src="@{/images/user.png}" /><a th:href="@{/account}">My profile</a>
+                                            </li>
+                                            <li>
+                                                <img th:src="@{/images/transaction.png}" /><a th:href="@{/account/listed-auctions}">Transaction</a>
+                                            </li>
+                                            <li>
+                                                <img th:src="@{/images/commission.png}" /><a href="#">Commission</a>
+                                            </li>
+                                            <li>
+                                                <img th:src="@{/images/logout.png}" />
+                                                <form th:action="@{/logout}" method="post">
+                                                    <button type="submit" class="button-unstyle">Logout</button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.sticky-header__content -->
+        </div><!-- /.stricky-header -->
+
+
+        <!--Main Slider Start-->
+        <section class="main-slider-three">
+            <div class="swiper-container thm-swiper__slider" data-swiper-options='{"slidesPerView": 1, "loop": true,
+        "effect": "fade",
+        "pagination": {
+        "el": "#main-slider-pagination",
+        "type": "bullets",
+        "clickable": true
+        },
+        "navigation": {
+        "nextEl": "#main-slider__swiper-button-next",
+        "prevEl": "#main-slider__swiper-button-prev"
+        },
+        "autoplay": {
+        "delay": 5000
+        }}'>
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide">
+                        <div class="image-layer-three"
+                            th:style="'background-image: url(\'' + @{/images/backgrounds/main-slider-3-1.jpg} + '\')'"></div>
+                        <!-- /.image-layer -->
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="main-slider-three__content">
+                                        <p class="main-slider-three__sub-title">ideal place to unwind</p>
+                                        <h2 class="main-slider-three__title">Place of Beauty</h2>
+                                        <div class="main-slider-three__btn-box">
+                                            <a href="services.html" class="thm-btn main-slider-three__btn">Discover
+                                                more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="image-layer-three"
+                            th:style="'background-image: url(\'' + @{/images/backgrounds/main-slider-3-2.jpg} + '\')'"></div>
+                        <!-- /.image-layer -->
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="main-slider-three__content">
+                                        <p class="main-slider-three__sub-title">ideal place to unwind</p>
+                                        <h2 class="main-slider-three__title">Place of Beauty</h2>
+                                        <div class="main-slider-three__btn-box">
+                                            <a href="services.html" class="thm-btn main-slider-three__btn">Discover
+                                                more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="swiper-slide">
+                        <div class="image-layer-three"
+                            th:style="'background-image: url(\'' + @{/images/backgrounds/main-slider-3-3.jpg} + '\')'"></div>
+                        <!-- /.image-layer -->
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="main-slider-three__content">
+                                        <p class="main-slider-three__sub-title">ideal place to unwind</p>
+                                        <h2 class="main-slider-three__title">Place of Beauty</h2>
+                                        <div class="main-slider-three__btn-box">
+                                            <a href="services.html" class="thm-btn main-slider-three__btn">Discover
+                                                more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <div class="swiper-pagination" id="main-slider-pagination"></div>
+                <!-- If we need navigation buttons -->
+
+
+            </div>
+        </section>
+        <!--Main Slider End-->
+
+        <!--Opening Hour Start-->
+        <section class="opening-hour">
+            <div class="container">
+                <div class="opening-hour__inner">
+                    <div class="opening-hour__left">
+                        <div class="icon">
+                            <span class="icon-alarm-clock"></span>
+                        </div>
+                        <h3>Opening Hours</h3>
+                    </div>
+                    <div class="opening-hour__right">
+                        <ul class="opening-hour__single list-unstyled">
+                            <li>
+                                <p>Monday to Friday</p>
+                                <h3>09:00 am - 19:00 pm</h3>
+                            </li>
+                            <li>
+                                <p>Saturday to Sunday</p>
+                                <h3>8:00 am to 3:30 pm</h3>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Opening Hour End-->
+
+        <!--Our Intro Start-->
+        <section class="our-intro">
+            <div class="our-intro__shape-1 float-bob-y">
+                <img th:src="@{/images/shapes/our-intro-shape-1.png}" alt="">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="our-intro__left">
+                            <div class="our-intro__img-box wow slideInLeft" data-wow-delay="100ms"
+                                data-wow-duration="2500ms">
+                                <div class="our-intro__img">
+                                    <img th:src="@{/images/resources/our-intro-img-1.jpg}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="our-intro__right">
+                            <div class="section-title text-left">
+                                <span class="section-title__tagline">Our introduction</span>
+                                <h2 class="section-title__title">We’re Experienced Spa
+                                    & Beauty Experts </h2>
+                            </div>
+                            <p class="our-intro__text">There are many variations of passages of is but the majority have
+                                suffered alteration in some form, by injected humou or randomised words even slightly
+                                believable.</p>
+                            <div class="our-intro__points-and-spa-center">
+                                <div class="our-intro__points-box">
+                                    <ul class="our-intro__points list-unstyled">
+                                        <li>
+                                            <div class="icon">
+                                                <span class="fa fa-check"></span>
+                                            </div>
+                                            <div class="text">
+                                                <p>Making this the first true internet</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="icon">
+                                                <span class="fa fa-check"></span>
+                                            </div>
+                                            <div class="text">
+                                                <p>Lorem Ipsum is not simply text</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="icon">
+                                                <span class="fa fa-check"></span>
+                                            </div>
+                                            <div class="text">
+                                                <p>If you are going to a passage</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="our-intro__person">
+                                        <div class="our-intro__person-img">
+                                            <img th:src="@{/images/resources/our-intro-person-img.jpg}" alt="">
+                                        </div>
+                                        <div class="our-intro__person-name">
+                                            <h3>Sarah Eve</h3>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="our-intro__spa-center">
+                                    <div class="our-intro__spa-center-icon">
+                                        <span class="icon-spa-candles"></span>
+                                    </div>
+                                    <h3 class="our-intro__spa-center-title">Beauty &
+                                        <br> Spa Center</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Our Intro End-->
+
+        <!--Services Three Start-->
+        <section class="services-three">
+            <div class="container">
+                <div class="services-three__top">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="services-three__left">
+                                <div class="section-title text-left">
+                                    <span class="section-title__tagline">Our treatments</span>
+                                    <h2 class="section-title__title">What We’re Offering</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6">
+                            <div class="services-three__right">
+                                <p class="services-three__text">There are many variations of passages of lorem Ipsum
+                                    available, but the majority simply free text now have suf-fered alteration.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="services-three__bottom">
+                    <div class="row">
+                        <!--Services Three Single Start-->
+                        <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp"  th:each="category,  i : ${categories}" th:attr="data-wow-delay=${(i.index * 100 + 100) + 'ms'}">
+                            <div class="services-three__single">
+                                <div class="services-three__shape-1">
+                                    <img th:src="@{/images/shapes/services-three-shape-1.png}" alt="">
+                                </div>
+                                <div class="services-three__icon">
+                                    <img th:src="${category.icon}" />
+                                </div>
+                                <h3 class="services-three__title"><a href="body-treatments.html" th:text="${category.name}"></a></h3>
+                                <p class="services-three__text">Sed quia magni doles eos qui ration volupta tem sequi
+                                    nesciunt eque porro.</p>
+                            </div>
+                        </div>
+                        <!--Services Three Single End-->
+                    </div>
+                    <div class="services-three__btn-box">
+                        <a href="services.html" class="services-three__btn thm-btn">View All Services</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Services Three End-->
+
+        <!--Promotions One Start-->
+        <section class="promotions-one">
+            <div class="container">
+                <div class="row">
+                    <!--Promotions One Single Start-->
+                    <div class="col-xl-6 col-lg-6 wow fadeInUp" th:each="event, i : ${events}" th:attr="data-wow-delay=${(i.index * 100 + 100) + 'ms'}">
+                        <div class="promotions-one__single">
+                            <div class="promotions-one__single-bg"
+                                th:style="'background-image: url(\'' + ${event.banner} + '\')'">
+                            </div>
+                            <div class="promotions-one__shape-1">
+                                <img th:src="@{/images/shapes/promotions-one-shape-1.png}" alt="">
+                            </div>
+                            <div class="promotions-one__single-bg-2"
+                                th:style="'background-image: url(\'' + @{/images/backgrounds/promotion-one-single-bg-2.png} + '\')'">
+                            </div>
+                            <h3 class="promotions-one__title two-line-text" th:text="${event.name}" ></h3>
+                            <a th:href="@{/event/{id}(id=${event.id})}" class="promotions-one__btn thm-btn">View Detail</a>
+                            <div class="promotions-one__discount">
+                                <h3>
+                                    <span th:text="${#numbers.formatDecimal(event.maxDiscount, 2, 0) + '%'}"></span>
+                                    <br> off
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Promotions One Single End-->
+                </div>
+            </div>
+        </section>
+        <!--Promotions One End-->
+
+        <!--Testimonial Three Start-->
+        <section class="testimonial-three">
+            <div class="testimonial-three__bg"
+                th:style="'background-image: url(\'' + @{/images/backgrounds/testimonial-three-bg.jpg} + '\')'"></div>
+            <div class="container">
+                <div class="testimonial-three__slider">
+
+                    <div class="swiper-container" id="testimonial-three__thumb">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="testimonial-three__img-holder">
+                                    <img th:src="@{/images/testimonial/testimonial-3-1.jpg}" alt="">
+                                </div>
+                            </div><!-- /.swiper-slide -->
+                            <div class="swiper-slide">
+                                <div class="testimonial-three__img-holder">
+                                    <img th:src="@{/images/testimonial/testimonial-3-2.jpg}" alt="">
+                                </div>
+                            </div><!-- /.swiper-slide -->
+                            <div class="swiper-slide">
+                                <div class="testimonial-three__img-holder">
+                                    <img th:src="@{/images/testimonial/testimonial-3-3.jpg}" alt="">
+                                </div>
+                            </div><!-- /.swiper-slide -->
+                        </div><!-- /.swiper-wrapper -->
+                    </div><!-- /#testimonials-one__thumb.swiper-container -->
+
+                    <div class="testimonial-three__main-content">
+                        <div class="swiper-container" id="testimonial-three__carousel">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="testimonial-three__client-info">
+                                        <div class="testimonial-three__client-img">
+                                            <img th:src="@{/images/testimonial/testimonial-three-client-img-1-1.jpg}"
+                                                alt="">
+                                            <div class="testimonial-three__quote">
+                                                <img th:src="@{/images/icon/icon-quote-two.png}" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-three__client-content">
+                                            <div class="testimonial-three__client-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <p class="testimonial-three__client-text">Saturday is a day for the spa.
+                                                It's not selfish to love yourself, take care of yourself, and to make
+                                                your happiness a priority.</p>
+                                            <div class="testimonial-three__client-details">
+                                                <div class="testimonial-three__client-title-box">
+                                                    <h4 class="testimonial-three__client-name">Aleesha Brown
+                                                    </h4>
+                                                    <p class="testimonial-three__client-sub-title">
+                                                        Customer</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- /.swiper-slide -->
+
+                                <div class="swiper-slide">
+                                    <div class="testimonial-three__client-info">
+                                        <div class="testimonial-three__client-img">
+                                            <img th:src="@{/images/testimonial/testimonial-three-client-img-1-2.jpg}"
+                                                alt="">
+                                            <div class="testimonial-three__quote">
+                                                <img th:src="@{/images/icon/icon-quote-two.png}" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-three__client-content">
+                                            <div class="testimonial-three__client-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <p class="testimonial-three__client-text">Saturday is a day for the spa.
+                                                It's not selfish to love yourself, take care of yourself, and to make
+                                                your happiness a priority.</p>
+                                            <div class="testimonial-three__client-details">
+                                                <div class="testimonial-three__client-title-box">
+                                                    <h4 class="testimonial-three__client-name">Aleesha Brown
+                                                    </h4>
+                                                    <p class="testimonial-three__client-sub-title">
+                                                        Customer</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- /.swiper-slide -->
+
+                                <div class="swiper-slide">
+                                    <div class="testimonial-three__client-info">
+                                        <div class="testimonial-three__client-img">
+                                            <img th:src="@{/images/testimonial/testimonial-three-client-img-1-1.jpg}"
+                                                alt="">
+                                            <div class="testimonial-three__quote">
+                                                <img th:src="@{/images/icon/icon-quote-two.png}" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-three__client-content">
+                                            <div class="testimonial-three__client-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <p class="testimonial-three__client-text">Saturday is a day for the spa.
+                                                It's not selfish to love yourself, take care of yourself, and to make
+                                                your happiness a priority.</p>
+                                            <div class="testimonial-three__client-details">
+                                                <div class="testimonial-three__client-title-box">
+                                                    <h4 class="testimonial-three__client-name">Aleesha Brown
+                                                    </h4>
+                                                    <p class="testimonial-three__client-sub-title">
+                                                        Customer</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div><!-- /.swiper-slide -->
+
+                            </div><!-- /.swiper-wrapper -->
+                        </div>
+                        <div id="testimonials-one__carousel-pagination"></div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!--Testimonial Three End-->
+
+        <!--Spa Center Two Start-->
+        <section class="spa-center-two">
+            <div class="spa-center-two__bg jarallax" data-jarallax data-speed="0.2" data-imgPosition="50% 0%"
+                th:style="'background-image: url(\'' + @{/images/backgrounds/spa-center-two-bg.jpg} + '\')'"></div>
+            <div class="container">
+                <div class="spa-center-two__inner">
+                    <div class="spa-center-two__title-box">
+                        <h3 class="spa-center-two__title">Modern Beauty & Spa Center</h3>
+                    </div>
+                    <a href="services.html" class="spa-center-two__btn thm-btn">Discover more</a>
+                </div>
+            </div>
+        </section>
+        <!--Spa Center Two End-->
+
+        <!--Three POints Start-->
+        <section class="three-points">
+            <div class="container">
+                <div class="three-points__wrap">
+                    <div class="three-points__inner">
+                        <div class="three-points__shape-1 float-bob-y">
+                            <img th:src="@{/images/shapes/three-points-shape-1.png}" alt="">
+                        </div>
+                        <ul class="three-points__list list-unstyled">
+                            <li>
+                                <div class="three-points__icon">
+                                    <span class="fa fa-check"></span>
+                                </div>
+                                <div class="three-points__content">
+                                    <h3 class="three-points__title">Expert Staff</h3>
+                                    <p class="three-points__text">Lorem Ipsum nibh vel aliquet. Aenean sollic tudin,
+                                        lorem is simply free text.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="three-points__icon">
+                                    <span class="fa fa-check"></span>
+                                </div>
+                                <div class="three-points__content">
+                                    <h3 class="three-points__title">Quality Products</h3>
+                                    <p class="three-points__text">Lorem Ipsum nibh vel aliquet. Aenean sollic tudin,
+                                        lorem
+                                        is simply free text.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="three-points__icon">
+                                    <span class="fa fa-check"></span>
+                                </div>
+                                <div class="three-points__content">
+                                    <h3 class="three-points__title">Best Place</h3>
+                                    <p class="three-points__text">Lorem Ipsum nibh vel aliquet. Aenean sollic tudin,
+                                        lorem
+                                        is simply free text.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Three POints End-->
+
+        <!--Blog One Start-->
+        <section class="blog-one">
+            <div class="container">
+                <div class="section-title text-center">
+                    <span class="section-title__tagline">Blog Posts</span>
+                    <h2 class="section-title__title">Latest News & Articles</h2>
+                </div>
+                <div class="row">
+                    <!--Blog One Single Start-->
+                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="100ms">
+                        <div class="blog-one__single">
+                            <div class="blog-one__img">
+                                <img th:src="@{/images/blog/blog-1-1.jpg}" alt="">
+                            </div>
+                            <div class="blog-one__content">
+                                <div class="blog-one__date">
+                                    <p>28</p>
+                                    <span>july</span>
+                                </div>
+                                <ul class="blog-one__meta list-unstyled">
+                                    <li>
+                                        <a href="#"><i class="far fa-user-circle"></i>Admin</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="far fa-comments"></i>2 Comments</a>
+                                    </li>
+                                </ul>
+                                <h3 class="blog-one__title"><a href="#">Best place of true
+                                        <br> splander</a></h3>
+                                <p class="blog-one__text">Lorem ipsum dolor sit amet, coned sectetur notted elit do.</p>
+                                <div class="blog-one__read-more">
+                                    <a href="#">Read more <span class="icon-right-arrow"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Blog One Single End-->
+                    <!--Blog One Single Start-->
+                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="200ms">
+                        <div class="blog-one__single">
+                            <div class="blog-one__img">
+                                <img th:src="@{/images/blog/blog-1-2.jpg}" alt="">
+                            </div>
+                            <div class="blog-one__content">
+                                <div class="blog-one__date">
+                                    <p>28</p>
+                                    <span>july</span>
+                                </div>
+                                <ul class="blog-one__meta list-unstyled">
+                                    <li>
+                                        <a href="#"><i class="far fa-user-circle"></i>Admin</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="far fa-comments"></i>2 Comments</a>
+                                    </li>
+                                </ul>
+                                <h3 class="blog-one__title"><a href="#">Top 6 tips for <br>
+                                        choosing a day spa</a></h3>
+                                <p class="blog-one__text">Lorem ipsum dolor sit amet, coned sectetur notted elit do.</p>
+                                <div class="blog-one__read-more">
+                                    <a href="#">Read more <span class="icon-right-arrow"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Blog One Single End-->
+                    <!--Blog One Single Start-->
+                    <div class="col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay="300ms">
+                        <div class="blog-one__single">
+                            <div class="blog-one__img">
+                                <img th:src="@{/images/blog/blog-1-3.jpg}" alt="">
+                            </div>
+                            <div class="blog-one__content">
+                                <div class="blog-one__date">
+                                    <p>28</p>
+                                    <span>july</span>
+                                </div>
+                                <ul class="blog-one__meta list-unstyled">
+                                    <li>
+                                        <a href="#"><i class="far fa-user-circle"></i>Admin</a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="far fa-comments"></i>2 Comments</a>
+                                    </li>
+                                </ul>
+                                <h3 class="blog-one__title"><a href="#">Best ocean islands <br>
+                                        for winter sun</a></h3>
+                                <p class="blog-one__text">Lorem ipsum dolor sit amet, coned sectetur notted elit do.</p>
+                                <div class="blog-one__read-more">
+                                    <a href="#">Read more <span class="icon-right-arrow"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Blog One Single End-->
+                </div>
+            </div>
+        </section>
+        <!--Blog One End-->
+
+        <!--Brand One Start-->
+        <section class="brand-two">
+            <div class="container">
+                <div class="thm-swiper__slider swiper-container" data-swiper-options='{"spaceBetween": 100,
+                "slidesPerView": 5,
+                "loop": true,
+                "navigation": {
+                    "nextEl": "#brand-one__swiper-button-next",
+                    "prevEl": "#brand-one__swiper-button-prev"
+                },
+                "autoplay": { "delay": 5000 },
+                "breakpoints": {
+                    "0": {
+                        "spaceBetween": 30,
+                        "slidesPerView": 2
+                    },
+                    "375": {
+                        "spaceBetween": 30,
+                        "slidesPerView": 2
+                    },
+                    "575": {
+                        "spaceBetween": 30,
+                        "slidesPerView": 3
+                    },
+                    "767": {
+                        "spaceBetween": 50,
+                        "slidesPerView": 4
+                    },
+                    "991": {
+                        "spaceBetween": 50,
+                        "slidesPerView": 5
+                    },
+                    "1199": {
+                        "spaceBetween": 100,
+                        "slidesPerView": 5
+                    }
+                }}'>
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <img th:src="@{/images/brand/brand-2-1.png}" alt="">
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <img th:src="@{/images/brand/brand-2-2.png}" alt="">
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <img th:src="@{/images/brand/brand-2-3.png}" alt="">
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <img th:src="@{/images/brand/brand-2-4.png}" alt="">
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <img th:src="@{/images/brand/brand-2-5.png}" alt="">
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <img th:src="@{/images/brand/brand-2-1.png}" alt="">
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <img th:src="@{/images/brand/brand-2-2.png}" alt="">
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <img th:src="@{/images/brand/brand-2-3.png}" alt="">
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <img th:src="@{/images/brand/brand-2-4.png}" alt="">
+                        </div><!-- /.swiper-slide -->
+                        <div class="swiper-slide">
+                            <img th:src="@{/images/brand/brand-2-5.png}" alt="">
+                        </div><!-- /.swiper-slide -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Brand One End-->
+
+        <!--Contact One Start-->
+        <section class="contact-one">
+            <div class="contact-one__shape-1 float-bob-x">
+                <img th:src="@{/images/shapes/contact-one-shape-1.png}" alt="">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-7">
+                        <div class="contact-one__left">
+                            <div class="section-title text-left">
+                                <span class="section-title__tagline">Contact us</span>
+                                <h2 class="section-title__title">Send a Message or Book
+                                    Our Services</h2>
+                            </div>
+                            <p class="contact-one__text">Lorem ipsum dolor sit amet, conse ctetur adipisicing elit sed
+                                do eiusm od tempor ut labore. sit simply free text amet scelerisque eros. Phasellus
+                                hendrerit neque a augue.</p>
+                            <div class="contact-one__img-and-counter">
+                                <div class="contact-one__img">
+                                    <img th:src="@{/images/resources/contact-one-img.jpg}" alt="">
+                                </div>
+                                <ul class="contact-one__counter list-unstyled">
+                                    <li>
+                                        <div class="contact-one__count-box">
+                                            <h3 class="odometer" data-count="8963">00</h3>
+                                        </div>
+                                        <p class="contact-one__count-text">Massages & Therapies</p>
+                                    </li>
+                                    <li>
+                                        <div class="contact-one__count-box">
+                                            <h3 class="odometer" data-count="326">00</h3>
+                                        </div>
+                                        <p class="contact-one__count-text">Happy Repeat Clients</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-5">
+                        <div class="contact-one__right">
+                            <div class="contact-one__content">
+                                <form action="assets/inc/sendemail.php" class="contact-one__form contact-form-validated"
+                                    novalidate="novalidate">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div class="contact-one__form-input-box">
+                                                <input type="text" placeholder="Your Name" name="name">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div class="contact-one__form-input-box">
+                                                <input type="email" placeholder="Email Address" name="email">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="contact-one__form-input-box">
+                                                <input type="text" placeholder="Phone" name="Phone">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="contact-one__form-input-box">
+                                                <input type="text" placeholder="Select Service" name="Select Service">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="contact-one__form-input-box text-message-box">
+                                            <textarea name="message" placeholder="Write Message"></textarea>
+                                        </div>
+                                        <div class="contact-one__btn-box">
+                                            <button type="submit" class="thm-btn contact-one__btn">Send a
+                                                message</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="result"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Contact One End-->
+
+        <!--Instagram Two End-->
+        <section class="instagram-two">
+            <div class="container">
+                <div class="section-title text-center">
+                    <span class="section-title__tagline">follow on</span>
+                    <h2 class="section-title__title">Our Instagram</h2>
+                </div>
+                <div class="instagram-two__bottom">
+                    <div class="instagram-two__carousel thm-owl__carousel owl-theme owl-carousel" data-owl-options='{
+                        "items": 1,
+                        "margin": 0,
+                        "smartSpeed": 700,
+                        "loop":true,
+                        "autoplay": 6000,
+                        "nav":false,
+                        "dots":false,
+                        "navText": ["<span class=\"icon-left-arrow\"></span>","<span class=\"icon-right-arrow\"></span>"],
+                        "responsive":{
+                            "0":{
+                                "items":1
+                            },
+                            "768":{
+                                "items":3
+                            },
+                            "992":{
+                                "items": 4
+                            },
+                            "1200":{
+                                "items": 5
+                            }
+                        }
+                    }'>
+                        <!--Instagram Single Start-->
+                        <div class="item">
+                            <div class="instagram-two__single">
+                                <div class="instagram-two__img">
+                                    <img th:src="@{/images/resources/instagram-2-1.jpg}" alt="">
+                                    <div class="instagram-two__img-icon">
+                                        <a href="#"><span class="fab fa-instagram"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Instagram Single End-->
+                        <!--Instagram Single Start-->
+                        <div class="item">
+                            <div class="instagram-two__single">
+                                <div class="instagram-two__img">
+                                    <img th:src="@{/images/resources/instagram-2-2.jpg}" alt="">
+                                    <div class="instagram-two__img-icon">
+                                        <a href="#"><span class="fab fa-instagram"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Instagram Single End-->
+                        <!--Instagram Single Start-->
+                        <div class="item">
+                            <div class="instagram-two__single">
+                                <div class="instagram-two__img">
+                                    <img th:src="@{/images/resources/instagram-2-3.jpg}" alt="">
+                                    <div class="instagram-two__img-icon">
+                                        <a href="#"><span class="fab fa-instagram"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Instagram Single End-->
+                        <!--Instagram Single Start-->
+                        <div class="item">
+                            <div class="instagram-two__single">
+                                <div class="instagram-two__img">
+                                    <img th:src="@{/images/resources/instagram-2-4.jpg}" alt="">
+                                    <div class="instagram-two__img-icon">
+                                        <a href="#"><span class="fab fa-instagram"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Instagram Single End-->
+                        <!--Instagram Single Start-->
+                        <div class="item">
+                            <div class="instagram-two__single">
+                                <div class="instagram-two__img">
+                                    <img th:src="@{/images/resources/instagram-2-5.jpg}" alt="">
+                                    <div class="instagram-two__img-icon">
+                                        <a href="#"><span class="fab fa-instagram"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Instagram Single End-->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Instagram Two End-->
+
+
+        <!--Site Footer Start-->
+        <div th:replace="fragments/footer :: footer"></div>
+        <!--Site Footer End-->
+
+
+    </div><!-- /.page-wrapper -->
+
+
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <!-- /.mobile-nav__overlay -->
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
+
+            <div class="logo-box">
+                <a href="index.html" aria-label="logo image"><img th:src="@{/images/resources/logo-3.png}" width="90"
+                        alt="" /></a>
+            </div>
+            <!-- /.logo-box -->
+            <div class="mobile-nav__container"></div>
+            <!-- /.mobile-nav__container -->
+
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i class="fa fa-envelope"></i>
+                    <a href="mailto:needhelp@packageName__.com">needhelp@mellis.com</a>
+                </li>
+                <li>
+                    <i class="fa fa-phone-alt"></i>
+                    <a href="tel:666-888-0000">666 888 0000</a>
+                </li>
+            </ul><!-- /.mobile-nav__contact -->
+            <div class="mobile-nav__top">
+                <div class="mobile-nav__social">
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-facebook-square"></a>
+                    <a href="#" class="fab fa-pinterest-p"></a>
+                    <a href="#" class="fab fa-instagram"></a>
+                </div><!-- /.mobile-nav__social -->
+            </div><!-- /.mobile-nav__top -->
+
+
+
+        </div>
+        <!-- /.mobile-nav__content -->
+    </div>
+    <!-- /.mobile-nav__wrapper -->
+
+    <div class="search-popup">
+        <div class="search-popup__overlay search-toggler"></div>
+        <!-- /.search-popup__overlay -->
+        <div class="search-popup__content">
+            <form action="#">
+                <label for="search" class="sr-only">search here</label><!-- /.sr-only -->
+                <input type="text" id="search" placeholder="Search Here..." />
+                <button type="submit" aria-label="search submit" class="thm-btn">
+                    <i class="icon-magnifying-glass"></i>
+                </button>
+            </form>
+        </div>
+        <!-- /.search-popup__content -->
+    </div>
+    <!-- /.search-popup -->
+
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+    <script th:src="@{/vendors/jquery/jquery-3.6.0.min.js}"></script>
+    <script th:src="@{/vendors/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/vendors/jarallax/jarallax.min.js}"></script>
+    <script th:src="@{/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js}"></script>
+    <script th:src="@{/vendors/jquery-appear/jquery.appear.min.js}"></script>
+    <script th:src="@{/vendors/jquery-circle-progress/jquery.circle-progress.min.js}"></script>
+    <script th:src="@{/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{/vendors/jquery-validate/jquery.validate.min.js}"></script>
+    <script th:src="@{/vendors/nouislider/nouislider.min.js}"></script>
+    <script th:src="@{/vendors/odometer/odometer.min.js}"></script>
+    <script th:src="@{/vendors/swiper/swiper.min.js}"></script>
+    <script th:src="@{/vendors/tiny-slider/tiny-slider.min.js}"></script>
+    <script th:src="@{/vendors/wnumb/wNumb.min.js}"></script>
+    <script th:src="@{/vendors/wow/wow.js}"></script>
+    <script th:src="@{/vendors/isotope/isotope.js}"></script>
+    <script th:src="@{/vendors/countdown/countdown.min.js}"></script>
+    <script th:src="@{/vendors/owl-carousel/owl.carousel.min.js}"></script>
+    <script th:src="@{/vendors/bxslider/jquery.bxslider.min.js}"></script>
+    <script th:src="@{/vendors/bootstrap-select/js/bootstrap-select.min.js}"></script>
+    <script th:src="@{/vendors/vegas/vegas.min.js}"></script>
+    <script th:src="@{/vendors/jquery-ui/jquery-ui.js}"></script>
+    <script th:src="@{/vendors/timepicker/timePicker.js}"></script>
+    <script th:src="@{/vendors/circleType/jquery.circleType.js}"></script>
+    <script th:src="@{/vendors/circleType/jquery.lettering.min.js}"></script>
+    <script th:src="@{/vendors/sidebar-content/jquery-sidebar-content.js}"></script>
+    <script th:src="@{/vendors/twenty-twenty/twentytwenty.js}"></script>
+    <script th:src="@{/vendors/twenty-twenty/jquery.event.move.js}"></script>
+
+
+
+
+    <!-- template js -->
+    <script th:src="@{/js/mellis.js}"></script>
+    <script th:src="@{/js/header-script.js}"></script>
+
+
+</body>
+
+</html>

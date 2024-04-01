@@ -1,0 +1,1195 @@
+/* Medium screen  */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .welcome-one__left {
+        max-width: 600px;
+        margin: 0 auto 0;
+    }
+
+    .welcome-one__right {
+        max-width: 600px;
+        margin: 120px auto 0;
+    }
+
+    .welcome-one {
+        padding: 190px 0 120px;
+    }
+
+    .services-one__single-inner {
+        padding: 60px 30px 56px;
+    }
+
+    .video-one__right {
+        margin-left: 0;
+    }
+
+    .counter-one__single::before {
+        right: 88px;
+    }
+
+    .counter-one__single-2::before {
+        display: none;
+    }
+
+    .testimonial-one__right {
+        margin-left: 0;
+    }
+
+    .testimonial-one__left .section-title__title {
+        font-size: 40px;
+    }
+
+    .blog-one__content {
+        padding: 31px 15px 29px;
+    }
+
+    .footer-widget__links {
+        margin-left: 0;
+    }
+
+    .footer-widget__timing {
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 40px;
+    }
+
+    .footer-widget__social-box {
+        text-align: left;
+        margin-top: 40px;
+    }
+
+    .site-footer__social {
+        justify-content: flex-start;
+    }
+
+    .about-one__left {
+        max-width: 600px;
+        margin: 0 auto 0;
+    }
+
+    .about-one__right {
+        max-width: 600px;
+        margin: 50px auto 0;
+    }
+
+    .feature-one__single-two {
+        padding: 35px 30px 26px;
+    }
+
+    .why-choose-one__left {
+        max-width: 600px;
+        margin: 0 auto 0;
+    }
+
+    .why-choose-one__left-title h2 {
+        font-size: 90px;
+    }
+
+    .why-choose-one__right {
+        max-width: 600px;
+        margin: 60px auto 0;
+    }
+
+    .why-choose-one {
+        padding: 120px 0 120px;
+    }
+
+    .team-one__content {
+        padding: 327px 0 28px;
+        margin-top: -300px;
+    }
+
+    .cta-one__img {
+        display: none;
+    }
+
+    .cta-one__left {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .cta-one__right {
+        margin-left: 0;
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .cta-one {
+        padding: 98px 0 100px;
+    }
+
+    .opening-hour__inner {
+        flex-direction: column;
+    }
+
+    .opening-hour__left {
+        margin-bottom: 40px;
+    }
+
+    .our-intro__left {
+        max-width: 600px;
+        margin: 0 auto 0;
+    }
+
+    .our-intro__right {
+        max-width: 600px;
+        margin: 60px auto 0;
+    }
+
+    .services-three__right {
+        margin-left: 0;
+    }
+
+    .services-three__left .section-title__title {
+        font-size: 42px;
+    }
+
+    .promotions-one__discount {
+        right: 80px;
+    }
+
+    .three-points__inner {
+        padding: 54px 20px 40px;
+    }
+
+    .three-points__list li {
+        max-width: 290px;
+    }
+
+    .three-points__list li+li {
+        margin-left: 10px;
+    }
+
+    .contact-one__right {
+        margin-left: 0;
+    }
+
+    .contact-one__content {
+        padding: 60px 30px 60px;
+    }
+
+    .client-issues {
+        padding: 120px 0 113px;
+    }
+
+    .treatment-result {
+        padding: 120px 0 111px;
+    }
+
+    .pricing-plan__top {
+        padding: 50px 20px 30px;
+    }
+
+    .pricing-plan__bottom {
+        padding: 40px 20px 60px;
+    }
+
+    .spa-special__left {
+        max-width: 600px;
+        margin: 0 auto 60px;
+    }
+
+    .spa-special__right {
+        max-width: 600px;
+        margin: 0 auto 0;
+    }
+
+    .offer-one__content {
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        padding: 33px 20px 30px;
+    }
+
+    .services-details-one__benefits {
+        padding-top: 104px;
+    }
+
+    .process-three {
+        padding-top: 110px;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Tablet Layout: 768px. */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .welcome-one__left {
+        max-width: 600px;
+        margin: 0 auto 0;
+    }
+
+    .welcome-one__right {
+        max-width: 600px;
+        margin: 120px auto 0;
+    }
+
+    .welcome-one {
+        padding: 190px 0 120px;
+    }
+
+    .video-one__right {
+        margin-left: 0;
+        margin-top: 52px;
+    }
+
+    .video-one {
+        padding: 120px 0 115px;
+    }
+
+    .counter-one__single::before {
+        right: 32px;
+    }
+
+    .counter-one__single-2::before {
+        display: none;
+    }
+
+    .process-one__shape-1 {
+        display: none;
+    }
+
+    .testimonial-one__right {
+        margin-top: 0;
+        margin-left: 0;
+        margin-bottom: 41px;
+    }
+
+    .testimonial-one__left .section-title {
+        margin-bottom: 33px;
+    }
+
+    .testimonial-one__single {
+        padding: 60px 30px 60px;
+    }
+
+    .footer-widget__links {
+        margin-left: 0;
+    }
+
+    .footer-widget__timing {
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 40px;
+    }
+
+    .footer-widget__social-box {
+        text-align: left;
+        margin-top: 40px;
+    }
+
+    .site-footer__social {
+        justify-content: flex-start;
+    }
+
+    .about-one__left {
+        max-width: 600px;
+        margin: 0 auto 0;
+    }
+
+    .about-one__right {
+        max-width: 600px;
+        margin: 50px auto 0;
+    }
+
+    .why-choose-one__left {
+        max-width: 600px;
+        margin: 0 auto 0;
+    }
+
+    .why-choose-one__left-title h2 {
+        font-size: 90px;
+    }
+
+    .why-choose-one__right {
+        max-width: 600px;
+        margin: 60px auto 0;
+    }
+
+    .why-choose-one {
+        padding: 120px 0 120px;
+    }
+
+    .testimonial-two__shape-1 {
+        display: none;
+    }
+
+    .cta-one__img {
+        display: none;
+    }
+
+    .cta-one__left {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .cta-one__right {
+        margin-left: 0;
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .cta-one {
+        padding: 98px 0 100px;
+    }
+
+    .opening-hour__inner {
+        flex-direction: column;
+        padding: 56px 40px 59px;
+    }
+
+    .opening-hour__left {
+        margin-bottom: 40px;
+    }
+
+    .our-intro__left {
+        max-width: 600px;
+        margin: 0 auto 0;
+    }
+
+    .our-intro__right {
+        max-width: 600px;
+        margin: 60px auto 0;
+    }
+
+    .services-three__right {
+        margin-left: 0;
+        margin-top: 0;
+        margin-bottom: 40px;
+    }
+
+    .services-three__left .section-title {
+        margin-bottom: 33px;
+    }
+
+    .three-points__list li+li {
+        margin-left: auto;
+    }
+
+    .three-points__list li {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .contact-one__right {
+        margin-left: 0;
+        margin-top: 40px;
+    }
+
+    .client-stories__inner {
+        padding: 74px 14px 53px;
+    }
+
+    .client-stories__name {
+        font-size: 20px;
+    }
+
+    .client-issues {
+        padding: 120px 0 113px;
+    }
+
+    .client-issues__right {
+        margin-top: 60px;
+    }
+
+    .treatment-result__left {
+        margin-bottom: 50px;
+    }
+
+    .contact-page__left {
+        margin-bottom: 50px;
+    }
+
+    .spa-special__left {
+        max-width: 600px;
+        margin: 0 auto 60px;
+    }
+
+    .spa-special__right {
+        max-width: 600px;
+        margin: 0 auto 0;
+    }
+
+    .spa-special__offer {
+        left: 0;
+    }
+
+    .offer-one__content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .process-three {
+        padding-top: 110px;
+    }
+
+    .services-details-one__massages-left {
+        margin-bottom: 40px;
+    }
+
+    .services-details-one__benefits-right {
+        margin-top: 40px;
+    }
+
+    .services-details-two__right {
+        margin-top: 60px;
+    }
+
+    .product__sidebar {
+        margin-bottom: 60px;
+    }
+
+    .product-details__top {
+        margin-top: 52px;
+    }
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Mobile Layout: 320px. */
+@media only screen and (max-width: 767px) {
+    .section-title__title {
+        font-size: 30px;
+        line-height: 40px;
+    }
+
+    .section-title__title br {
+        display: none;
+    }
+
+    .welcome-one__left {
+        margin-right: 0;
+    }
+
+    .welcome-one__right {
+        margin-left: 0;
+        margin-top: 120px;
+    }
+
+    .welcome-one__points {
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    .welcome-one__points li+li {
+        margin-left: 0;
+        margin-top: 30px;
+    }
+
+    .welcome-one {
+        padding: 190px 0 120px;
+    }
+
+    .services-one__single-inner {
+        padding: 60px 30px 56px;
+    }
+
+    .video-one__right {
+        margin-left: 0;
+        margin-top: 52px;
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    .video-one__points-2 {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .video-one {
+        padding: 120px 0 115px;
+    }
+
+    .counter-one__single::before {
+        display: none;
+    }
+
+    .counter-one__single {
+        justify-content: center;
+    }
+
+    .process-one__shape-1 {
+        display: none;
+    }
+
+    .testimonial-one__right {
+        margin-top: 0;
+        margin-left: 0;
+        margin-bottom: 41px;
+    }
+
+    .testimonial-one__left .section-title {
+        margin-bottom: 33px;
+    }
+
+    .testimonial-one__single {
+        padding: 60px 30px 60px;
+    }
+
+    .spa-center__title br {
+        display: none;
+    }
+
+    .google-map__opening-hours {
+        top: 20px;
+        left: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .blog-one__content {
+        padding: 31px 15px 29px;
+    }
+
+    .footer-widget__links {
+        margin-left: 0;
+        margin-top: 50px;
+        margin-bottom: 40px;
+    }
+
+    .footer-widget__timing {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .footer-widget__social-box {
+        text-align: left;
+        margin-top: 41px;
+    }
+
+    .site-footer__social {
+        justify-content: flex-start;
+    }
+
+    .site-footer__bottom-inner {
+        flex-direction: column;
+    }
+
+    .about-one__left {
+        margin-right: 0;
+    }
+
+    .about-one__img-2 {
+        display: none;
+    }
+
+    .about-one__right {
+        margin-left: 0;
+        margin-top: 50px;
+    }
+
+    .about-one__btn-call-box {
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    .about-one__call-box {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .feature-one__single-two {
+        padding: 55px 30px 46px;
+    }
+
+    .why-choose-one__left {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .why-choose-one__left-title {
+        display: none;
+    }
+
+    .why-choose-one__right {
+        margin-top: 60px;
+    }
+
+    .why-choose-one {
+        padding: 120px 0 120px;
+    }
+
+    .team-one__content {
+        padding: 327px 0 28px;
+        margin-top: -300px;
+    }
+
+    .testimonial-two__shape-1 {
+        display: none;
+    }
+
+    .testimonial-two__text {
+        font-size: 25px;
+        line-height: 40px;
+        padding-bottom: 40px;
+    }
+
+    #testimonial-two__thumb {
+        position: relative;
+        top: 0;
+        margin-bottom: 60px;
+    }
+
+    .cta-one__img {
+        display: none;
+    }
+
+    .cta-one__left {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .cta-one__right {
+        margin-left: 0;
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .cta-one .section-title__title {
+        font-size: 30px;
+        line-height: 40px;
+    }
+
+    .cta-one {
+        padding: 98px 0 100px;
+    }
+
+    .opening-hour__inner {
+        flex-direction: column;
+        padding: 56px 20px 59px;
+    }
+
+    .opening-hour__left {
+        margin-bottom: 40px;
+    }
+
+    .opening-hour__single {
+        flex-direction: column;
+        align-items: baseline;
+        text-align: center;
+    }
+
+    .opening-hour__single li+li {
+        padding-left: 0;
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .opening-hour__single li::before {
+        display: none;
+    }
+
+    .our-intro__left {
+        margin-right: 0;
+    }
+
+    .our-intro__right {
+        margin-top: 60px;
+    }
+
+    .our-intro__points-and-spa-center {
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    .our-intro__person-name h3 {
+        font-size: 45px;
+    }
+
+    .services-three__right {
+        margin-left: 0;
+        margin-top: 0;
+        margin-bottom: 40px;
+    }
+
+    .services-three__left .section-title {
+        margin-bottom: 33px;
+    }
+
+    .services-three__single {
+        padding: 49px 30px 44px;
+    }
+
+    .promotions-one__discount {
+        display: none;
+    }
+
+    .testimonial-three__client-info {
+        margin-left: 0;
+        flex-direction: column;
+    }
+
+    .testimonial-three__client-content {
+        margin-left: 0;
+        margin-top: 50px;
+    }
+
+    .testimonial-three__client-text {
+        font-size: 25px;
+        line-height: 40px;
+    }
+
+    #testimonial-three__thumb {
+        position: relative;
+        bottom: 0;
+        margin-left: 0;
+        margin-bottom: 50px;
+    }
+
+    .three-points__list li+li {
+        margin-left: auto;
+    }
+
+    .three-points__list li {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .three-points__inner {
+        padding: 54px 15px 40px;
+    }
+
+    .contact-one__img-and-counter {
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    .contact-one__counter {
+        top: 0;
+        margin-left: 0;
+        margin-top: 30px;
+    }
+
+    .contact-one__right {
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .contact-one__content {
+        padding: 60px 20px 60px;
+    }
+
+    .client-stories__inner {
+        padding: 74px 15px 53px;
+    }
+
+    .client-stories__name-and-date {
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    .client-stories__name {
+        margin-bottom: 15px;
+    }
+
+    .client-issues {
+        padding: 120px 0 113px;
+    }
+
+    .client-issues__right {
+        margin-top: 60px;
+    }
+
+    .treatment-result__left {
+        margin-bottom: 50px;
+    }
+
+    .contact-page__left {
+        margin-bottom: 50px;
+    }
+
+    .get-free__inner {
+        margin-left: 0;
+    }
+
+    .get-free__title br {
+        display: none;
+    }
+
+    .pricing-plan__top {
+        padding: 50px 20px 30px;
+    }
+
+    .pricing-plan__bottom {
+        padding: 40px 20px 60px;
+    }
+
+    .spa-special__left {
+        margin-right: 0;
+        margin-top: 0;
+    }
+
+    .spa-special__right {
+        margin-left: 0;
+        margin-top: 60px;
+    }
+
+    .spa-special__offer {
+        display: none;
+    }
+
+    .offer-one__content {
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        bottom: 15px;
+        padding: 33px 20px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .process-three {
+        padding-top: 110px;
+    }
+
+    .services-details-one__massages-left {
+        margin-bottom: 40px;
+    }
+
+    .services-details-one__benefits-right {
+        margin-top: 40px;
+    }
+
+    .services-details-two__right {
+        margin-top: 60px;
+    }
+
+    .services-details-two__category-list li a {
+        padding: 15px 80px 15px;
+        padding-right: 20px;
+    }
+
+    .product__sidebar {
+        margin-bottom: 60px;
+    }
+
+    .product__showing-result {
+        flex-direction: column;
+    }
+
+    .product__showing-text-box {
+        margin-bottom: 15px;
+    }
+
+    .product-details__top {
+        margin-top: 52px;
+    }
+
+    .product-details__buttons {
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    .product-details__buttons-2 {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .product-details__social {
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    .product-details__social-link {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+
+    .comments-area .comment {
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    .review-one__content {
+        padding-left: 0;
+        margin-top: 20px;
+    }
+
+    .review-one__content-top {
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (min-width: 1300px) and (max-width: 1500px) {}
+
+@media only screen and (min-width: 1200px) and (max-width: 1299px) {}
+
+@media only screen and (min-width: 1200px) and (max-width: 1320px) {}
+
+@media only screen and (min-width: 1200px) and (max-width: 1560px) {}
+
+
+
+
+
+
+/*--------------------------------------------------------------
+# Slider All Responsice Css
+--------------------------------------------------------------*/
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .main-slider-two #main-slider-pagination {
+        max-width: 960px;
+    }
+}
+
+
+
+
+
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .main-slider-two #main-slider-pagination {
+        max-width: 720px;
+    }
+
+    .main-slider-two__title {
+        font-size: 50px;
+    }
+
+    .main-slider-three__title {
+        font-size: 100px;
+        line-height: 100px;
+    }
+}
+
+
+
+@media only screen and (max-width: 767px) {
+    .main-slider__title {
+        font-size: 55px;
+        line-height: 55px;
+    }
+
+    .main-slider-two #main-slider-pagination {
+        max-width: 540px;
+    }
+
+    .main-slider-two__title {
+        font-size: 40px;
+        line-height: 50px;
+    }
+
+    .main-slider-two__title br {
+        display: none;
+    }
+
+    .main-slider-three__title {
+        font-size: 44px;
+        line-height: 44px;
+    }
+
+    .main-slider-three__sub-title {
+        font-size: 18px;
+    }
+}
+
+
+
+
+
+@media only screen and (min-width: 1200px) and (max-width: 1450px) {}
+
+@media only screen and (min-width: 1200px) and (max-width: 1750px) {}
+
+
+
+
+
+
+/*--------------------------------------------------------------
+# Main Menu All Responsice Css
+--------------------------------------------------------------*/
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .main-menu-two .mobile-nav__toggler:hover {
+        color: var(--mellis-white);
+    }
+
+    .main-menu-three .mobile-nav__toggler:hover {
+        color: var(--mellis-white);
+    }
+}
+
+
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .main-header__top {
+        display: none;
+    }
+
+    .main-menu-two .mobile-nav__toggler:hover {
+        color: var(--mellis-white);
+    }
+
+
+    .main-menu-three .mobile-nav__toggler:hover {
+        color: var(--mellis-white);
+    }
+}
+
+
+
+
+
+@media (max-width: 767px) {
+    .main-header__top {
+        display: none;
+    }
+
+    .main-menu__wrapper-inner {
+        padding: 0 20px 0;
+    }
+
+    .main-menu__right {
+        display: none;
+    }
+
+    .main-menu .mobile-nav__toggler {
+        padding: 35px 0;
+    }
+
+
+
+    .main-menu-two__wrapper-inner {
+        padding: 0 20px 0;
+    }
+
+    .main-menu-two__right {
+        display: none;
+    }
+
+    .main-menu-two .mobile-nav__toggler:hover {
+        color: var(--mellis-white);
+    }
+
+
+
+    .main-menu-three .mobile-nav__toggler:hover {
+        color: var(--mellis-white);
+    }
+
+    .main-menu-three .mobile-nav__toggler {
+        padding: 22px 0;
+    }
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+@media only screen and (min-width: 1200px) and (max-width: 1449px) {}
+
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {}
+
+@media only screen and (min-width: 1300px) and (max-width: 1499px) {}
+
+@media only screen and (min-width: 1200px) and (max-width: 1299px) {}

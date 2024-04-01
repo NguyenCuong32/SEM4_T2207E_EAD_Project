@@ -1,0 +1,84 @@
+<div
+        class="stricky-header stricked-menu main-menu"
+        xmlns:sec="http://www.w3.org/1999/xhtml"
+        th:fragment="header-sticky"
+>
+    <div class="sticky-header__content">
+        <div class="main-menu__wrapper">
+            <div class="main-menu__wrapper-inner">
+                <div class="main-menu__left">
+                    <div class="main-menu__logo">
+                        <a href="index.html"><img th:src="@{/images/resources/logo-1.png}" alt=""></a>
+                    </div>
+                </div>
+                <div class="main-menu__main-menu-box">
+                    <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
+                    <ul class="main-menu__list">
+                        <li>
+                            <a th:href="@{/}">Home</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/services}">Our Services</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/}">Book Appointment</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/}">Events</a>
+                        </li>
+                        <!--                                        <li class="dropdown">-->
+                        <!--                                            <a href="#">Shop</a>-->
+                        <!--                                            <ul>-->
+                        <!--                                                <li><a href="products.html">Products</a></li>-->
+                        <!--                                                <li><a href="product-details.html">Product Details</a></li>-->
+                        <!--                                            </ul>-->
+                        <!--                                        </li>-->
+                        <li>
+                            <a href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="main-menu__right">
+                    <div class="main-menu__search-cart-box">
+                        <div class="main-menu__search-box">
+                            <a href="#" class="main-menu__search search-toggler icon-magnifying-glass"></a>
+                        </div>
+                        <div class="main-menu__cart-box" sec:authorize="isAnonymous()">
+                            <a th:href="@{/login}" class="main-menu__cart" style="font-size: 28px; padding-top: 5px">
+                                <i class="fi fi-ts-circle-user"></i>
+                            </a>
+                        </div>
+                        <div class="main-menu__cart-box" sec:authorize="isAuthenticated()">
+                            <a id="user-avatar-btn-2" class="main-menu__cart" style="font-size: 28px; padding-top: 5px">
+                                <i class="fi fi-ts-circle-user"></i>
+                            </a>
+                            <div class="user-menu" id="user-menu-2">
+                                <h3>
+                                    <div th:text="${#authentication.principal.user.name}"></div>
+                                    <span sec:authentication="principal.user.email"></span>
+                                </h3>
+                                <ul>
+                                    <li>
+                                        <img th:src="@{/images/user.png}" /><a th:href="@{/account}">My profile</a>
+                                    </li>
+                                    <li>
+                                        <img th:src="@{/images/transaction.png}" /><a th:href="@{/account/listed-auctions}">Transaction</a>
+                                    </li>
+                                    <li>
+                                        <img th:src="@{/images/commission.png}" /><a href="#">Commission</a>
+                                    </li>
+                                    <li>
+                                        <img th:src="@{/images/logout.png}" />
+                                        <form th:action="@{/logout}" method="post">
+                                            <button type="submit" class="button-unstyle">Logout</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.sticky-header__content -->
+</div>

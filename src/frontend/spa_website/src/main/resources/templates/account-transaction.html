@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Transactions & Commission || mellis || mellis HTML 5 Template </title>
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/images/favicons/apple-touch-icon.png}" />
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicons/favicon-32x32.png}" />
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicons/favicon-16x16.png}" />
+    <link rel="manifest" th:href="@{/images/favicons/site.webmanifest}" />
+    <meta name="description" content="mellis HTML 5 Template " />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/vendors/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/animate/animate.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/animate/custom-animate.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/fontawesome/css/all.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/jarallax/jarallax.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/jquery-magnific-popup/jquery.magnific-popup.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/nouislider/nouislider.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/nouislider/nouislider.pips.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/odometer/odometer.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/swiper/swiper.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/mellis-icons/style.css}">
+    <link rel="stylesheet" th:href="@{/vendors/tiny-slider/tiny-slider.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/reey-font/stylesheet.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.carousel.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.theme.default.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/bxslider/jquery.bxslider.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/bootstrap-select/css/bootstrap-select.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/vegas/vegas.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/jquery-ui/jquery-ui.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/timepicker/timePicker.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/twenty-twenty/twentytwenty.css}" />
+
+    <!-- template styles -->
+    <link rel="stylesheet" th:href="@{/css/mellis.css}" />
+    <link rel="stylesheet" th:href="@{/css/mellis-responsive.css}" />
+
+    <!-- Flaticon -->
+    <link th:href="@{/flaticon/css/uicons-thin-straight.css}" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+
+    <div class="preloader">
+        <div class="preloader__image"></div>
+    </div>
+    <!-- /.preloader -->
+
+
+
+
+    <div class="page-wrapper">
+        <div th:replace="fragments/header :: header"></div>
+        <div th:replace="fragments/header-sticky :: header-sticky"></div>
+
+
+        <!--Page Header Start-->
+        <section class="page-header">
+            <div class="page-header__bg" th:style="'background-image: url(\'' + @{/images/backgrounds/page-header-bg.jpg} + '\')'">
+            </div>
+            <div class="container">
+                <div class="page-header__inner">
+                    <ul class="thm-breadcrumb list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>/</span></li>
+                        <li>Account</li>
+                    </ul>
+                    <h2>Transactions & Commissions</h2>
+                </div>
+            </div>
+        </section>
+        <!--Page Header End-->
+
+        <!--Product Start-->
+        <section class="product">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4">
+                        <div class="product__sidebar">
+                            <div class="services-one__single">
+                                <div class="services-one__single-inner">
+                                    <div class="services-one__shape-1">
+                                        <img th:src="@{/images/shapes/services-one-shape-1.png}" alt="">
+                                    </div>
+                                    <div class="services-one__shape-2">
+                                        <img th:src="@{/images/shapes/services-one-shape-2.png}" alt="">
+                                    </div>
+                                    <div class="services-one__img-box">
+                                        <div class="services-one__img">
+                                            <img th:src="@{/user-avatar.jpg}" alt="">
+                                        </div>
+                                        <div class="services-one__icon">
+                                            <span class="icon-herbs"></span>
+                                        </div>
+                                    </div>
+                                    <h3 class="services-one__title"><a href="body-treatments.html" th:text="${#authentication.principal.user.name}"></a></h3>
+                                    <p class="services-one__text" sec:authentication="principal.user.email"></p>
+                                    <div class="services-one__btn-box">
+                                        <a class="services-one__btn" th:text="${'User Code : ' + #authentication.principal.user.code}"><i class="icon-right-arrow"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="shop-category product__sidebar-single border-0" style="background-color: rgb(255, 255, 255); box-shadow: 0px 10px 60px 0px rgba(0, 0, 0, 0.07);">
+                                <ul class="list-unstyled">
+                                    <li ><a th:href="@{/account}">User Profile</a></li>
+                                    <li class="active"><a th:href="@{/account/transactions}">Transaction & Commission</a></li>
+                                    <li><a href="#">Booking History</a></li>
+                                    <li>
+                                        <form th:action="@{/logout}" method="post">
+                                            <a>
+                                                <button type="submit" class="button-unstyle">
+                                                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                                                </button>
+                                            </a>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 col-lg-8">
+                        <div class="row mb-4">
+                            <div class="col-xl-6 col-lg-6 col-md-6">
+                                <div class="custom-card">
+                                    <h3 class="spa-center-three__title">Total Transaction</h3>
+                                    <p class="spa-center-three__text">
+                                        <span class="text-theme fs-3" th:text="${#numbers.formatCurrency(totalTransaction)}">0</span>
+                                        Spent
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6">
+                                <div class="custom-card">
+                                    <h3 class="spa-center-three__title">Total Commission</h3>
+                                    <p class="spa-center-three__text">
+                                        <span class="text-theme fs-3" th:text="${#numbers.formatCurrency(totalCommission)}">0</span>
+                                        Paid
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="custom-card mb-4">
+                            <h4 class="pb-3 mb-3 border-bottom">Transactions History</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Amount</th>
+                                            <th scope="col">Services</th>
+                                            <th scope="col" class="text-end">Detail</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="transaction : ${transactions}">
+                                            <th scope="row" th:text="${'#' + transaction.id}">1</th>
+                                            <td th:text="${#temporals.format(transaction.transactionDate, 'DD MMM, YYYY')}">12/12/2021</td>
+                                            <td th:text="${#numbers.formatCurrency(transaction.total)}"></td>
+                                            <td th:text="${transaction.transactionServices.size() + ' service(s)'}"></td>
+                                            <td class="text-end">
+                                                <a href="#" class="">View</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="custom-card">
+                            <h4 class="pb-3 mb-3 border-bottom">Commissions History</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Include</th>
+                                        <th scope="col" class="text-end">Detail</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr th:each="commission : ${commissions}">
+                                        <th scope="row" th:text="${'#' + commission.id}">1</th>
+                                        <td th:text="${#temporals.format(commission.createdAt, 'DD MMM, YYYY')}"></td>
+                                        <td th:text="${#numbers.formatCurrency(commission.total)}"></td>
+                                        <td th:text="${commission.commissionServices.size() + ' small commission(s)'}"></td>
+                                        <td class="text-end">
+                                            <a href="#" class="">View</a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Product End-->
+
+        <!--Site Footer Start-->
+        <div th:replace="fragments/footer :: footer"></div>
+        <!--Site Footer End-->
+
+
+    </div><!-- /.page-wrapper -->
+
+
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <!-- /.mobile-nav__overlay -->
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
+
+            <div class="logo-box">
+                <a href="index.html" aria-label="logo image"><img th:src="@{/images/resources/logo-3.png}" width="90"
+                        alt="" /></a>
+            </div>
+            <!-- /.logo-box -->
+            <div class="mobile-nav__container"></div>
+            <!-- /.mobile-nav__container -->
+
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i class="fa fa-envelope"></i>
+                    <a href="mailto:needhelp@packageName__.com">needhelp@mellis.com</a>
+                </li>
+                <li>
+                    <i class="fa fa-phone-alt"></i>
+                    <a href="tel:666-888-0000">666 888 0000</a>
+                </li>
+            </ul><!-- /.mobile-nav__contact -->
+            <div class="mobile-nav__top">
+                <div class="mobile-nav__social">
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-facebook-square"></a>
+                    <a href="#" class="fab fa-pinterest-p"></a>
+                    <a href="#" class="fab fa-instagram"></a>
+                </div><!-- /.mobile-nav__social -->
+            </div><!-- /.mobile-nav__top -->
+
+
+
+        </div>
+        <!-- /.mobile-nav__content -->
+    </div>
+    <!-- /.mobile-nav__wrapper -->
+
+    <div class="search-popup">
+        <div class="search-popup__overlay search-toggler"></div>
+        <!-- /.search-popup__overlay -->
+        <div class="search-popup__content">
+            <form action="#">
+                <label for="search" class="sr-only">search here</label><!-- /.sr-only -->
+                <input type="text" id="search" placeholder="Search Here..." />
+                <button type="submit" aria-label="search submit" class="thm-btn">
+                    <i class="icon-magnifying-glass"></i>
+                </button>
+            </form>
+        </div>
+        <!-- /.search-popup__content -->
+    </div>
+    <!-- /.search-popup -->
+
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+    <script th:src="@{/vendors/jquery/jquery-3.6.0.min.js}"></script>
+    <script th:src="@{/vendors/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/vendors/jarallax/jarallax.min.js}"></script>
+    <script th:src="@{/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js}"></script>
+    <script th:src="@{/vendors/jquery-appear/jquery.appear.min.js}"></script>
+    <script th:src="@{/vendors/jquery-circle-progress/jquery.circle-progress.min.js}"></script>
+    <script th:src="@{/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{/vendors/jquery-validate/jquery.validate.min.js}"></script>
+    <script th:src="@{/vendors/nouislider/nouislider.min.js}"></script>
+    <script th:src="@{/vendors/odometer/odometer.min.js}"></script>
+    <script th:src="@{/vendors/swiper/swiper.min.js}"></script>
+    <script th:src="@{/vendors/tiny-slider/tiny-slider.min.js}"></script>
+    <script th:src="@{/vendors/wnumb/wNumb.min.js}"></script>
+    <script th:src="@{/vendors/wow/wow.js}"></script>
+    <script th:src="@{/vendors/isotope/isotope.js}"></script>
+    <script th:src="@{/vendors/countdown/countdown.min.js}"></script>
+    <script th:src="@{/vendors/owl-carousel/owl.carousel.min.js}"></script>
+    <script th:src="@{/vendors/bxslider/jquery.bxslider.min.js}"></script>
+    <script th:src="@{/vendors/bootstrap-select/js/bootstrap-select.min.js}"></script>
+    <script th:src="@{/vendors/vegas/vegas.min.js}"></script>
+    <script th:src="@{/vendors/jquery-ui/jquery-ui.js}"></script>
+    <script th:src="@{/vendors/timepicker/timePicker.js}"></script>
+    <script th:src="@{/vendors/circleType/jquery.circleType.js}"></script>
+    <script th:src="@{/vendors/circleType/jquery.lettering.min.js}"></script>
+    <script th:src="@{/vendors/sidebar-content/jquery-sidebar-content.js}"></script>
+    <script th:src="@{/vendors/twenty-twenty/twentytwenty.js}"></script>
+    <script th:src="@{/vendors/twenty-twenty/jquery.event.move.js}"></script>
+
+
+
+
+    <!-- template js -->
+    <script th:src="@{/js/mellis.js}"></script>
+    <script th:src="@{/js/header-script.js}"></script>
+
+
+</body>
+
+</html>

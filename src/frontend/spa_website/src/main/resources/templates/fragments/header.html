@@ -1,0 +1,122 @@
+<header
+        class="main-header"
+        xmlns:sec="http://www.w3.org/1999/xhtml"
+        th:fragment="header"
+>
+    <div class="main-header__top">
+        <div class="main-header__top-wrapper">
+            <div class="main-header__top-inner">
+                <div class="main-header__top-left">
+                    <ul class="list-unstyled main-header__contact-list">
+                        <li>
+                            <div class="icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="text">
+                                <p><a href="needhelp@company.com">needhelp@company.com</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="text">
+                                <p><a href="tel:9288006930">+ 92 ( 8800 ) - 6930</a></p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="main-header__top-right">
+                    <div class="main-header__social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="main-header__btn-box">
+                        <a href="contact.html" class="thm-btn main-header__btn">Book now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="main-menu">
+        <div class="main-menu__wrapper">
+            <div class="main-menu__wrapper-inner">
+                <div class="main-menu__left">
+                    <div class="main-menu__logo">
+                        <a href="index.html"><img th:src="@{/images/resources/logo-1.png}" alt=""></a>
+                    </div>
+                </div>
+                <div class="main-menu__main-menu-box">
+                    <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
+                    <ul class="main-menu__list">
+                        <li>
+                            <a th:href="@{/}">Home</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/services}">Our Services</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/}">Book Appointment</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/}">Events</a>
+                        </li>
+                        <!--                                        <li class="dropdown">-->
+                        <!--                                            <a href="#">Shop</a>-->
+                        <!--                                            <ul>-->
+                        <!--                                                <li><a href="products.html">Products</a></li>-->
+                        <!--                                                <li><a href="product-details.html">Product Details</a></li>-->
+                        <!--                                            </ul>-->
+                        <!--                                        </li>-->
+                        <li>
+                            <a href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="main-menu__right">
+                    <div class="main-menu__search-cart-box">
+                        <div class="main-menu__search-box">
+                            <a href="#" class="main-menu__search search-toggler icon-magnifying-glass"></a>
+                        </div>
+                        <div class="main-menu__cart-box" sec:authorize="isAnonymous()">
+                            <a th:href="@{/login}" class="main-menu__cart" style="font-size: 28px; padding-top: 5px">
+                                <i class="fi fi-ts-circle-user"></i>
+                            </a>
+                        </div>
+                        <div class="main-menu__cart-box" sec:authorize="isAuthenticated()">
+                            <a id="user-avatar-btn" class="main-menu__cart" style="font-size: 28px; padding-top: 5px">
+                                <i class="fi fi-ts-circle-user"></i>
+                            </a>
+                            <div class="user-menu" id="user-menu">
+                                <h3>
+                                    <div th:text="${#authentication.principal.user.name}"></div>
+                                    <span sec:authentication="principal.user.email"></span>
+                                </h3>
+                                <ul>
+                                    <li>
+                                        <img th:src="@{/images/user.png}" /><a th:href="@{/account}">My profile</a>
+                                    </li>
+                                    <li>
+                                        <img th:src="@{/images/transaction.png}" /><a th:href="@{/account/listed-auctions}">Transaction</a>
+                                    </li>
+                                    <li>
+                                        <img th:src="@{/images/commission.png}" /><a href="#">Commission</a>
+                                    </li>
+                                    <li>
+                                        <img th:src="@{/images/logout.png}" />
+                                        <form th:action="@{/logout}" method="post">
+                                            <button type="submit" class="button-unstyle">Logout</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>

@@ -39,10 +39,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authenticationProvider(authenticationProvider());
-
-        CookieClearingLogoutHandler cookies = new CookieClearingLogoutHandler("our-custom-cookie");
-
-        http.authorizeHttpRequests((authorize) -> authorize
+        http.rememberMe(rememberMe -> rememberMe
+                        .key("my-remember-me-key")
+                        .tokenValiditySeconds(7 * 24 * 60 * 60) // 1 week
+                        .userDetailsService(userDetailsService())
+                )
+                .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/css/**", "/js/**", "/media/**", "/plugins/**", "/user_h/**").permitAll()
                         .anyRequest().authenticated()
                 )

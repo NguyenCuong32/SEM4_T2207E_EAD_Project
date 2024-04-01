@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Sign Up || mellis || mellis HTML 5 Template </title>
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/images/favicons/apple-touch-icon.png}" />
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicons/favicon-32x32.png}" />
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicons/favicon-16x16.png}" />
+    <link rel="manifest" th:href="@{/images/favicons/site.webmanifest}" />
+    <meta name="description" content="mellis HTML 5 Template " />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/vendors/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/animate/animate.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/animate/custom-animate.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/fontawesome/css/all.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/jarallax/jarallax.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/jquery-magnific-popup/jquery.magnific-popup.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/nouislider/nouislider.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/nouislider/nouislider.pips.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/odometer/odometer.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/swiper/swiper.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/mellis-icons/style.css}">
+    <link rel="stylesheet" th:href="@{/vendors/tiny-slider/tiny-slider.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/reey-font/stylesheet.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.carousel.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.theme.default.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/bxslider/jquery.bxslider.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/bootstrap-select/css/bootstrap-select.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/vegas/vegas.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/jquery-ui/jquery-ui.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/timepicker/timePicker.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/twenty-twenty/twentytwenty.css}" />
+
+    <!-- template styles -->
+    <link rel="stylesheet" th:href="@{/css/mellis.css}" />
+    <link rel="stylesheet" th:href="@{/css/mellis-responsive.css}" />
+
+    <!-- Flaticon -->
+    <link th:href="@{/flaticon/css/uicons-thin-straight.css}" rel="stylesheet">
+
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+
+<body>
+
+
+
+    <div class="preloader">
+        <div class="preloader__image"></div>
+    </div>
+    <!-- /.preloader -->
+
+
+
+
+    <div class="page-wrapper">
+        <div th:replace="fragments/header :: header"></div>
+        <div th:replace="fragments/header-sticky :: header-sticky"></div>
+
+
+        <!--Page Header Start-->
+        <section class="page-header">
+            <div class="page-header__bg" th:style="'background-image: url(\'' + @{/images/backgrounds/page-header-bg.jpg} + '\')'">
+            </div>
+            <div class="container">
+                <div class="page-header__inner">
+                    <ul class="thm-breadcrumb list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>/</span></li>
+                        <li>Account</li>
+                    </ul>
+                    <h2>Sign Up</h2>
+                </div>
+            </div>
+        </section>
+        <!--Page Header End-->
+
+        <!--Client Stories Start-->
+        <section class="client-stories">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <!--Client Stories Single Start-->
+                    <div class="col-xl-6 col-lg-6 col-md-6">
+                        <div class="client-stories__single hover">
+                            <div class="client-stories__inner">
+                                <div class="client-stories__shape-1">
+                                    <img th:src="@{/images/shapes/client-stories-shape-1.png}" alt="">
+                                </div>
+                                <div class="text-center mb-4">
+                                    <h4 class="text-dark mb-1">Sign Up</h4>
+                                    <div class="">Already have an account?
+                                        <a th:href="@{/login}" class="link-info">Sign In</a>
+                                    </div>
+                                </div>
+                                <form th:action="@{/register}" method="post" th:object="${user}" class="contact-one__form register-form-validated" novalidate="novalidate">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div class="contact-one__form-input-box">
+                                                <input type="text" placeholder="Your Name" th:field="*{name}">
+                                                <div class="form-text text-danger" th:each="error: ${#fields.errors('name')}" th:text="${error}"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div class="contact-one__form-input-box">
+                                                <input type="text" placeholder="Phone Number" th:field="*{phone}">
+                                                <div class="form-text text-danger" th:each="error: ${#fields.errors('phone')}" th:text="${error}"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div class="contact-one__form-input-box">
+                                                <input type="text" placeholder="Enter Email" th:field="*{email}">
+                                                <div class="form-text text-danger" th:each="error: ${#fields.errors('email')}" th:text="${error}"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div class="contact-one__form-input-box">
+                                                <input id="password" type="password" placeholder="Enter Password" th:field="*{password}">
+                                                <div class="form-text text-danger" th:each="error: ${#fields.errors('password')}" th:text="${error}"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div class="contact-one__form-input-box">
+                                                <input id="confirm-password" type="password" placeholder="Confirm Password" >
+                                                <div class="form-text text-danger" id="pass-dont-match">Password don't match</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div class="form-check" style="margin-bottom: 20px">
+                                                <input class="form-check-input" type="checkbox" id="flexCheckDefault" th:field="*{termsAccepted}"
+                                                       style="margin-top: 0.46em">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    I agree to Terms & Conditions
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div class="contact-one__form-input-box pt-3 border-top d-flex flex-wrap" >
+                                                <input type="text" class="w-75" placeholder="Referrer Code or Phone" th:field="*{referrerCodeOrPhone}">
+                                                <button type="button" id="search-referrer" class="thm-btn contact-one__btn w-25 px-0 text-center" onclick="searchUser()">Search</button>
+                                                <div id="search-result" class="d-block w-100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div th:if="${error}" class="alert alert-danger mb-30" role="alert" th:text="${error}">
+                                            </div>
+                                        </div>
+                                        <div class="contact-one__btn-box d-flex justify-content-center">
+                                            <button type="submit" class="thm-btn contact-one__btn">Sign Up</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Client Stories Single End-->
+
+                </div>
+            </div>
+        </section>
+        <!--Client Stories End-->
+
+
+        <!--Site Footer Start-->
+        <div th:replace="fragments/footer :: footer"></div>
+        <!--Site Footer End-->
+
+
+    </div><!-- /.page-wrapper -->
+
+
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <!-- /.mobile-nav__overlay -->
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
+
+            <div class="logo-box">
+                <a href="index.html" aria-label="logo image"><img th:src="@{/images/resources/logo-3.png}" width="90"
+                        alt="" /></a>
+            </div>
+            <!-- /.logo-box -->
+            <div class="mobile-nav__container"></div>
+            <!-- /.mobile-nav__container -->
+
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i class="fa fa-envelope"></i>
+                    <a href="mailto:needhelp@packageName__.com">needhelp@mellis.com</a>
+                </li>
+                <li>
+                    <i class="fa fa-phone-alt"></i>
+                    <a href="tel:666-888-0000">666 888 0000</a>
+                </li>
+            </ul><!-- /.mobile-nav__contact -->
+            <div class="mobile-nav__top">
+                <div class="mobile-nav__social">
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-facebook-square"></a>
+                    <a href="#" class="fab fa-pinterest-p"></a>
+                    <a href="#" class="fab fa-instagram"></a>
+                </div><!-- /.mobile-nav__social -->
+            </div><!-- /.mobile-nav__top -->
+
+
+
+        </div>
+        <!-- /.mobile-nav__content -->
+    </div>
+    <!-- /.mobile-nav__wrapper -->
+
+    <div class="search-popup">
+        <div class="search-popup__overlay search-toggler"></div>
+        <!-- /.search-popup__overlay -->
+        <div class="search-popup__content">
+            <form action="#">
+                <label for="search" class="sr-only">search here</label><!-- /.sr-only -->
+                <input type="text" id="search" placeholder="Search Here..." />
+                <button type="submit" aria-label="search submit" class="thm-btn">
+                    <i class="icon-magnifying-glass"></i>
+                </button>
+            </form>
+        </div>
+        <!-- /.search-popup__content -->
+    </div>
+    <!-- /.search-popup -->
+
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+    <script th:src="@{/vendors/jquery/jquery-3.6.0.min.js}"></script>
+    <script th:src="@{/vendors/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/vendors/jarallax/jarallax.min.js}"></script>
+    <script th:src="@{/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js}"></script>
+    <script th:src="@{/vendors/jquery-appear/jquery.appear.min.js}"></script>
+    <script th:src="@{/vendors/jquery-circle-progress/jquery.circle-progress.min.js}"></script>
+    <script th:src="@{/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{/vendors/jquery-validate/jquery.validate.min.js}"></script>
+    <script th:src="@{/vendors/nouislider/nouislider.min.js}"></script>
+    <script th:src="@{/vendors/odometer/odometer.min.js}"></script>
+    <script th:src="@{/vendors/swiper/swiper.min.js}"></script>
+    <script th:src="@{/vendors/tiny-slider/tiny-slider.min.js}"></script>
+    <script th:src="@{/vendors/wnumb/wNumb.min.js}"></script>
+    <script th:src="@{/vendors/wow/wow.js}"></script>
+    <script th:src="@{/vendors/isotope/isotope.js}"></script>
+    <script th:src="@{/vendors/countdown/countdown.min.js}"></script>
+    <script th:src="@{/vendors/owl-carousel/owl.carousel.min.js}"></script>
+    <script th:src="@{/vendors/bxslider/jquery.bxslider.min.js}"></script>
+    <script th:src="@{/vendors/bootstrap-select/js/bootstrap-select.min.js}"></script>
+    <script th:src="@{/vendors/vegas/vegas.min.js}"></script>
+    <script th:src="@{/vendors/jquery-ui/jquery-ui.js}"></script>
+    <script th:src="@{/vendors/timepicker/timePicker.js}"></script>
+    <script th:src="@{/vendors/circleType/jquery.circleType.js}"></script>
+    <script th:src="@{/vendors/circleType/jquery.lettering.min.js}"></script>
+    <script th:src="@{/vendors/sidebar-content/jquery-sidebar-content.js}"></script>
+    <script th:src="@{/vendors/twenty-twenty/twentytwenty.js}"></script>
+    <script th:src="@{/vendors/twenty-twenty/jquery.event.move.js}"></script>
+
+
+
+
+    <!-- template js -->
+    <script th:src="@{/js/mellis.js}"></script>
+    <script th:src="@{/js/header-script.js}"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initially hide the "Password don't match" message
+            $('#pass-dont-match').hide();
+
+            // Disable submit button initially
+            $('button[type="submit"]').prop('disabled', true);
+
+            // Event handler for password input
+            $('#password').on('input', function() {
+                $('#pass-dont-match').hide(); // Hide the message
+            });
+
+            // Event handler for confirm password input
+            $('#confirm-password').on('input', function() {
+                var password = $('#password').val();
+                var confirmPassword = $(this).val();
+
+                // Check if passwords match
+                if (password !== confirmPassword) {
+                    $('#pass-dont-match').show(); // Show the message
+                    $('button[type="submit"]').prop('disabled', true); // Disable submit button
+                } else {
+                    $('#pass-dont-match').hide(); // Hide the message
+                    $('button[type="submit"]').prop('disabled', false); // Enable submit button
+                }
+            });
+        });
+    </script>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        function searchUser() {
+            const csrfToken = $("meta[name='_csrf']").attr("content");
+            const csrfHeader = $("meta[name='_csrf_header']").attr("content") || "X-CSRF-TOKEN";
+            const codeOrPhone = $("#referrerCodeOrPhone").val();
+
+            $.ajax({
+                url: /*[[@{/search-user}]]*/, // Use Thymeleaf to generate the URL
+                type: "POST",
+                data: {
+                    codeOrPhone: codeOrPhone
+                },
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader(csrfHeader, csrfToken);
+                },
+                success: function(response) {
+                    console.log(response);
+                    if (response) {
+                        const user = response;
+                        const name = user.name;
+                        const phone = user.phone;
+                        const roles = user.roles;
+
+                        let rolesHtml = ""; // Initialize empty string for roles
+
+                        // Loop through roles and build HTML string
+                        for (const role of roles) {
+                            rolesHtml += `<span class="border border-2 rounded ms-3 p-1 px-2">${role.name}</span>`;
+                        }
+                        const userHtml = `
+								<div className="border px-3 py-2 mt-3">
+                            <div className="d-flex justify-content-between align-items-center">
+                                <div className="d-flex align-items-center">
+                                    <img width="45px" src="/user-icon.png" alt="">
+                                        <div className="ms-2">
+                                            <div className="d-flex align-items-center">
+                                                ${name}
+                                            </div>
+                                            <span className="text-muted fw-bold ">${phone}</span>
+                                        </div>
+                                </div>
+                                <div className="d-flex">
+                                    <div className="d-flex text-gray-700 fw-bold fs-7">
+                                        ${rolesHtml}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+							`;
+
+                        $("#search-result").html(userHtml);
+                    } else {
+                        $("#search-result").html(`<div class="text-danger">No user found</div>`);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    if(jqXHR.status == 404) {
+                        $("#search-result").html(`<div class="text-danger">No user found</div>`);
+                    } else {
+                        console.error("AJAX error:", textStatus, errorThrown);
+                        $("#search-result").html("An error occurred while searching.");
+                    }
+                }
+            });
+        }
+        /*]]>*/
+    </script>
+</body>
+
+</html>

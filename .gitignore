@@ -4,3 +4,4 @@
 *.iml
 *.ipr
 
+/src/frontend/spa_website/src/main/resources/static/flaticon/

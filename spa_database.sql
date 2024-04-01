@@ -36,26 +36,26 @@ CREATE TABLE `user_role` (
 );
 
 INSERT INTO `user` (id, code, phone, name, email, password, referrer_id)  VALUES
-(1, '111','0988123123', 'Erica Smith', 'erica@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', NULL),
-(2, '222', '0987324078', 'Cloe Macy', 'cloe@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', NULL),
-(3, '333', '0966566956', 'Lily Cox', 'lily@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 1),
-(4, '444', '0955433452', 'Kendal Wild', 'kendal@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 1),
-(5, '555', '0966248346', 'Sarah Collin', 'sarah@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 2),
-(6, '666', '0986252956', 'Michell Owen', 'michell@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 3),
-(7, '777', '0943134235', 'Gretchen Smith', 'gretchen@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 3),
-(8, '888', '0954023283', 'Robin Spark', 'robin@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 4),
-(9, '999','0998345125', 'Monica Geller', 'monica@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 6),
-(10, '123', '0998433476', 'Anna Sanchez', 'anna@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 6),
-(11, '234', '0998431756', 'Dorothy Dowling', 'dorothy@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 9),
-(12, '345', '0998473453', 'Iris Young', 'iris@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 9),
-(13, '456', '0998393853', 'Elisabeth Chancellor', 'elisabeth@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 4),
-(14, '567', '0998234976', 'Marlene Gibson', 'marlene@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 11),
-(15, '678', '0998436362', 'Helen McAlexander', 'helen@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 11),
-(16, '789', '0998333263', 'Rhonda Jenkins', 'rhonda@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 15),
-(17, '100', '0998878252', 'Mary Johnson', 'mary@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 15),
-(18, '200', '0998789234', 'Angela Lewis', 'angela@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 15),
-(19, '300', '0998533453', 'Mary Jenkins', 'maryjenk@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 17),
-(20, '400', '0998444742', 'Emma McNeill', 'emma@emailcom', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 17)
+(1, '111','0988123123', 'Erica Smith', 'erica@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', NULL),
+(2, '222', '0987324078', 'Cloe Macy', 'cloe@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', NULL),
+(3, '333', '0966566956', 'Lily Cox', 'lily@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 1),
+(4, '444', '0955433452', 'Kendal Wild', 'kendal@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 1),
+(5, '555', '0966248346', 'Sarah Collin', 'sarah@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 2),
+(6, '666', '0986252956', 'Michell Owen', 'michell@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 3),
+(7, '777', '0943134235', 'Gretchen Smith', 'gretchen@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 3),
+(8, '888', '0954023283', 'Robin Spark', 'robin@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 4),
+(9, '999','0998345125', 'Monica Geller', 'monica@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 6),
+(10, '123', '0998433476', 'Anna Sanchez', 'anna@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 6),
+(11, '234', '0998431756', 'Dorothy Dowling', 'dorothy@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 9),
+(12, '345', '0998473453', 'Iris Young', 'iris@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 9),
+(13, '456', '0998393853', 'Elisabeth Chancellor', 'elisabeth@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 4),
+(14, '567', '0998234976', 'Marlene Gibson', 'marlene@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 11),
+(15, '678', '0998436362', 'Helen McAlexander', 'helen@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 11),
+(16, '789', '0998333263', 'Rhonda Jenkins', 'rhonda@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 15),
+(17, '100', '0998878252', 'Mary Johnson', 'mary@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 15),
+(18, '200', '0998789234', 'Angela Lewis', 'angela@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 15),
+(19, '300', '0998533453', 'Mary Jenkins', 'maryjenk@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 17),
+(20, '400', '0998444742', 'Emma McNeill', 'emma@email.com', '$2a$10$iIwyJzmFL1UQuhzm5uNXoO3XFHa0Tyx1cYKOwDjauZRVf84zZYhfS', 17)
 ;
 
 INSERT INTO `user` (id, phone, name, email, password) VALUES
@@ -83,8 +83,15 @@ CREATE TABLE `category` (
     deleted_at DATETIME
 );
 
-INSERT INTO `category` (name) VALUES 
-('Hair'), ('Makeup'), ('Nails'), ('Facial'), ('Coloring'), ('Spa'), ('Waxing'), ('Massage');
+INSERT INTO `category` (name, icon) VALUES 
+('Hair', 'https://res.cloudinary.com/dxcyeb8km/image/upload/v1711720014/hair_qv9pdu.png'), 
+('Makeup', 'https://res.cloudinary.com/dxcyeb8km/image/upload/v1711720018/makeup_bwb2lv.png'), 
+('Nails', 'https://res.cloudinary.com/dxcyeb8km/image/upload/v1711720011/nail_xcr90x.png'), 
+('Facial', 'https://res.cloudinary.com/dxcyeb8km/image/upload/v1711720009/facial_xcevc7.png'), 
+('Coloring', 'https://res.cloudinary.com/dxcyeb8km/image/upload/v1711720022/coloring_iz1ije.png'), 
+('Spa', 'https://res.cloudinary.com/dxcyeb8km/image/upload/v1711720033/spa_rjjnbj.png'), 
+('Waxing', 'https://res.cloudinary.com/dxcyeb8km/image/upload/v1711720025/wax_hkuedf.png'), 
+('Massage', 'https://res.cloudinary.com/dxcyeb8km/image/upload/v1711720029/massage_w2e1vw.png');
 
 CREATE TABLE `service` (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -121,8 +128,34 @@ INSERT INTO `service` (name, description, base_price, category_id) VALUES
 ('Gel Manicure', 'All the features of our Cherie manicure, but finish with nontoxic Gel Polish instead. (40 min)', 490000, 3),
 ('Cherie Pedicure', 'Our natural look pedi – no polish, but all of the pampering. Revitalize tired feet. (30 min)', 390000, 3),
 ('Kids Haircut', 'Our natural look pedi – no polish, but all of the pampering. Revitalize tired feet. (30 min)', 490000, 3),
-('Gel Pedicure', 'All the features of our Cherie manicure, but finish with nontoxic Gel Polish instead. (60 min)', 490000, 3)
-;
+('Gel Pedicure', 'All the features of our Cherie manicure, but finish with nontoxic Gel Polish instead. (60 min)', 490000, 3),
+
+('Classic Eyelash Extensions', 'A natural-looking lash enhancement with one lash extension applied to each natural lash. (1 hr 30 min)', 800000, 4),
+('Hybrid Eyelash Extensions', 'A combination of classic and volume lash extensions for a fuller look. (2 hrs)', 1000000, 4),
+('Volume Eyelash Extensions', 'Creates a dramatic, voluminous lash look by applying multiple lash extensions to each natural lash. (2 hrs 30 min)', 1200000, 4),
+('Mega Volume Eyelash Extensions', 'The fullest lash extensions we offer, creating a dramatic, glamorous look. (3 hrs)', 1500000, 4),
+('Lash Lift & Tint', 'Lifts and darkens your natural lashes for a mascara-like effect, without the extensions. (45 min)', 500000, 4),
+
+('Brows', 'Waxing to shape and define your brows. (15 min)', 150000, 5),
+('Lip', 'Precise waxing to remove unwanted hair above the lip. (10 min)', 100000, 5),
+('Underarms', 'Waxing to remove hair from the underarm area. (15 min)', 180000, 5),
+('Full Legs', 'Waxing to remove hair from the knees to the bikini line. (45 min)', 450000, 5),
+('Brazilian Wax', 'Waxing to remove all hair from the bikini area. (30 min)', 350000, 5),
+
+('Deep Cleansing Facial', 'A thorough cleansing facial to remove impurities and refine pores. (60 min)', 600000, 6),
+('Hydrafacial', 'A non-invasive, hydrating facial treatment that cleanses, extracts, and hydrates the skin. (60 min)', 800000, 6),
+('Anti-Aging Facial', 'A facial treatment targeted at reducing fine lines and wrinkles. (75 min)', 900000, 6),
+('Brightening Facial', 'A facial treatment to even skin tone and reduce hyperpigmentation. (60 min)', 700000, 6),
+('Chemical Peel', 'A facial treatment using a chemical solution to exfoliate the skin and improve texture. (30 min)', 500000, 6),
+
+('Swedish Massage', 'A relaxing massage that uses long strokes to improve circulation and relieve tension. (60 min)', 600000, 7),
+('Deep Tissue Massage', 'A massage that focuses on deeper muscle layers to relieve chronic pain and tension. (60 min)', 700000, 7),
+('Hot Stone Massage', 'A massage that uses heated stones to warm and relax the muscles. (60 min)', 800000, 7),
+('Aromatherapy Massage', 'A massage that uses essential oils to create a relaxing and therapeutic experience. (60 min)', 750000, 7),
+
+('Brow Threading', 'A hair removal technique that uses thread to remove unwanted hair. (15 min)', 120000, 8),
+('Brow Tinting', 'Dyeing your brows to enhance their color and shape. (15 min)', 100000, 8),
+('Lash Tinting', 'Dyeing your lashes for a darker, more defined look. (20 min)', 150000, 8);
 
 CREATE TABLE `commission_policy` (
 	id INT PRIMARY KEY AUTO_INCREMENT,
@@ -241,6 +274,28 @@ CREATE TABLE `event` (
     status INT DEFAULT 0
 );
 
+INSERT INTO `event` (code, name, start_date, end_date, description, max_discount, banner, status) VALUES
+(
+	'NY2024', 
+    'New Year Deal', 
+    '2024-04-01 00:00:00', 
+    '2024-04-30 23:59:59', 
+    'Aliquam hendrerit a augue insuscipit. Etiam aliquam massa quis des mauris commodo venenatis ligula commodo leez sed blandit convallis dignissim onec vel pellentesque neque.',
+    30,
+    'https://res.cloudinary.com/dxcyeb8km/image/upload/v1711764965/spa-special-img-1_1_hgwwep.jpg',
+    1
+),
+(
+	'WMD24', 
+    'International Women Day', 
+    '2024-04-01 00:00:00', 
+    '2024-04-30 23:59:59', 
+    'Aliquam hendrerit a augue insuscipit. Etiam aliquam massa quis des mauris commodo venenatis ligula commodo leez sed blandit convallis dignissim onec vel pellentesque neque.',
+    30,
+    'https://res.cloudinary.com/dxcyeb8km/image/upload/v1711764965/adam-winger-FkAZqQJTbXM-unsplash_qr1txt.jpg',
+    1
+);
+
 CREATE TABLE `event_service` (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     event_id INT,
@@ -250,6 +305,9 @@ CREATE TABLE `event_service` (
     FOREIGN KEY (service_id) REFERENCES service(id)
 );
 
+INSERT INTO `event_service` (event_id, service_id, discount) VALUES
+(1, 1, 20), (1, 2, 10), (1, 3, 30), (1, 4, 25), (1, 5, 30), (1, 6, 15),
+(2, 7, 20), (2, 8, 10), (2, 9, 30), (2, 10, 25), (2, 11, 30), (2, 12, 15);
 
 DROP PROCEDURE IF EXISTS get_parents;
 DELIMITER //

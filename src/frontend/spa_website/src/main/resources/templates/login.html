@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Sign In || mellis || mellis HTML 5 Template </title>
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/images/favicons/apple-touch-icon.png}" />
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicons/favicon-32x32.png}" />
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicons/favicon-16x16.png}" />
+    <link rel="manifest" th:href="@{/images/favicons/site.webmanifest}" />
+    <meta name="description" content="mellis HTML 5 Template " />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/vendors/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/animate/animate.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/animate/custom-animate.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/fontawesome/css/all.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/jarallax/jarallax.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/jquery-magnific-popup/jquery.magnific-popup.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/nouislider/nouislider.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/nouislider/nouislider.pips.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/odometer/odometer.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/swiper/swiper.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/mellis-icons/style.css}">
+    <link rel="stylesheet" th:href="@{/vendors/tiny-slider/tiny-slider.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/reey-font/stylesheet.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.carousel.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/owl-carousel/owl.theme.default.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/bxslider/jquery.bxslider.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/bootstrap-select/css/bootstrap-select.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/vegas/vegas.min.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/jquery-ui/jquery-ui.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/timepicker/timePicker.css}" />
+    <link rel="stylesheet" th:href="@{/vendors/twenty-twenty/twentytwenty.css}" />
+
+    <!-- template styles -->
+    <link rel="stylesheet" th:href="@{/css/mellis.css}" />
+    <link rel="stylesheet" th:href="@{/css/mellis-responsive.css}" />
+
+    <!-- Flaticon -->
+    <link th:href="@{/flaticon/css/uicons-thin-straight.css}" rel="stylesheet">
+</head>
+
+<body>
+
+
+
+    <div class="preloader">
+        <div class="preloader__image"></div>
+    </div>
+    <!-- /.preloader -->
+
+
+
+
+    <div class="page-wrapper">
+        <div th:replace="fragments/header :: header"></div>
+        <div th:replace="fragments/header-sticky :: header-sticky"></div>
+
+
+        <!--Page Header Start-->
+        <section class="page-header">
+            <div class="page-header__bg" th:style="'background-image: url(\'' + @{/images/backgrounds/page-header-bg.jpg} + '\')'">
+            </div>
+            <div class="container">
+                <div class="page-header__inner">
+                    <ul class="thm-breadcrumb list-unstyled">
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>/</span></li>
+                        <li>Account</li>
+                    </ul>
+                    <h2>Sign In</h2>
+                </div>
+            </div>
+        </section>
+        <!--Page Header End-->
+
+        <!--Client Stories Start-->
+        <section class="client-stories">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <!--Client Stories Single Start-->
+                    <div class="col-xl-6 col-lg-6 col-md-6">
+                        <div class="client-stories__single hover">
+                            <div class="client-stories__inner">
+                                <div class="client-stories__shape-1">
+                                    <img th:src="@{/images/shapes/client-stories-shape-1.png}" alt="">
+                                </div>
+                                <div class="text-center mb-4">
+                                    <h4 class="text-dark mb-1">Sign In</h4>
+                                    <div class="">New Here?
+                                        <a th:href="@{/register}" class="link-info">Create an Account</a>
+                                    </div>
+                                </div>
+                                <form th:action="@{/login}" method="post" class="contact-one__form login-form-validated" novalidate="novalidate">
+                                    <div class="row">
+                                        <div class="col-xl-12">
+                                            <div class="contact-one__form-input-box">
+                                                <input type="text" placeholder="Enter Email" name=username>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div class="contact-one__form-input-box">
+                                                <input type="password" placeholder="Enter Password" name="password">
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div class="form-check" style="margin-bottom: 20px">
+                                                <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="remember-me"
+                                                       style="margin-top: 0.46em">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Remember me
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div th:if="${param.error}" class="alert alert-danger mb-30" role="alert">
+                                                Invalid username and password.
+                                            </div>
+                                        </div>
+                                        <div class="contact-one__btn-box d-flex justify-content-center">
+                                            <button type="submit" class="thm-btn contact-one__btn">Sign In</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Client Stories Single End-->
+
+                </div>
+            </div>
+        </section>
+        <!--Client Stories End-->
+
+
+        <!--Site Footer Start-->
+        <div th:replace="fragments/footer :: footer"></div>
+        <!--Site Footer End-->
+
+
+    </div><!-- /.page-wrapper -->
+
+
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <!-- /.mobile-nav__overlay -->
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
+
+            <div class="logo-box">
+                <a href="index.html" aria-label="logo image"><img th:src="@{/images/resources/logo-3.png}" width="90"
+                        alt="" /></a>
+            </div>
+            <!-- /.logo-box -->
+            <div class="mobile-nav__container"></div>
+            <!-- /.mobile-nav__container -->
+
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i class="fa fa-envelope"></i>
+                    <a href="mailto:needhelp@packageName__.com">needhelp@mellis.com</a>
+                </li>
+                <li>
+                    <i class="fa fa-phone-alt"></i>
+                    <a href="tel:666-888-0000">666 888 0000</a>
+                </li>
+            </ul><!-- /.mobile-nav__contact -->
+            <div class="mobile-nav__top">
+                <div class="mobile-nav__social">
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-facebook-square"></a>
+                    <a href="#" class="fab fa-pinterest-p"></a>
+                    <a href="#" class="fab fa-instagram"></a>
+                </div><!-- /.mobile-nav__social -->
+            </div><!-- /.mobile-nav__top -->
+
+
+
+        </div>
+        <!-- /.mobile-nav__content -->
+    </div>
+    <!-- /.mobile-nav__wrapper -->
+
+    <div class="search-popup">
+        <div class="search-popup__overlay search-toggler"></div>
+        <!-- /.search-popup__overlay -->
+        <div class="search-popup__content">
+            <form action="#">
+                <label for="search" class="sr-only">search here</label><!-- /.sr-only -->
+                <input type="text" id="search" placeholder="Search Here..." />
+                <button type="submit" aria-label="search submit" class="thm-btn">
+                    <i class="icon-magnifying-glass"></i>
+                </button>
+            </form>
+        </div>
+        <!-- /.search-popup__content -->
+    </div>
+    <!-- /.search-popup -->
+
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+    <script th:src="@{/vendors/jquery/jquery-3.6.0.min.js}"></script>
+    <script th:src="@{/vendors/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/vendors/jarallax/jarallax.min.js}"></script>
+    <script th:src="@{/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js}"></script>
+    <script th:src="@{/vendors/jquery-appear/jquery.appear.min.js}"></script>
+    <script th:src="@{/vendors/jquery-circle-progress/jquery.circle-progress.min.js}"></script>
+    <script th:src="@{/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{/vendors/jquery-validate/jquery.validate.min.js}"></script>
+    <script th:src="@{/vendors/nouislider/nouislider.min.js}"></script>
+    <script th:src="@{/vendors/odometer/odometer.min.js}"></script>
+    <script th:src="@{/vendors/swiper/swiper.min.js}"></script>
+    <script th:src="@{/vendors/tiny-slider/tiny-slider.min.js}"></script>
+    <script th:src="@{/vendors/wnumb/wNumb.min.js}"></script>
+    <script th:src="@{/vendors/wow/wow.js}"></script>
+    <script th:src="@{/vendors/isotope/isotope.js}"></script>
+    <script th:src="@{/vendors/countdown/countdown.min.js}"></script>
+    <script th:src="@{/vendors/owl-carousel/owl.carousel.min.js}"></script>
+    <script th:src="@{/vendors/bxslider/jquery.bxslider.min.js}"></script>
+    <script th:src="@{/vendors/bootstrap-select/js/bootstrap-select.min.js}"></script>
+    <script th:src="@{/vendors/vegas/vegas.min.js}"></script>
+    <script th:src="@{/vendors/jquery-ui/jquery-ui.js}"></script>
+    <script th:src="@{/vendors/timepicker/timePicker.js}"></script>
+    <script th:src="@{/vendors/circleType/jquery.circleType.js}"></script>
+    <script th:src="@{/vendors/circleType/jquery.lettering.min.js}"></script>
+    <script th:src="@{/vendors/sidebar-content/jquery-sidebar-content.js}"></script>
+    <script th:src="@{/vendors/twenty-twenty/twentytwenty.js}"></script>
+    <script th:src="@{/vendors/twenty-twenty/jquery.event.move.js}"></script>
+
+
+
+
+    <!-- template js -->
+    <script th:src="@{/js/mellis.js}"></script>
+    <script th:src="@{/js/header-script.js}"></script>
+</body>
+
+</html>
