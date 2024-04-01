@@ -1,7 +1,7 @@
 package com.uni.ead_project.controller;
 
-import com.uni.ead_project.entity.PoliciesEntity;
-import com.uni.ead_project.service.PoliciesService;
+import com.uni.ead_project.entity.PolicyEntity;
+import com.uni.ead_project.service.PolicyService;
 import jakarta.validation.Valid;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -15,10 +15,10 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping("/policies")
-public class PolicyController {
-     private final PoliciesService policiesService;
+public class  PolicyController {
+     private final PolicyService policiesService;
 
-    public PolicyController(PoliciesService policiesService) {
+    public PolicyController(PolicyService policiesService) {
         this.policiesService = policiesService;
     }
 
@@ -29,33 +29,34 @@ public class PolicyController {
     }
     @GetMapping("/list")
     public String GetPolicy(Model model){
-        List<PoliciesEntity> policies = policiesService.getAllPolicies();
+        List<PolicyEntity> policies = policiesService.getAllPolicies();
         model.addAttribute("policies", policies);
+        model.addAttribute("policy", new PolicyEntity());
         return "policy/list";
     }
-    @GetMapping("/formAdd")
-    public String ShowFormAdd(Model model) {
-        PoliciesEntity policy = new PoliciesEntity();
-        model.addAttribute("policy",policy);
-        return "policy/form";
-    }
+//    @GetMapping("/formAdd")
+//    public String ShowFormAdd(Model model) {
+//        PolicyEntity policy = new PolicyEntity();
+//        model.addAttribute("policy",policy);
+//        return "policy/form";
+//    }
     @PostMapping("/save")
-    public String savePolicy(@Valid @ModelAttribute("policy") PoliciesEntity policy, BindingResult bindingResult){
+    public String savePolicy(@Valid @ModelAttribute("policy") PolicyEntity policy, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
-            return "policy/form";
+            return "policies/list";
         }
         else {
-            policiesService.savePolicyId(policy);
+            policiesService.savePolicy(policy);
             return "redirect:/policies/list";
         }
     }
     @GetMapping("formUpdate")
     public String ShowFormUpdate(@RequestParam("policyId") String policyId, Model model){
-        Optional<PoliciesEntity> policy = policiesService.getPolicyById(policyId);
+        Optional<PolicyEntity> policy = policiesService.getPolicyById(policyId);
         model.addAttribute("policy", policy);
         return "policy/form";
     }
-    @GetMapping("delete")
+    @GetMapping("delete/{policyId}")
     public String DeletePolicie(@RequestParam("policyId") String policyId, Model model){
         policiesService.deletePolicyId(policyId);
         return "redirect:/policies/list";

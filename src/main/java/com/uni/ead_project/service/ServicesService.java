@@ -1,6 +1,6 @@
 package com.uni.ead_project.service;
 
-import com.uni.ead_project.entity.ServicesEntity;
+import com.uni.ead_project.entity.ServiceEntity;
 import com.uni.ead_project.repository.ServicesRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,18 +16,18 @@ public class ServicesService implements IServicesService{
     }
 
     @Override
-    public List<ServicesEntity> getAllServices() {
+    public List<ServiceEntity> getAllServices() {
         return servicesRepository.findAll();
     }
 
     @Override
-    public Optional<ServicesEntity> getServiceById(String serviceId) {
+    public Optional<ServiceEntity> getServiceById(String serviceId) {
         return servicesRepository.findById(serviceId);
     }
 
     @Override
-    public void saveFormService(ServicesEntity servicesEntity) {
-        servicesRepository.save(servicesEntity);
+    public void saveFormService(ServiceEntity serviceEntity) {
+        servicesRepository.save(serviceEntity);
     }
 
     @Override

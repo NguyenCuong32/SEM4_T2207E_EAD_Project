@@ -5,14 +5,20 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "Events", schema = "dbo", catalog = "lab")
 public class EventEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, sequenceName = "my_sequence")
     @Column(name = "event_id")
     private String eventId;
+    @PrePersist
+    public void generateId() {
+        this.eventId = UUID.randomUUID().toString();
+    }
     @Basic
     @Column(name = "event_name")
     private String eventName;
@@ -40,11 +46,35 @@ public class EventEntity {
     @Basic
     @Column(name = "service_id")
     private String serviceId;
-//    @ManyToOne
-//    @JoinColumn(name = "ServiceID", referencedColumnName = "ServiceID")
-//    private ServicesEntity servicesByServiceId;
-//    @OneToMany(mappedBy = "eventsByEventId")
-//    private Collection<PartnersEntity> partnersByEventId;
+
+    public EventEntity(String eventId, String eventName, Date startDateTime, Date endDateTime, String shortDescription, BigDecimal value, String scopeApply, String bannerImage, Boolean eventStatus, String serviceId) {
+        this.eventId = eventId;
+        this.eventName = eventName;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+        this.shortDescription = shortDescription;
+        this.value = value;
+        this.scopeApply = scopeApply;
+        this.bannerImage = bannerImage;
+        this.eventStatus = eventStatus;
+        this.serviceId = serviceId;
+    }
+
+    @Override
+    public String toString() {
+        return "EventEntity{" +
+                "eventId='" + eventId + '\'' +
+                ", eventName='" + eventName + '\'' +
+                ", startDateTime=" + startDateTime +
+                ", endDateTime=" + endDateTime +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", value=" + value +
+                ", scopeApply='" + scopeApply + '\'' +
+                ", bannerImage='" + bannerImage + '\'' +
+                ", eventStatus=" + eventStatus +
+                ", serviceId='" + serviceId + '\'' +
+                '}';
+    }
 
     public String getEventId() {
         return eventId;
@@ -126,32 +156,7 @@ public class EventEntity {
         this.serviceId = serviceId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        EventEntity that = (EventEntity) o;
-        return Objects.equals(eventId, that.eventId) && Objects.equals(eventName, that.eventName) && Objects.equals(startDateTime, that.startDateTime) && Objects.equals(endDateTime, that.endDateTime) && Objects.equals(shortDescription, that.shortDescription) && Objects.equals(value, that.value) && Objects.equals(scopeApply, that.scopeApply) && Objects.equals(bannerImage, that.bannerImage) && Objects.equals(eventStatus, that.eventStatus) && Objects.equals(serviceId, that.serviceId);
+    public EventEntity() {
+
     }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(eventId, eventName, startDateTime, endDateTime, shortDescription, value, scopeApply, bannerImage, eventStatus, serviceId);
-    }
-
-//    public ServicesEntity getServicesByServiceId() {
-//        return servicesByServiceId;
-//    }
-//
-//    public void setServicesByServiceId(ServicesEntity servicesByServiceId) {
-//        this.servicesByServiceId = servicesByServiceId;
-//    }
-
-//    public Collection<PartnersEntity> getPartnersByEventId() {
-//        return partnersByEventId;
-//    }
-//
-//    public void setPartnersByEventId(Collection<PartnersEntity> partnersByEventId) {
-//        this.partnersByEventId = partnersByEventId;
-//    }
 }

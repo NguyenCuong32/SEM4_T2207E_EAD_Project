@@ -3,13 +3,12 @@ package com.uni.ead_project.entity;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "Services", schema = "dbo", catalog = "lab")
-public class ServicesEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ServiceEntity {
+
     @Id
     @Column(name = "service_id")
     private String serviceId;
@@ -74,7 +73,7 @@ public class ServicesEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ServicesEntity that = (ServicesEntity) o;
+        ServiceEntity that = (ServiceEntity) o;
         return Objects.equals(serviceId, that.serviceId) && Objects.equals(serviceName, that.serviceName) && Objects.equals(description, that.description) && Objects.equals(serviceType, that.serviceType) && Objects.equals(price, that.price);
     }
 

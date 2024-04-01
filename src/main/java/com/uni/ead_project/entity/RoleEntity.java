@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "Roles", schema = "dbo", catalog = "lab")
-public class RolesEntity {
+public class RoleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "role_id")
@@ -49,7 +49,7 @@ public class RolesEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RolesEntity that = (RolesEntity) o;
+        RoleEntity that = (RoleEntity) o;
         return roleId == that.roleId && Objects.equals(roleName, that.roleName) && Objects.equals(userId, that.userId);
     }
 

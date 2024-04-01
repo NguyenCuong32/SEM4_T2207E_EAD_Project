@@ -2,15 +2,19 @@ package com.uni.ead_project.entity;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 @Table(name = "Partners", schema = "dbo", catalog = "lab")
-public class PartnersEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PartnerEntity {
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "user_id")
     private String userId;
+    @PrePersist
+    public void generateId() {
+        this.userId = UUID.randomUUID().toString();
+    }
     @Basic
     @Column(name = "phone_number")
     private String phoneNumber;
@@ -43,7 +47,7 @@ public class PartnersEntity {
                 '}';
     }
 
-    public PartnersEntity() {
+    public PartnerEntity() {
 
     }
 
@@ -114,7 +118,7 @@ public class PartnersEntity {
         this.inviterEmail = inviterEmail;
     }
 
-    public PartnersEntity(String userId, String phoneNumber, String email, String userQr, String inviterId, String inviterPhoneNumber, String inviterEmail) {
+    public PartnerEntity(String userId, String phoneNumber, String email, String userQr, String inviterId, String inviterPhoneNumber, String inviterEmail) {
         this.userId = userId;
         this.phoneNumber = phoneNumber;
         this.email = email;

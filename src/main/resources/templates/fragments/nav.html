@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nav</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+        *{
+            font-family: "Segoe UI", serif;
+            font-weight: normal;
+
+        }
+        .mainBody{
+            display: flex;
+            flex-wrap: nowrap;
+            height: 100%;
+            height: -webkit-fill-available;
+            max-height: 100vh;
+            overflow-x: auto;
+            overflow-y: hidden;
+            font-family: "Segoe UI", serif;
+            font-weight: normal;
+            font-size: 20px;
+        }
+
+        .b-example-divider {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100%;
+            /*background-color: rgba(0, 0, 0, .1);*/
+            background-color: rgba(0, 0, 0, .1);
+            /*border: solid rgba(0, 0, 0, .15);*/
+            /*border-width: 1px 0;*/
+            /*box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);*/
+        }
+        header{
+            display: flex;
+            justify-content: space-between;
+            background-color: transparent;
+            height: 65px;
+            border-bottom: 1px solid #d0d0d1;
+            z-index: 100;
+        }
+        .logo{
+            display: flex;
+            width: 20%;
+            justify-content: center;
+            align-items: center;
+            margin-left: -40px;
+        }
+        .logo i{
+            cursor: pointer;
+        }
+        .logo a{
+            font-size: 32px;
+            font-weight: 700;
+            margin-left: 60px;
+            text-decoration: none;
+            color: #2F3D7E;
+        }
+        .right{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30%;
+        }
+        .item-help{
+            display: flex;
+            justify-content: space-between;
+            width: 40%;
+            font-size: 18px;
+        }
+        .account{
+            display: flex;
+            margin: 0 20px 0 20px;
+        }
+        .account .item{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-right: 10px;
+        }
+        .interact-item{
+            cursor: pointer;
+            position: relative;
+        }
+        .interact-item:hover{
+            transform: scale(130%);
+            transition: 0.3s;
+        }
+        .account .item span{
+            font-size: 14px;
+        }
+        .account .item a{
+            text-decoration: none;
+        }
+        .item-logout{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .item-logout i{
+            font-size: 12px;
+            margin-right: 5px;
+        }
+        .account img{
+            width: 40px;
+            max-width: 100%;
+        }
+
+        /* Target screens mobile */
+        @media screen and (max-width: 767px) {
+            .account img{
+                width: 50%;
+                height: 50%;
+            }
+            .item-help{
+                display: none;
+            }
+        }
+
+        /* Target screens tablet */
+        @media screen and (min-width: 767px) and (max-width:1023px) {
+            .account img{
+                width: 50%;
+                height: 50%;
+            }
+
+        }
+        /* Target screens desktop */
+        @media screen and (min-width: 1024px) {
+
+        }
+    </style>
+
+</head>
+<div class="mainBody">
+    <div></div>
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; height: 100% ;" th:fragment="sidenav-nav">
+<!--        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">-->
+<!--            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>-->
+<!--            <span class="fs-4">Azeli</span>-->
+<!--        </a>-->
+        <hr style="color: rgba(0,0,0,0)">
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <div style="height:48px">
+                    <a href="#" class="nav-link" style="color:#2F3D7E" aria-current="page">
+                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
+                        Dashboard
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div style="height:48px">
+                <a th:href="@{/services/list}" class="nav-link" style="color:#2F3D7E">
+                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
+                    Services
+                </a>
+                </div>
+            </li>
+            <li>
+                <div style="height:48px">
+                <a th:href="@{/policies/list}" class="nav-link" style="color:#2F3D7E">
+                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
+                    Policies
+                </a>
+                </div>
+            </li>
+            <li>
+                <div style="height:48px">
+                <a th:href="@{/partners/list}" class="nav-link" style="color:#2F3D7E">
+                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
+                    Partners
+                </a>
+                </div>
+            </li>
+            <li>
+                <div style="height:48px">
+                <a href="#" class="nav-link" style="color:#2F3D7E">
+                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+                    Customers
+                </a>
+                </div>
+            </li>
+            <li>
+                <div style="height:48px">
+                <a th:href="@{/events/list}" class="nav-link" style="color:#2F3D7E">
+                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+                    Events
+                </a>
+                </div>
+            </li>
+            <li>
+                <div style="height:48px">
+                <a th:href="@{/users/list}" class="nav-link" style="color:#2F3D7E">
+                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+                    Users
+                </a>
+                </div>
+            </li>
+            <li>
+                <div style="height:48px">
+                <a href="#" class="nav-link" style="color:#2F3D7E">
+                    <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
+                    Settings
+                </a>
+                </div>
+            </li>
+        </ul>
+        <hr style="color: rgba(0,0,0,0)">
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>Nguyen Van A</strong>
+            </a>
+            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                <li><a class="dropdown-item" href="#">New project...</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Sign out</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="b-example-divider" th:fragment="sidenav2-nav"></div>
+</div>
+
+</html>
+

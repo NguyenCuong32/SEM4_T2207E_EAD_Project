@@ -1,6 +1,6 @@
 package com.uni.ead_project.service;
 
-import com.uni.ead_project.entity.PoliciesEntity;
+import com.uni.ead_project.entity.PolicyEntity;
 import com.uni.ead_project.repository.PoliciesRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -17,19 +17,19 @@ public class PoliciesService implements IPoliciesService{
     }
 
     @Override
-    public List<PoliciesEntity> getAllPolicies() {
+    public List<PolicyEntity> getAllPolicies() {
         return policiesRepository.findAll();
     }
 
     @Override
-    public Optional<PoliciesEntity> getPolicyById(String serviceId) {
+    public Optional<PolicyEntity> getPolicyById(String serviceId) {
         return policiesRepository.findById(serviceId);
     }
 
     @Override
     @Transactional
-    public void savePolicyId(PoliciesEntity policiesEntity) {
-        policiesRepository.save(policiesEntity);
+    public void savePolicyId(PolicyEntity policyEntity) {
+        policiesRepository.save(policyEntity);
     }
 
     @Override

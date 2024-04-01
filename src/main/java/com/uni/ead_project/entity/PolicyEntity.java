@@ -3,11 +3,10 @@ package com.uni.ead_project.entity;
 import jakarta.persistence.*;
 
 import java.sql.Date;
-import java.util.Objects;
 
 @Entity
 @Table(name = "Policies", schema = "dbo", catalog = "lab")
-public class PoliciesEntity {
+public class PolicyEntity {
     @Basic
     @Column(name = "policy_id")
     private String policyId;
@@ -34,7 +33,7 @@ public class PoliciesEntity {
 //    @JoinColumn(name = "ServiceID", referencedColumnName = "ServiceID", nullable = false)
 //    private ServicesEntity servicesByServiceId;
 
-    public PoliciesEntity(String policyId, Date startDateTime, Date endDateTime, String serviceId, String policyFormula, String facilityApply, Byte status) {
+    public PolicyEntity(String policyId, Date startDateTime, Date endDateTime, String serviceId, String policyFormula, String facilityApply, Byte status) {
         this.policyId = policyId;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
@@ -44,7 +43,7 @@ public class PoliciesEntity {
         this.status = status;
     }
 
-    public PoliciesEntity() {
+    public PolicyEntity() {
 
     }
 

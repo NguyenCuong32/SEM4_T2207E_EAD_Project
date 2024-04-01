@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface IEventService {
     List<EventEntity> getAllEvents();
     Optional<EventEntity> getEventById(String eventId);
-    void saveEvent(EventEntity eventEntity);
+    void saveEvent(EventEntity event);
+    void updateEvent();
     void deleteEvent(String eventId);
 }

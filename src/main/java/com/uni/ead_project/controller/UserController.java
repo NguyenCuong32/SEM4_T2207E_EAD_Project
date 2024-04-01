@@ -1,6 +1,6 @@
 package com.uni.ead_project.controller;
 
-import com.uni.ead_project.entity.UsersEntity;
+import com.uni.ead_project.entity.UserEntity;
 import com.uni.ead_project.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -14,12 +14,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/User")
+@RequestMapping("/users")
 public class UserController {
-    private final UserService userService;
+    private final UserService usersService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(UserService usersService) {
+        this.usersService = usersService;
     }
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
@@ -28,35 +28,35 @@ public class UserController {
     }
     @GetMapping("/list")
     public String GetUsers(Model model){
-        List<UsersEntity>users=userService.getAllUsers();
+        List<UserEntity> users = usersService.getAllUsers();
         model.addAttribute("users", users);
         return "user/list";
     }
     @GetMapping("/formAdd")
     public String ShowFormAdd(Model model) {
-        UsersEntity user = new UsersEntity();
+        UserEntity user = new UserEntity();
         model.addAttribute("user",user);
         return "user/form";
     }
     @PostMapping("/save")
-    public String saveUser(@Valid @ModelAttribute("user") UsersEntity users,  BindingResult bindingResult){
+    public String saveUser(@Valid @ModelAttribute("user") UserEntity user, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return "user/form";
         }
         else {
-            userService.saveFormUser(users);
+            usersService.saveUser(user);
             return "redirect:/user/list";
         }
     }
     @GetMapping("formUpdate")
     public String ShowFormUpdate(@RequestParam("userId") String userId, Model model){
-        Optional<UsersEntity> users = userService.getUserById(userId);
-        model.addAttribute("users", users);
+        Optional<UserEntity> user = usersService.getUserById(userId);
+        model.addAttribute("user", user);
         return "user/form";
     }
     @GetMapping("delete")
     public String DeleteUser(@RequestParam("userId") String userId, Model model){
-        userService.deleteUser(userId);
+        usersService.deleteUser(userId);
         return "redirect:/user/list";
     }
 }

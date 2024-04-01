@@ -1,37 +1,42 @@
 package com.uni.ead_project.service;
 
-import com.uni.ead_project.entity.UsersEntity;
-import com.uni.ead_project.repository.UsersRepository;
+import com.uni.ead_project.entity.UserEntity;
+import com.uni.ead_project.repository.IUserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService implements IUsersService{
-    private final UsersRepository usersRepository;
+public class UserService implements IUserService {
+    private final IUserRepository IUserRepository;
 
-    public UserService(UsersRepository usersRepository) {
-        this.usersRepository = usersRepository;
+    public UserService(IUserRepository IUserRepository) {
+        this.IUserRepository = IUserRepository;
     }
 
     @Override
-    public List<UsersEntity> getAllUsers() {
-        return usersRepository.findAll();
+    public List<UserEntity> getAllUsers() {
+        return IUserRepository.findAll();
     }
 
     @Override
-    public Optional<UsersEntity> getUserById(String userId) {
-        return usersRepository.findById(userId);
+    public Optional<UserEntity> getUserById(String userId) {
+        return IUserRepository.findById(userId);
     }
 
     @Override
-    public void saveFormUser(UsersEntity usersEntity) {
-        usersRepository.save(usersEntity);
+    public void saveUser(UserEntity usersEntity) {
+        IUserRepository.save(usersEntity);
+    }
+
+    @Override
+    public void updateUser() {
+
     }
 
     @Override
     public void deleteUser(String userId) {
-        usersRepository.deleteById(userId);
+        IUserRepository.deleteById(userId);
     }
 }

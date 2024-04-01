@@ -1,7 +1,7 @@
 package com.uni.ead_project.repository;
 
-import com.uni.ead_project.entity.PoliciesEntity;
+import com.uni.ead_project.entity.PolicyEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PoliciesRepository extends JpaRepository<PoliciesEntity,String> {
+public interface PoliciesRepository extends JpaRepository<PolicyEntity,String> {
 }

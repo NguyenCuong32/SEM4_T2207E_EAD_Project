@@ -1,7 +1,7 @@
 package com.uni.ead_project.controller;
 
-import com.uni.ead_project.entity.PartnersEntity;
-import com.uni.ead_project.service.PartnersService;
+import com.uni.ead_project.entity.PartnerEntity;
+import com.uni.ead_project.service.PartnerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -16,9 +16,9 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/partners")
 public class PartnerController {
-    private final PartnersService partnersService;
+    private final PartnerService partnersService;
 
-    public PartnerController(PartnersService partnersService) {
+    public PartnerController(PartnerService partnersService) {
         this.partnersService = partnersService;
     }
     @InitBinder
@@ -28,35 +28,44 @@ public class PartnerController {
     }
     @GetMapping("/list")
     public String GetPartner(Model model){
-        List<PartnersEntity> partners = partnersService.getAllPartners();
+        List<PartnerEntity> partners = partnersService.getAllPartners();
         model.addAttribute("partners", partners);
+        model.addAttribute("partner", new PartnerEntity());
+        return "partner/list";
+    }
+    @PostMapping("/list")
+    public String submitPartner(@ModelAttribute PartnerEntity partner, Model model) {
+        Optional<PartnerEntity> completePartner = partnersService.getPartnerById(partner.getInviterId());
+        System.out.print("invite"+completePartner);
+        model.addAttribute("partner", completePartner);
         return "partner/list";
     }
     @GetMapping("/formAdd")
-    public String ShowFormAdd(Model model) {
-        PartnersEntity partner = new PartnersEntity();
+    public String ShowFormAdd(@ModelAttribute Model model) {
+        PartnerEntity partner = new PartnerEntity();
         model.addAttribute("partner",partner);
         return "partner/form";
     }
     @PostMapping("/save")
-    public String savePartner(@Valid @ModelAttribute("partner") PartnersEntity partner, BindingResult bindingResult){
+    public String savePartner(@Valid @ModelAttribute("partner") PartnerEntity partner, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
-            return "partner/form";
+            return "partners/list";
         }
         else {
             partnersService.savePartner(partner);
-            return "redirect:/partner/list";
+            return "redirect:/partners/list";
         }
     }
-    @GetMapping("formUpdate")
+    @GetMapping("formUpdate/{userId}")
     public String ShowFormUpdate(@RequestParam("userId") String userId, Model model){
-        Optional<PartnersEntity> partner = partnersService.getPartnerById(userId);
+        Optional<PartnerEntity> partner = partnersService.getPartnerById(userId);
         model.addAttribute("partner", partner);
-        return "partner/form";
+        return "partners/form";
     }
     @GetMapping("delete")
     public String DeletePartner(@RequestParam("userId") String userId, Model model){
         partnersService.deletePartner(userId);
-        return "redirect:/partner/list";
+        return "redirect:/partners/list";
     }
+
 }

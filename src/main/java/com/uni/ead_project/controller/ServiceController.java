@@ -1,9 +1,12 @@
 package com.uni.ead_project.controller;
 
-import com.uni.ead_project.entity.ServicesEntity;
-import com.uni.ead_project.service.ServicesService;
+import com.uni.ead_project.entity.ServiceEntity;
+import com.uni.ead_project.service.ServiceService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,12 +17,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/service")
+@RequestMapping("/services")
 public class ServiceController {
-    private final ServicesService servicesService;
-
-    public ServiceController(ServicesService servicesService) {
-        this.servicesService = servicesService;
+    private final ServiceService serviceService;
+    @Autowired
+    public ServiceController(ServiceService serviceService) {
+        this.serviceService = serviceService;
     }
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
@@ -27,36 +30,36 @@ public class ServiceController {
         dataBinder.registerCustomEditor(String.class,stringTrimmerEditor);
     }
     @GetMapping("/list")
-    public String GetPartner(Model model){
-        List<ServicesEntity> service=servicesService.getAllServices();
-        model.addAttribute("service", service);
+    public String GetServices(Model model){
+        List<ServiceEntity> services = serviceService.getAllServices();
+        model.addAttribute("services", services);
         return "service/list";
     }
-    @GetMapping("/formAdd")
-    public String ShowFormAdd(Model model) {
-      ServicesEntity services = new ServicesEntity();
-        model.addAttribute("service",services);
-        return "service/form";
-    }
     @PostMapping("/save")
-    public String saveService(@Valid @ModelAttribute ServicesEntity services, BindingResult bindingResult){
+    public String saveService(@Valid @ModelAttribute("service") ServiceEntity service, BindingResult bindingResult){
         if (bindingResult.hasErrors()) {
             return "service/form";
         }
         else {
-            servicesService.saveFormService(services);
-            return "redirect:/service/list";
+            serviceService.saveService(service);
+            return "redirect:/services/list";
         }
     }
     @GetMapping("formUpdate")
     public String ShowFormUpdate(@RequestParam("serviceId") String serviceId, Model model){
-        Optional<ServicesEntity> service = servicesService.getServiceById(serviceId);
+        Optional<ServiceEntity> service = serviceService.getServiceById(serviceId);
         model.addAttribute("service", service);
         return "service/form";
     }
+    @GetMapping("getById/{serviceId}")
+    public Optional<ServiceEntity> getServiceById(@PathVariable("serviceId") String serviceId){
+        System.out.println("finding service "+serviceId);
+        Optional<ServiceEntity> service = serviceService.getServiceById(serviceId);
+        return service;
+    }
     @GetMapping("delete")
-    public String DeleteServicer(@RequestParam("serviceId") String serviceId, Model model){
-        servicesService.deleteService(serviceId);
-        return "redirect:/service/list";
+    public String DeleteService(@RequestParam("serviceId") String serviceId, Model model){
+        serviceService.deleteService(serviceId);
+        return "redirect:/services/list";
     }
 }

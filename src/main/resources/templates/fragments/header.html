@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="public/css/fontawesome-free-6.5.1-web/css/all.css">
+    <link rel="stylesheet" href="public/css/fontawesome-free-6.5.1-web/css/all.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../bootstrap.css">
+    <script src="../bootstrap.js"></script>
+</head>
+<style>
+
+    *{
+        font-family: 'Segoe UI', serif;
+        color: #2F3D7E;
+    }
+    header{
+        display: flex;
+        justify-content: space-between;
+        background-color: transparent;
+        height: 65px;
+        border-bottom: 2px solid #d0d0d1;
+        z-index: inherit;
+    }
+    .logo{
+        display: flex;
+        width: 20%;
+        justify-content: center;
+        align-items: center;
+        margin-left: -40px;
+    }
+    .logo i{
+        cursor: pointer;
+    }
+    .logo a{
+        font-size: 32px;
+        font-weight: 700;
+        margin-left: 60px;
+        text-decoration: none;
+        color: #2F3D7E;
+    }
+    .right{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30%;
+    }
+    .item-help{
+        display: flex;
+        justify-content: space-between;
+        width: 40%;
+        font-size: 18px;
+    }
+    .account{
+        display: flex;
+        margin: 0 20px 0 20px;
+    }
+    .account .item{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-right: 10px;
+    }
+    .interact-item{
+        cursor: pointer;
+        position: relative;
+    }
+    .interact-item:hover{
+        transform: scale(130%);
+        transition: 0.3s;
+    }
+    .account .item span{
+        font-size: 14px;
+    }
+    .account .item a{
+        text-decoration: none;
+    }
+    .item-logout{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .item-logout i{
+        font-size: 12px;
+        margin-right: 5px;
+    }
+    .account img{
+        width: 40px;
+        max-width: 100%;
+    }
+
+    /* Target screens mobile */
+    @media screen and (max-width: 767px) {
+        .account img{
+            width: 50%;
+            height: 50%;
+        }
+        .item-help{
+            display: none;
+        }
+    }
+
+    /* Target screens tablet */
+    @media screen and (min-width: 767px) and (max-width:1023px) {
+        .account img{
+            width: 50%;
+            height: 50%;
+        }
+
+    }
+    /* Target screens desktop */
+    @media screen and (min-width: 1024px) {
+
+    }
+</style>
+<header th:fragment="header-com">
+    <div class="logo">
+        <i class="fa-solid fa-bars"></i>
+        <a href="#">Azeli</a>
+    </div>
+    <div class="right">
+        <div class="item-help">
+            <i class="fa-solid fa-magnifying-glass interact-item"></i>
+            <i class="fa-brands fa-rocketchat interact-item"></i>
+            <i class="fa-regular fa-bell interact-item"></i>
+            <i class="fa-regular fa-circle-question interact-item"></i>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+        </div>
+        <div class="account">
+            <div class="item">
+                <span>Nguyen Van A</span>
+                <div class="item-logout">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <a href="#">Signout</a>
+                </div>
+
+            </div>
+            <img src="public/images/qr.png" alt="">
+        </div>
+
+    </div>
+
+</header>
+<body>
+<main>
+    <nav class="nav-doc">
+        <ul>
+            <li><i class="fa-solid fa-chart-line"></i><a href="#">Dashboard</a></li>
+            <li><i class="fa-solid fa-gears"></i><a href="#">Service</a></li>
+            <li><i class="fa-solid fa-shield-halved"></i><a href="#">Policies</a></li>
+            <li><i class="fa-solid fa-users"></i><a href="#">Partner</a></li>
+            <li><i class="fa-solid fa-user"></i><a href="#">User</a></li>
+            <li><i class="fa-regular fa-calendar"></i><a href="#">Events</a></li>
+            <li><i class="fa-solid fa-gear"></i><a href="#">Settings</a></li>
+        </ul>
+    </nav>
+
+</main>
+
+</body>
+</html>

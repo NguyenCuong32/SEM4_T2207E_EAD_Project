@@ -1,7 +1,7 @@
 package com.uni.ead_project.controller;
 
 import com.uni.ead_project.entity.CouponEntity;
-import com.uni.ead_project.service.CouponsService;
+import com.uni.ead_project.service.CouponService;
 import jakarta.validation.Valid;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
@@ -16,9 +16,9 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/coupons")
 public class CouponController {
-    private final CouponsService couponsService;
+    private final CouponService couponsService;
 
-    public CouponController(CouponsService couponsService) {
+    public CouponController(CouponService couponsService) {
         this.couponsService = couponsService;
     }
     @InitBinder
@@ -28,8 +28,8 @@ public class CouponController {
     }
     @GetMapping("/list")
     public String GetCoupon(Model model){
-        List<CouponEntity> coupon= couponsService.getAllCoupons();
-        model.addAttribute("coupon", coupon);
+        List<CouponEntity> coupons= couponsService.getAllCoupons();
+        model.addAttribute("coupons", coupons);
         return "coupon/list";
     }
     @GetMapping("/formAdd")
