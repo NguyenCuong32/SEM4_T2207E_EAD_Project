@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.support.PageableExecutionUtils;
 import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Component;
@@ -46,7 +47,7 @@ public class ServiceService implements IServiceService{
         ).collect(Collectors.toList());
     }
 
-    @Override
+    /*@Override
     public Page<ServiceDTO> getServicePage(int page, int size, Long categoryId,String search) {
 
         PageRequest pageRequest = PageRequest.of(page, size);
@@ -76,42 +77,33 @@ public class ServiceService implements IServiceService{
                 }
         );
 
-    }
+    }*/
 
-    /**
+    @Override
     public Page<ServiceDTO> getServicePage(int page, int size, Long categoryId, String search) {
-        PageRequest pageRequest = PageRequest.of(page, size);
+        PageRequest pageRequest = PageRequest.of(page, size, Sort.by("id").descending());
         Page<Service> servicesPage;
 
         if (search != null && !search.isEmpty()) {
-            servicesPage = serviceRepository.findByNameContaining(search, pageRequest);
+            servicesPage = serviceRepository.findByNameContainingAndDeletedAtIsNull(search, pageRequest);
         } else {
             if (categoryId == 0) {
-                servicesPage = serviceRepository.findAll(pageRequest);
+                servicesPage = serviceRepository.findByDeletedAtIsNull(pageRequest);
             } else {
-                servicesPage = serviceRepository.findByCategory_Id(categoryId, pageRequest);
+                servicesPage = serviceRepository.findByCategory_IdAndDeletedAtIsNull(categoryId, pageRequest);
             }
         }
 
-        Stream<ServiceDTO> serviceDTOStream = StreamSupport.stream(servicesPage.spliterator(), false)
-                .filter(service -> service.getDeletedAt() == null)
-                .map(service -> {
-                    ServiceDTO serviceDTO = modelMapper.map(service, ServiceDTO.class);
-                    BigDecimal revenueOfEachService = service.getTransactionServices().stream()
-                            .map(TransactionService::getPrice)
-                            .reduce(BigDecimal.ZERO, BigDecimal::add);
-                    serviceDTO.setServiceRevenue(revenueOfEachService);
-                    return serviceDTO;
-                });
-
-        return PageableExecutionUtils.getPage(
-                serviceDTOStream.collect(Collectors.toList()),
-                pageRequest,
-                servicesPage::getTotalElements
-        );
+        return servicesPage.map(service -> {
+            ServiceDTO serviceDTO = modelMapper.map(service, ServiceDTO.class);
+            BigDecimal revenueOfEachService = service.getTransactionServices().stream()
+                    .map(TransactionService::getPrice)
+                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+            serviceDTO.setServiceRevenue(revenueOfEachService);
+            return serviceDTO;
+        });
     }
 
-*/
 
     @Override
     public Optional<ServiceDTO> getServiceById(Long id) {
@@ -211,6 +203,7 @@ public class ServiceService implements IServiceService{
         if(existedService.isPresent()){
             Service service = existedService.get();
             service.setDeletedAt(LocalDateTime.now());
+            serviceRepository.save(service);
         }
     }
 }

@@ -51,4 +51,11 @@ public class CategoryController {
         }
     }
 
+    // DELETE
+    @GetMapping("/delete")
+    public String deleteCategory(@RequestParam("categoryId") Long id){
+        categoryService.deleteCategory(id);
+        return "redirect:/categories";
+    }
+
 }
