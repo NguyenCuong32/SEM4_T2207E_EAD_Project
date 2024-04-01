@@ -1,0 +1,1 @@
+ALTER TABLE amount_eachlv MODIFY COLUMN id int not null AUTO_INCREMENT;

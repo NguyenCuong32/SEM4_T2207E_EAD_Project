@@ -47,7 +47,15 @@ CREATE PROCEDURE GET_LEVEL (
 IN  id binary(16) )
  
 BEGIN 
+DROP TABLE templevel;
+CREATE TEMPORARY  TABLE  templevel
+( id BINARY(16) ,
+  fullname VARCHAR(255), 
+   phone VARCHAR(20) ,
+     parent_phone VARCHAR(20),
+        levelnumber int );
 
+INSERT INTO templevel ( id ,  fullname  ,  phone  ,  parent_phone  ,   levelnumber  )
 WITH RECURSIVE  temp   AS(
   SELECT e.id, e.fullname, e.phone , e.parent_phone,  0 AS number
                 From   users   e
@@ -58,7 +66,10 @@ WITH RECURSIVE  temp   AS(
                 JOIN temp c ON  b.phone = c.parent_phone
                 Where number < 5
      )
+SELECT id, fullname, phone , parent_phone,  number
+From temp ;
 
-SELECT * From temp;
+SELECT * FROM templevel;
 
+ 
 END  ; 
