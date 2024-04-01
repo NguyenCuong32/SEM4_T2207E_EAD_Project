@@ -1,4 +1,4 @@
-CREATE PROCEDURE GetUserByUsername(IN usernametk VARCHAR(255))
+﻿CREATE PROCEDURE GetUserByUsername(IN usernametk VARCHAR(255))
 BEGIN
     SELECT username, password, status FROM users WHERE username = usernametk;
 END;
@@ -12,7 +12,7 @@ BEGIN
     WHERE u.username = username;
 END;
 
---Ph�n trang
+--Phân trang
 CREATE PROCEDURE GetPaginatedData(
     IN pageNumber INT,
     IN pageSize INT,
@@ -30,3 +30,15 @@ BEGIN
 END;
 
 -- Example Call: CALL GetPaginatedData(1,5,'users')
+
+-- Tính số trang tối đa
+
+CREATE PROCEDURE GetTotalPage(IN tableName VARCHAR(255), IN pageSize INT)
+BEGIN
+    DECLARE query VARCHAR(500);  -- Định nghĩa một biến query để sử dụng trong PREPARE
+    SET @query = CONCAT('SELECT CEIL(COUNT(*)/', pageSize, ') as TotalPage FROM ', tableName);
+
+    PREPARE stmt FROM @query;
+    EXECUTE stmt;
+    DEALLOCATE PREPARE stmt;
+END;
