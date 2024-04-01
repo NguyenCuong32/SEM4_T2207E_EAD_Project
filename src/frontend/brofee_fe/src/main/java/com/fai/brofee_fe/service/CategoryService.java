@@ -5,6 +5,7 @@ import com.fai.brofee_fe.dto.CategoryDTO;
 import com.fai.brofee_fe.dto.CategoryEditDTO;
 import com.fai.brofee_fe.entity.Category;
 import com.fai.brofee_fe.entity.CategoryRevenue;
+import com.fai.brofee_fe.entity.Service;
 import com.fai.brofee_fe.repository.CategoryRepository;
 import com.fai.brofee_fe.repository.CategoryRepository_SP;
 import jakarta.transaction.Transactional;
@@ -125,6 +126,12 @@ public class CategoryService implements ICategoryService{
 
     @Override
     public void deleteCategory(Long id) {
-        categoryRepository.deleteById(id);
+        Optional<Category> existedCategory = categoryRepository.findById(id);
+        if(existedCategory.isPresent()){
+            Category category = existedCategory.get();
+            category.setDeletedAt(LocalDateTime.now());
+            categoryRepository.save(category);
+        }
     }
+
 }

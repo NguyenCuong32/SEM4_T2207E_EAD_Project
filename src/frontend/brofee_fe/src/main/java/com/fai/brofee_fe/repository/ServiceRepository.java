@@ -12,7 +12,12 @@ public interface ServiceRepository extends JpaRepository<Service, Long> {
 
     Page<Service> findByName(String name, Pageable pageable);
 
-    Page<Service> findByNameContaining(String name, Pageable pageable);
+    Page<Service> findByNameContainingAndDeletedAtIsNull(String name, Pageable pageable);
+
+    Page<Service> findByDeletedAtIsNull(Pageable pageable);
+
+    Page<Service> findByCategory_IdAndDeletedAtIsNull(Long categoryId,Pageable pageable);
+
 
     List<Service> findByIdIn(List<Long> ids);
 
