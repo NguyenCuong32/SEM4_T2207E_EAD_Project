@@ -14,7 +14,6 @@ public interface ServiceRepository extends JpaRepository<Service, Long> {
 
     Page<Service> findByNameContaining(String name, Pageable pageable);
 
-
     List<Service> findByIdIn(List<Long> ids);
 
 }

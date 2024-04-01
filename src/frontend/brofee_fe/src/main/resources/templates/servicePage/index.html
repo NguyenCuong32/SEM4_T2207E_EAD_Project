@@ -101,13 +101,6 @@
                                         <thead>
                                         <!--begin::Table row-->
                                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                            <th class="w-10px pe-2 sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 29.25px;">
-                                                <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                                    <label>
-                                                        <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_ecommerce_products_table .form-check-input" value="1">
-                                                    </label>
-                                                </div>
-                                            </th>
                                             <th class="min-w-200px sorting" tabindex="0" aria-controls="kt_ecommerce_products_table" rowspan="1" colspan="1" aria-label="Product: activate to sort column ascending" style="width: 150.725px;">
                                                 Service Name
                                             </th>
@@ -137,16 +130,7 @@
                                         <tbody class="fw-bold text-gray-600">
 
                                         <tr class="odd" th:each="service : ${services}">
-                                            <!--begin::Checkbox-->
-                                            <td>
-                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <label>
-                                                        <input class="form-check-input" type="checkbox" value="1">
-                                                    </label>
-                                                </div>
-                                            </td>
-                                            <!--end::Checkbox-->
-                                            <!--begin::Category=-->
+                                            <!--begin::Service=-->
                                             <td>
                                                 <div class="d-flex align-items-center">
                                                     <div class="ms-5">
@@ -167,17 +151,17 @@
                                             <!--end::CategoryName=-->
                                             <!--begin::BasePrice=-->
                                             <td class="text-end pe-0">
-                                                <span th:text="${service.getBasePrice() != null ? #numbers.formatCurrency(service.getBasePrice()) : '$0'}" class="fw-bolder text-dark"></span>
+                                                <span th:text="${service.getBasePrice() != null ? #numbers.formatCurrency(service.getBasePrice()) : #numbers.formatCurrency('0.00')}" class="fw-bolder text-dark"></span>
                                             </td>
                                             <!--end::BasePrice=-->
                                             <!--begin::Discount-->
                                             <td class="text-end pe-0">
-                                                <span class="fw-bolder text-dark" th:text="${service.getDiscount() != null ? #numbers.formatCurrency(service.discount) : '$0'}"></span>
+                                                <span class="fw-bolder text-dark" th:text="${service.getDiscount() != null ? #numbers.formatCurrency(service.discount) : #numbers.formatCurrency('0.00')}"></span>
                                             </td>
                                             <!--end::Discount-->
                                             <!--begin::Total Revenue=-->
                                             <td class="text-end pe-0">
-                                                <span class="fw-bolder text-dark">$236.00</span>
+                                                <span th:text="${service.getServiceRevenue() != null ? #numbers.formatCurrency(service.getServiceRevenue()) : #numbers.formatCurrency('0.00')}" class="fw-bolder text-dark"></span>
                                             </td>
                                             <!--end::Total Revenue=-->
                                             <!--begin::Action=-->
@@ -228,44 +212,45 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
+                                    <div th:if="${services.totalPages > 1}" class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
                                         <div class="dataTables_paginate paging_simple_numbers" id="kt_ecommerce_products_table_paginate">
                                             <ul class="pagination">
-                                                <li class="paginate_button page-item previous disabled" id="kt_ecommerce_products_table_previous">
-                                                    <a href="#" aria-controls="kt_ecommerce_products_table" data-dt-idx="0" tabindex="0" class="page-link">
+                                                <li th:if="${!services.first}" class="paginate_button page-item">
+                                                    <a th:href="@{/services(page=0)}" class="page-link" data-dt-idx="0" tabindex="0" aria-controls="kt_ecommerce_products_table">
+                                                        First
+                                                    </a>
+                                                </li>
+
+                                                <li th:if="${services.hasPrevious()}" class="paginate_button page-item">
+                                                    <a th:href="@{/services(page=${services.number - 1})}" class="page-link" data-dt-idx="0" tabindex="0" aria-controls="kt_ecommerce_products_table">
                                                         <i class="previous"></i>
                                                     </a>
                                                 </li>
-                                                <li class="paginate_button page-item active">
-                                                    <a href="#" aria-controls="kt_ecommerce_products_table" data-dt-idx="1" tabindex="0" class="page-link">
-                                                        1
+
+                                                <li th:each="i : ${#numbers.sequence(services.number - 2, services.number + 2)}"
+                                                    th:class="${services.number == i ? 'paginate_button page-item active' : 'paginate_button page-item'}">
+                                                    <a th:if="${i >= 0 && i < services.totalPages}"
+                                                       th:href="@{/services(page=${i})}"
+                                                       th:text="${i + 1}"
+                                                       class="page-link"
+                                                       data-dt-idx="2"
+                                                       tabindex="0"
+                                                       aria-controls="kt_ecommerce_products_table">
                                                     </a>
                                                 </li>
-                                                <li class="paginate_button page-item ">
-                                                    <a href="#" aria-controls="kt_ecommerce_products_table" data-dt-idx="2" tabindex="0" class="page-link">
-                                                        2
-                                                    </a>
-                                                </li>
-                                                <li class="paginate_button page-item ">
-                                                    <a href="#" aria-controls="kt_ecommerce_products_table" data-dt-idx="3" tabindex="0" class="page-link">
-                                                        3
-                                                    </a>
-                                                </li>
-                                                <li class="paginate_button page-item ">
-                                                    <a href="#" aria-controls="kt_ecommerce_products_table" data-dt-idx="4" tabindex="0" class="page-link">
-                                                        4
-                                                    </a>
-                                                </li>
-                                                <li class="paginate_button page-item ">
-                                                    <a href="#" aria-controls="kt_ecommerce_products_table" data-dt-idx="5" tabindex="0" class="page-link">
-                                                        5
-                                                    </a>
-                                                </li>
-                                                <li class="paginate_button page-item next" id="kt_ecommerce_products_table_next">
-                                                    <a href="#" aria-controls="kt_ecommerce_products_table" data-dt-idx="6" tabindex="0" class="page-link">
+
+                                                <li th:if="${services.hasNext()}" class="paginate_button page-item">
+                                                    <a th:href="@{/services(page=${services.number + 1})}" class="page-link" data-dt-idx="0" tabindex="0" aria-controls="kt_ecommerce_products_table">
                                                         <i class="next"></i>
                                                     </a>
                                                 </li>
+
+                                                <li th:if="${!services.last}" class="paginate_button page-item">
+                                                    <a th:href="@{/services(page=${services.totalPages - 1})}" class="page-link" data-dt-idx="0" tabindex="0" aria-controls="kt_ecommerce_products_table">
+                                                        Last
+                                                    </a>
+                                                </li>
+
                                             </ul>
                                         </div>
                                     </div>
@@ -355,7 +340,7 @@
                                                 <div class="image-input-wrapper w-150px h-150px"></div>
                                                 <!--end::Preview existing avatar-->
                                                 <!--begin::Label-->
-                                                <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="" data-bs-original-title="Change avatar">
+                                                <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="" data-bs-original-title="Change thumbnail">
                                                     <i class="bi bi-pencil-fill fs-7"></i>
                                                     <!--begin::Inputs-->
                                                     <input type="file" th:field="*{thumbnail}" accept=".png, .jpg, .jpeg">
@@ -376,7 +361,7 @@
                                             </div>
                                             <!--end::Image input-->
                                             <!--begin::Description-->
-                                            <div class="text-muted fs-7">Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
+                                            <div class="text-muted fs-7">Set the service thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
                                             <!--end::Description-->
                                         </div>
                                         <!--end::Card body-->
@@ -395,20 +380,15 @@
                                         <!--end::Card header-->
                                         <!--begin::Card body-->
                                         <div class="card-body pt-0" data-select2-id="select2-data-167-wxt6">
-                                            <!--begin::Input group-->
-                                            <!--begin::Label-->
                                             <label class="form-label">Set category</label>
-                                            <!--end::Label-->
-                                            <!--begin::Select2-->
-                                            <label>
-                                                <select class="form-select mb-2 select2-hidden-accessible" th:field="*{categoryId}" data-control="select2" data-placeholder="Select an option" data-allow-clear="true" multiple="" data-select2-id="select2-data-12-jr83" tabindex="-1" aria-hidden="true">
-                                                    <!--<option data-select2-id="select2-data-169-hmfx"></option>-->
-                                                    <option th:each="category : ${categories}" th:value="${category.getId()}" th:text="${category.getName()}"></option>
-                                                </select>
-                                            </label>
+                                            <select class="form-select" id="categoryId" name="categoryId" th:field="*{categoryId}" autofocus="autofocus">
+                                                <option value="" selected disabled hidden>Choose Category</option>
+                                                <option th:each="category : ${categories}" th:value="${category.getId()}" th:text="${category.getName()}"></option>
+                                            </select>
+                                            <p th:if="${#fields.hasErrors('categoryId')}" th:errors="*{categoryId}" class="error" style="color: red;"></p>
                                             <!--end::Select2-->
                                             <!--begin::Description-->
-                                            <div class="text-muted fs-7 mb-7">Add product to a category.</div>
+                                            <div class="text-muted fs-7 mb-7">Add service to a category.</div>
                                             <!--end::Description-->
                                             <!--end::Input group-->
                                             <!--begin::Button-->
@@ -427,21 +407,17 @@
                                     </div>
                                     <!--end::Category & tags-->
                                     <!--begin::Weekly sales-->
-                                    <div class="card card-flush py-4 border border-secondary">
-                                        <!--begin::Card header-->
-                                        <div class="card-header">
-                                            <!--begin::Card title-->
-                                            <div class="card-title">
-                                                <h2>Weekly Sales</h2>
-                                            </div>
-                                            <!--end::Card title-->
+                                    <div class="card card-flush py-4">
+                                        <div class="d-flex justify-content-centre">
+                                            <!--begin::Button-->
+                                            <a th:href="@{/services}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5 border border-info">Cancel</a>
+                                            <!--end::Button-->
+                                            <!--begin::Button-->
+                                            <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
+                                                <span class="indicator-label">Save Changes</span>
+                                            </button>
+                                            <!--end::Button-->
                                         </div>
-                                        <!--end::Card header-->
-                                        <!--begin::Card body-->
-                                        <div class="card-body pt-0">
-                                            <span class="text-muted">No data available. Sales data will begin capturing once product has been published.</span>
-                                        </div>
-                                        <!--end::Card body-->
                                     </div>
                                     <!--end::Weekly sales-->
                                 </div>
@@ -451,7 +427,7 @@
                                     <!--begin::Tab content-->
                                     <div class="tab-content" data-select2-id="select2-data-160-78v4">
                                         <!--begin::Tab pane-->
-                                        <div class="tab-pane fade active show" id="kt_ecommerce_add_product_general" role="tab-panel">
+                                        <div class="tab-pane fade active show">
                                             <div class="d-flex flex-column gap-7 gap-lg-10">
                                                 <!--begin::General options-->
                                                 <div class="card card-flush py-4 border border-secondary">
@@ -467,15 +443,16 @@
                                                         <!--begin::Input group-->
                                                         <div class="mb-10 fv-row fv-plugins-icon-container">
                                                             <!--begin::Label-->
-                                                            <label class="required form-label">Product Name</label>
+                                                            <label class="required form-label">Service Name</label>
                                                             <!--end::Label-->
                                                             <!--begin::Input-->
                                                             <label>
-                                                                <input type="text" th:field="*{name}" class="form-control mb-2" placeholder="Product name">
+                                                                <input type="text" th:field="*{name}" class="form-control mb-2" placeholder="Service name">
                                                             </label>
+                                                            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error" style="color: red;"></p>
                                                             <!--end::Input-->
                                                             <!--begin::Description-->
-                                                            <div class="text-muted fs-7">A product name is required and recommended to be unique.</div>
+                                                            <div class="text-muted fs-7">A service name is required and recommended to be unique.</div>
                                                             <!--end::Description-->
                                                             <div class="fv-plugins-message-container invalid-feedback"></div>
                                                         </div>
@@ -486,25 +463,13 @@
                                                             <label class="form-label">Description</label>
                                                             <!--end::Label-->
                                                             <!--begin::Editor-->
-                                                            <div id="kt_ecommerce_add_product_description" name="kt_ecommerce_add_product_description" class="min-h-200px mb-2 ql-container ql-snow">
-                                                                <div class="ql-editor ql-blank" data-gramm="false" contenteditable="true" placeholder="Type your text here...">
-                                                                    <p>
-                                                                        <br>
-                                                                    </p>
-                                                                </div>
-                                                                <div class="ql-clipboard" contenteditable="true" tabindex="-1"></div>
-                                                                <div class="ql-tooltip ql-hidden">
-                                                                    <a class="ql-preview" rel="noopener noreferrer" target="_blank" href="about:blank"></a>
-                                                                    <label>
-                                                                        <input type="text" data-formula="e=mc^2" data-link="https://quilljs.com" data-video="Embed URL">
-                                                                    </label>
-                                                                    <a class="ql-action"></a>
-                                                                    <a class="ql-remove"></a>
-                                                                </div>
+                                                            <div class="form-floating">
+                                                                <textarea type=text th:field="*{description}" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 130px"></textarea>
+                                                                <label for="floatingTextarea2">About 100 words</label>
                                                             </div>
                                                             <!--end::Editor-->
                                                             <!--begin::Description-->
-                                                            <div class="text-muted fs-7">Set a description to the product for better visibility.</div>
+                                                            <div class="text-muted fs-7 mt-8">Set a description to the service for better visibility.</div>
                                                             <!--end::Description-->
                                                         </div>
                                                         <!--end::Input group-->
@@ -512,44 +477,6 @@
                                                     <!--end::Card header-->
                                                 </div>
                                                 <!--end::General options-->
-                                                <!--begin::Media-->
-                                                <div class="card card-flush py-4 border border-secondary">
-                                                    <!--begin::Card header-->
-                                                    <div class="card-header">
-                                                        <div class="card-title">
-                                                            <h2>Media</h2>
-                                                        </div>
-                                                    </div>
-                                                    <!--end::Card header-->
-                                                    <!--begin::Card body-->
-                                                    <div class="card-body pt-0">
-                                                        <!--begin::Input group-->
-                                                        <div class="fv-row mb-2">
-                                                            <!--begin::Dropzone-->
-                                                            <div class="dropzone dz-clickable" id="kt_ecommerce_add_product_media">
-                                                                <!--begin::Message-->
-                                                                <div class="dz-message needsclick">
-                                                                    <!--begin::Icon-->
-                                                                    <i class="bi bi-file-earmark-arrow-up text-primary fs-3x"></i>
-                                                                    <!--end::Icon-->
-                                                                    <!--begin::Info-->
-                                                                    <div class="ms-4">
-                                                                        <h3 class="fs-5 fw-bolder text-gray-900 mb-1">Drop files here or click to upload.</h3>
-                                                                        <span class="fs-7 fw-bold text-gray-400">Upload up to 10 files</span>
-                                                                    </div>
-                                                                    <!--end::Info-->
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Dropzone-->
-                                                        </div>
-                                                        <!--end::Input group-->
-                                                        <!--begin::Description-->
-                                                        <div class="text-muted fs-7">Set the product media gallery.</div>
-                                                        <!--end::Description-->
-                                                    </div>
-                                                    <!--end::Card header-->
-                                                </div>
-                                                <!--end::Media-->
                                                 <!--begin::Pricing-->
                                                 <div class="card card-flush py-4 border border-secondary">
                                                     <!--begin::Card header-->
@@ -560,174 +487,35 @@
                                                     </div>
                                                     <!--end::Card header-->
                                                     <!--begin::Card body-->
-                                                    <div class="card-body pt-0">
-                                                        <!--begin::Input group-->
-                                                        <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <div class="row card-body pt-0">
+                                                        <div class="mb-10 col">
                                                             <!--begin::Label-->
                                                             <label class="required form-label">Base Price</label>
                                                             <!--end::Label-->
                                                             <!--begin::Input-->
                                                             <label>
-                                                                <input type="text" th:field="*{basePrice}" class="form-control mb-2" placeholder="Product price">
+                                                                <input type="text" th:field="*{basePrice}" class="form-control mb-2" placeholder="Service price">
                                                             </label>
                                                             <!--end::Input-->
                                                             <!--begin::Description-->
-                                                            <div class="text-muted fs-7">Set the product price.</div>
-                                                            <!--end::Description-->
-                                                            <div class="fv-plugins-message-container invalid-feedback"></div></div>
-                                                        <!--end::Input group-->
-                                                        <!--begin::Input group-->
-                                                        <div class="fv-row mb-10">
-                                                            <!--begin::Label-->
-                                                            <label class="fs-6 fw-bold mb-2">Discount Type
-                                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip" title="" data-bs-original-title="Select a discount type that will be applied to this product" aria-label="Select a discount type that will be applied to this product"></i>
-                                                            </label>
-                                                            <!--End::Label-->
-                                                            <!--begin::Row-->
-                                                            <div class="row row-cols-1 row-cols-md-3 row-cols-lg-1 row-cols-xl-3 g-9" data-kt-buttons="true" data-kt-buttons-target="[data-kt-button='true']">
-                                                                <!--begin::Col-->
-                                                                <div class="col">
-                                                                    <!--begin::Option-->
-                                                                    <label class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6 active" data-kt-button="true">
-                                                                        <!--begin::Radio-->
-                                                                        <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
-																				<input class="form-check-input" type="radio" name="discount_option" value="1" checked="checked">
-                                                                        </span>
-                                                                        <!--end::Radio-->
-                                                                        <!--begin::Info-->
-                                                                        <span class="ms-5">
-                                                                            <span class="fs-4 fw-bolder text-gray-800 d-block">No Discount</span>
-                                                                        </span>
-                                                                        <!--end::Info-->
-                                                                    </label>
-                                                                    <!--end::Option-->
-                                                                </div>
-                                                                <!--end::Col-->
-                                                                <!--begin::Col-->
-                                                                <div class="col">
-                                                                    <!--begin::Option-->
-                                                                    <label class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6" data-kt-button="true">
-                                                                        <!--begin::Radio-->
-                                                                        <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
-                                                                            <input class="form-check-input" type="radio" name="discount_option" value="2">
-                                                                        </span>
-                                                                        <!--end::Radio-->
-                                                                        <!--begin::Info-->
-                                                                        <span class="ms-5">
-                                                                            <span class="fs-4 fw-bolder text-gray-800 d-block">Percentage %</span>
-                                                                        </span>
-                                                                        <!--end::Info-->
-                                                                    </label>
-                                                                    <!--end::Option-->
-                                                                </div>
-                                                                <!--end::Col-->
-                                                                <!--begin::Col-->
-                                                                <div class="col">
-                                                                    <!--begin::Option-->
-                                                                    <label class="btn btn-outline btn-outline-dashed btn-outline-default d-flex text-start p-6" data-kt-button="true">
-                                                                        <!--begin::Radio-->
-                                                                        <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
-                                                                            <input class="form-check-input" type="radio" name="discount_option" value="3">
-                                                                        </span>
-                                                                        <!--end::Radio-->
-                                                                        <!--begin::Info-->
-                                                                        <span class="ms-5">
-                                                                            <span class="fs-4 fw-bolder text-gray-800 d-block">Fixed Price</span>
-                                                                        </span>
-                                                                        <!--end::Info-->
-                                                                    </label>
-                                                                    <!--end::Option-->
-                                                                </div>
-                                                                <!--end::Col-->
-                                                            </div>
-                                                            <!--end::Row-->
-                                                        </div>
-                                                        <!--end::Input group-->
-                                                        <!--begin::Input group-->
-                                                        <div  class="mb-10 fv-row d-none" id="kt_ecommerce_add_product_discount_no_discount">
-                                                            <input type="hidden" th:field="*{discount}" th:value="0"/>
-                                                        </div>
-                                                        <div class="mb-10 fv-row d-none" id="kt_ecommerce_add_product_discount_percentage">
-                                                            <!--begin::Label-->
-                                                            <label class="form-label">Set Discount Percentage</label>
-                                                            <!--end::Label-->
-                                                            <!--begin::Slider-->
-                                                            <div class="d-flex flex-column text-center mb-5">
-                                                                <div class="d-flex align-items-start justify-content-center mb-7">
-                                                                    <span class="fw-bolder fs-3x" id="kt_ecommerce_add_product_discount_label">10</span>
-                                                                    <span class="fw-bolder fs-4 mt-1 ms-2">%</span>
-                                                                </div>
-                                                                <div id="kt_ecommerce_add_product_discount_slider" class="noUi-sm noUi-target noUi-ltr noUi-horizontal noUi-txt-dir-ltr">
-                                                                    <div class="noUi-base">
-                                                                        <div class="noUi-connects"></div>
-                                                                        <div class="noUi-origin" style="transform: translate(-90.9091%, 0px); z-index: 4;">
-                                                                            <div class="noUi-handle noUi-handle-lower" data-handle="0" tabindex="0" role="slider" aria-orientation="horizontal" aria-valuemin="1.0" aria-valuemax="100.0" aria-valuenow="10.0" aria-valuetext="10.00">
-                                                                                <div class="noUi-touch-area"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <!--end::Slider-->
-                                                            <!--begin::Description-->
-                                                            <div class="text-muted fs-7">Set a percentage discount to be applied on this product.</div>
+                                                            <div class="text-muted fs-7">Set the service price.</div>
+                                                            <p th:if="${#fields.hasErrors('basePrice')}" th:errors="*{basePrice}" class="error" style="color: red;"></p>
                                                             <!--end::Description-->
                                                         </div>
-                                                        <!--end::Input group-->
-                                                        <!--begin::Input group-->
-                                                        <div class="mb-10 fv-row d-none" id="kt_ecommerce_add_product_discount_fixed">
+                                                        <div class="mb-10 col">
                                                             <!--begin::Label-->
-                                                            <label class="form-label">Fixed Discounted Price</label>
+                                                            <label class="form-label">Base Discount</label>
                                                             <!--end::Label-->
                                                             <!--begin::Input-->
                                                             <label>
-                                                                <input type="text" th:field="*{discount}" class="form-control mb-2" placeholder="Discounted price">
+                                                                <input type="text" th:field="*{discount}" class="form-control mb-2" placeholder="Service discount">
                                                             </label>
                                                             <!--end::Input-->
                                                             <!--begin::Description-->
-                                                            <div class="text-muted fs-7">Set the discounted product price. The product will be reduced at the determined fixed price</div>
+                                                            <div class="text-muted fs-7">Set the service discount.</div>
+                                                            <p th:if="${#fields.hasErrors('discount')}" th:errors="*{discount}" style="color: red;"></p>
                                                             <!--end::Description-->
                                                         </div>
-                                                        <!--end::Input group-->
-                                                        <!--begin::Tax-->
-                                                        <div class="d-flex flex-wrap gap-5">
-                                                            <!--begin::Input group-->
-                                                            <div class="fv-row w-100 flex-md-root fv-plugins-icon-container">
-                                                                <!--begin::Label-->
-                                                                <label class="required form-label">Tax Class</label>
-                                                                <!--end::Label-->
-                                                                <!--begin::Select2-->
-                                                                <label>
-                                                                    <select class="form-select mb-2 select2-hidden-accessible" name="tax" data-control="select2" data-hide-search="true" data-placeholder="Select an option" data-select2-id="select2-data-16-qi5h" tabindex="-1" aria-hidden="true">
-                                                                        <option data-select2-id="select2-data-18-7n5q"></option>
-                                                                        <option value="0">Tax Free</option>
-                                                                        <option value="1">Taxable Goods</option>
-                                                                    </select>
-                                                                </label>
-                                                                <!--end::Select2-->
-                                                                <!--begin::Description-->
-                                                                <div class="text-muted fs-7">Set the product tax class.</div>
-                                                                <!--end::Description-->
-                                                                <div class="fv-plugins-message-container invalid-feedback"></div>
-                                                            </div>
-                                                            <!--end::Input group-->
-                                                            <!--begin::Input group-->
-                                                            <div class="fv-row w-100 flex-md-root">
-                                                                <!--begin::Label-->
-                                                                <label class="form-label">VAT Amount (%)</label>
-                                                                <!--end::Label-->
-                                                                <!--begin::Input-->
-                                                                <label>
-                                                                    <input type="text" class="form-control mb-2" value="">
-                                                                </label>
-                                                                <!--end::Input-->
-                                                                <!--begin::Description-->
-                                                                <div class="text-muted fs-7">Set the product VAT about.</div>
-                                                                <!--end::Description-->
-                                                            </div>
-                                                            <!--end::Input group-->
-                                                        </div>
-                                                        <!--end:Tax-->
                                                     </div>
                                                     <!--end::Card header-->
                                                 </div>
@@ -737,19 +525,9 @@
                                         <!--end::Tab pane-->
                                     </div>
                                     <!--end::Tab content-->
-                                    <div class="d-flex justify-content-end">
-                                        <!--begin::Button-->
-                                        <a th:href="@{/services}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5 border border-info">Cancel</a>
-                                        <!--end::Button-->
-                                        <!--begin::Button-->
-                                        <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
-                                            <span class="indicator-label">Save Changes</span>
-                                        </button>
-                                        <!--end::Button-->
-                                    </div>
                                 </div>
                                 <!--end::Main column-->
-                                <div></div></form>
+                            </form>
                             <!--end::Form-->
                         </div>
                         <!--end::Container-->
@@ -784,78 +562,6 @@
     <script th:src="@{/js/custom/utilities/modals/upgrade-plan.js}"></script>
     <script th:src="@{/js/custom/utilities/modals/create-app.js}"></script>
     <script th:src="@{/js/custom/utilities/modals/users-search.js}"></script>
-
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-
-        function searchUser() {
-            const csrfToken = $("meta[name='_csrf']").attr("content");
-            const csrfHeader = $("meta[name='_csrf_header']").attr("content") || "X-CSRF-TOKEN";
-            const codeOrPhone = $("#user-code-or-phone").val();
-
-            $.ajax({
-                url: /*[[@{/user_h/search}]]*/, // Use Thymeleaf to generate the URL
-                type: "POST",
-                data: {
-                    codeOrPhone: codeOrPhone
-                },
-                beforeSend: function(xhr) {
-                    xhr.setRequestHeader(csrfHeader, csrfToken);
-                },
-                success: function(response) {
-                    console.log(response);
-                    if (response) {
-                        const user = response;
-                        const name = user.name;
-                        const phone = user.phone;
-                        const roles = user.roles;
-
-                        let rolesHtml = ""; // Initialize empty string for roles
-
-                        // Loop through roles and build HTML string
-                        for (const role of roles) {
-                            rolesHtml += `<span class="border border-2 rounded ms-3 p-1 px-2">${role.name}</span>`;
-                        }
-                        const userHtml = `
-                                    <div class="border border-hover-primary p-4 rounded mt-7">
-                                       <div class="d-flex flex-stack">
-                                          <div class="d-flex">
-                                             <div class="symbol symbol-circle symbol-45px">
-                                                <img src="/media/avatars/300-20.jpg" alt="">
-                                             </div>
-                                             <div class="ms-5">
-                                                <div class="d-flex align-items-center">
-                                                   <a href="/" class="text-dark fw-bolder text-hover-primary fs-5 me-4">${name}</a>
-                                                </div>
-                                                <span class="text-muted fw-bold mb-3">${phone}</span>
-                                                </div>
-                                             </div>
-                                          <div class="d-flex">
-                                             <div class="d-flex text-gray-700 fw-bold fs-7">
-                                                ${rolesHtml}  </div>
-                                             </div>
-                                          </div>
-                                       </div>
-                                `;
-
-                        $("#search-result").html(userHtml);
-                    } else {
-                        $("#search-result").html(`<div class="text-danger">No user found</div>`);
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    if(jqXHR.status == 404) {
-                        $("#search-result").html(`<div class="text-dangerPhone ">No user found</div>`);
-                    } else {
-                        console.error("AJAX error:", textStatus, errorThrown);
-                        $("#search-result").html("An error occurred while searching.");
-                    }
-                }
-            });
-        }
-        /*]]>*/
-    </script>
-
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -900,6 +606,13 @@
 
     </script>
 
+<!--    <script th:inline="javascript">-->
+<!--        /*<![CDATA[*/-->
+<!--        const error = ;-->
+<!--        $('#myModal').modal('show')-->
+<!--        /*]]>*/-->
+<!--    </script>-->
+
 
 </div>
 <!--end::Page Custom Javascript-->
@@ -907,4 +620,3 @@
 </body>
 <!--end::Body-->
 </html>
-

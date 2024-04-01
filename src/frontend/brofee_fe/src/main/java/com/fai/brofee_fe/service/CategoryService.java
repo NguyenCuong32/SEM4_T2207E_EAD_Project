@@ -4,12 +4,12 @@ import com.fai.brofee_fe.dto.CategoryCreateDTO;
 import com.fai.brofee_fe.dto.CategoryDTO;
 import com.fai.brofee_fe.dto.CategoryEditDTO;
 import com.fai.brofee_fe.entity.Category;
+import com.fai.brofee_fe.entity.CategoryRevenue;
 import com.fai.brofee_fe.repository.CategoryRepository;
+import com.fai.brofee_fe.repository.CategoryRepository_SP;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 public class CategoryService implements ICategoryService{
 
     private final CategoryRepository categoryRepository;
+    private final CategoryRepository_SP categoryRepository_SP;
     private final ModelMapper modelMapper;
     private final CloudinaryService cloudinaryService;
 
@@ -42,21 +43,8 @@ public class CategoryService implements ICategoryService{
     }
 
     @Override
-    public Page<CategoryDTO> getCategoryPage(int page, int size,  String item) {
-
-        // Tạo một đối tượng PageRequest để chỉ định trang và kích thước trang
-        PageRequest pageRequest = PageRequest.of(page, size);
-        Page<Category> categoryPage = switch (item) {
-            case "all" -> categoryRepository.findAll(pageRequest);
-            case "not_deleted" -> categoryRepository.findNotDeletedCategories(pageRequest);
-            case "not_updated" -> categoryRepository.findNotUpdatedCategories(pageRequest);
-            case "updated" -> categoryRepository.findUpdatedCategories(pageRequest);
-            case "deleted" -> categoryRepository.findDeletedCategories(pageRequest);
-            default -> categoryRepository.findAll(pageRequest);
-        };
-        return categoryPage.map(
-                category -> modelMapper.map(category, CategoryDTO.class)
-        );
+    public List<CategoryRevenue> getCategoryPagination(int page, int size, String searchKeyword) {
+        return categoryRepository_SP.getCategoryRevenue(page, size, searchKeyword);
     }
 
     @Override
@@ -123,7 +111,7 @@ public class CategoryService implements ICategoryService{
 
     private String updateCategoryIcon(CategoryEditDTO categoryEditDTO) {
         try {
-            String iconUrl = null;
+            String iconUrl = categoryEditDTO.getOld_icon();
             if (categoryEditDTO.getNew_icon() != null) {
                 iconUrl = cloudinaryService.upload(categoryEditDTO.getNew_icon());
             }

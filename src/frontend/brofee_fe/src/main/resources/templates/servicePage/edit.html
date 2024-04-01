@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<!--begin::Head-->
+<head>
+    <title>Spa website</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Spa website" />
+    <meta property="og:url" content="https://keenthemes.com/metronic" />
+    <meta property="og:site_name" content="Spa website" />
+    <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
+    <link rel="shortcut icon" th:href="@{/media/logos/favicon.ico}" />
+    <!--begin::Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <!--end::Fonts-->
+    <!--begin::Page Vendor Stylesheets(used by this page)-->
+    <link th:href="@{/plugins/custom/fullcalendar/fullcalendar.bundle.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/plugins/custom/datatables/datatables.bundle.css}" rel="stylesheet" type="text/css" />
+    <!--end::Page Vendor Stylesheets-->
+    <!--begin::Global Stylesheets Bundle(used by all pages)-->
+    <link th:href="@{/plugins/global/plugins.bundle.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/style.bundle.css}" rel="stylesheet" type="text/css" />
+    <!--end::Global Stylesheets Bundle-->
+
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+<!--begin::Main-->
+<!--begin::Root-->
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="page d-flex flex-row flex-column-fluid">
+        <!--begin::Aside-->
+        <div th:replace="~{fragments/aside :: aside}"></div>
+        <!--end::Aside-->
+        <div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
+            <!--begin::Header-->
+            <div th:replace="~{fragments/header :: header(title = 'Service')}"></div>
+            <!--end::Header-->
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid " id="kt_content">
+                <!--begin::Modal - Create App-->
+                <div class="container-xxl">
+                    <!--begin::Form-->
+                    <form  class="form d-flex flex-column flex-lg-row fv-plugins-bootstrap5 fv-plugins-framework" th:action="@{/services/update}" method="post" th:object="${editServiceDTO}" enctype="multipart/form-data">
+                        <!--begin::Aside column-->
+                        <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10" data-select2-id="select2-data-133-b2ms">
+                            <!--begin::Thumbnail settings-->
+                            <div class="card card-flush py-4 border border-secondary">
+                                <!--begin::Card header-->
+                                <div class="card-header">
+                                    <!--begin::Card title-->
+                                    <div class="card-title">
+                                        <h2>Thumbnail</h2>
+                                    </div>
+                                    <!--end::Card title-->
+                                </div>
+                                <!--end::Card header-->
+                                <!--begin::Card body-->
+                                <div class="card-body text-center pt-0">
+                                    <!--begin::Image input-->
+                                    <div class="image-input image-input-empty image-input-outline mb-3" data-kt-image-input="true"
+                                         th:style="'background-image: url(' + (${editServiceDTO.getOldThumbnail() != null} ? ${editServiceDTO.getOldThumbnail()} : '/media/svg/files/blank-image.svg') + ')'">
+                                        <!--begin::Preview existing avatar-->
+                                        <div class="image-input-wrapper w-150px h-150px"></div>
+                                        <!--end::Preview existing avatar-->
+                                        <!--begin::Label-->
+                                        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="" data-bs-original-title="Change thumbnail">
+                                            <i class="bi bi-pencil-fill fs-7"></i>
+                                            <!--begin::Inputs-->
+                                            <input type="file" th:field="*{newThumbnail}" accept=".png, .jpg, .jpeg">
+                                            <input type="hidden" name="avatar_remove">
+                                            <!--end::Inputs-->
+                                        </label>
+                                        <!--end::Label-->
+                                        <!--begin::Cancel-->
+                                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="" data-bs-original-title="Cancel avatar">
+                                                    <i class="bi bi-x fs-2"></i>
+                                                </span>
+                                        <!--end::Cancel-->
+                                        <!--begin::Remove-->
+                                        <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="" data-bs-original-title="Remove avatar">
+                                                    <i class="bi bi-x fs-2"></i>
+                                                </span>
+                                        <!--end::Remove-->
+                                    </div>
+                                    <!--end::Image input-->
+                                    <!--begin::Description-->
+                                    <div class="text-muted fs-7">Set the service thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
+                                    <!--end::Description-->
+                                </div>
+                                <!--end::Card body-->
+                            </div>
+                            <input type="hidden" th:field="*{id}"/>
+                            <input type="hidden" th:field="*{oldThumbnail}"/>
+                            <!--end::Thumbnail settings-->
+                            <!--begin::Category & tags-->
+                            <div class="card card-flush py-4 border border-secondary" data-select2-id="select2-data-168-nd6a">
+                                <!--begin::Card header-->
+                                <div class="card-header">
+                                    <!--begin::Card title-->
+                                    <div class="card-title">
+                                        <h2>Category</h2>
+                                    </div>
+                                    <!--end::Card title-->
+                                </div>
+                                <!--end::Card header-->
+                                <!--begin::Card body-->
+                                <div class="card-body pt-0" data-select2-id="select2-data-167-wxt6">
+                                    <label class="form-label">Set category</label>
+                                    <select class="form-select" th:field="*{category_id}" autofocus="autofocus">
+                                        <!--<option value="" selected disabled hidden>Choose Category</option>-->
+                                        <option th:each="category : ${categories}" th:value="${category.getId()}" th:text="${category.getName()}"></option>
+                                    </select>
+                                    <p th:if="${#fields.hasErrors('category_id')}" th:errors="*{category_id}" class="error" style="color: red;"></p>
+                                    <!--end::Select2-->
+                                    <!--begin::Description-->
+                                    <div class="text-muted fs-7 mb-7">Add service to a category.</div>
+                                    <!--end::Description-->
+                                    <!--end::Input group-->
+                                    <!--begin::Button-->
+                                    <a th:href="@{/categories}" class="btn btn-light-primary btn-sm mb-10">
+                                        <!--begin::Svg Icon -->
+                                        <span class="svg-icon svg-icon-2">
+													<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+														<rect opacity="0.5" x="11" y="18" width="12" height="2" rx="1" transform="rotate(-90 11 18)" fill="currentColor"></rect>
+														<rect x="6" y="11" width="12" height="2" rx="1" fill="currentColor"></rect>
+													</svg>
+												</span>
+                                        <!--end::Svg Icon-->Create new category</a>
+                                    <!--end::Button-->
+                                </div>
+                                <!--end::Card body-->
+                            </div>
+                            <!--end::Category & tags-->
+                            <!--begin::Weekly sales-->
+                            <div class="py-4">
+                                <div class="d-flex justify-content-centre">
+                                    <!--begin::Button-->
+                                    <a th:href="@{/services}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5 border border-info">Cancel</a>
+                                    <!--end::Button-->
+                                    <!--begin::Button-->
+                                    <button type="submit" id="kt_ecommerce_add_product_submit" class="btn btn-primary">
+                                        <span class="indicator-label">Save Changes</span>
+                                    </button>
+                                    <!--end::Button-->
+                                </div>
+                            </div>
+                            <!--end::Weekly sales-->
+                        </div>
+                        <!--end::Aside column-->
+                        <!--begin::Main column-->
+                        <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10" data-select2-id="select2-data-161-0ill">
+                            <!--begin::Tab content-->
+                            <div class="tab-content" data-select2-id="select2-data-160-78v4">
+                                <!--begin::Tab pane-->
+                                <div class="tab-pane fade active show" id="kt_ecommerce_add_product_general" role="tab-panel">
+                                    <div class="d-flex flex-column gap-7 gap-lg-10">
+                                        <!--begin::General options-->
+                                        <div class="card card-flush py-4 border border-secondary">
+                                            <!--begin::Card header-->
+                                            <div class="card-header">
+                                                <div class="card-title">
+                                                    <h2>Edit <span th:text="${editServiceDTO.getName()}"></span> Service</h2>
+
+                                                </div>
+                                            </div>
+                                            <!--end::Card header-->
+                                            <!--begin::Card body-->
+                                            <div class="card-body pt-0">
+                                                <!--begin::Input group-->
+                                                <div class="mb-10 fv-row fv-plugins-icon-container">
+                                                    <!--begin::Label-->
+                                                    <label class="required form-label">Service Name</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <label>
+                                                        <input type="text" th:field="*{name}" class="form-control mb-2" placeholder="Service name">
+                                                    </label>
+                                                    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error" style="color: red;"></p>
+                                                    <!--end::Input-->
+                                                    <!--begin::Description-->
+                                                    <div class="text-muted fs-7">A service name is required and recommended to be unique.</div>
+                                                    <!--end::Description-->
+                                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                                </div>
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div>
+                                                    <!--begin::Label-->
+                                                    <label class="form-label">Description</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Editor-->
+                                                    <div class="form-floating">
+                                                        <textarea type=text th:field="*{description}" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 130px"></textarea>
+                                                        <label for="floatingTextarea2">About 100 words</label>
+                                                    </div>
+                                                    <!--end::Editor-->
+                                                    <!--begin::Description-->
+                                                    <div class="text-muted fs-7">Set a description to the service for better visibility.</div>
+                                                    <!--end::Description-->
+                                                </div>
+                                                <!--end::Input group-->
+                                            </div>
+                                            <!--end::Card header-->
+                                        </div>
+                                        <!--end::General options-->
+                                        <!--begin::Pricing-->
+                                        <div class="card card-flush py-4 border border-secondary">
+                                            <!--begin::Card header-->
+                                            <div class="card-header">
+                                                <div class="card-title">
+                                                    <h2>Pricing</h2>
+                                                </div>
+                                            </div>
+                                            <!--end::Card header-->
+                                            <!--begin::Card body-->
+                                            <div class="row card-body pt-0">
+                                                <div class="mb-10 col">
+                                                    <!--begin::Label-->
+                                                    <label class="required form-label">Base Price</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <label>
+                                                        <input type="text" th:field="*{basePrice}" class="form-control mb-2" placeholder="Service price">
+                                                    </label>
+                                                    <!--end::Input-->
+                                                    <!--begin::Description-->
+                                                    <div class="text-muted fs-7">Set the service price.</div>
+                                                    <p th:if="${#fields.hasErrors('basePrice')}" th:errors="*{basePrice}" class="error" style="color: red;"></p>
+                                                    <!--end::Description-->
+                                                </div>
+                                                <div class="mb-10 col">
+                                                    <!--begin::Label-->
+                                                    <label class="form-label">Base Discount</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <label>
+                                                        <input type="text" th:field="*{discount}" class="form-control mb-2" placeholder="Service discount">
+                                                    </label>
+                                                    <!--end::Input-->
+                                                    <!--begin::Description-->
+                                                    <div class="text-muted fs-7">Set the service discount.</div>
+                                                    <p th:if="${#fields.hasErrors('discount')}" th:errors="*{discount}" style="color: red;"></p>
+                                                    <!--end::Description-->
+                                                </div>
+                                            </div>
+                                            <!--end::Card header-->
+                                        </div>
+                                        <!--end::Pricing-->
+                                    </div>
+                                </div>
+                                <!--end::Tab pane-->
+                            </div>
+                            <!--end::Tab content-->
+                        </div>
+                        <!--end::Main column-->
+                    </form>
+
+                    <!--end::Form-->
+                </div>
+                <!--end::Modal - Create App-->
+            </div>
+            <!--end::Content-->
+        </div>
+        <!--end::Page-->
+    </div>
+    <!--end::Root-->
+
+    <!--end::Main-->
+
+    <!--begin::Scrolltop-->
+    <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+        <!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
+        <span class="svg-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor" />
+                <path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor" />
+            </svg>
+        </span>
+        <!--end::Svg Icon-->
+    </div>
+    <!--end::Scrolltop-->
+    <!--begin::Modals-->
+
+
+
+    <!--end::Modals-->
+    <!--begin::Javascript-->
+    <script>let hostUrl = "/";</script>
+    <!--begin::Global Javascript Bundle(used by all pages)-->
+    <script th:src="@{/plugins/global/plugins.bundle.js}"></script>
+    <script th:src="@{/js/scripts.bundle.js}"></script>
+    <!--end::Global Javascript Bundle-->
+    <!--begin::Page Vendors Javascript(used by this page)-->
+    <script th:src="@{/plugins/custom/fullcalendar/fullcalendar.bundle.js}"></script>
+    <script th:src="@{/plugins/custom/formrepeater/formrepeater.bundle.js}"></script>
+    <script th:src="@{/plugins/custom/datatables/datatables.bundle.js}"></script>
+    <!--end::Page Vendors Javascript-->
+    <!--begin::Page Custom Javascript(used by this page)-->
+    <script th:src="@{/js/custom/apps/ecommerce/catalog/save-product.js}"></script>
+    <script th:src="@{/js/widgets.bundle.js}"></script>
+    <script th:src="@{/js/custom/widgets.js}"></script>
+    <script th:src="@{/js/custom/apps/chat/chat.js}"></script>
+    <script th:src="@{/js/custom/utilities/modals/upgrade-plan.js}"></script>
+    <script th:src="@{/js/custom/utilities/modals/create-app.js}"></script>
+    <script th:src="@{/js/custom/utilities/modals/users-search.js}"></script>
+
+
+
+    <!--    <script th:inline="javascript">-->
+    <!--        /*<![CDATA[*/-->
+    <!--        const error = ;-->
+    <!--        $('#myModal').modal('show')-->
+    <!--        /*]]>*/-->
+    <!--    </script>-->
+
+
+</div>
+<!--end::Page Custom Javascript-->
+<!--end::Javascript-->
+</body>
+<!--end::Body-->
+</html>
+<!--
+
+<div class="image-input image-input-empty image-input-outline mb-3" data-kt-image-input="true" th:if="${editServiceDTO.getOldThumbnail() != null}"
+     th:style="'background-image: url(' + ${editServiceDTO.getOldThumbnail()} + ')'">
+</div>
+<div class="image-input image-input-empty image-input-outline mb-3" data-kt-image-input="true" th:unless="${editServiceDTO.getOldThumbnail() != null}"
+     style="background-image: url(/media/svg/files/blank-image.svg)">
+</div>
+-->

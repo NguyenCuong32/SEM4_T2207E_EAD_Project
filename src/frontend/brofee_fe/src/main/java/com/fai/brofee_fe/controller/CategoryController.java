@@ -2,6 +2,7 @@ package com.fai.brofee_fe.controller;
 
 import com.fai.brofee_fe.dto.CategoryCreateDTO;
 import com.fai.brofee_fe.dto.CategoryDTO;
+import com.fai.brofee_fe.entity.CategoryRevenue;
 import com.fai.brofee_fe.service.CategoryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/categories")
 @RequiredArgsConstructor
@@ -18,16 +21,20 @@ public class CategoryController {
 
     private final CategoryService categoryService;
     @GetMapping("")
-    public String getCategoryPage(
+    public String getCategoryPagination(
             Model model,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "6") int size,
-            @RequestParam(defaultValue = "all") String item
+            @RequestParam(required = false, defaultValue = "") String searchKeyword
     )
     {
-        Page<CategoryDTO> categoryDTOPage = categoryService.getCategoryPage(page, size, item);
+        List<CategoryRevenue> categoryPagination = categoryService.getCategoryPagination(page, size, searchKeyword);
+        Integer totalPage = categoryPagination.getFirst().getTotal_pages();
+        model.addAttribute("totalPages", totalPage);
+        model.addAttribute("size", size);
+        model.addAttribute("currentPage", page+1);
 
-        model.addAttribute("categories", categoryDTOPage);
+        model.addAttribute("categories", categoryPagination);
         model.addAttribute("newCategory", new CategoryCreateDTO());
 
         return "categoryPage/index";

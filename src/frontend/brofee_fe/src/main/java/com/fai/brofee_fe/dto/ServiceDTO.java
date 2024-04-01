@@ -2,6 +2,7 @@ package com.fai.brofee_fe.dto;
 
 import com.fai.brofee_fe.entity.Category;
 import com.fai.brofee_fe.entity.ServicePolicyAssignment;
+import com.fai.brofee_fe.entity.TransactionService;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -32,5 +33,7 @@ public class ServiceDTO {
     private LocalDateTime deletedAt;
 
     private List<ServicePolicyAssignment> policyAssignments;
+
+    private BigDecimal serviceRevenue;
 
 }
