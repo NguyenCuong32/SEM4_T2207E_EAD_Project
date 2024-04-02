@@ -29,7 +29,7 @@ public class CategoryController {
     )
     {
         List<CategoryRevenue> categoryPagination = categoryService.getCategoryPagination(page, size, searchKeyword);
-        Integer totalPage = categoryPagination.getFirst().getTotal_pages();
+        Integer totalPage = categoryPagination.get(0).getTotal_pages();
         model.addAttribute("totalPages", totalPage);
         model.addAttribute("size", size);
         model.addAttribute("currentPage", page+1);

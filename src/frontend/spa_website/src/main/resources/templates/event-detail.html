@@ -101,8 +101,8 @@
                             </div>
                             <p class="spa-special__text pe-4" style="text-align: justify" th:text="${eventDetail.description}"></p>
                             <div class="spa-special__massage-box">
-                                <h3>Massage & Relaxation</h3>
-                                <p>$10.00–$100.00</p>
+                                <h3 th:text="${#temporals.format(eventDetail.startDate, 'dd MMM,YYYY') + '-' + #temporals.format(eventDetail.endDate, 'dd MMM,YYYY')}"></h3>
+                                <p th:text="${'Event Code: ' + eventDetail.code}"></p>
                             </div>
                             <div class="spa-special__btn-box">
                                 <a href="#" class="spa-special__btn thm-btn">Avail this offer</a>

@@ -692,7 +692,7 @@ DELIMITER ;
 
 
 
-
+DROP PROCEDURE IF EXISTS GetCategoryRevenue;
 DELIMITER $$
 
 CREATE PROCEDURE GetCategoryRevenue(
@@ -732,6 +732,7 @@ BEGIN
     WHERE c.deleted_at IS NULL
     AND c.name LIKE CONCAT('%', searchKeyword, '%')
     GROUP BY c.id, c.name, c.icon
+    ORDER BY c.id DESC
     LIMIT startIdx, pageSize;
     
     -- Trả về tổng số trang

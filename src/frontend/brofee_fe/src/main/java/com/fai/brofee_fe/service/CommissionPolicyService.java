@@ -132,7 +132,13 @@ public class CommissionPolicyService {
         commissionPolicyRepository.save(commissionPolicy);
 
         // 4 - Delete all the old commission tiers
-        commissionTierRepository.deleteAll(commissionPolicy.getCommissionTiers());
+        List<CommissionTier> _commissionTiers = commissionPolicy.getCommissionTiers();
+        //commissionTierRepository.deleteAll(_commissionTiers);
+        // The deleteAll did not work
+        for (CommissionTier _commissionTier : _commissionTiers) {
+            commissionTierRepository.delete(_commissionTier);
+        }
+
 
         // 5 - Create new commission tiers
         List<CommissionTier> commissionTiers = updateDTO.getCommissionTiers().stream()
