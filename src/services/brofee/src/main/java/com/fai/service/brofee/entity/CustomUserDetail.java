@@ -14,6 +14,7 @@ import java.util.Set;
 @Getter
 @Setter
 public class CustomUserDetail implements UserDetails {
+
     private User user;
 
     public CustomUserDetail(User user) {
@@ -61,4 +62,5 @@ public class CustomUserDetail implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

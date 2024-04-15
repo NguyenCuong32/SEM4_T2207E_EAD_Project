@@ -26,4 +26,5 @@ public class CategoryRevenue {
     private Integer total_service;
 
     private Integer total_pages;
+
 }
