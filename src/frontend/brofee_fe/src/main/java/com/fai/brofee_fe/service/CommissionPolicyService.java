@@ -8,13 +8,14 @@ import com.fai.brofee_fe.repository.CommissionPolicyRepository;
 import com.fai.brofee_fe.repository.CommissionTierRepository;
 import com.fai.brofee_fe.repository.ServicePolicyAssignmentRepository;
 import com.fai.brofee_fe.repository.ServiceRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class CommissionPolicyService {
 
     private final CommissionPolicyRepository commissionPolicyRepository;
@@ -121,6 +123,7 @@ public class CommissionPolicyService {
             throw new IllegalArgumentException("Total commission rate cannot exceed 100%");
         }
 
+
         // 3 - Update policy
         commissionPolicy.setStartDate(updateDTO.getStartDate());
         commissionPolicy.setEndDate(updateDTO.getEndDate());
@@ -131,13 +134,10 @@ public class CommissionPolicyService {
         }
         commissionPolicyRepository.save(commissionPolicy);
 
+
         // 4 - Delete all the old commission tiers
         List<CommissionTier> _commissionTiers = commissionPolicy.getCommissionTiers();
-        //commissionTierRepository.deleteAll(_commissionTiers);
-        // The deleteAll did not work
-        for (CommissionTier _commissionTier : _commissionTiers) {
-            commissionTierRepository.delete(_commissionTier);
-        }
+        commissionTierRepository.deleteAll(_commissionTiers);
 
 
         // 5 - Create new commission tiers
@@ -151,7 +151,7 @@ public class CommissionPolicyService {
                 .toList();
         commissionTierRepository.saveAll(commissionTiers);
 
-        // 5 - Update commission tiers
+        // 6 - Update commission tiers
         List<ServicePolicyAssignment> existingAssignments = commissionPolicy.getPolicyAssignments();
         List<Long> existingServiceIds = existingAssignments.stream().map(assignment -> assignment.getService().getId()).toList();
 

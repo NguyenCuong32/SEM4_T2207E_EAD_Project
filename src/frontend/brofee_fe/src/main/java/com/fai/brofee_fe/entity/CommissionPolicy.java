@@ -32,7 +32,7 @@ public class CommissionPolicy {
     @Column(name = "max_referral_levels", nullable = false)
     private Integer maxReferralLevels;
 
-    @OneToMany(mappedBy = "policy", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "policy", fetch = FetchType.EAGER)
     private List<CommissionTier> commissionTiers;
 
     // Relationship with other tables

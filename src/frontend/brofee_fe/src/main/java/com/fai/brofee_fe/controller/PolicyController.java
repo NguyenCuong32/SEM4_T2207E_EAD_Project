@@ -168,6 +168,7 @@ public class PolicyController {
         try {
             commissionPolicyService.updateCommissionPolicy(policyEditDTO);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             // Pass services to view
             List<ServiceDetailDTO> allServices = serviceInPolicyService_.getAllServices();
             for (ServiceDetailDTO service : allServices) {
